@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Spring | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="SpringIOCAOPJDK代理 被代理对象需要实现接口  JDK代理和被代理对象同级，兄弟关系  JDK代理前16次通过反射调用方法，后续都是   123456789101112ClassLoader loder &#x3D; 被代理类.class.getClassLoader();&#x2F;&#x2F;被代理对象Target target &#x3D; new Target();接口 proxy &#x3D; (接口) Proxy.new">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/Spring/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="SpringIOCAOPJDK代理 被代理对象需要实现接口  JDK代理和被代理对象同级，兄弟关系  JDK代理前16次通过反射调用方法，后续都是   123456789101112ClassLoader loder &#x3D; 被代理类.class.getClassLoader();&#x2F;&#x2F;被代理对象Target target &#x3D; new Target();接口 proxy &#x3D; (接口) Proxy.new">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.704Z">
+<meta property="article:modified_time" content="2023-08-04T01:34:50.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="源码">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Java/源码/Spring" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/Spring/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.704Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Spring
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><h3 id="JDK代理"><a href="#JDK代理" class="headerlink" title="JDK代理"></a>JDK代理</h3><ul>
+<li><p>被代理对象需要实现接口</p>
+</li>
+<li><p>JDK代理和被代理对象同级，兄弟关系</p>
+</li>
+<li><p>JDK代理前16次通过反射调用方法，后续都是</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ClassLoader</span> <span class="variable">loder</span> <span class="operator">=</span> 被代理类.class.getClassLoader();</span><br><span class="line"><span class="comment">//被代理对象</span></span><br><span class="line"><span class="type">Target</span> <span class="variable">target</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Target</span>();</span><br><span class="line">接口 proxy = (接口) Proxy.newProxyInstance(loader, <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;接口.class&#125;, <span class="keyword">new</span> <span class="title class_">InvacationHandler</span>()&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throw</span> Throable&#123;</span><br><span class="line">        <span class="comment">//执行增强</span></span><br><span class="line">        <span class="comment">//调用被代理对象方法</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> method.invoke(target, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="CGLIB代理"><a href="#CGLIB代理" class="headerlink" title="CGLIB代理"></a>CGLIB代理</h3><ul>
+<li>CGLIB代理和被代理对象是父子关系，所以被代理对象不能是final修饰的</li>
+<li>CGLIB可以通过方法代理直接调用被代理方法，不走反射</li>
+<li>被代理对象的方法是final修饰的话不会有增强效果</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//被代理对象</span></span><br><span class="line"><span class="type">Target</span> <span class="variable">target</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Target</span>();</span><br><span class="line"><span class="type">Target</span> <span class="variable">proxy</span> <span class="operator">=</span> (Target) Enhancer.create(Target.class, <span class="keyword">new</span> <span class="title class_">MethInteceptor</span>()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">intercept</span><span class="params">(Object p, Method method, Object[] args, MethodProxy methodProxy)</span> <span class="keyword">throw</span> Throwable&#123;</span><br><span class="line">        <span class="comment">//执行增强</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//调用被代理对象方法（反射）</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> method.invoke(target, args);</span><br><span class="line">        <span class="comment">//调用被代理对象方法（直接调用）(需要被代理对象)（Spring使用）</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> methodProxy.invoke(target, args);</span><br><span class="line">        <span class="comment">//调用被代理对象方法（直接调用）(不需要被代理对象)</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> methodProxy.invokeSuper(p, args);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器创建（Refresh方法）"><a href="#容器创建（Refresh方法）" class="headerlink" title="容器创建（Refresh方法）"></a>容器创建（Refresh方法）</h2><ol>
+<li>prepareRefresh<ul>
+<li>创建Environment对象</li>
+<li>为@Value注入信息</li>
+</ul>
+</li>
+<li>obtainFreshBeanFactory<ul>
+<li>获取或创建BeanFactory</li>
+<li>通过BeanDefinition把对象信息存放在map中</li>
+<li>创建需要的对象</li>
+</ul>
+</li>
+<li>prepareBeanFactory<ul>
+<li>初始化BeanFactory中的成员变量</li>
+<li>解析Spel表达式</li>
+<li>注册类型转换器，解析#{}</li>
+<li>进行依赖注入</li>
+<li>准备后处理器集合beanPostProcessors</li>
+</ul>
+</li>
+<li>postProcessBeanFactory<ul>
+<li>web环境下的ApplicationContext要利用它注册新的scope，完善Web下的BeanFactory</li>
+</ul>
+</li>
+<li>invokeBeanFactoryPostProcessors<ul>
+<li>对BeanFactory做扩展</li>
+<li>解析@Configuration、@Bean、@Impor、@PropertySource</li>
+</ul>
+</li>
+<li>registerBeanPostProcessors<ul>
+<li>创建并加入更多的后处理器，主要看BeanDefinitionMap中对象是否实现了PostProcessor接口，加入beanPostProcessors集合中</li>
+</ul>
+</li>
+<li>initMessageSource<ul>
+<li>创建MessageSource</li>
+<li>实现国际化功能</li>
+</ul>
+</li>
+<li>initApplicationEventMulticaster<ul>
+<li>创建事件广播器</li>
+</ul>
+</li>
+<li>onRefresh<ul>
+<li>空实现，留给子类实现</li>
+<li>SpringBoot中的子类可以在这里准备内嵌的web容器</li>
+</ul>
+</li>
+<li>registerListeners<ul>
+<li>创建事件监听器</li>
+</ul>
+</li>
+<li>finishBeanFactoryInitialization<ul>
+<li>初始化BeanFactory中的成员变量</li>
+<li>解析${}</li>
+<li>创建beanDefinitionMap中保存的对象</li>
+</ul>
+</li>
+<li>finishRefresh<ul>
+<li>创建生命周期处理器</li>
+</ul>
+</li>
+</ol>
+<h2 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h2><p><strong>实现类</strong></p>
+<ul>
+<li><p>DefaultListableBeanFactory</p>
+<ul>
+<li><p>提供控制反转、基本的依赖注入、Bean生命周期的各个功能</p>
+</li>
+<li><p>默认无其他后处理器，解析不了注解，需要添加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加后处理器</span></span><br><span class="line">AnnotationConfigUtils.registerAnnotationConfigProcessors(容器对象);</span><br><span class="line"><span class="comment">//启动后处理器</span></span><br><span class="line">容器对象.getBeanOfType(BeanFactoryPostProcessor.class)</span><br><span class="line">    ,values().stream().forEach(beanFactoryPostProcessor -&gt; &#123;</span><br><span class="line">    beanFactoryPostProcessor.postProcessBeanFactory(容器对象);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>容器中的Bean对象在使用时才会创建（延迟创建），也可以提前创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//提前创建</span></span><br><span class="line">容器对象.preInstantiateSingletos()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>默认不会解析 ${}、#{}</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h2><p><strong>实现类</strong></p>
+<ul>
+<li><p>ClassPathXmlApplicationContext、FIleSystemXmlApplicationContext</p>
+<ul>
+<li><p>创建DefaultListableBeanFactory</p>
+</li>
+<li><p>通过XmlBeanDefinitionReader中的loadBeanDefinitions()</p>
+</li>
+<li><p>读取Xml中的Bean</p>
+</li>
+</ul>
+</li>
+<li><p>AnnotationConfigApplicationContext</p>
+<ul>
+<li><p>通过配置类创建容器</p>
+</li>
+<li><p>会自动添加常用的后处理器</p>
+</li>
+</ul>
+</li>
+<li><p>AnnotationConfigServletWebServerApplicationContext</p>
+<ul>
+<li>借助了内嵌的Tomcat</li>
+<li>需要提供一些Bean<ul>
+<li>ServletWebServerFactory</li>
+<li>DispatcherServlet</li>
+<li>DispatchServletRegistrationBean</li>
+</ul>
+</li>
+<li>非必须Bean<ul>
+<li>Controller（web.servlet.mvc）<ul>
+<li>处理Request、Response</li>
+<li>可以指定访问的url</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><ol>
+<li>处理名称，检查缓存</li>
+</ol>
+<ul>
+<li>解析别名，解析特殊符号，查询三级缓存看是否有创建好的Bean</li>
+</ul>
+<ol start="2">
+<li>处理父子容器</li>
+</ol>
+<ul>
+<li>如果有父容器，回去父容器是否有创建好的Bean<ul>
+<li>父子容器的bean名称可以重复</li>
+<li>优先找子容器Bean，子容器没有再找父容器</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>dependsOn</li>
+</ol>
+<ul>
+<li>判断是否用使用dependsOn指定Bean的创建顺序</li>
+</ul>
+<ol start="4">
+<li>按不同的Scope创建Bean</li>
+<li>实例化</li>
+</ol>
+<ul>
+<li>通过构造函数创建</li>
+<li>反射生成对象，堆中申请空间，给成员变量赋默认值</li>
+</ul>
+<ol start="6">
+<li>依赖注入</li>
+<li>初始化</li>
+</ol>
+<ul>
+<li>Bean属性注入<ul>
+<li>包括自定义属性和容器属性</li>
+</ul>
+</li>
+<li>Bean功能扩展<ul>
+<li>BeanPostProcessor<ul>
+<li>AOP在此处实现</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>使用，通过容器对象调用getBean()方法获取Bean对象</li>
+<li>销毁</li>
+</ol>
+<h2 id="三级缓存-循环依赖"><a href="#三级缓存-循环依赖" class="headerlink" title="三级缓存 &#x2F; 循环依赖"></a>三级缓存 &#x2F; 循环依赖</h2><ul>
+<li><p>用于解决循环依赖的问题</p>
+<ul>
+<li>循环依赖指的是对象创建时需要另一个对象，正好那个对象也在创建并等待该对象创建导致卡住<ul>
+<li>主要在设值注入、构造注入时出现</li>
+<li>设值注入单例情况下使用三级缓存解决</li>
+<li>原型对象不使用三级缓存，因为会大量存储于缓存中无法被gc</li>
+<li>构造注入出现循环依赖是无解的，所以只能通过检测来避免<ul>
+<li>用一个容器存储，当对象创建时放入该容器，每当在需要依赖的时候就检测这个容器中是否有对应的对象，有的话就是发生了循环依赖</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>一级缓存：singletonObjects</p>
+<ul>
+<li>存成品对象</li>
+<li>createBeanInstances之后放置</li>
+<li>Bean生命周期中后置处理器处理时存入</li>
+</ul>
+</li>
+<li><p>二级缓存：earlySingletonObjects</p>
+<ul>
+<li>存半成品对象</li>
+<li>第一次从三级缓存中确定对象是代理对象还是普通对象的时候放置，同时删除三级缓存</li>
+<li>Bean生命周期中填充属性时存入</li>
+</ul>
+</li>
+<li><p>三级缓存：singletonFactories</p>
+<ul>
+<li>存的是工厂对象，也是lambda表达式，value值是ObjectFactory，key是beanname</li>
+<li>生成完整对象之后放到一级缓存，删除二三级缓存</li>
+<li>Bean生命周期中调用构造方法时存入</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务原理"><a href="#事务原理" class="headerlink" title="事务原理"></a>事务原理</h2><p>​		事务是由AOP来实现的，首先生成代理对象，通过TransactionInterceptor，调用invoke实现具体逻辑</p>
+<ol>
+<li>解析方法上事务的相关属性，判断是否开启新事务</li>
+<li>获取数据库连接，关闭自动提交，开启事务</li>
+<li>执行具体的sql逻辑<ul>
+<li>成功：通过commitTransactionAfterReturning提交，通过doCommit实现</li>
+<li>失败：通过commitTransactionAfterThrowing执行回滚，通过doRollBack实现</li>
+</ul>
+</li>
+<li>之后清除相关的事务信息，cleanupTransactionInfo</li>
+</ol>
+<h2 id="后处理器"><a href="#后处理器" class="headerlink" title="后处理器"></a>后处理器</h2><h3 id="BeanPostProcessor"><a href="#BeanPostProcessor" class="headerlink" title="BeanPostProcessor"></a>BeanPostProcessor</h3><ul>
+<li>AutowiredAnnotationBeanPostProcessor<ul>
+<li>解析@Autowired、@Value</li>
+<li>内部调用的postProcessprProperties方法解析注解<ol>
+<li>通过findAutowiringMetadata找到加了@Autowired的成员信息metadata</li>
+<li>调用metadata.inject方法进行依赖注入<ul>
+<li>获取成员信息的类型</li>
+<li>封装为DependencyDescriptor对象</li>
+<li>然后通过BeanFactory.doResolveDependency到容器里找对应的Bean</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>ContextAnnotationAutowiredCandidateResolver<ul>
+<li>解析${}</li>
+</ul>
+</li>
+<li>CommonAnnotationBeanPostProcessor<ul>
+<li>解析@Resource、@postConstruct、@PreDestroy</li>
+</ul>
+</li>
+<li>ConfigurationPropertiesBindingPostProcessor<ul>
+<li>解析@ConfigurationProperties</li>
+</ul>
+</li>
+</ul>
+<h3 id="BeanProcessor"><a href="#BeanProcessor" class="headerlink" title="BeanProcessor"></a>BeanProcessor</h3><ul>
+<li>ConfigurationClassPostProcessor<ul>
+<li>解析@Bean、@ComponentScan、@Import、@ImportResource</li>
+</ul>
+</li>
+<li>MapperScannerConfigurer<ul>
+<li>讲mapper加入容器，解析@MapperScan</li>
+</ul>
+</li>
+</ul>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><ol>
+<li>获取包路径</li>
+<li>转化为classpath的格式</li>
+<li>通过容器的getResources方法获得路径下所有的类</li>
+<li>判断类是否直接或间接加了@Component<ul>
+<li>通过CachingMetadataReaderFactory对象的getMetadataReader方法获得MetadataReader</li>
+<li>MetadataReader通过getAnnotationMetadata方法获得AnnotationMetadata对象</li>
+<li>AnnotationMetadata对象调用hasAnnotation和hasMetaAnnotation判断是否直接或间接标注了@Component注解</li>
+</ul>
+</li>
+<li>加了注解就把这个bean封装到BeanDefinition<ul>
+<li>使用BeanDefinitionBuilder通过Bean名称获取BeanDefinition</li>
+<li>通过AnnotationBeanNameGenerator生成Bean的名称</li>
+<li>加入容器</li>
+</ul>
+</li>
+</ol>
+<h3 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h3><ol>
+<li>获取包路径</li>
+<li>转化为classpath的格式</li>
+<li>通过容器的getResources方法获得路径下所有的类</li>
+<li>判断类是否直接或间接加了@Component<ul>
+<li>通过CachingMetadataReaderFactory对象的getMetadataReader方法获得MetadataReader</li>
+</ul>
+</li>
+</ol>
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h2 id="自动配置"><a href="#自动配置" class="headerlink" title="自动配置"></a>自动配置</h2><ul>
+<li>主要是通过@EnableAutoConfiguration及其内部注解实现<ul>
+<li>@AutoConfigurationPackage<ul>
+<li>@Import(AutoConfigurationPackage.Registrar.class)<ul>
+<li>利用Registrar批量注册组件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>@Import(AutoConfigurationImportSelector.class)<ul>
+<li>利用getAutoConfigurationEntry(annotationMetadata a) 给容器批量导入一些组件</li>
+<li>调用getCandidateConfigurations(annotationMetadata, attributes) 获取所有需要导入的容器中的配置类&#x2F;组件<ul>
+<li>利用了SpringFactoriesLoader（Spring工厂加载器）的loadFactoryNames() 这个方法返回loadSpringFactories的Map得到所有的组件<ul>
+<li>loadSpringFactories方法会扫描当前系统里面所有的META-INF&#x2F;spring.factories</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><ol>
+<li>用户发起HttpRequest请求，请求进入到 DispatcherServlet<ul>
+<li>默认路径是 “ &#x2F; ”，会匹配到所有的url</li>
+<li>SpringBoot会自动创建并加载DispatcherServlet的Bean<ul>
+<li>会创建Spring容器并执行refresh方法</li>
+</ul>
+</li>
+<li>第一次请求来时会初始化DispatcherServlet，然后到容器中找它依赖的组件，没有就用默认的<ul>
+<li>HandlerMapping、HandlerAdapter、HandlerExceptionResolver、ViewResolver</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DispatcherServlet 将请求转发给所有的 HandlerMapping，HandlerMapping 会找到能处理这些请求的Handler方法<ul>
+<li>这些Handler方法会被封装成HandlerMethod对象，并结合匹配到的拦截器，合并成HandlerExecutionChain（调用链）对象，然后一起返回给DispatcherServlet </li>
+<li>HandlerMapping 会在初始化时就会建立好请求路径和处理器的映射关系</li>
+</ul>
+</li>
+<li>DispatcherServlet 收到这条调用链后 <ul>
+<li>调用所有拦截器的preHandle方法，返回true才继续后续的调用</li>
+<li>调用HandlerAdapter解析HandlerMethod并调用对应的Handler方法，准备数据绑定工厂、模型工厂，将HandlerMethod完善为ServletInvocableHandlerMethod<ul>
+<li>使用HandlerMethodArgumentResolver参数解析</li>
+<li>调用ServletInvocableHandlerMethod</li>
+<li>调用HandlerMethodReturnValueHandler处理返回值<ul>
+<li>有@ResponseBody注解的话直接返回Json</li>
+<li>否则返回的是 ModelAndView ，然后进行视图解析和渲染</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调用拦截器的postHandle方法</li>
+</ul>
+</li>
+<li>视图渲染或处理异常<ul>
+<li>如果1 - 3出现异常，ExceptionHandlerExceptionResolver处理<ul>
+<li>@ControllerAdvice增强5：@ExceptionHandler异常处理</li>
+</ul>
+</li>
+<li>视图解析即渲染<ul>
+<li>将 ModelAndView 转发给 ViewResolver 处理并返回 View 对象给 DispatcherServlet</li>
+<li>DispatcherServlet 再将渲染后的页面返回给客户端</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调用拦截器的afterCompletion方法</li>
+</ol>
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><h2 id="执行流程-1"><a href="#执行流程-1" class="headerlink" title="执行流程"></a>执行流程</h2><ol>
+<li>调用构造方法创建SpringApplication对象<ul>
+<li>根据各种来源添加BeanDefinition</li>
+<li>推断应用程序类型(servlet, none, reacter)</li>
+<li>准备初始化器，监听器</li>
+<li>进行主类推断</li>
+</ul>
+</li>
+<li>执行run方法<ol>
+<li>得到SpringApplicationRunListeners事件发布器<ul>
+<li>发布7个事件<ul>
+<li>starting：开始启动</li>
+<li>environmentPrepared：准备环境</li>
+<li>contextPrepared：容器创建并调用初始化器</li>
+<li>contextLoaded：Bean定义加载</li>
+<li>started：refresh方法执行</li>
+<li>running：springboot启动完成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>封装args为ApplicationArgument对象<ul>
+<li>用DefaultApplicationArguments(args)封装</li>
+</ul>
+</li>
+<li>创建Environment对象<ul>
+<li>有系统属性和系统环境变量，优先找系统属性</li>
+</ul>
+</li>
+<li>对Environment中命名规范统一处理</li>
+<li>对Environment做扩展增强<ul>
+<li>使用EnvironmentPostProcessor后处理器做增强</li>
+</ul>
+</li>
+<li>对Environment中以”spring.main”为前缀的key与SpringApplication容器对象做绑定</li>
+<li>打印Banner</li>
+<li>创建spring容器</li>
+<li>应用初始化器的增强</li>
+<li>得到所有的BeanDefinition</li>
+<li>调用Application的refresh方法</li>
+<li>调用所有实现ApplicationRunner和CommandLineRunner接口的Bean</li>
+</ol>
+</li>
+</ol>
+<h2 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h2><ol>
+<li>通过@EnableAutoConfiguration注解</li>
+</ol>
+<h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><h2 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h2><h3 id="动态配置刷新"><a href="#动态配置刷新" class="headerlink" title="动态配置刷新"></a>动态配置刷新</h3><ul>
+<li>主要依赖推送和拉取<ul>
+<li>推送机制是指Nacos服务器在检测到配置变化时，主动通知客户端更新配置。Nacos服务器使用了<strong>长轮询</strong>的方式来实现推送</li>
+<li>拉取机制是客户端每30秒会执行一次心跳检测，此时客户端也会执行一次配置拉取操作，如果发现配置有变化，则会触发配置更新的回调函数，可以保证nacos推送失败或者网络问题异常的情况下依然能获取最新的配置<ul>
+<li>回调函数是ContextRefresher类的refresh方法，该方法会触发一个RefreshEvent事件，该事件会被springcloud的组件监听并执行相应的刷新逻辑</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>原理是基于Environment、@RefreshScope、@Value<ul>
+<li>通过Environment获取的配置会自动刷新</li>
+<li>通过@RefreshScope标注的Bean会重新创建并注入容器</li>
+<li>通过@Value的字段会重新赋值</li>
+</ul>
+</li>
+</ul>
+<h3 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h3><ol>
+<li><p>调用register接口，传入ip、namespace、groupName、serviceName等等</p>
+</li>
+<li><p>解析request请求取得参数</p>
+<ul>
+<li><p>如果没传namespace会使用默认的namespace</p>
+</li>
+<li><p>服务名称：groupName@@serviceName</p>
+<ul>
+<li><p>解析request请求获得参数，封装为Instance对象</p>
+</li>
+<li><p>内部有两个集合，一个放临时实例，一个放永久实例</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>将参数封装为Instance对象，然后调用registerInstance注册该实例</p>
+<ol>
+<li>创建空的服务service，只有第一次会创建，为了确保有服务对象<ul>
+<li>尝试从注册表中获取service<ul>
+<li>为空则创建，会记录服务最后一次更新时间</li>
+<li>存进注册表，双重检查</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>添加实例到服务service中<ul>
+<li>为服务生成唯一标识</li>
+<li>从注册表中拿到服务service</li>
+<li>加锁，多实例间只能串行添加<ul>
+<li>拷贝注册表中旧的实例列表然后加上新注册的实例组成完整的实例列表</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/Spring/" data-id="clrj8k01v009h4wuwcgq1hbp6" data-title="Spring" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/Mybatis2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/JUC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JUC源码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

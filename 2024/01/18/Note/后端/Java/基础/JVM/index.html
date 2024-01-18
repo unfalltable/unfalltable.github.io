@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JVM虚拟机 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简介JVM内存模型堆 存放new出来的对象、字符串常量池、静态变量 字符串常量池是在1.7的时候移入堆中，之前都是在方法区中   堆内存由年轻代和老年代组成  栈 主要存放的是线程，每个线程开辟一块内存空间，称为线程栈 最多占用1m内存   线程栈中由多个栈帧组成，栈帧是调用的每个方法 栈帧包括：，局部变量， 操作数栈：方法运行期间数据的操作空间  动态链接：符号引用转变为直接引用 方法出口：记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM虚拟机">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/JVM/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介JVM内存模型堆 存放new出来的对象、字符串常量池、静态变量 字符串常量池是在1.7的时候移入堆中，之前都是在方法区中   堆内存由年轻代和老年代组成  栈 主要存放的是线程，每个线程开辟一块内存空间，称为线程栈 最多占用1m内存   线程栈中由多个栈帧组成，栈帧是调用的每个方法 栈帧包括：，局部变量， 操作数栈：方法运行期间数据的操作空间  动态链接：符号引用转变为直接引用 方法出口：记录">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.684Z">
+<meta property="article:modified_time" content="2023-07-26T07:35:44.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Java/基础/JVM" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/JVM/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.684Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      JVM虚拟机
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="JVM内存模型"><a href="#JVM内存模型" class="headerlink" title="JVM内存模型"></a>JVM内存模型</h2><h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><ul>
+<li>存放new出来的对象、字符串常量池、静态变量<ul>
+<li>字符串常量池是在1.7的时候移入堆中，之前都是在方法区中</li>
+</ul>
+</li>
+<li>堆内存由年轻代和老年代组成</li>
+</ul>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><ul>
+<li>主要存放的是线程，每个线程开辟一块内存空间，称为线程栈<ul>
+<li>最多占用1m内存</li>
+</ul>
+</li>
+<li>线程栈中由多个栈帧组成，栈帧是调用的每个方法<ul>
+<li>栈帧包括：，局部变量，<ul>
+<li>操作数栈：方法运行期间数据的操作空间 </li>
+<li>动态链接：符号引用转变为直接引用</li>
+<li>方法出口：记录方法结束时下一句执行的代码的地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><ul>
+<li>存放本地方法（native method）<ul>
+<li>本地方法是底层方法，主要是c和c++语言编写的</li>
+</ul>
+</li>
+</ul>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><ul>
+<li>存放类的信息，静态方法信息、类加载器，全局变量，常量<ul>
+<li>类信息就是常量池就是一张表，里面有类名，方法名，参数类型，字面量等信息</li>
+<li>当类被加载时，常量池的信息会放入运行时常量池，里面的符号地址变为真实地址</li>
+</ul>
+</li>
+<li>1.7之前称为永久代，1.8之后称为元空间并开始使用物理（本地）内存，不受JVM管理了</li>
+<li>类加载器将类信息加载进元空间，当类加载器加载的所有类不再被引用时，gc会将类加载器、加载的类、元空间的类信息释放</li>
+<li>在1.7之前永久代空间不足会触发堆的垃圾回收</li>
+</ul>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><ul>
+<li>存放下一条要运行的代码的地址</li>
+<li>便于线程切换</li>
+<li>通过寄存器实现，是线程私有的，不会出现内存溢出</li>
+</ul>
+<h3 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h3><ul>
+<li><p>StringTable，1.7之后在堆中，是不能扩容的，底层是一个hash表</p>
+</li>
+<li><p>编译期优化</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>    <span class="comment">//是加到字符串常量池中的</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span> ,<span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>   </span><br><span class="line">    <span class="comment">//s1+s2     </span></span><br><span class="line">    <span class="comment">//相当于 new StringBuilder().append(&quot;a&quot;).append(&quot;b&quot;).toString()</span></span><br><span class="line">    <span class="comment">//new出来的是在堆中的</span></span><br><span class="line">    </span><br><span class="line"><span class="string">&quot;a&quot;</span> + <span class="string">&quot;b&quot;</span>    <span class="comment">//如果字符串常量池中有则引用，没有则创建</span></span><br><span class="line"><span class="string">&quot;a&quot;</span> + <span class="string">&quot;b&quot;</span>    <span class="comment">//javac在编译期间已经确定结果一定为”ab&quot;</span></span><br><span class="line">s1 + s2      <span class="comment">//javac在编译期间已经不能确定结果一定为”ab&quot;，因为s1和s2是变量</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>常量池中的字符串仅是符号，第一次用到时才变为对象</p>
+</li>
+<li><p>利用串池的机制。来避免创建重复的字符串对象</p>
+</li>
+<li><p>字符串拼接的原理时StringBuilder</p>
+</li>
+<li><p>字符串常量拼接的原理时编译期优化</p>
+</li>
+<li><p>可以使用intern方法，将字符串对象放入串池</p>
+<ul>
+<li>1.8时，串池有则不放入，没有则放入，会把串池中的对象返回</li>
+<li>1.6时，串池有则不放入，没有则把对象赋值一份，放入串池，会把串池中的对象返回</li>
+</ul>
+</li>
+<li><p>设置StringTable桶的个数减少哈希冲突</p>
+<ul>
+<li>-XX:StringTableSize&#x3D;(1009 - ….)   最少是1009个</li>
+</ul>
+</li>
+<li><p>将字符串对象入池优化</p>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>栈、本地方法栈、程序计数器是线程私有的</li>
+<li>堆、方法区&#x2F;元空间是线程共享的</li>
+</ul>
+<h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><ul>
+<li><p>Java 的并发采用的是共享内存模型，Java 线程之间的通信总是隐式进行</p>
+</li>
+<li><p>JMM定义的是线程本地内存和主内存的抽象关系，用于屏蔽各种硬件和操作系统的内存访问差异</p>
+<ul>
+<li>可见性：当线程修改了共享变量，其他线程能立即知道改变更</li>
+<li>原子性：要么都发生，要么都不发生</li>
+<li>有序性：按顺序执行</li>
+</ul>
+</li>
+<li><p>本地内存是一个抽象的概念，并不真实存在，是一种规范，它包括了缓存，写缓冲区，寄存器、编译器</p>
+<ul>
+<li>写缓冲区：可以保证指令流水线持续运行，它可以避免由于处理器停顿下来等待向内存写入数据而产生的延迟。同时，通过以批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，可以减少对内存总线的占用</li>
+</ul>
+</li>
+<li><p>从 java 源代码到最终实际执行的指令序列，会分别经历三种重排序</p>
+<ol>
+<li>编译器优化重排序<ul>
+<li>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序</li>
+</ul>
+</li>
+<li>指令级并行的重排序<ul>
+<li>如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序</li>
+</ul>
+</li>
+<li>内存系统的重排序<ul>
+<li>由于处理器使用缓存和读 &#x2F; 写缓冲区，这使得加载和存储操作看上去可能是在乱序执行</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>happens-before</p>
+<ul>
+<li>先行发生原则，判断数据是否存在竞争，线程是否安全<ul>
+<li>次序规则：一个线程内的前一步操作后的结果对后一步来说一定是可见的</li>
+<li>锁定规则：同一个锁的unlock操作一定先于lock操作</li>
+<li>volatile变量规则：写操作后的数据一定是可以被读到的</li>
+<li>传递规则：如果A先行于B，B先行于C，那么A一定先行于C</li>
+<li>线程启动规则：Thread对象的start方法先行于线程中的所有操作</li>
+<li>线程中断规则：interrupt方法先行于interrupted方法才能检测出线程中断事件</li>
+<li>线程终止规则：线程中的所有操作都先行于线程的终止检测 isAlive</li>
+<li>对象终结规则：初始化方法的执行一定先行于终止方法finalizefang’fa</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="类加载子系统"><a href="#类加载子系统" class="headerlink" title="类加载子系统"></a>类加载子系统</h2><h3 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h3><ul>
+<li>魔数与class文件的版本</li>
+<li>常量池<ul>
+<li>变量的属性、类型和名称</li>
+<li>方法的属性、类型和名称</li>
+</ul>
+</li>
+<li>访问标志</li>
+<li>类索引、父类索引、接口索引</li>
+<li>字段表属性</li>
+<li>方法表属性</li>
+<li>属性表属性</li>
+</ul>
+<h3 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h3><ol>
+<li>加载<ul>
+<li>根据类的全限定名，将类的信息加载进方法区</li>
+<li>在堆中生成一个对象指向该类，作为方法区的数据访问入口</li>
+<li>如果这个类没有父类，会先加载他的父类</li>
+</ul>
+</li>
+<li>验证<ul>
+<li>验证类是否符合JVM规范，例如检查class文件的魔数，符号引用验证</li>
+</ul>
+</li>
+<li>准备<ul>
+<li>为静态变量分配空间，如果静态变量是基本数据类型的话为其设置默认值</li>
+</ul>
+</li>
+<li>解析<ul>
+<li>将类中的符号引用解析为直接引用</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>初始化即调用 <cinit>()V 方法，虚拟机会保证这个类的构造方法的线程安全</li>
+<li>为静态变量赋值</li>
+<li>初始化是懒惰的，使用时才初始化<ul>
+<li>类在main方法中</li>
+<li>类的静态变量或静态方法被访问</li>
+<li>子类初始化时父类会在其之前初始化</li>
+<li>子类访问父类的静态变量，只会触发父类初始化</li>
+<li>new、class.forName</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用</li>
+<li>销毁</li>
+</ol>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><ul>
+<li>Bootstrap ClassLoader 一级<ul>
+<li>加载 JAVA_HOME&#x2F;jre&#x2F;lib 下的类，无法直接访问</li>
+<li>C语言实现的，所以打印时为null</li>
+</ul>
+</li>
+<li>Extension ClassLoader 二级<ul>
+<li>加载 JAVA_HOME&#x2F;jre&#x2F;lib&#x2F;ext 下的类，显示为null</li>
+</ul>
+</li>
+<li>Application ClassLoader 三级<ul>
+<li>加载 classpath下的类，线程上下文加载器</li>
+</ul>
+</li>
+<li>自定义类加载器 四级<ul>
+<li>加载自定义位置的类，通过接口实现，常见于tomcat中</li>
+<li>步骤：<ul>
+<li>继承ClassLoader父类</li>
+<li>要遵从双亲委派机制，重写findClass方法</li>
+<li>读取类文件的字节码</li>
+<li>调用父类的defineClass方法来加载类</li>
+<li>使用者调用该自定义类加载器的loadClass方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="双亲委派模式"><a href="#双亲委派模式" class="headerlink" title="双亲委派模式"></a>双亲委派模式</h3><ul>
+<li>JDK1.2之后才有该模型</li>
+<li>避免类的结构混乱，保护核心类不被篡改，安全</li>
+<li>就是调用类加载器的loadClass方法，所经历的过程<ul>
+<li>检查该类是否已经加载，有加载则返回</li>
+<li>没加载找上级，让上级loadClass，上级有加载则返回</li>
+<li>没加载再找上级，如果没上级了，则找BootstrapClassLoader，有则返回</li>
+<li>每一层都找不到，调用findClass方法（每个类加载器自己扩展）来加载</li>
+</ul>
+</li>
+</ul>
+<h3 id="字节码执行引擎"><a href="#字节码执行引擎" class="headerlink" title="字节码执行引擎"></a>字节码执行引擎</h3><ul>
+<li>执行方法区中的字节码文件</li>
+<li>修改程序计数器的数据</li>
+<li>垃圾收集线程</li>
+</ul>
+<h3 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h3><ul>
+<li>将字节码解释为机器码，下次即使遇到相同的字节码，仍会执行重复的解释</li>
+<li>将字节码解释为针对所有平台都通用的机器码</li>
+</ul>
+<h3 id="JIT即时编译器"><a href="#JIT即时编译器" class="headerlink" title="JIT即时编译器"></a>JIT即时编译器</h3><ul>
+<li>将字节码编译为机器码，存入CodeCache中，下次遇到相同的代码，直接执行缓存中的，无需重复解释</li>
+<li>根据平台类型，生成平台特定的机器码</li>
+</ul>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>gc root 对象不可被回收</li>
+<li>GCRoots对象包括：虚拟机运行过程中的核心类对象，虚拟机栈中的局部变量表引用的对象，方法区中类静态属性引用和常量引用对象，本地方法栈中的引用的对象，被加锁的对象，活动线程中引用的对象</li>
+<li>引用队列<ul>
+<li>ReferenceQueue</li>
+</ul>
+</li>
+</ul>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ul>
+<li>强引用<ul>
+<li>在堆中创建对象并用一个变量引用为强引用</li>
+</ul>
+</li>
+<li>软引用<ul>
+<li>SoftReference&lt;&gt;(软引用, 引用队列)</li>
+<li>垃圾回收过后内存仍然不足则会回收软引用，前提是没用强引用引用它</li>
+<li>当软引用的对象被回收时，软引用会进入引用队列</li>
+</ul>
+</li>
+<li>弱引用<ul>
+<li>WeakReference&lt;&gt;(软引用, 引用队列)，用于解决内存泄漏问题</li>
+<li>垃圾回收过后会回收软引用，前提是没用强引用引用它</li>
+<li>当弱引用的对象被回收时，弱引用会进入引用队列</li>
+<li>full gc 会清除所有弱引用对象</li>
+</ul>
+</li>
+<li>虚引用<ul>
+<li>也称幽灵引用，一旦创建就被回收了，所以需要队列cun’chu</li>
+<li>当虚引用的对象被回收时，虚引用会进入引用队列</li>
+<li>引用队列会定期查看引用队列中是否有虚引用</li>
+<li>有虚引用的话会调用虚引用的clean方法调用unsafe.freeMemory()方法释放直接内存</li>
+</ul>
+</li>
+<li>终结器引用<ul>
+<li>当对象重写了终结方法finalize()并且没用强引用时，它就会被垃圾回收</li>
+<li>对象没有强引用时，JVM会创建终结器引用引用该对象，并将终结器引用加入引用队列</li>
+<li>finalizeHandler会定期查看引用队列中是否有终结器引用</li>
+<li>有终结器引用时会调用引用对象的finalize方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h3><ul>
+<li>引用计数法（已过时）<ul>
+<li>当对象没有被强引用所指向时在gc时就进行清除</li>
+<li>有A引用B，B引用A无法清除的问题</li>
+</ul>
+</li>
+<li>标记+清除算法<ul>
+<li>标记是使用<strong>可达性分析算法</strong>（沿着根对象寻找），<strong>三色标记法</strong>标记存活对象</li>
+<li>记录起始位置和结束位置，新数据直接覆盖旧数据，速度快</li>
+<li>空间碎片多不连续</li>
+</ul>
+</li>
+<li>标记+清除+整理算法（老年代）<ul>
+<li>可以进行整理解决标记清除算法产生碎片的问题，</li>
+<li>但移动对象会涉及地址改变，速度慢</li>
+</ul>
+</li>
+<li>复制算法（新生代）<ul>
+<li>将不回收的数据迁移到另一个相同大小的区域，然后交换这两个区域</li>
+<li>效率高，不会产生内存碎片，但会占用双倍的的内存空间，浪费空间</li>
+</ul>
+</li>
+</ul>
+<h3 id="分代回收"><a href="#分代回收" class="headerlink" title="分代回收"></a>分代回收</h3><ul>
+<li><p>新生代</p>
+<ul>
+<li>伊甸园 + 幸存区from + 幸存区to</li>
+<li>8：1：1</li>
+<li>伊甸园满了触发 minor gc<ul>
+<li>minor gc 会暂停所有线程STW</li>
+<li>把存活的对象复制到幸存区to，且寿命+1</li>
+<li>然后交换幸存区to和幸存区from的位置</li>
+<li>当幸存区的对象寿命超过阈值（默认是15），就将其加入老年代</li>
+</ul>
+</li>
+<li>使用的是复制算法</li>
+</ul>
+</li>
+<li><p>老年代</p>
+<ul>
+<li><p>使用标记清除+整理算法</p>
+</li>
+<li><p>当老年代内存不足时触发minor gc，如果空间仍不足则触发full gc</p>
+</li>
+<li><p>触发老年代GC的时机</p>
+<ul>
+<li><p>老年代可用内存小于新生代全部对象的大小，如果没开启空间担保参数，会直接触发Full GC，所以一般空间担保参数都会打开</p>
+</li>
+<li><p>老年代可用内存小于历次新生代GC后进入老年代的平均对象大小，此时会提前Full GC</p>
+</li>
+<li><p>新生代Minor GC后的存活对象大于Survivor，那么就会进入老年代，此时老年代内存不足full gc</p>
+</li>
+<li><p>就是“-XX:CMSInitiatingOccupancyFaction”参数</p>
+<p>如果老年代可用内存大于历次新生代GC后进入老年代的对象平均大小，但是老年代已经使用的内存空间超过了这个参数指定的比例，也会自动触发Full GC。</p>
+</li>
+</ul>
+</li>
+<li><p>对象直接进入老年代的情况</p>
+<ul>
+<li>大对象直接进入老年代<ul>
+<li>需要设置-XX:PretenureSizeThreshold，只在Serial和ParNew收集器下有效</li>
+<li>单位是字节</li>
+</ul>
+</li>
+<li>对象动态年龄判断<ul>
+<li>当Survivor区内的对象总大小超过50%（可以设置），那么这些对象中年龄最大的都会直接进入老年代，对象动态年龄判断一般在minor gc后触发</li>
+</ul>
+</li>
+<li>年龄15岁，cms为6岁的会进入老年代</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><h4 id="CMS（Concurrent-mark-sweep"><a href="#CMS（Concurrent-mark-sweep" class="headerlink" title="CMS（Concurrent mark sweep)"></a>CMS（Concurrent mark sweep)</h4><ul>
+<li>注重响应时间，但对cpu压力大</li>
+<li>可以并发标记，并发清除，存在并发漏标,不会STW<ul>
+<li>使用标记清除算法，有内存碎片</li>
+<li><strong>三色标记法</strong>解决并发漏标，会STW</li>
+</ul>
+</li>
+<li>有并发失败兜底策略（Failback Full GC）</li>
+<li>有一些Bug<ul>
+<li>依然会产生漏标</li>
+<li>浮动垃圾上升老年代的Bug</li>
+</ul>
+</li>
+</ul>
+<h4 id="G1"><a href="#G1" class="headerlink" title="G1"></a>G1</h4><ul>
+<li>jdk1.9默认</li>
+<li>注重吞吐量和响应时间<ul>
+<li>超大堆内存，将堆划分为大小相等的Region<ul>
+<li>每个区都可以充当（eden、survivor、old、humongous(用于存放大对象)）</li>
+</ul>
+</li>
+<li>单区域是标记+整理算法，区域之间是复制算法</li>
+<li>当新生代大小超过阈值时触发新生代回收，使用标记复制法到幸存区（跨区域）</li>
+<li>当老年代占堆内存45%是触发<strong>并发标记</strong>，采用<strong>原始快照法</strong>解决漏标问题，处理漏标记录依然需要STW</li>
+<li>并发标记结束后。开始<strong>混合收集</strong>，会选择回收价值高的老年代，eden，survivor，可能需要执行多次</li>
+<li>并发失败兜底策略（Failback Full GC）</li>
+</ul>
+</li>
+</ul>
+<h3 id="可达性分析"><a href="#可达性分析" class="headerlink" title="可达性分析"></a>可达性分析</h3><ul>
+<li><p>从GC Roots对象为起点开始向下搜索引用的对象，找到的都标记为非垃圾对象，其余没找到的都标记为垃圾对象</p>
+<ul>
+<li>GC Roots：线程栈中的本地变量、方法区中的静态变量、本地方法栈的变量等等</li>
+</ul>
+</li>
+<li><p>不可达的对象将暂时处于“缓刑”阶段，要真正宣告一个对象死亡，至少<strong>要经历两次标记</strong>过程</p>
+</li>
+<li><p>如果对象在进行可达性分析后发现没有与 GC Roots 相连接的引用链，那它将会被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行 <strong>finalize</strong>() 方法。</p>
+</li>
+<li><p>当对象没有覆盖 finalize() 方法，或者 finalize() 方法已经被虚拟机调用过，虚拟机将这两种情况都视为“没有必要执行”，直接进行第二次标记。</p>
+</li>
+<li><p>如果这个对象被判定为有必要执行 finalize() 方法，那么这个对象将会放置在一个叫做 F-Queue 的队列之中，并在稍后由一个由虚拟机自动建立的、低优先级的 Finalizer 线程去执行它。</p>
+</li>
+<li><p>这里所谓的“执行”是指虚拟机会触发这个方法，但并不承诺会等待它运行结束，因为如果一个对象在 finalize() 方法中执行缓慢，将很可能会一直阻塞 F-Queue 队列，甚至导致整个内存回收系统崩溃。</p>
+</li>
+<li><p>在HotSpot的实现中，是使用一组称为<code>OopMap</code>的数据结构来达到直接得知哪些地方存放着对象引用，在类加载完成的时候，HotSpot就把对象内什么偏移量上是什么类型的数据计算出来，在JIT编译过程中，也会在特定的位置记录下栈和寄存器中哪些位置是引用。这样，GC在扫描时就可以直接得知这些信息了。</p>
+</li>
+<li><p>OopMap数据结构存储GCRoot对象，但是随着系统的运行会导致OopMap会逐渐变大，所以也并不会存储所有的GCRoot对象，而是在一个所谓的安全点进行记录GCRoot对象。</p>
+</li>
+<li><p>实际上，HotSpot的确没有为每条指令都生成OopMap，只是在“特定的位置”记录了这些信息，这些位置称为安全点（Safepoint）——即程序执行时只有在到达安全点时才能暂停。</p>
+</li>
+<li><p>Safepoint的选定既不能太少以致于让GC等待时间太长，也不能过于频繁以致于过分增大运行时的负荷。所以，安全点的选定基本上是以程序“是否具有让程序长时间执行的特征”为标准进行选定的——因为每条指令执行的时间都非常短暂，程序不太可能因为指令流长度太长这个原因而过长时间运行，“长时间执行”的最明显特征就是指令序列复用，例如方法调用、循环跳转、异常跳转等，所以具有这些功能的指令才会产生Safepoint。</p>
+</li>
+<li><p>对于Sefepoint，另一个需要考虑的问题是如何在GC发生时让所有线程（这里不包括执行JNI调用的线程）都“跑”到最近的安全点上再停顿下来。</p>
+</li>
+<li><p>这里有两种方案可供选择：抢先式中断（Preemptive Suspension）和主动式中断（Voluntary Suspension）</p>
+<ul>
+<li>抢先式中断不需要线程的执行代码主动去配合，在GC发生时，首先把所有线程全部中断，如果发现有线程中断的地方不在安全点上，就恢复线程，让它“跑”到安全点上。现在几乎没有虚拟机实现采用抢先式中断来暂停线程从而响应GC事件。</li>
+<li>主动式中断的思想是当GC需要中断线程的时候，不直接对线程操作，仅仅简单地设置一个标志，各个线程执行时主动去轮询这个标志，发现中断标志为真时就自己中断挂起。轮询标志的地方和安全点是重合的，另外再加上创建对象需要分配内存的地方。</li>
+</ul>
+</li>
+<li><p>使用Safepoint似乎已经完美地解决了如何进入GC的问题，但实际情况却并不一定。Safepoint机制保证了程序执行时，在不太长的时间内就会遇到可进入GC的Safepoint。但是，程序“不执行”的时候呢？所谓的程序不执行就是没有分配CPU时间，典型的例子就是线程处于Sleep状态或者Blocked状态，这时候线程无法响应JVM的中断请求，“走”到安全的地方去中断挂起，JVM也显然不太可能等待线程重新被分配CPU时间。对于这种情况，就需要<strong>安全区域（Safe Region）</strong>来解决。</p>
+</li>
+<li><p>安全区域是指在一段代码片段之中，引用关系不会发生变化。在这个区域中的任意地方开始GC都是安全的。我们也可以把Safe Region看做是被扩展了的Safepoint。</p>
+</li>
+<li><p>在线程执行到Safe Region中的代码时，首先标识自己已经进入了Safe Region，那样，当在这段时间里JVM要发起GC时，就不用管标识自己为Safe Region状态的线程了。在线程要离开Safe Region时，它要检查系统是否已经完成了根节点枚举（或者是整个GC过程），如果完成了，那线程就继续执行，否则它就必须等待直到收到可以安全离开Safe Region的信号为止。</p>
+</li>
+</ul>
+<h3 id="三色标记法"><a href="#三色标记法" class="headerlink" title="三色标记法"></a>三色标记法</h3><ul>
+<li><p>没处理的对象为白色，孩子对象未处理的为灰色，自己和孩子对象都处理了为黑色</p>
+</li>
+<li><p>记录标记过程中的变化，主要有两种解决方法</p>
+</li>
+<li><p>Incremental Update <strong>CMS解决方案</strong></p>
+<ul>
+<li>只要引用发生改变，被改变引用的对象需要被记录</li>
+<li>通过写屏障，黑-&gt;白 时 黑变灰</li>
+<li>有BUG<ul>
+<li>依然会产生漏标，当黑变灰后另一个垃圾回收线程将其又变黑，白漏标<ul>
+<li>CMS后续解决方案是再从头到尾扫一边，虽然有优化但效率还是低</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Snapshot At The Beginning, SATB <strong>G1解决方案</strong> （<strong>原始快照法</strong>）</p>
+<ul>
+<li>记录标记过程的新增对象</li>
+<li>记录被删除引用关系的对象<ul>
+<li>灰-&gt;白 断开了，记录白，下次排查，有黑-&gt;白不清除，反之清除</li>
+<li>但是判断白是否有引用比较困难，但是G1每个分区头部有记录哪些分区引用了当前分区，Rset（记忆集）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最后在STW时处理这些记录</p>
+</li>
+</ul>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>​		对象头（markword）+ 类型指针（classpointer） + 数据（data） + （数组Length） + 对齐区（padding）</p>
+<ul>
+<li><p>markword：</p>
+<ul>
+<li>32位虚拟机中占4字节，64位占8字节</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">结构</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">hashcode:                      | age:    | biased_lock:  0 | 01</td>
+<td align="center">普通状态</td>
+</tr>
+<tr>
+<td align="center">thread:       | epoch:     | age:    | biased_lock:  1 | 01</td>
+<td align="center">偏向状态</td>
+</tr>
+<tr>
+<td align="center">ptr_to_lock_record:                                                  | 00</td>
+<td align="center">轻量级锁</td>
+</tr>
+<tr>
+<td align="center">ptr_to_heavyweight_monitor:                                | 10</td>
+<td align="center">重量级锁</td>
+</tr>
+<tr>
+<td align="center">垃圾收集器信息                                                | 11</td>
+<td align="center">GC状态</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>classpointer：</p>
+<ul>
+<li>表示这个对象属于哪个类型，正常情况下4个字节，因为经过压缩</li>
+<li>当系统内存超过32g将会膨胀到8个字节</li>
+</ul>
+</li>
+<li><p>data：存放对象数据</p>
+</li>
+<li><p>如果对象是数组还有一个Length，4字节</p>
+</li>
+<li><p>padding：如果整个对象不能给8整除，补齐，追求效率</p>
+</li>
+</ul>
+<h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><ul>
+<li><p>直接指针引用</p>
+<ul>
+<li>变量指向堆中对象，对象中的类型指针指向方法区中类型</li>
+<li>垃圾回收时变量指向要改变</li>
+</ul>
+</li>
+<li><p>句柄</p>
+<ul>
+<li>变量指向一组指针，这组指针一个指向堆中对象，一个指向方法区中类型</li>
+<li>好处是对象小，垃圾回收时不用频繁改动变量指向，改动的是指针组中的指向</li>
+</ul>
+</li>
+</ul>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ul>
+<li>使用new关键字</li>
+<li>使用Class.newInstance</li>
+<li>使用Constructor.newInstance</li>
+<li>使用Clone方法<ul>
+<li>对象必须实现Cloneable接口，重写clone方法，调用父类的clone方法</li>
+<li>在Object中这个方法是protected的，重写才能调用</li>
+</ul>
+</li>
+<li>使用反序列化<ul>
+<li>对象需要实现Serializable接口</li>
+</ul>
+</li>
+</ul>
+<h2 id="动态绑定"><a href="#动态绑定" class="headerlink" title="动态绑定"></a>动态绑定</h2><ul>
+<li><p>JVM 的方法调用指令有五个，分别是：</p>
+<ul>
+<li><p>invokestatic：调用静态方法；</p>
+</li>
+<li><p>invokespecial：调用实例构造器构造方法、私有方法和父类方法；</p>
+</li>
+<li><p>invokevirtual：调用虚方法；</p>
+</li>
+<li><p>invokeinterface：调用接口方法，运行时确定具体实现；</p>
+</li>
+<li><p>invokedynamic：运行时动态解析所引用的方法，然后再执行，用于支持动态类型语言。</p>
+</li>
+</ul>
+</li>
+<li><p>其中，invokestatic 和 invokespecial 用于静态绑定，invokevirtual 和 invokeinterface 用于动态绑定。可以看出，动态绑定主要应用于虚方法和接口方法。</p>
+</li>
+<li><p>静态绑定在编译期就已经确定，这是因为静态方法、构造器方法、私有方法和父类方法可以唯一确定。这些方法的符号引用在类加载的解析阶段就会解析成直接引用。因此这些方法也被称为非虚方法，与之相对的便是虚方法。</p>
+</li>
+<li><p>虚方法的方法调用与方法实现的关联（也就是分派）有两种，一种是在编译期确定，被称为静态分派，比如方法的重载；一种是在运行时确定，被称为动态分派，比如方法的覆盖。对象方法基本上都是虚方法。</p>
+</li>
+<li><p>这里需要特别说明的是，final 方法由于不能被覆盖，可以唯一确定，因此 Java 语言规范规定 final 方法属于非虚方法，但仍然使用 invokevirtual 指令调用。</p>
+</li>
+<li><p>静态绑定、动态绑定的概念和虚方法、非虚方法的概念是两个不同的概念。</p>
+</li>
+<li><p>以 invokevirtual 指令为例，在执行时，大致可以分为以下几步：</p>
+<ol>
+<li>先从操作栈中找到对象的实际类型 class</li>
+<li>找到 class 中与被调用方法签名相同的方法，如果有访问权限就返回这个方法的直接引用，如果没有访问权限就报错 java.lang.IllegalAccessError </li>
+<li>如果第 2 步找不到相符的方法，就去搜索 class 的父类，按照继承关系自下而上依次执行第 2 步的操作；</li>
+<li>如果第 3 步找不到相符的方法，就报错 java.lang.AbstractMethodError</li>
+</ol>
+<p>可以看到，如果子类覆盖了父类的方法，则在多态调用中，动态绑定过程会首先确定实际类型是子类，从而先搜索到子类中的方法。这个过程便是方法覆盖的本质。</p>
+</li>
+<li><p>商用虚拟机为了保证性能，通常会使用虚方法表和接口方法表，而不是每次都去判断。以虚方法表为例，虚方法表在类加载的解析阶段填充完成，其中存储了所有方法的直接引用。也就是说，动态分派在填充虚方法表的时候就已经完成了。</p>
+</li>
+<li><p>在子类的虚方法表中，如果子类覆盖了父类的某个方法，则这个方法的直接引用指向子类的实现；而子类没有覆盖的那些方法，比如 Object 的方法，直接引用指向父类或 Object 的实现。</p>
+</li>
+</ul>
+<h2 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h2><ul>
+<li><p>分配回收成本较高，但读写性能高，不受JVM内存回收管理</p>
+</li>
+<li><p>NIO中的 ByteBuffer对象.allocateDirect(1024) 可以申请直接内存</p>
+<ul>
+<li>这个对象创建时是调用的Unsafe对象的allocateMemory()和setMemory() 方法完成直接内存的分配</li>
+<li>当这个ByteBuffer对象被回收时，然后会由ReferenHandler线程通过虚引用类型 Cleaner.clean 方法调用unsafe.freeMemory()方法来回收直接内存</li>
+</ul>
+</li>
+<li><p>推荐使用unsafe对象手动的管理直接内存</p>
+</li>
+</ul>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h3><ul>
+<li>JVM将执行状态分成了5个层次<ul>
+<li>0层：解释执行</li>
+<li>1层：使用c1即时编译器执行，不带profiling</li>
+<li>2层：使用c1即时编译器执行，带基本的profiling</li>
+<li>3层：使用c1即时编译器执行，带完全的profiling</li>
+<li>4层：使用c2即时编译器执行</li>
+</ul>
+</li>
+<li>profiling是指在运行过程中收集一些程序执行状态的数据，例如方法的调用次数，循环的回边次数</li>
+<li>对于不常用的代码，采取解释执行，对于热点代码，采取编译执行</li>
+</ul>
+<h3 id="方法内联"><a href="#方法内联" class="headerlink" title="方法内联"></a>方法内联</h3><ul>
+<li>如果被调用的方法是热点方法，且其内部代码不长时，会进行内联</li>
+<li>所谓的内联就是把调用的方法内部的代码拷贝至调用者的位置上，还会进行常量折叠</li>
+</ul>
+<h3 id="字段优化"><a href="#字段优化" class="headerlink" title="字段优化"></a>字段优化</h3><ul>
+<li>尽量使用局部变量，而不使用成员变量和静态成员变量</li>
+</ul>
+<h3 id="反射优化"><a href="#反射优化" class="headerlink" title="反射优化"></a>反射优化</h3><ul>
+<li>当通过反射调用方法超过膨胀阈值时，会转换成类调用</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/JVM/" data-id="clrj8k01l006y4wuw6woi4bgx" data-title="JVM虚拟机" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring全家桶
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/Maven/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Maven</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

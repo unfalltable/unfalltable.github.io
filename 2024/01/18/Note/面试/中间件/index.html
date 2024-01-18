@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>中间件 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="WEB  简述一下伪共享的概念以及如何避免  是什么  怎么解决 @Contended，除了需要的内容之外用无意义的数据填充缓存行      okhttp如何处理网络缓存的  epoll和poll的区别  BIO&#x2F;NIO&#x2F;IO多路复用  BIO有什么缺陷  针对C10K这样的需求，NIO靠什么解决 NIO的选择器selector可以做到一个线程监听多个socket    多路复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中间件">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E4%B8%AD%E9%97%B4%E4%BB%B6/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="WEB  简述一下伪共享的概念以及如何避免  是什么  怎么解决 @Contended，除了需要的内容之外用无意义的数据填充缓存行      okhttp如何处理网络缓存的  epoll和poll的区别  BIO&#x2F;NIO&#x2F;IO多路复用  BIO有什么缺陷  针对C10K这样的需求，NIO靠什么解决 NIO的选择器selector可以做到一个线程监听多个socket    多路复">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.740Z">
+<meta property="article:modified_time" content="2023-08-04T01:32:40.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="中间件">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/面试/中间件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.740Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      中间件
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><ul>
+<li><input disabled="" type="checkbox"> 简述一下伪共享的概念以及如何避免<ul>
+<li><input disabled="" type="checkbox"> 是什么</li>
+<li><input checked="" disabled="" type="checkbox"> 怎么解决<ul>
+<li>@Contended，除了需要的内容之外用无意义的数据填充缓存行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> okhttp如何处理网络缓存的</li>
+<li><input disabled="" type="checkbox"> epoll和poll的区别</li>
+<li><input disabled="" type="checkbox"> BIO&#x2F;NIO&#x2F;IO多路复用<ul>
+<li><input disabled="" type="checkbox"> BIO有什么缺陷</li>
+<li><input disabled="" type="checkbox"> 针对C10K这样的需求，NIO靠什么解决<ul>
+<li>NIO的选择器selector可以做到一个线程监听多个socket</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 多路复用操作系统函数select()的工作原理<ul>
+<li><p>准备需要监听的socket集合，用一个rset保存socketId</p>
+</li>
+<li><p>调用select函数会涉及到用户态和内核态的切换</p>
+</li>
+<li><p>还需要复制rset集合到内核态</p>
+</li>
+<li><p>循环监听rset中记录的socket，有就绪的就将其对应的rset位置位</p>
+</li>
+<li><p>然后把内核态的rset复制到用户态中去</p>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> select()默认监听socket的数量为什么是1024</li>
+<li><input disabled="" type="checkbox"> select()第一遍O(n)未发现就绪的socket，如果后续某一个socket就绪后。select是如何感知的？是不停的轮询吗<ul>
+<li><p>第一遍未发现就绪的socket后，会将当前线程保留到每个需要监听的socket的等待队列中</p>
+</li>
+<li><p>然后当前线程从工作队列中移除</p>
+</li>
+<li><p>这时客户端向服务端发送了数据，数据通过网线到网卡，网卡的DMA将数据写进内存，数据传输结束后会触发网络传输完毕中断程序，cpu会将当前正在运行的线程挂起然后执行这个中断程序的逻辑</p>
+</li>
+<li><p>根据内存中的数据包分析出是哪个socket的数据，而且tcp&#x2F;ip协议传输的数据包是有端口号的，这样就能找到对应的socket实例</p>
+</li>
+<li><p>然后数据导入到socket的读缓冲区，然后会检查socket的等待队列，有等待的队列就将其加入cpu工作队列</p>
+</li>
+<li><p>然后select函数又会执行了，就能发现就绪的socket了</p>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> poll()和select()主要区别是什么<ul>
+<li><p>参数不一样</p>
+</li>
+<li><p>select用的是bitmap，长度是1024</p>
+</li>
+<li><p>poll使用的数组，长度很大</p>
+<ul>
+<li>数组中的结构是pollfd，里面是fd、events、revents</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 为什么会有epoll这个技术，产生的背景是<ul>
+<li>为了解决select和poll的缺陷<ul>
+<li>用户态和内核态频繁切换</li>
+<li>不能反映是哪个socket就绪了，每次需要遍历判断</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> epoll的工作原理是<ul>
+<li>epoll_create 在内核态创建一个eventpoll对象</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> eventpoll对象的就绪列表数据是如何维护的呢<ul>
+<li><p>需要先描述一遍将socket加入epoll对象监听列表的过程</p>
+</li>
+<li><p>当有socket进入就绪队列后，会检查epoll对象的等待队列</p>
+</li>
+<li><p>如果等待队列中有进程，则将其加入cpu工作队列</p>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> epoll怎么得知哪些socket是就绪的<ul>
+<li>epoll_wait中会传入一个epoll_events 并将其置为1，然后拷贝到数组指针中，然后将这个数组返回给用户空间</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> epoll_wait可以设置为非阻塞吗<ul>
+<li>默认是阻塞的</li>
+<li>调用时可以传入参数来设置<ul>
+<li>设置为0就是非阻塞的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> eventpoll对象中存放需要检查的socket信息是采用的什么数据结构？为什么<ul>
+<li>红黑树，因为经常有增删改，稳定的O(logN)</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> epoll往监听事件列表中添加一个新事件过程<ul>
+<li><p>内核程序会把当前eventpoll对象追加到socket的等待队列中</p>
+</li>
+<li><p>socket接收完客户端发送的数据后触发中断程序</p>
+</li>
+<li><p>根据内存中的数据找到对应的socket的读缓冲区，发现等待队列中的是一个eventpoll对象引用</p>
+</li>
+<li><p>然后会将当前socket的引用加入到epoll对象的监听列表末尾</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>RabbitMQ</th>
+<th>RocketMQ</th>
+<th>Kafka</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>优点</td>
+<td>消息可靠性高，功能全面，性能好，高并发</td>
+<td>高吞吐、高性能、高可用、功能齐全</td>
+<td>吞吐量大，性能好，集群高可用</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>消息堆积影响性能，erlang不好定制</td>
+<td>生态不成熟、只支持Java</td>
+<td>数据丢失，功能单一</td>
+</tr>
+<tr>
+<td>吞吐量</td>
+<td>万级</td>
+<td>十万级</td>
+<td>百万级</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>微秒级</td>
+<td>毫秒级</td>
+<td>毫秒级</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>大部分场景</td>
+<td>全场景</td>
+<td>日志分析，大数据采集</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+为什么使用消息队列</p>
+<ul>
+<li>解耦：<ul>
+<li>数据需要多方使用时，如果直接调用对应的服务，耦合度较高，而且扩展&#x2F;剔除不方便，还要确认消息是否重发，是否持久化</li>
+<li>有MQ时，数据发送方只需要将数据发送到mq中，哪个服务需要就去mq中取即可</li>
+<li>通过mq就将数据发送方跟其他系统解耦了</li>
+</ul>
+</li>
+<li>异步<ul>
+<li>提高系统的响应速度和吞吐量，不用等到结果就可以提前响应</li>
+</ul>
+</li>
+<li>削峰<ul>
+<li>以稳定的系统资源应对突发的流量冲击</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+使用消息队列的缺点</p>
+<ul>
+<li>系统可用性降低，MQ宕机，整个业务都会影响</li>
+<li>系统的复杂度提高</li>
+<li>一致性问题</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+如何保证消息队列的高可用</p>
+<ul>
+<li><p>RabbitMQ </p>
+<ul>
+<li>镜像集群模式</li>
+</ul>
+</li>
+<li><p>Kafka</p>
+<ul>
+<li>副本机制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+如何设计一个MQ</p>
+<ul>
+<li>首先需要设计一个先进先出FIFO的数据结构，高效，可扩展</li>
+<li>扩展为分布式队列，分布式集群管理</li>
+<li>基于Topic定制消息路由策略，发送者路由策略，消费者与对列的对应关系，消费者路由策略</li>
+<li>实现高效的网络通信，Http</li>
+<li>规划日志文件，实现文件高效读写，零拷贝，顺序写（性能高），服务重启快速恢复</li>
+<li>死信队列，延迟队列、事务消息</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+如何保证消息可靠传输</p>
+<ol>
+<li>保证消息不能重复<ul>
+<li>消费者端实现幂等性</li>
+<li>每个消息带一个有业务标识的ID，来进行幂等判断，或者使用全局唯一ID</li>
+<li>RocketMQ可以给每个消息分配了一个MessaheID，但是不太好</li>
+</ul>
+</li>
+<li>保证消息不能丢失<ul>
+<li><p>主从间信息同步时</p>
+<ul>
+<li>同步同步、两阶段提交（RocketMQ）</li>
+<li>镜像集群（RabbitMQ）</li>
+</ul>
+</li>
+<li><p>生产者发送消息给MQ时</p>
+<ul>
+<li>消息发送+回调（kafka、RocketMQ、RabbitMQ）</li>
+<li>事务消息机制（RocketMQ）<ul>
+<li>会先发送一个half消息测试MQ是否有问题<ul>
+<li>Commit：推送实际消息</li>
+<li>RollBack：丢弃该消息</li>
+<li>UnKnow：回查，默认15次</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>手动事务机制、Publisher Comfirm（类似RocketMQ事务消息机制）（RabbitMQ）<ul>
+<li>事务属于同步机制，对性能影响较大</li>
+<li>Comfirm属于异步机制，性能较好（一般使用这个）<ul>
+<li>有同步、批量、异步等模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>消费者获取MQ消息时</p>
+<ul>
+<li>得先关闭MQ的自动ACK确认（RabbitMQ）</li>
+<li>保证消费者真正消费之后才删除消息，消费端ACK</li>
+<li>不采用异步消费即可</li>
+</ul>
+</li>
+<li><p>MQ自身接受消息时</p>
+<ul>
+<li>保证确实收到并持久化消息，再进行ACK确认	</li>
+<li>MQ宕机重新选举时可能会丢数据（Kafka）</li>
+<li>同步刷盘（RocketMQ）</li>
+<li>持久化队列、Quorum（RabbitMQ）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+如何保证消息的顺序消费</p>
+<ul>
+<li><p>乱序的原因</p>
+<ul>
+<li>消费者端没有顺序的进行消息的消费（RabbitMQ）</li>
+<li>消费者多线程的消费消息（Kafka）</li>
+<li>一个topic中有多个队列，消息会因为负载均衡保存在不同的队列中</li>
+</ul>
+</li>
+<li><p>解决方法</p>
+<ul>
+<li><p>生产者</p>
+<ul>
+<li><p>保证一类消息都放在一个队列上</p>
+</li>
+<li><p>在Producer发消息时注入一个<strong>消息队列选择器（MessageQueueSelector）</strong>对象</p>
+</li>
+</ul>
+</li>
+<li><p>消费者</p>
+<ul>
+<li><p>消费者一次消费整个队列中的消息</p>
+</li>
+<li><p>Consumer需要注册消息监听，传入MessageQueueOrderly对象</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">consumer.registerMessageListener(<span class="keyword">new</span> <span class="title class_">MessageQueueOrderly</span>()&#123;</span><br><span class="line">    <span class="meta">@Overide</span></span><br><span class="line">    <span class="keyword">public</span> ConsumerOrderlyStatus <span class="title function_">comsumeMessage</span><span class="params">(List&lt;MessageExt&gt; msgs, ConsumerOrderlyContext context)</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>RabbitMq</p>
+<ul>
+<li>要保证目标exchange只对应一个队列，并且一个队列只对应一个消费者</li>
+<li>消费者不直接消费消息，取消息存进一个队列中，再消费</li>
+</ul>
+</li>
+<li><p>Kafka</p>
+<ul>
+<li>生产者通过定制partition分配规则，将相同key的消息分配到同一个partition</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+如何解决消息积压</p>
+<ul>
+<li><p>熔断隔离、灰度发布、优化线程池配置、消息转发</p>
+</li>
+<li><p>临时紧急扩容，具体操作步骤和思路如下：</p>
+<ul>
+<li>先修复 consumer 的问题，确保其恢复消费速度，然后将现有 consumer 都停掉。</li>
+<li>新建一个 topic，partition 是原来的 10 倍，临时建立好原先 10 倍的 队列 数量。</li>
+<li>然后写一个临时的分发数据的 consumer 程序，这个程序部署上去消费积压的数据，消费之后不做耗时的处理，直接均匀轮询写入临时建立好的 10 倍数量的队列中。</li>
+<li>接着临时征用 10 倍的机器来部署 consumer，每一批 consumer 消费一个临时 queue 的数据。这种做法相当于是临时将 queue 资源和 consumer 资源扩大 10 倍，以正常的 10 倍速度来消费数据。</li>
+<li>等快速消费完积压数据之后，得恢复原先部署的架构，重新用原先的 consumer 机器来消费消息</li>
+</ul>
+</li>
+</ul>
+<p>RocketMQ</p>
+<ul>
+<li>提高消费并行度</li>
+<li>批量消费消息</li>
+<li>跳过非重要的消息</li>
+<li>优化消息消费的过程</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+MQ消息过期失效</p>
+<p>RabbitMQ</p>
+<ul>
+<li><p>可以设置过期时间，如果此时出现消息积压就会丢失大量消息</p>
+</li>
+<li><p>过期失效的消息只能批量重导了</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Mybatis-MybatisPlus"><a href="#Mybatis-MybatisPlus" class="headerlink" title="Mybatis &#x2F; MybatisPlus"></a>Mybatis &#x2F; MybatisPlus</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+if标签中的test</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+进行判断时，&#x3D;&#x3D; 两边的数据类型不同可以判断吗</p>
+<ul>
+<li>可以判断，底层是使用的OGNL表达式来解析的，可以支持不同数据类型之间的比较</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+test后接单引号和双引号的区别</p>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+{}和${}的区别</p>
+<ul>
+<li>${}是properties文件种的变量占位符，可以用于标签属性值和sql内部，属于静态文本替换</li>
+<li>{}是sql的参数占位符，mybatis会将sql中的#{}替换为？，在sql执行时会用PreparedStatement的set方法来赋值</li>
+<li>序给sql中的？设置参数值，可以有效的防止sql注入</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E4%B8%AD%E9%97%B4%E4%BB%B6/" data-id="clrj8k01200304wuw22f33d50" data-title="中间件" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/Web3%E9%9D%A2%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/Java%E9%A1%B9%E7%9B%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

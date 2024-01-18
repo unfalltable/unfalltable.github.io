@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="目录结构结构块头1234567891011121314151617type Header struct&#123;    ParentHash		common.Hash			&#x2F;&#x2F;父区块的hash值    UncleHash		common.Hash			&#x2F;&#x2F;父区块fen&#x27;cha区块的hash值    Coinbase		common.address		&#x2F;&#x2F;挖出区块的矿工的地址    Ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JianHong">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E6%BA%90%E7%A0%81/%E4%BB%A5%E5%A4%AA%E5%9D%8A/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="目录结构结构块头1234567891011121314151617type Header struct&#123;    ParentHash		common.Hash			&#x2F;&#x2F;父区块的hash值    UncleHash		common.Hash			&#x2F;&#x2F;父区块fen&#x27;cha区块的hash值    Coinbase		common.address		&#x2F;&#x2F;挖出区块的矿工的地址    Ro">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.664Z">
+<meta property="article:modified_time" content="2024-01-15T21:12:06.171Z">
+<meta property="article:author" content="JianHong">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/区块链开发/源码/以太坊" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E6%BA%90%E7%A0%81/%E4%BB%A5%E5%A4%AA%E5%9D%8A/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.664Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><h3 id="块头"><a href="#块头" class="headerlink" title="块头"></a>块头</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Header <span class="keyword">struct</span>&#123;</span><br><span class="line">    ParentHash		common.Hash			<span class="comment">//父区块的hash值</span></span><br><span class="line">    UncleHash		common.Hash			<span class="comment">//父区块fen&#x27;cha区块的hash值</span></span><br><span class="line">    Coinbase		common.address		<span class="comment">//挖出区块的矿工的地址</span></span><br><span class="line">    Root			common.Hash			<span class="comment">//状态树根节点hash值</span></span><br><span class="line">    TxHash			common.Hash			<span class="comment">//交易树根节点hash值</span></span><br><span class="line">    ReceiptHash		common.Hash			<span class="comment">//收据树根节点hash值</span></span><br><span class="line">    Bloom			Bloom				<span class="comment">//布隆过滤器，配合收据树使用</span></span><br><span class="line">    Difficulty		*big.Int			<span class="comment">//挖矿难度</span></span><br><span class="line">    Number			*big.Int			<span class="comment">//</span></span><br><span class="line">    GasLimit		<span class="type">uint64</span>				<span class="comment">//区块能消耗的汽油费的上限，可微调1024分之1</span></span><br><span class="line">    GasUsed			<span class="type">uint64</span>				<span class="comment">//区块汽油费总和	</span></span><br><span class="line">    Time			*big.Int			<span class="comment">//区块产生时间</span></span><br><span class="line">    Extra			[]<span class="type">byte</span>				<span class="comment">//</span></span><br><span class="line">    MixDigest		common.Hash			<span class="comment">//</span></span><br><span class="line">    Nonce			BlockNonce			<span class="comment">//挖矿随机值，符合难度要求的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> txdata <span class="keyword">struct</span> &#123;</span><br><span class="line">    AccountNonce 	<span class="type">uint64</span>				<span class="comment">//交易序号</span></span><br><span class="line">    Price 			*big.Int			<span class="comment">//单位汽油费</span></span><br><span class="line">    GasLimit 		<span class="type">uint64</span>				<span class="comment">//最大汽油费</span></span><br><span class="line">    Recipient 		*common.Address		<span class="comment">//收款人地址</span></span><br><span class="line">    Amount 			*big.Int			<span class="comment">//转账金额</span></span><br><span class="line">    Payload 		[]<span class="type">byte</span>				<span class="comment">//data域，存放的是调用的合约的哪一个函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="统一的树结构"><a href="#统一的树结构" class="headerlink" title="统一的树结构"></a>统一的树结构</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//MPT树结构</span></span><br><span class="line"><span class="keyword">type</span> Trie <span class="keyword">struct</span>&#123;</span><br><span class="line">    db				*Database</span><br><span class="line">    root			node</span><br><span class="line">    originalRoot	common.Hash</span><br><span class="line">    cachegen, 		cachelimit <span class="type">uint16</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="交易树"><a href="#交易树" class="headerlink" title="交易树"></a>交易树</h3><h3 id="收据树"><a href="#收据树" class="headerlink" title="收据树"></a>收据树</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//收据树结构</span></span><br><span class="line"><span class="keyword">type</span> Recipt <span class="keyword">struct</span>&#123;</span><br><span class="line">    PostState			[]<span class="type">byte</span></span><br><span class="line">    Status				<span class="type">uint64</span>			<span class="comment">//jiao&#x27;yi</span></span><br><span class="line">    CumulativeGasUsed	<span class="type">uint64</span>			</span><br><span class="line">    Bloom				Bloom			<span class="comment">//布隆过滤器，根据log生成，多个收据多个Bloom合并</span></span><br><span class="line">    Logs				[]*Log</span><br><span class="line">    TxHash				common.Hash</span><br><span class="line">    ContractAddress		common.Address</span><br><span class="line">    GasUsed				<span class="type">uint64</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="账户"><a href="#账户" class="headerlink" title="账户"></a>账户</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> </span><br></pre></td></tr></table></figure>
+
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="block-go"><a href="#block-go" class="headerlink" title="block.go"></a>block.go</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2018版ETH-创建区块</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewBlock</span><span class="params">(header *Header, txs []*Transaction, uncle []*Header, receipts []*Receipt)</span></span> *Block&#123;</span><br><span class="line">    b := &amp;Block&#123;</span><br><span class="line">        header: CopyHeader(header),</span><br><span class="line">        td: <span class="built_in">new</span>(big.Int)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//判断交易列表是否为空</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(txs) == <span class="number">0</span>&#123;</span><br><span class="line">		<span class="comment">//为空则交易树的根hash值为空hash值</span></span><br><span class="line">        b.header.TxHash = EmptyRootHash</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//不为空则调用DeriveSha获取交易树的根hash值并设置</span></span><br><span class="line">        b.header.TxHash = DeriveSha(Transactions(txs))</span><br><span class="line">        b.transactions = <span class="built_in">make</span>(Transactions, <span class="built_in">len</span>(txs))</span><br><span class="line">        <span class="built_in">copy</span>(b.transactions, txs)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//判断收据列表是否为空</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(receipts) == <span class="number">0</span>&#123;</span><br><span class="line">		<span class="comment">//为空则收据树的根hash值为空hash值</span></span><br><span class="line">        b.header.ReceiptHash = EmptyRootHash</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//不为空则调用DeriveSha获取交易树的根hash值并设置</span></span><br><span class="line">        b.header.ReceiptHash = DeriveSha(Receipts(txs))</span><br><span class="line">        <span class="comment">//创建布隆过滤器</span></span><br><span class="line">        b.header.Bloom = CreateBloom(receipts)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//判断叔父区块是否为空</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(uncle) == <span class="number">0</span>&#123;</span><br><span class="line">        <span class="comment">//为空则叔父区块的hash值为空hash值</span></span><br><span class="line">        b.header.UncleHash = EmptyUncleHash</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//不为空则调用 CalcUncleHash 计算出叔父区块的hash</span></span><br><span class="line">        b.header.UncleHash = CalcUncleHash(uncles)</span><br><span class="line">        <span class="comment">//构建叔父区块的数组</span></span><br><span class="line">        b.uncles = <span class="built_in">make</span>([]*Header, <span class="built_in">len</span>(uncles))</span><br><span class="line">        <span class="keyword">for</span> i := <span class="keyword">range</span> uncles &#123;</span><br><span class="line">            b.uncles[i] = CopyHeader(uncles[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取列表Hash值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DeriveSha</span><span class="params">(list DerivableList)</span></span> common.Hash &#123;</span><br><span class="line">    keybuf := <span class="built_in">new</span>(<span class="type">byte</span>.Buffer)</span><br><span class="line">    trie := <span class="built_in">new</span>(trie.Trie)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; list.Len(); i++ &#123;</span><br><span class="line">        keybuf.Reset()</span><br><span class="line">        rlp.Encode(keybuf, <span class="type">uint</span>(i))</span><br><span class="line">        trie.Update(keybuf.Bytes(), list.GetRlp(i))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> trie.Hash()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建布隆过滤器</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CreateBloom</span><span class="params">(receipts Receipts)</span></span> Bloom&#123;</span><br><span class="line">    bin := <span class="built_in">new</span>(big.Int)</span><br><span class="line">    <span class="comment">//将多个收据的bloom合并</span></span><br><span class="line">    <span class="keyword">for</span> _, receipt := <span class="keyword">range</span> receipts&#123;</span><br><span class="line">        bin.Or(bin, LogsBloom(receipt.Logs))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> BytesToBloom(bin.Bytes())</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//生成每个收据的bloom </span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LogsBloom</span><span class="params">(logs []*Log)</span></span> *big.Int&#123;</span><br><span class="line">    bin := <span class="built_in">new</span>(big.Int)</span><br><span class="line">    <span class="comment">//根据log生成bloom</span></span><br><span class="line">    <span class="keyword">for</span> _, log := <span class="keyword">range</span> logs&#123;</span><br><span class="line">        <span class="comment">//将每个log的地址取hash后加入bloom</span></span><br><span class="line">        bin.Or(bin, bloom9(log.Address.Bytes()))</span><br><span class="line">        <span class="keyword">for</span> _, b := <span class="keyword">range</span> log.Topics&#123;</span><br><span class="line">            <span class="comment">//将每个log的topic取hash后加入bloom</span></span><br><span class="line">            bin.Or(bin, bloom9(b[:]))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//bloom中使用的hash函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bloom9</span><span class="params">(b []<span class="type">byte</span>)</span></span> *big.Int&#123;</span><br><span class="line">    <span class="comment">//生成一个256位32字节的hash值</span></span><br><span class="line">    b = crypto.Keccak256(b[:])</span><br><span class="line">    <span class="comment">//要返回的bloom</span></span><br><span class="line">    r := <span class="built_in">new</span>(big.Int)</span><br><span class="line">    <span class="comment">//对生成的32字节的hash值取前6位，每2位组成一组，即3轮循环</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">6</span>; i += <span class="number">2</span>&#123;</span><br><span class="line">        t := big.NexInt(<span class="number">1</span>)</span><br><span class="line">        <span class="comment">//对2048取余，因为bloom的大小是2048位</span></span><br><span class="line">        b := (<span class="type">uint</span>(b[i+<span class="number">1</span>]) + (<span class="type">uint</span>(b[i]) &lt;&lt; <span class="number">8</span>)) &amp; <span class="number">2047</span></span><br><span class="line">        r.Or(r, t.Lsh(t, b))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看bloom，判断bin这个过滤器中是否存在dui&#x27;ying</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BloomLookup</span><span class="params">(bin Bloom, topic bytesBacked)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">    bloom := bin.Big()</span><br><span class="line">    cmp := bloom9(topic.Bytes()[:])</span><br><span class="line">    <span class="keyword">return</span> bloom.And(bloom, cmp).Cmp(cmp) ==<span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="挖矿算法"><a href="#挖矿算法" class="headerlink" title="挖矿算法"></a>挖矿算法</h2><ol>
+<li>通过seed计算出Cache数组</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="难度调整"><a href="#难度调整" class="headerlink" title="难度调整"></a>难度调整</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calcDifficultyByzantium</span><span class="params">(time <span class="type">uint64</span>, parent *types.Header)</span></span> *big.Int&#123;</span><br><span class="line">    <span class="comment">//当前时间戳</span></span><br><span class="line">    bigTime := <span class="built_in">new</span>(big.Int).SetUint64(time)</span><br><span class="line">    <span class="comment">//父区块的时间戳</span></span><br><span class="line">    bigParentTime := <span class="built_in">new</span>(big.Int).Set(parent.Time)</span><br><span class="line">    <span class="comment">//难度</span></span><br><span class="line">    x := <span class="built_in">new</span>(big.Int)</span><br><span class="line">    <span class="comment">//难度调整单位</span></span><br><span class="line">    y := <span class="built_in">new</span>(big.Int)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//算出出块时间，然后再除9</span></span><br><span class="line">    x.Sub(bigTime, bigParentTime)</span><br><span class="line">    x.Div(x, big9)</span><br><span class="line">    <span class="comment">//判断是否有叔父区块</span></span><br><span class="line">    <span class="keyword">if</span> parent.UncleHash == types.EmptyUncleHash&#123;</span><br><span class="line">        x.Sub(big1, x)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        x.Sub(big2, x)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//与最小难度-99相比，不能比它更小</span></span><br><span class="line">    <span class="keyword">if</span> x.Cmp(bigMinus99) &lt; <span class="number">0</span> &#123;</span><br><span class="line">        x.set(bigMinus99)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//计算难度调整单位</span></span><br><span class="line">    <span class="comment">//上一个区块的难度的2048分之1</span></span><br><span class="line">    y.Div(parent.Difficulty, <span class="number">2048</span>)</span><br><span class="line">    x.Mul(y, x)</span><br><span class="line">    x.Add(parent.Difficulty, x)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//难度最小不能小于131072</span></span><br><span class="line">    <span class="keyword">if</span> x.Cmp(params.MinimumDifficulty) &lt; <span class="number">0</span>&#123;</span><br><span class="line">        x.Set(params.MinimumDifficulty)   </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//难度炸弹计算</span></span><br><span class="line">    <span class="comment">//区块号</span></span><br><span class="line">    fakeBlockNumber := <span class="built_in">new</span>(big.Int)</span><br><span class="line">    <span class="comment">//如果父区块号大于3百万，则减去3百万</span></span><br><span class="line">    <span class="keyword">if</span> parent.Number.Cmp(big2999999) &gt;= <span class="number">0</span>&#123;</span><br><span class="line">        fakeBlockNumber = fakeBlockNumber.Sub(parent.Number, big2999999)</span><br><span class="line">    &#125;</span><br><span class="line">    periodCount := fakeBlockNumber</span><br><span class="line">    <span class="comment">//除于100000</span></span><br><span class="line">    periodCount.Div(periodCount, expDiffPeriod)</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">if</span> periodCount.Cmp(big1) &gt; <span class="number">0</span> &#123;</span><br><span class="line">        <span class="comment">//当前区块号-2</span></span><br><span class="line">        y.Sub(periodCount, big2)</span><br><span class="line">        y.Exp(big2, y, <span class="literal">nil</span>)</span><br><span class="line">        x.Add(x, y)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E6%BA%90%E7%A0%81/%E4%BB%A5%E5%A4%AA%E5%9D%8A/" data-id="clrj8k01d00594wuwgfqh3syk" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E6%BA%90%E7%A0%81/%E6%AF%94%E7%89%B9%E5%B8%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E6%BA%90%E7%A0%81/Uniswap/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>工具 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="EasyExcel 可以使用pig4封装过后的EasyExcel，提供了注解式的使用导入导出，比较方便  下拉框service层 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354public void template(HttpServletResp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工具">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="EasyExcel 可以使用pig4封装过后的EasyExcel，提供了注解式的使用导入导出，比较方便  下拉框service层 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354public void template(HttpServletResp">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.689Z">
+<meta property="article:modified_time" content="2023-08-04T01:36:04.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Java/开发/工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.689Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      工具
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="EasyExcel"><a href="#EasyExcel" class="headerlink" title="EasyExcel"></a>EasyExcel</h1><ul>
+<li>可以使用pig4封装过后的EasyExcel，提供了注解式的使用导入导出，比较方便</li>
+</ul>
+<h2 id="下拉框"><a href="#下拉框" class="headerlink" title="下拉框"></a>下拉框</h2><p>service层</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">template</span><span class="params">(HttpServletResponse response)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;人员导入模板.xls&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">WriteCellStyle</span> <span class="variable">headWriteCellStyle</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WriteCellStyle</span>();</span><br><span class="line">    <span class="comment">// 设置背景颜色</span></span><br><span class="line">    headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());</span><br><span class="line">    <span class="comment">// 设置头字体</span></span><br><span class="line">    <span class="type">WriteFont</span> <span class="variable">headWriteFont</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WriteFont</span>();</span><br><span class="line">    headWriteFont.setFontHeightInPoints((<span class="type">short</span>)<span class="number">14</span>);</span><br><span class="line">    <span class="comment">// 字体加粗</span></span><br><span class="line">    headWriteFont.setBold(<span class="literal">true</span>);</span><br><span class="line">    headWriteCellStyle.setWriteFont(headWriteFont);</span><br><span class="line">    <span class="comment">// 设置头居中</span></span><br><span class="line">    headWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">    <span class="comment">// 内容策略</span></span><br><span class="line">    <span class="type">WriteCellStyle</span> <span class="variable">contentWriteCellStyle</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WriteCellStyle</span>();</span><br><span class="line">    <span class="comment">// 设置内容字体</span></span><br><span class="line">    <span class="type">WriteFont</span> <span class="variable">contentWriteFont</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WriteFont</span>();</span><br><span class="line">    contentWriteFont.setFontHeightInPoints((<span class="type">short</span>)<span class="number">12</span>);</span><br><span class="line">    contentWriteFont.setFontName(<span class="string">&quot;宋体&quot;</span>);</span><br><span class="line">    contentWriteCellStyle.setWriteFont(contentWriteFont);</span><br><span class="line">    <span class="comment">// 设置 水平居中</span></span><br><span class="line">    contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">    <span class="comment">// 设置 垂直居中</span></span><br><span class="line">    contentWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);</span><br><span class="line">    <span class="comment">// 设置单元格格式为 文本</span></span><br><span class="line">    <span class="type">DataFormatData</span> <span class="variable">dataFormatData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataFormatData</span>();</span><br><span class="line">    dataFormatData.setIndex((<span class="type">short</span>)<span class="number">49</span>);</span><br><span class="line">    contentWriteCellStyle.setDataFormatData(dataFormatData);</span><br><span class="line"></span><br><span class="line">    <span class="type">HorizontalCellStyleStrategy</span> <span class="variable">horizontalCellStyleStrategy</span> <span class="operator">=</span></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">HorizontalCellStyleStrategy</span>(headWriteCellStyle, contentWriteCellStyle);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//示例数据</span></span><br><span class="line">    List&lt;HjUserExportExcelVO&gt; example = <span class="built_in">this</span>.list(Wrappers.&lt;HjUserInfoDTO&gt;query().last(<span class="string">&quot;limit 3&quot;</span>)).stream().map(m -&gt;</span><br><span class="line">                                                                                                                getHjUserInfoById(m.getId())</span><br><span class="line">                                                                                                               ).collect(Collectors.toList()).stream().map(m -&gt; &#123;</span><br><span class="line">        <span class="type">HjUserExportExcelVO</span> <span class="variable">vo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HjUserExportExcelVO</span>();</span><br><span class="line">        BeanUtil.copyProperties(m, vo);</span><br><span class="line">        vo.setCompanys(m.getCompany().getName());</span><br><span class="line">        vo.setDepts(m.getDept().get(<span class="number">0</span>).getName());</span><br><span class="line">        <span class="keyword">return</span> vo;</span><br><span class="line">    &#125;).collect(Collectors.toList());</span><br><span class="line">    response.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">    response.setHeader(<span class="string">&quot;content-Type&quot;</span>, <span class="string">&quot;application/vnd.ms-excel&quot;</span>);</span><br><span class="line">    response.setHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + URLEncoder.encode(fileName, <span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置表名，引脚名，文件格式，list数据</span></span><br><span class="line">    EasyExcel.write(response.getOutputStream(), HjUserExportExcelVO.class)</span><br><span class="line">        .registerWriteHandler(horizontalCellStyleStrategy)</span><br><span class="line">        .registerWriteHandler(<span class="keyword">new</span> <span class="title class_">SpinnerWriteHandler</span>())</span><br><span class="line">        .sheet(<span class="string">&quot;模板&quot;</span>)</span><br><span class="line">        .doWrite(example);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpinnerWriteHandler</span> <span class="keyword">implements</span> <span class="title class_">SheetWriteHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SysDeptService sysDeptService;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SysDictServiceImpl sysDictService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(SysDeptService sysDeptService, SysDictServiceImpl sysDictService)</span>&#123;</span><br><span class="line">        SpinnerWriteHandler.sysDeptService = sysDeptService;</span><br><span class="line">        SpinnerWriteHandler.sysDictService = sysDictService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> &#123;</span><br><span class="line">        <span class="comment">//部门数据</span></span><br><span class="line">        List&lt;String&gt; dept = sysDeptService.getDepts();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 这里的key值 对应导出列的顺序 从0开始</span></span><br><span class="line">        mapDropDown.put(<span class="number">0</span>, dept);</span><br><span class="line">        </span><br><span class="line">        <span class="type">Sheet</span> <span class="variable">sheet</span> <span class="operator">=</span> writeSheetHolder.getSheet();</span><br><span class="line">        <span class="comment">/// 开始设置下拉框</span></span><br><span class="line">        <span class="type">DataValidationHelper</span> <span class="variable">helper</span> <span class="operator">=</span> sheet.getDataValidationHelper();<span class="comment">// 设置下拉框</span></span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Integer, String[]&gt; entry : mapDropDown.entrySet())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/*** 起始行、终止行、起始列、终止列 **/</span></span><br><span class="line">            <span class="type">CellRangeAddressList</span> <span class="variable">addressList</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CellRangeAddressList</span>(<span class="number">1</span>, <span class="number">1000</span>, entry.getKey(), entry.getKey());</span><br><span class="line">            <span class="comment">/*** 设置下拉框数据 **/</span></span><br><span class="line">            <span class="type">DataValidationConstraint</span> <span class="variable">constraint</span> <span class="operator">=</span> helper.createExplicitListConstraint(entry.getValue());</span><br><span class="line">            <span class="type">DataValidation</span> <span class="variable">dataValidation</span> <span class="operator">=</span> helper.createValidation(constraint, addressList);</span><br><span class="line">            <span class="comment">/*** 处理Excel兼容性问题 **/</span></span><br><span class="line">            <span class="keyword">if</span> (dataValidation <span class="keyword">instanceof</span> XSSFDataValidation)</span><br><span class="line">            &#123;</span><br><span class="line">                dataValidation.setSuppressDropDownArrow(<span class="literal">true</span>);</span><br><span class="line">                dataValidation.setShowErrorBox(<span class="literal">true</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                dataValidation.setSuppressDropDownArrow(<span class="literal">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            sheet.addValidationData(dataValidation);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下拉超过50条不显示解决方案</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LinenoConfWriteHandler</span> <span class="keyword">implements</span> <span class="title class_">SheetWriteHandler</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//Dao</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Dao dao;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//加载spring容器中的Dao</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(Dao dao)</span>&#123;</span><br><span class="line">        LinenoConfWriteHandler.dao = dao;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="type">char</span>[] alphabet = <span class="keyword">new</span> <span class="title class_">char</span>[]&#123;<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;G&#x27;</span>, <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;J&#x27;</span>, <span class="string">&#x27;K&#x27;</span>, <span class="string">&#x27;L&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;M&#x27;</span>, <span class="string">&#x27;N&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;Q&#x27;</span>, <span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;S&#x27;</span>, <span class="string">&#x27;T&#x27;</span>, <span class="string">&#x27;U&#x27;</span>, <span class="string">&#x27;V&#x27;</span>, <span class="string">&#x27;W&#x27;</span>, <span class="string">&#x27;X&#x27;</span>, <span class="string">&#x27;Y&#x27;</span>, <span class="string">&#x27;Z&#x27;</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterSheetCreate</span><span class="params">(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder)</span> &#123;</span><br><span class="line">        <span class="comment">//通过dao获取的下拉数据数组</span></span><br><span class="line">        String[] datas = dao.get();</span><br><span class="line">            </span><br><span class="line">        <span class="comment">//存放下拉数据</span></span><br><span class="line">        Map&lt;Integer, String[]&gt; mapDropDown = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        mapDropDown.put(<span class="number">0</span>, datas);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 开始设置下拉框</span></span><br><span class="line">        <span class="type">Sheet</span> <span class="variable">sheet</span> <span class="operator">=</span> writeSheetHolder.getSheet();  </span><br><span class="line">        <span class="type">DataValidationHelper</span> <span class="variable">helper</span> <span class="operator">=</span> sheet.getDataValidationHelper();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//隐藏下拉数据的sheet</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">dictSheetName</span> <span class="operator">=</span> <span class="string">&quot;sheet2&quot;</span>;</span><br><span class="line">        <span class="type">Workbook</span> <span class="variable">workbook</span> <span class="operator">=</span> writeWorkbookHolder.getWorkbook();</span><br><span class="line">        <span class="type">Sheet</span> <span class="variable">dictSheet</span> <span class="operator">=</span> workbook.createSheet(dictSheetName);</span><br><span class="line">        workbook.setSheetHidden(workbook.getSheetIndex(dictSheet), <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义列宽"><a href="#自定义列宽" class="headerlink" title="自定义列宽"></a>自定义列宽</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bda.huijun.common.excel.strategy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.enums.CellDataTypeEnum;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.metadata.Head;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.metadata.data.CellData;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.metadata.data.WriteCellData;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.metadata.holder.WriteSheetHolder;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.excel.write.style.column.AbstractColumnWidthStyleStrategy;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections4.CollectionUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.ss.usermodel.Cell;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExcelCellWidthStyleStrategy</span> <span class="keyword">extends</span> <span class="title class_">AbstractColumnWidthStyleStrategy</span> &#123;</span><br><span class="line">    <span class="comment">// 可以根据这里的最大宽度，按自己需要进行调整,搭配单元格样式实现类中的，自动换行，效果更好</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MAX_COLUMN_WIDTH</span> <span class="operator">=</span> <span class="number">50</span>;</span><br><span class="line">    <span class="keyword">private</span>  Map&lt;Integer, Map&lt;Integer, Integer&gt;&gt; CACHE = <span class="keyword">new</span> <span class="title class_">HashMap</span>(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">setColumnWidth</span><span class="params">(WriteSheetHolder writeSheetHolder, List&lt;WriteCellData&lt;?&gt;&gt; cellDataList, Cell cell, Head head, Integer relativeRowIndex, Boolean isHead)</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">needSetWidth</span> <span class="operator">=</span> isHead || !CollectionUtils.isEmpty(cellDataList);</span><br><span class="line">        <span class="keyword">if</span> (needSetWidth) &#123;</span><br><span class="line">            Map&lt;Integer, Integer&gt; maxColumnWidthMap = (Map)CACHE.get(writeSheetHolder.getSheetNo());</span><br><span class="line">            <span class="keyword">if</span> (maxColumnWidthMap == <span class="literal">null</span>) &#123;</span><br><span class="line">                maxColumnWidthMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>(<span class="number">16</span>);</span><br><span class="line">                CACHE.put(writeSheetHolder.getSheetNo(), maxColumnWidthMap);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="type">Integer</span> <span class="variable">columnWidth</span> <span class="operator">=</span> <span class="built_in">this</span>.dataLength(cellDataList, cell, isHead);</span><br><span class="line">            <span class="keyword">if</span> (columnWidth &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (columnWidth &gt; MAX_COLUMN_WIDTH) &#123;</span><br><span class="line">                    columnWidth = MAX_COLUMN_WIDTH;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="type">Integer</span> <span class="variable">maxColumnWidth</span> <span class="operator">=</span> (Integer)((Map)maxColumnWidthMap).get(cell.getColumnIndex());</span><br><span class="line">                <span class="keyword">if</span> (maxColumnWidth == <span class="literal">null</span> || columnWidth &gt; maxColumnWidth) &#123;</span><br><span class="line">                    ((Map)maxColumnWidthMap).put(cell.getColumnIndex(), columnWidth);</span><br><span class="line">                    writeSheetHolder.getSheet().setColumnWidth(cell.getColumnIndex(), columnWidth * <span class="number">256</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer <span class="title function_">dataLength</span><span class="params">(List&lt;WriteCellData&lt;?&gt;&gt; cellDataList, Cell cell, Boolean isHead)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (isHead) &#123;</span><br><span class="line">            <span class="keyword">return</span> cell.getStringCellValue().getBytes().length;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">CellData</span> <span class="variable">cellData</span> <span class="operator">=</span> cellDataList.get(<span class="number">0</span>);</span><br><span class="line">            <span class="type">CellDataTypeEnum</span> <span class="variable">type</span> <span class="operator">=</span> cellData.getType();</span><br><span class="line">            <span class="keyword">if</span> (type == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">switch</span>(type) &#123;</span><br><span class="line">                    <span class="keyword">case</span> STRING:</span><br><span class="line">                        <span class="keyword">return</span> cellData.getStringValue().getBytes().length;</span><br><span class="line">                    <span class="keyword">case</span> BOOLEAN:</span><br><span class="line">                        <span class="keyword">return</span> cellData.getBooleanValue().toString().getBytes().length;</span><br><span class="line">                    <span class="keyword">case</span> NUMBER:</span><br><span class="line">                        <span class="keyword">return</span> cellData.getNumberValue().toString().getBytes().length;</span><br><span class="line">                    <span class="keyword">default</span>:</span><br><span class="line">                        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Hutool"><a href="#Hutool" class="headerlink" title="Hutool"></a>Hutool</h1><h2 id="DES加密"><a href="#DES加密" class="headerlink" title="DES加密"></a>DES加密</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">salt</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">SymmetricCrypto</span> <span class="variable">des</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SymmetricCrypto</span>(SymmetricAlgorithm.DES, salt.getBytes());</span><br><span class="line"><span class="comment">//加密</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> des.encryptHex(<span class="string">&quot;12345678&quot;</span>);</span><br><span class="line"><span class="comment">//解密</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> des.decryptStr(s);</span><br></pre></td></tr></table></figure>
+
+<h2 id="OkHttp3"><a href="#OkHttp3" class="headerlink" title="OkHttp3"></a>OkHttp3</h2><ul>
+<li>支持 HTTP2&#x2F;SPDY <ul>
+<li>&#x3D;&#x3D;SPDY&#x3D;&#x3D;是Google开发的基于TCP的传输层协议，用以最小化网络延迟，提升网络速度，优化用户的网络使用体验</li>
+<li>共享Socket，对同一个主机发出的所有请求都可以共享相同的套接字连接，减少对服务器的请求次数</li>
+<li>如果 HTTP&#x2F;2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率</li>
+</ul>
+</li>
+<li>socket自动选择最好路线，并支持自动重连，拥有自动维护的socket连接池，减少握手次数，减少了请求延迟</li>
+<li>当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址</li>
+<li>&#x3D;&#x3D;基于Headers的缓存策略&#x3D;&#x3D;减少重复的网络请求</li>
+<li>拥有&#x3D;&#x3D;Interceptors&#x3D;&#x3D;轻松处理请求与响应（自动处理&#x3D;&#x3D;GZip&#x3D;&#x3D;压缩）</li>
+<li>&#x3D;&#x3D;Retrofit&#x3D;&#x3D;底层也是使用OkHttp</li>
+<li>功能<ul>
+<li>文件的上传下载</li>
+<li>加载图片(内部会图片大小自动压缩)</li>
+<li>支持请求回调，直接返回对象、对象集合</li>
+<li>支持session的保持</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E5%B7%A5%E5%85%B7/" data-id="clrj8k01n007i4wuwg7kw7b7y" data-title="工具" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          开发技巧
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

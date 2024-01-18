@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Redis | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简介 Redis是基于AP思想的，是最终一致性 数据全部存储在内存中，操作效率高，速度快 单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题 IO多路复用技术，可以处理高并发的连接请求 事件派发机制  数据类型String   功能 命令    添加&#x2F;修改数据 set key valuemset key1 value1 key2 value2 …   获取数据 get keymg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介 Redis是基于AP思想的，是最终一致性 数据全部存储在内存中，操作效率高，速度快 单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题 IO多路复用技术，可以处理高并发的连接请求 事件派发机制  数据类型String   功能 命令    添加&#x2F;修改数据 set key valuemset key1 value1 key2 value2 …   获取数据 get keymg">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://doocs.github.io/advanced-java/docs/high-concurrency/images/redis-single-thread-model.png">
+<meta property="article:published_time" content="2024-01-18T13:12:24.729Z">
+<meta property="article:modified_time" content="2023-07-23T09:12:00.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="中间件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://doocs.github.io/advanced-java/docs/high-concurrency/images/redis-single-thread-model.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/数据库/Redis" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.729Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Redis
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>Redis是基于AP思想的，是最终一致性</li>
+<li>数据全部存储在内存中，操作效率高，速度快</li>
+<li>单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题</li>
+<li>IO多路复用技术，可以处理高并发的连接请求</li>
+<li>事件派发机制</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加&#x2F;修改数据</td>
+<td>set key value<br />mset key1 value1 key2 value2 …</td>
+</tr>
+<tr>
+<td>获取数据</td>
+<td>get key<br />mget key1 key2…</td>
+</tr>
+<tr>
+<td>删除数据</td>
+<td>del key</td>
+</tr>
+<tr>
+<td>获取字符串长度</td>
+<td>strlen key</td>
+</tr>
+<tr>
+<td>追加消息</td>
+<td>append key value</td>
+</tr>
+<tr>
+<td>增加</td>
+<td>incr key<br />inceby &#x2F; incrbyfloat   key 数值</td>
+</tr>
+<tr>
+<td>减少</td>
+<td>decr key<br />decrby key 数值</td>
+</tr>
+<tr>
+<td>设置有效期</td>
+<td>setex key seconds 值<br />psetex key millseconds 值</td>
+</tr>
+<tr>
+<td>设置一个值，当redis中没有时才能设置成功</td>
+<td>setnx key 值</td>
+</tr>
+</tbody></table>
+<ul>
+<li>数值超过上限会报错</li>
+<li>0 表示失败，1表示成功</li>
+<li>nil 表示为null</li>
+<li>数据最大存512MB</li>
+</ul>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加 &#x2F; 修改数据</td>
+<td>hset key field value</td>
+</tr>
+<tr>
+<td>获取数据</td>
+<td>hget key field<br />hgetall key</td>
+</tr>
+<tr>
+<td>删除数据</td>
+<td>hdel key field</td>
+</tr>
+<tr>
+<td>添加 &#x2F; 修改多个数据</td>
+<td>hmset key field1 value1…</td>
+</tr>
+<tr>
+<td>获取多个数据</td>
+<td>hmget key field1 field2…</td>
+</tr>
+<tr>
+<td>获取key中字段的数量</td>
+<td>hlen key</td>
+</tr>
+<tr>
+<td>获取key中是否存在指定的字段</td>
+<td>hexists key field</td>
+</tr>
+<tr>
+<td>获取key中所有的字段名或字段值</td>
+<td>hkeys key<br />hvals key</td>
+</tr>
+<tr>
+<td>设置指定字段的数值数据增加指定范围的值</td>
+<td>hincrby key field 值<br />hincrbyfloat key field 值</td>
+</tr>
+<tr>
+<td>获取一个key中所有的field-value</td>
+<td>hgetall key</td>
+</tr>
+<tr>
+<td>添加一个key中的field，前提是这个field不存在</td>
+<td>hsetnx key field 值</td>
+</tr>
+</tbody></table>
+<ul>
+<li>一个key对应多个field - value</li>
+<li>如果filed少，会优化为类数组</li>
+<li>如果field多，会优化为HashMap</li>
+<li>value只能存字符串</li>
+<li>一个key可以存2^32^ - 1 个键值对</li>
+<li>hash可以存储少量对象</li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>左侧插入元素</td>
+<td>LPUSH key 值</td>
+</tr>
+<tr>
+<td>移除左侧第一个元素</td>
+<td>LPOP key</td>
+</tr>
+<tr>
+<td>右侧插入元素</td>
+<td>RPUSH key 值</td>
+</tr>
+<tr>
+<td>移除右侧第一个元素</td>
+<td>RPOP key</td>
+</tr>
+<tr>
+<td>返回一段范围内的所有元素</td>
+<td>LRANGE key start end</td>
+</tr>
+<tr>
+<td>阻塞取元素，没元素会等待一段时间</td>
+<td>BLPOP &#x2F; BRPOP key</td>
+</tr>
+</tbody></table>
+<ul>
+<li>可以看成双向链表</li>
+</ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加元素</td>
+<td>Sadd key 值</td>
+</tr>
+<tr>
+<td>移除元素</td>
+<td>Sred key 值</td>
+</tr>
+<tr>
+<td>返回元素个数</td>
+<td>Scard key</td>
+</tr>
+<tr>
+<td>判断元素是否存在</td>
+<td>Sismember key 值</td>
+</tr>
+<tr>
+<td>获取所有元素</td>
+<td>Smembers</td>
+</tr>
+<tr>
+<td>求key1和key2的交集</td>
+<td>Sinter key1 key2</td>
+</tr>
+<tr>
+<td>求key1和key2的差集</td>
+<td>Sdiff key1 key2</td>
+</tr>
+<tr>
+<td>求key1和key2的并集</td>
+<td>Sunion key1 key2</td>
+</tr>
+</tbody></table>
+<ul>
+<li>类似hashSet</li>
+</ul>
+<h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加</td>
+<td>Zadd key score 成员</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>Zrem key 成员</td>
+</tr>
+<tr>
+<td>获取分值</td>
+<td>Zscore key 成员</td>
+</tr>
+<tr>
+<td>获取排名</td>
+<td>Zrank key 成员</td>
+</tr>
+<tr>
+<td>获取元素个数</td>
+<td>Zcard key</td>
+</tr>
+<tr>
+<td>统计范围内个数</td>
+<td>Zcount key min max</td>
+</tr>
+<tr>
+<td>指定元素自增</td>
+<td>Zincrby key 自增的值 成员</td>
+</tr>
+<tr>
+<td>排序后，取指定排名范围的值</td>
+<td>Zrange key min max</td>
+</tr>
+<tr>
+<td>排序后，取指定分数范围的值</td>
+<td>ZrangeByScore key min max</td>
+</tr>
+<tr>
+<td>差集 &#x2F; 交集&#x2F; 并集</td>
+<td>Zdiff &#x2F; Zinter &#x2F; Zuinon</td>
+</tr>
+</tbody></table>
+<ul>
+<li>排序默认是升序的，Zrev为降序</li>
+<li>底层数据结构是跳表</li>
+</ul>
+<h3 id="Stream消息队列"><a href="#Stream消息队列" class="headerlink" title="Stream消息队列"></a>Stream消息队列</h3><h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><ul>
+<li>添加信息<ul>
+<li><code>Xadd key [nomkstream] [maxlen | minId [=|~] threshold [limit count]] *|ID field value...</code> <ul>
+<li>[nomkstream]：队列不存在则创建</li>
+<li>[maxlen | minId [&#x3D;|~] threshold [limit count]]：设置队列的最大消息数量</li>
+<li>*|ID：消息唯一id，*代表自动生成</li>
+<li>field value：要发送的消息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>读取消息<ul>
+<li><code>Xread [Count count] [block milliseconds] streams key... Id...</code><ul>
+<li>[Count count]：每次读取的数量</li>
+<li>[block milliseconds]：没有消息时的阻塞时长</li>
+<li>streams key：队列名</li>
+<li>Id：起始id，0代表从第一个消息开始，$代表从最新的消息开始</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="消费者组"><a href="#消费者组" class="headerlink" title="消费者组"></a>消费者组</h4><ul>
+<li>创建消费者组<ul>
+<li><code>Xgroup create key groupName Id [mkstream]</code><ul>
+<li>key：队列名</li>
+<li>groupName：消费者组名</li>
+<li>Id：$代表队列中最后一个消息，0代表第一个消息</li>
+<li>mkstream：队列不存在则创建</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>读取消息<ul>
+<li><code>XreadGroup Group group consumer [Count count] [block milliseconds] [NoAck] streams key... Id...</code><ul>
+<li>group：消费者组名</li>
+<li>consumer ：消费者名</li>
+<li>[Count count]：每次读取的数量</li>
+<li>block milliseconds：没有消息时的阻塞时长</li>
+<li>NoAck：无需手动Ack，自动确认</li>
+<li>key：队列名</li>
+<li>Id：获取信息的起始ID<ul>
+<li>“ &gt;”：从下一个未消费的信息开始</li>
+<li>下标：从pending-list下标位置开始读取</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>查看pending-list<ul>
+<li><code>  Xpending key group id范围 count</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="GEO"><a href="#GEO" class="headerlink" title="GEO"></a>GEO</h3><table>
+<thead>
+<tr>
+<th>作用</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加地理空间信息</td>
+<td>GEOadd 经度 纬度 值</td>
+</tr>
+<tr>
+<td>计算两点之间距离</td>
+<td>GEOdist 点1 点2</td>
+</tr>
+<tr>
+<td>指定点的坐标转换为hash字符串</td>
+<td>GEOhash</td>
+</tr>
+<tr>
+<td>返回点的坐标</td>
+<td>GEOpos</td>
+</tr>
+<tr>
+<td>指定圆心，半径，找到园内点，按照离圆心的距离排序（6.2废弃）</td>
+<td>GEOradius 圆心 半径</td>
+</tr>
+<tr>
+<td>指定范围内找点，可以是圆型、矩形，会排序（6.2新增）</td>
+<td>GEOsearch</td>
+</tr>
+<tr>
+<td>与GEOsearch功能一样，但可以把结果存入一个key</td>
+<td>GEOsearchStore</td>
+</tr>
+</tbody></table>
+<ul>
+<li>底层是SortedSet</li>
+</ul>
+<h3 id="BitMap"><a href="#BitMap" class="headerlink" title="BitMap"></a>BitMap</h3><table>
+<thead>
+<tr>
+<th>作用</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>指定位置插入0或1</td>
+<td>setBIT</td>
+</tr>
+<tr>
+<td>获取指定位置值</td>
+<td>getBIT</td>
+</tr>
+<tr>
+<td>统计1的数量</td>
+<td>BITcount</td>
+</tr>
+<tr>
+<td>查、改、增 指定位置的值</td>
+<td>BITfield</td>
+</tr>
+<tr>
+<td>获取数组</td>
+<td>BITfield_ro</td>
+</tr>
+<tr>
+<td>结果做位运算</td>
+<td>BITop</td>
+</tr>
+<tr>
+<td>找第一个1 或0 的位置</td>
+<td>BITpos</td>
+</tr>
+</tbody></table>
+<h3 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h3><ul>
+<li>用于确定非常大的集合的基数，不需要存储其所有值</li>
+<li>基于String实现的，当个HLL内存小于16kb</li>
+<li>测量结果有小于0.81%的误差</li>
+</ul>
+<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>内部使用文件事件处理器（file event handler），是单线程的</li>
+<li>使用的IO多路复用机制同时监听多个socket，将产生事件的socket压入内存队列</li>
+<li>事件分派器根据socket上的事件类型来选择对应的事件处理器</li>
+<li>在Redis6中引入了多线程机制，主要用于处理回复事件、命令转换</li>
+</ul>
+<h3 id="文件事件处理器（file-event-handler）"><a href="#文件事件处理器（file-event-handler）" class="headerlink" title="文件事件处理器（file event handler）"></a>文件事件处理器（file event handler）</h3><p><img src="https://doocs.github.io/advanced-java/docs/high-concurrency/images/redis-single-thread-model.png" alt="Redis-single-thread-model"></p>
+<ol>
+<li><p>首先，Redis 服务端进程初始化的时候，会将 server socket 的 <code>AE_READABLE</code> 事件与连接应答处理器关联。</p>
+</li>
+<li><p>客户端 socket01 向 Redis 进程的 server socket 请求建立连接，此时 server socket 会产生一个 <code>AE_READABLE</code> 事件，IO 多路复用程序监听到 server socket 产生的事件后，将该 socket 压入队列中。文件事件分派器从队列中获取 socket，交给<strong>连接应答处理器</strong>。连接应答处理器会创建一个能与客户端通信的 socket01，并将该 socket01 的 <code>AE_READABLE</code> 事件与命令请求处理器关联。</p>
+</li>
+<li><p>假设此时客户端发送了一个 <code>set key value</code> 请求，此时 Redis 中的 socket01 会产生 <code>AE_READABLE</code> 事件，IO 多路复用程序将 socket01 压入队列，此时事件分派器从队列中获取到 socket01 产生的 <code>AE_READABLE</code> 事件，由于前面 socket01 的 <code>AE_READABLE</code> 事件已经与命令请求处理器关联，因此事件分派器将事件交给命令请求处理器来处理。命令请求处理器读取 socket01 	的 <code>key value</code> 并在自己内存中完成 <code>key value</code> 的设置。操作完成后，它会将 socket01 的 <code>AE_WRITABLE</code> 事件与命令回复处理器关联。</p>
+</li>
+<li><p>如果此时客户端准备好接收返回结果了，那么 Redis 中的 socket01 会产生一个 <code>AE_WRITABLE</code> 事件，同样压入队列中，事件分派器找到相关联的命令回复处理器，由命令回复处理器对 socket01 输入本次操作的一个结果，比如 <code>ok</code> ，之后解除 socket01 的 <code>AE_WRITABLE</code> 事件与命令回复处理器的关联。这样便完成了一次通信。</p>
+</li>
+</ol>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="SpringDataRedis序列化的方式"><a href="#SpringDataRedis序列化的方式" class="headerlink" title="SpringDataRedis序列化的方式"></a>SpringDataRedis序列化的方式</h3><ul>
+<li><p>​	自定义redisTemplate，修改序列化器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span>&#123;</span><br><span class="line">    <span class="comment">//创建Template</span></span><br><span class="line">    RedisTemplate&lt;String, Object&gt; redisTemplate = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//设置连接工厂</span></span><br><span class="line">    redisTemplate.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="comment">//设置序列化工具</span></span><br><span class="line">    <span class="type">GenericJackson2JsonRedisSerializer</span> <span class="variable">jsonRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>();</span><br><span class="line">    <span class="comment">//key和HashKey采用String序列化</span></span><br><span class="line">    redisTemplate.setKeySerializer(ReidsSerializer.string());</span><br><span class="line">    redisTemplate.setHashKeySerializer(ReidsSerializer.string());</span><br><span class="line">    <span class="comment">//value和HashValue采用Json序列化</span></span><br><span class="line">    redisTemplate.setValueSerializer(jsonRedisSerializer);</span><br><span class="line">    redisTemplate.setHashValueSerializer(jsonRedisSerializer);</span><br><span class="line">    <span class="keyword">return</span> redisTemplate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用StringRedisTemplate，手动序列化Json</p>
+</li>
+</ul>
+<h2 id="预热、雪崩、穿透、击穿"><a href="#预热、雪崩、穿透、击穿" class="headerlink" title="预热、雪崩、穿透、击穿"></a>预热、雪崩、穿透、击穿</h2><h3 id="缓存预热"><a href="#缓存预热" class="headerlink" title="缓存预热"></a>缓存预热</h3><ul>
+<li>主从之间数据吞吐量较大、数据同步操作频度高、请求数量较高，而且redis中没有数据，会导致redis启动时快速宕机，所以需要进行redis缓存预热</li>
+<li>日常需要对数据的访问进行记录，统计热点数据</li>
+<li>利用LRU数据删除策略，构建数据留存队列</li>
+<li>redis启动时加载热点数据<ul>
+<li>使用脚本固定触发数据预热</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><ul>
+<li><p>缓存穿透是指客户端请求的数据在缓存和数据库中的不存在，这些请求每次都会打到数据库</p>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>使用缓存空对象，设置过期时间，可能存在短期不一致性</p>
+</li>
+<li><p>使用布隆过滤器解决，在客户和缓存之间添加，缓存预热时，预热布隆过滤器</p>
+</li>
+<li><p>增强id的复杂度</p>
+</li>
+<li><p>加强用户权限校验</p>
+</li>
+<li><p>做好热点参数的限流</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><ul>
+<li><p>同一时段大量的缓存key同时失效或者redis宕机，导致大量的请求直接到达数据库，带来巨大压力</p>
+</li>
+<li><p>解决方案：</p>
+<ul>
+<li><p>给不同的缓存key的过期时间（TTL）添加随机值</p>
+<ul>
+<li><p>不同业务过期时间不同</p>
+</li>
+<li><p>对超级热点数据使用永久key</p>
+</li>
+</ul>
+</li>
+<li><p>使用Redis集群，主从+哨兵</p>
+</li>
+<li><p>给缓存业务添加降级限流策略</p>
+</li>
+<li><p>给业务添加多级缓存</p>
+</li>
+<li><p>优化数据库中严重耗时的业务</p>
+</li>
+<li><p>redis监控服务器性能指标</p>
+</li>
+<li><p>把缓存key到期删除策略改成按命中次数删除策略</p>
+</li>
+<li><p>redis开启持久化，宕机后快速恢复</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><ul>
+<li><p>一个被高并发访问并且缓存重建业务较复杂的key突然失效了，无数的请求会打到数据库</p>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>如果缓存的数据基本不更新，可以设置为不过期</p>
+</li>
+<li><p>互斥锁</p>
+<ul>
+<li>适合缓存更新较快的场景</li>
+<li>没有额外内存消耗，保证一致性，实现简单，但是性能受影响，可能出现死锁</li>
+<li>利用Redis的 SETNX 实现，只有第一个执行SETNX的成功	</li>
+<li>或者使用redisson实现</li>
+</ul>
+</li>
+<li><p>逻辑过期</p>
+<ul>
+<li>即热点数据缓存不设置过期时间，而是在其对象中设置一个时间属性，在这上面设置过期时间<ul>
+<li>性能较好，但不保证一致性，有额外内存消耗，实现复杂</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><table>
+<thead>
+<tr>
+<th></th>
+<th align="center">List</th>
+<th align="center">Pubsub</th>
+<th align="center">Stream</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>持久化</td>
+<td align="center">√</td>
+<td align="center">×</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td>阻塞读取</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td>消息堆积处理</td>
+<td align="center">可利用多消费者处理</td>
+<td align="center">受限于消费者缓冲区</td>
+<td align="center">受限于队列长度，可使用消费者组加快消费速度</td>
+</tr>
+<tr>
+<td>消息确认</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td>消息回溯</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
+</tr>
+</tbody></table>
+<h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><ul>
+<li>noeviction：不清除缓存，内存满了不允许写入新的数据（默认）</li>
+<li>allkeys-lru：对所有key使用LRU算法进行删除 （推荐）</li>
+<li>volat-lru：对所有设置了过期时间的key使用LRU删除</li>
+<li>allkeys-random：对所有key随机删除</li>
+<li>volatile-random：对所有设置了过期时间的key随即删除</li>
+<li>volatile-ttl：删除马上就要 过期的key</li>
+<li>allkeys-lfu：对所有key使用LFU算法进行删除（根据数据访问频率）</li>
+<li>volatile-lfu：对所有设置了过期时间的key使用LFU删除</li>
+</ul>
+<h2 id="数据过期策略"><a href="#数据过期策略" class="headerlink" title="数据过期策略"></a>数据过期策略</h2><ol>
+<li>惰性删除<ul>
+<li>过期后不删除，使用到key时会检查他是否过期，过期删除</li>
+</ul>
+</li>
+<li>定期删除<ul>
+<li>每隔一段时间，对一定量的key进行检查，过期就删除</li>
+<li>分为slow模式和fast模式<ul>
+<li>slow：定时任务</li>
+<li>fast：间隔2ms，耗时不超过1ms</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li><p>短信验证</p>
+<ul>
+<li>手机号作为key，验证码为value</li>
+<li>登录成功获取token，token为key，user对象为值</li>
+<li>设置有效期</li>
+</ul>
+</li>
+<li><p>数据缓存</p>
+<ul>
+<li>分布式事务保证原子性</li>
+</ul>
+</li>
+<li><p>全局ID</p>
+<ul>
+<li>incrby方法，是原子性操作</li>
+<li>符号位(1) + 时间戳(31) + 序列号(32)</li>
+<li>雪花算法<ul>
+<li>符号位 + 时间戳 + 机器码 + 序列号</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>分布式锁</p>
+<ul>
+<li>setnx方法，超时释放，分布式id冲突</li>
+<li>释放锁时需要判断value值是否一致，保证原子性</li>
+<li>Redission实现</li>
+</ul>
+</li>
+<li><p>消息队列</p>
+<ul>
+<li>XGroup，消息分流、表示、确认、阻塞读取、可回溯</li>
+<li>使用Lua脚本添加信息，保证原子性</li>
+<li>消息发送后进入pending-list，XACK后移除</li>
+</ul>
+</li>
+<li><p>点赞</p>
+<ul>
+<li>SortedSet</li>
+</ul>
+</li>
+<li><p>关注</p>
+<ul>
+<li>Set，查看共同关注</li>
+</ul>
+</li>
+<li><p>推送</p>
+<ul>
+<li>有推，拉，推拉结合</li>
+<li>为用户建立收件箱，实现分页查询，SortedSet实现</li>
+</ul>
+</li>
+<li><p>附近商铺</p>
+<ul>
+<li>GeoLocation，底层是SortedSet</li>
+</ul>
+</li>
+<li><p>签到</p>
+<ul>
+<li>BitMap，String实现</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><ul>
+<li>将多个命令打包，然后一次性、有序的执行</li>
+<li>多个命令会被列入到事务队列中，然后按先进先出FIFO的顺序执行</li>
+<li>事务不会被中断</li>
+<li>使用场景</li>
+</ul>
+<h2 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h2><ul>
+<li>做法<ul>
+<li>读的时候先读缓存，缓存没有就读数据库，然后存入缓存</li>
+<li>先更新数据库再删除缓存 或者 先删除缓存再更新数据库<ul>
+<li>删除缓存时因为如果每次更新数据库都更新缓存，无效的写操作太多</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可能出现的问题<ol>
+<li>删除缓存时失败了，导致缓存中是旧数据<ul>
+<li>延时双删，即在一定时间后再删除一次</li>
+<li>可以使用消息队列完成删除的动作</li>
+</ul>
+</li>
+<li>更新数据库时有读请求请求到旧数据<ul>
+<li>当读取缓存时没取到数据，就将请求存入MQ中，然后等待数据库更新完成存入MQ去删除缓存</li>
+<li>可以使用Canal中间件实现无侵入性的异步删除缓存</li>
+<li>加读写锁（强一致）</li>
+</ul>
+</li>
+<li>更新数据库时有读请求请求到旧数据并加入缓存<ul>
+<li>加读写锁（强一致）</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="压缩列表"><a href="#压缩列表" class="headerlink" title="压缩列表"></a>压缩列表</h2><ul>
+<li>设置字符压缩阈值<ul>
+<li>阈值最好不要大于2048<ul>
+<li>因为压缩列表涉及解码编码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>压缩指针<ul>
+<li>三个指针的存储</li>
+</ul>
+</li>
+<li>大列表拆分<ul>
+<li>lua脚本实现</li>
+</ul>
+</li>
+<li>存数据索引</li>
+</ul>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><ul>
+<li>Redis数据备份文件，也被叫做Redis数据快照</li>
+<li>RDB把内存中的所有数据记录到磁盘中，当Redis故障重启后，从磁盘读取RDB，RDB读取较快</li>
+<li>Redis停机时会保存一次RDB，也可以设置单位时间修改量阈值，超过阈值就保存</li>
+<li>redis.conf文件中可以对RDB进行配置</li>
+<li>RDB执行间隔长，俩次RDB之间写入数据有丢失的风险</li>
+<li>可以使用主进程执行或者子进程执行<ul>
+<li><p>save：主进程，会阻塞</p>
+<ul>
+<li>操作虚拟内存，通过页表映射到物理内存</li>
+</ul>
+</li>
+<li><p>bgsave：获得子进程，往磁盘写RDB都比较耗时，异步非阻塞</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="存储的流程"><a href="#存储的流程" class="headerlink" title="存储的流程"></a>存储的流程</h4><ul>
+<li>由于Linux系统中所有的进程都无法直接操作物理内存，都是通过操作进程自身的虚拟内存，然后通过页表建立虚拟内存和物理内存之间的映射关系实现</li>
+<li>克隆一个与主进程一直的子进程，共享内存空间，子线程克隆主进程中的页表，速度快</li>
+<li>读取物理内存数据写入新的RDB文件并存入磁盘</li>
+<li>用新RDB文件替换旧的</li>
+<li>如果子进程在写RDB时主进程有写入的操作，此时会将物理内存拷贝一份，新的读写请求都会操作这个拷贝的物理内存，这样可以避免数据不一致</li>
+</ul>
+<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><ul>
+<li>Redis追加文件，redis的每一个写命令都会记录在aof中</li>
+<li>aof写入性能高，使用的是追加写入，没有磁盘寻址开销，文件不易破损</li>
+<li>默认是关闭的，需要在配置文件中开启，也可以配置相关配置<ul>
+<li>Always：同步刷盘，可靠性高，不丢数据，性能影响大</li>
+<li>everysec：每秒刷盘，性能适中，最多丢失1s数据</li>
+<li>no：操作系统控制，性能最好，可靠性较差，可能丢失大量数据</li>
+</ul>
+</li>
+<li>AOF文件比RDB文件大的多</li>
+<li>aof会记录对一个key的多次写操作，但其实只有最后一次写有意义，可以通过bgrewriteaof命令，让aof执行重写，用最少的命令达到同样的效果</li>
+<li>可用于紧急故障回滚</li>
+<li>也可以设置阈值触发重写aof</li>
+</ul>
+<h3 id="AOF和RDB混合持久化"><a href="#AOF和RDB混合持久化" class="headerlink" title="AOF和RDB混合持久化"></a>AOF和RDB混合持久化</h3><ul>
+<li>同时使用两种持久化功能需要耗费大量系统资源，系统的硬件必须能够支撑运行这两种功能所需的资源消耗，否则会给系统性能带来影响</li>
+<li>Redis服务器在启动时，会优先使用AOF文件进行数据恢复，只有在没有检测到AOF文件时，才会考虑寻找并使用RDB文件进行数据恢复</li>
+<li>当Redis服务器正在后台生成新的RDB文件时，如果有用户向服务器发送BGREWRITEAOF命令，或者配置选项中设置的AOF重写条件被满足了，那么服务器 将把 AOF重写操作 推延到 RDB文件创建完毕之后再执行，以此来避免两种持久化操作同时执行并争抢系统资源</li>
+<li>同样，当服务器正在执行BGREWRITEAOF命令时，用户发送或者被触发的BGSAVE命令也会推延到BGREWRITEAOF命令执行完毕之后再执行</li>
+<li>开启混合持久化，4.0之后才可以使用<ul>
+<li><code>aof-use-rdb-preamble yes</code></li>
+</ul>
+</li>
+<li>开启混合持久化之后，生成的aof文件由两部分组成<ul>
+<li>RDB+AOF</li>
+</ul>
+</li>
+</ul>
+<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><h3 id="分片集群"><a href="#分片集群" class="headerlink" title="分片集群"></a>分片集群</h3><h4 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h4><ul>
+<li><p>解决海量数据存储和高并发读写的问题</p>
+</li>
+<li><p>集群中有多个master节点，每个master保存不一样的数据</p>
+</li>
+<li><p>每个节点都会开启两个端口，一个用于数据交互，另一个用于节点间通信</p>
+<ul>
+<li>通信用的gossip二进制协议，占用更少的网络带宽和处理时间。</li>
+</ul>
+</li>
+<li><p>每个master可以有多个slave节点</p>
+</li>
+<li><p>master之间心跳检测</p>
+</li>
+<li><p>客户端可以访问集群中的任意节点，最终都会被正确转发到正确的节点</p>
+</li>
+</ul>
+<h4 id="哈希槽"><a href="#哈希槽" class="headerlink" title="哈希槽"></a>哈希槽</h4><ul>
+<li>redis分片集群引入了哈希槽的概念，一共有16384（2^14^ 大小的数组）个哈希槽，redis节点不会超过1000个</li>
+<li>每个key通过CRC16校验后对16384取模来决定分配到哪一个哈希槽中，集群中的每一个节点负责一部分哈希槽</li>
+<li>相当于在请求和redis之间添加了一个反向代理（槽），由它来选择存储的redis节点</li>
+</ul>
+<h3 id="哨兵集群"><a href="#哨兵集群" class="headerlink" title="哨兵集群"></a>哨兵集群</h3><h4 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h4><p>哨兵（sentinel）是 Redis 集群架构中非常重要的一个组件，主要有以下功能：</p>
+<ul>
+<li><p>集群监控：负责监控 Redis master 和 slave 进程是否正常工作。</p>
+<ul>
+<li>基于心跳检测，每一秒ping一次，超过规定的时间没有响应，则视为<strong>主观下线</strong></li>
+<li>超过一半（可设置）的哨兵认为该节点主观下线，则该节点变为客观下线</li>
+</ul>
+</li>
+<li><p>消息通知：如果某个 Redis 实例有故障，那么哨兵负责发送消息作为报警通知给管理员。</p>
+</li>
+<li><p>故障转移：如果 master node 挂掉了，会自动转移到 slave node 上。</p>
+</li>
+<li><p>配置中心：如果故障转移发生了，通知 client 客户端新的 master 地址。</p>
+</li>
+</ul>
+<p>哨兵用于实现 Redis 集群的高可用，本身也是分布式的，作为一个哨兵集群去运行，互相协同工作。</p>
+<ul>
+<li>故障转移时，判断一个 master node 是否宕机了，需要大部分的哨兵都同意才行，涉及到了分布式选举的问题。</li>
+<li>即使部分哨兵节点挂掉了，哨兵集群还是能正常工作的</li>
+</ul>
+<h4 id="哨兵选主规则"><a href="#哨兵选主规则" class="headerlink" title="哨兵选主规则"></a>哨兵选主规则</h4><ol>
+<li>判断主从断开时间长短，超过指定值则排除</li>
+<li>判断节点的salve-priority值，越小优先级越高，如果一样则判断offset，越大优先级越高</li>
+<li>最后判断节点运行id大小，越小优先级越高</li>
+</ol>
+<h4 id="哨兵间的自动发现机制"><a href="#哨兵间的自动发现机制" class="headerlink" title="哨兵间的自动发现机制"></a>哨兵间的自动发现机制</h4><ul>
+<li>是通过redis的 pub&#x2F;sub 实现的，每个哨兵都会往 <code>__sentinel__:hello</code> 这个 channel 里发送一个消息，这时候所有其他哨兵都可以消费到这个消息，并感知到其他的哨兵的存在</li>
+<li>每个哨兵还会跟其他哨兵交换对 <code>master</code> 的监控配置，互相进行监控配置的同步</li>
+</ul>
+<h3 id="主从同步-主从集群"><a href="#主从同步-主从集群" class="headerlink" title="主从同步 &#x2F; 主从集群"></a>主从同步 &#x2F; 主从集群</h3><h4 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>能够实现读写分离，但无法实现集群高可用</li>
+<li>分为主节点master和从节点salve&#x2F;replica<ul>
+<li>主节点接收写操作</li>
+<li>从节点接收读操作</li>
+</ul>
+</li>
+<li>每一个主节点都有一个replid，这个id是数据集的标记，从节点会继承主节点的replid，从节点同步时会带上这个replid，如果和主节点的不一致则说明是第一次同步</li>
+<li>主节点有一个偏移量offset，这个偏移量会根据replicated_baklog中的数据增多而逐渐增大，从节点完成同步时也会记录当前同步的主节点的偏移量，如果。从节点偏移量小于主节点，则会进行数据同步更新</li>
+</ul>
+<h4 id="全量同步"><a href="#全量同步" class="headerlink" title="全量同步"></a>全量同步</h4><ol>
+<li><strong>从节点</strong>向主节点建立连接，通过执行<strong>replicaof</strong>命令</li>
+<li>请求数据同步，会携带replid、offset</li>
+<li><strong>主节点</strong>判断是否是第一次同步，通过判断replid是否一致，不一致则是第一次<ul>
+<li>第一次<ul>
+<li>是第一次，将主节点完整的版本信息发送给<strong>从节点</strong>，即replid、offset</li>
+<li><strong>主节点</strong>执行持久化生成RDB，发送给<strong>从节点</strong></li>
+<li><strong>从节点</strong>清空本地数据，加载RDB文件</li>
+<li><strong>主节点</strong>会记录生成RDB文件期间接收到的所有命令，封装为replicated_baklog日志文件发送给<strong>从节点</strong></li>
+<li><strong>从节点</strong>执行接收到的日志文件</li>
+</ul>
+</li>
+<li>不是第一次<ul>
+<li><strong>主节点</strong>计算从节点的偏移量和主节点偏移量的差值数据封装为replicated_baklog日志文件发送给<strong>从节点</strong></li>
+<li><strong>从节点</strong>执行接收到的日志文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="增量同步"><a href="#增量同步" class="headerlink" title="增量同步"></a>增量同步</h4><ul>
+<li>一般在从节点重启时或者主从数据发送变化时</li>
+<li>就是全量同步中不是第一次同步的情况</li>
+</ul>
+<h4 id="脑裂"><a href="#脑裂" class="headerlink" title="脑裂"></a>脑裂</h4><ul>
+<li>由于网络分区或者网络故障集群分割，两个分区都选举了master节点，故障恢复后其中一个master会变回salve节点，其间其接收到的写请求都会在同步后丢失</li>
+<li>解决方法<ul>
+<li>设置min-replicas-to-write 1：表示主节点最少需要有一个从节点</li>
+<li>设置min-replicas-max-lag 5：表示数据复制和同步的延迟不能超过5s</li>
+</ul>
+</li>
+</ul>
+<h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h3 id="setnx"><a href="#setnx" class="headerlink" title="setnx"></a>setnx</h3><ul>
+<li><code>set lock value NX EX 1</code></li>
+<li>必须设置失效时间兜底，否则会导致死锁的问题<ul>
+<li>预估业务执行时间</li>
+<li>给锁续期，自己实现需要开一个线程去监控，比较麻烦</li>
+</ul>
+</li>
+</ul>
+<h3 id="Redission"><a href="#Redission" class="headerlink" title="Redission"></a>Redission</h3><h4 id="加锁原理"><a href="#加锁原理" class="headerlink" title="加锁原理"></a>加锁原理</h4><ul>
+<li>使用lua脚本保证的原子性</li>
+</ul>
+<h4 id="可重入原理"><a href="#可重入原理" class="headerlink" title="可重入原理"></a>可重入原理</h4><ul>
+<li>使用hash结构来记录获取锁的线程id，value记录的是重入的次数</li>
+<li>内部还是实现的lua脚本</li>
+</ul>
+<h4 id="可重试原理"><a href="#可重试原理" class="headerlink" title="可重试原理"></a>可重试原理</h4><p>利用信号量和PubSub功能实现</p>
+<ul>
+<li>使用带参的构造函数获取锁，参数是重试的等待时间和时间单位</li>
+<li>底层会给一个默认的超时时间30秒（<strong>看门狗时间</strong>）</li>
+<li>当获取锁失败时会返回一个锁的剩余有效期 (<strong>pttl</strong>) (剩余的超时时间)</li>
+<li>用等待时间减去获取锁失败这个过程消耗的时间<ul>
+<li>小于等于0，返回false</li>
+<li>大于0，进入等待通知状态（<strong>订阅状态</strong>），当有线程释放锁时会通知其他等待的线程</li>
+</ul>
+</li>
+<li>当等待通知的时间超过了等待时间时，取消订阅状态，返回false</li>
+<li>当在等待的期间获得了通知<ul>
+<li>用等待时间减去等待通知这个过程消耗的时间<ul>
+<li>小于等于0，返回false</li>
+<li>大于0，进入一个循环，尝试获取锁，成功返回<ul>
+<li>失败进入一个等待<strong>信号量</strong>的状态，ttl时间到或者等待时间到时尝试获取锁<ul>
+<li>判断等待时间，超时false，不超时进入下一轮循环</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>代码中经常涉及到对剩余时间的计算，比较严谨</li>
+</ul>
+<h4 id="不超时原理"><a href="#不超时原理" class="headerlink" title="不超时原理"></a>不超时原理</h4><ul>
+<li><p>使用带参的构造函数获取锁，参数是重试的等待时间、超时时间和时间单位 </p>
+</li>
+<li><p>不设置超时时间才能实现锁不超时（<strong>看门狗机制</strong>）</p>
+</li>
+<li><p>当获取锁成功时会调用**scheduleExpirationRenewal()**方法</p>
+<ul>
+<li>方法中会创建一个<strong>ExpirationEntry</strong>对象，用一个<strong>ConcurrentHashMAp</strong>存储，key是当前锁的名称，value是<strong>ExpirationEntry</strong>对象，一个锁对应一个entry，重入不覆盖</li>
+</ul>
+</li>
+<li><p>执行<strong>renewExpiration</strong>方法刷新超时时间</p>
+<ul>
+<li><p>方法中会创建一个<strong>Timeout</strong>定时线程，只要当前线程持有锁，每隔<strong>看门狗时间</strong></p>
+<p>&#x2F;3 秒就会调用<strong>renewExpirationAsync</strong>异步刷新一次超时时间</p>
+</li>
+</ul>
+</li>
+<li><p>会把线程id作为key，定时刷新的线程作为value存入一个map中</p>
+</li>
+<li><p>当锁释放时，执行<strong>cancelExpirationRenewal</strong></p>
+<ul>
+<li>根据锁id取出map中的定时刷新线程然后取消掉</li>
+<li>然后把entry删除</li>
+</ul>
+</li>
+<li><p>避免阻塞导致锁超时释放</p>
+</li>
+</ul>
+<h4 id="主从一致（连锁）"><a href="#主从一致（连锁）" class="headerlink" title="主从一致（连锁）"></a>主从一致（<strong>连锁</strong>）</h4><ul>
+<li><p>Redission不分主从关系，加锁时会向所有redis集群中一半以上的节点加锁，这些节点可以有从节点，即红锁</p>
+<ul>
+<li>实现复杂，性能影响大</li>
+</ul>
+</li>
+<li><p>通过**redissionClient.getMultiLock(锁对象1,锁对象2…)**创建连锁</p>
+<ul>
+<li>内部会把这些锁放在一个集合中<ul>
+<li>所有操作都需要集合中每一个锁都成功才能成功</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在获取每一个锁时如果超时会释放所有以获得的锁</p>
+</li>
+<li><p>如果设置了超时时间，在获取所有锁之后会一次性给所有锁刷新超时时间</p>
+</li>
+<li><p>没设置超时时间会使用<strong>看门狗机制</strong></p>
+</li>
+</ul>
+<h2 id="多级缓存"><a href="#多级缓存" class="headerlink" title="多级缓存"></a>多级缓存</h2><h3 id="JVM进程缓存"><a href="#JVM进程缓存" class="headerlink" title="JVM进程缓存"></a>JVM进程缓存</h3><h4 id="Caffeine"><a href="#Caffeine" class="headerlink" title="Caffeine"></a>Caffeine</h4><h3 id="Nginx本地缓存"><a href="#Nginx本地缓存" class="headerlink" title="Nginx本地缓存"></a>Nginx本地缓存</h3><h4 id="Lua"><a href="#Lua" class="headerlink" title="Lua"></a>Lua</h4><h3 id="OpenResty"><a href="#OpenResty" class="headerlink" title="OpenResty"></a>OpenResty</h3><h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/" data-id="clrj8k00x001u4wuwbie8182m" data-title="Redis" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SQL
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/PG/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PostgreSQL</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

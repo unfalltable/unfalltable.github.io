@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>区块链协议 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简介 想要发行代币或者NFT，就需要实现相应的协议中规定的函数&#x2F;接口并对外暴露  ERC  Ethereum Request For Comments  以太坊意见征求稿， 用以记录以太坊上应用级的各种开发标准和协议   EIP  Ethereum Imporvement Proposals 以太坊改进建议,  是以太坊开发者社区提出的改进建议 EIP 包含 ERC    代币协议ERC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链协议">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介 想要发行代币或者NFT，就需要实现相应的协议中规定的函数&#x2F;接口并对外暴露  ERC  Ethereum Request For Comments  以太坊意见征求稿， 用以记录以太坊上应用级的各种开发标准和协议   EIP  Ethereum Imporvement Proposals 以太坊改进建议,  是以太坊开发者社区提出的改进建议 EIP 包含 ERC    代币协议ERC">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.658Z">
+<meta property="article:modified_time" content="2024-01-17T10:59:47.061Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="web3">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/区块链开发/基础/协议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.658Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web3/">Web3</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      区块链协议
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><p>想要发行代币或者NFT，就需要实现相应的协议中规定的函数&#x2F;接口并对外暴露</p>
+</li>
+<li><p>ERC</p>
+<ul>
+<li>Ethereum Request For Comments  以太坊意见征求稿，</li>
+<li>用以记录以太坊上应用级的各种开发标准和协议</li>
+</ul>
+</li>
+<li><p>EIP</p>
+<ul>
+<li>Ethereum Imporvement Proposals 以太坊改进建议, </li>
+<li>是以太坊开发者社区提出的改进建议</li>
+<li>EIP 包含 ERC</li>
+</ul>
+</li>
+</ul>
+<h2 id="代币协议"><a href="#代币协议" class="headerlink" title="代币协议"></a>代币协议</h2><h3 id="ERC20"><a href="#ERC20" class="headerlink" title="ERC20"></a>ERC20</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">contract ERC20 is IERC20&#123;</span><br><span class="line">	//balanceOf、allowance、totalSupply为public，会自动生成对应的get方法实现IERC20中的接口</span><br><span class="line">	mapping(address =&gt; uint256) public override balanceOf;</span><br><span class="line">    mapping(address =&gt; mapping(address =&gt; uint256)) public override allowance;</span><br><span class="line">    uint256 public override totalSupply;   // 代币总供给</span><br><span class="line"></span><br><span class="line">    string public name;   // 名称</span><br><span class="line">    string public symbol;  // 代号</span><br><span class="line">    uint8 public decimals = 18; // 小数位数</span><br><span class="line">    </span><br><span class="line">    //初始化代币名称、代号</span><br><span class="line">    constructor(string memory name_, string memory symbol_)&#123;</span><br><span class="line">        name = name_;</span><br><span class="line">        symbol = symbol_;</span><br><span class="line">    &#125;</span><br><span class="line">    //转账</span><br><span class="line">    function transfer(address recipient, uint amount) external override returns(bool)&#123;</span><br><span class="line">        balanceOf[msg.sender] -= amount;</span><br><span class="line">        balanceOf[recipient] += amount;</span><br><span class="line">        emit Transfer(msg.sender, recipient, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    //授权，被授权方spender可以支配授权方的amount数量的代币</span><br><span class="line">    function approve(address spender, uint amount) external override returns (bool)&#123;</span><br><span class="line">        allowance[msg.sender][spender] = amount;</span><br><span class="line">        emit Approval(msg.sender, spender, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //授权转账</span><br><span class="line">    function transferFrom(address sender, address recipient, uint amount) </span><br><span class="line">    external override returns (bool) &#123;</span><br><span class="line">        allowance[sender][msg.sender] -= amount;</span><br><span class="line">        balanceOf[sender] -= amount;</span><br><span class="line">        balanceOf[recipient] += amount;</span><br><span class="line">        emit Transfer(sender, recipient, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //铸币函数</span><br><span class="line">    function mint(uint amount) external &#123;</span><br><span class="line">        balanceOf[msg.sender] += amount;</span><br><span class="line">        totalSupply += amount;</span><br><span class="line">        emit Transfer(address(0), msg.sender, amount);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //销毁函数</span><br><span class="line">    function burn(uint amount) external &#123;</span><br><span class="line">        balanceOf[msg.sender] -= amount;</span><br><span class="line">        totalSupply -= amount;</span><br><span class="line">        emit Transfer(msg.sender, address(0), amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>代币标准，IERC20是他的接口合约</p>
+</li>
+<li><p>函数</p>
+<ul>
+<li>代币总量 totalSupply</li>
+<li>账户余额 balanceOf</li>
+<li>转账 transfer</li>
+<li>授权转账 approve</li>
+<li>授权额度 allowance</li>
+<li>获取授权转账 transferFrom</li>
+<li>代币信息（可选）：名称，代号，小数位数下</li>
+</ul>
+</li>
+<li><p>事件</p>
+<ul>
+<li><code>Transfer</code>事件</li>
+<li><code>Approval</code>事件</li>
+</ul>
+</li>
+<li><p>使用时</p>
+<ul>
+<li>需要添加铸币函数和销毁函数</li>
+<li>需要注意权限控制和溢出问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="EIP-712"><a href="#EIP-712" class="headerlink" title="EIP-712"></a>EIP-712</h3><p>- </p>
+<h3 id="Ordinals"><a href="#Ordinals" class="headerlink" title="Ordinals"></a>Ordinals</h3><ul>
+<li>序数<ul>
+<li>可以给聪添加编号</li>
+</ul>
+</li>
+<li>Inscription 铭文<ul>
+<li>可以给带序数的聪里嵌入信息，大小在4mb以内</li>
+<li>这个过程也成为铭刻</li>
+</ul>
+</li>
+<li>BRC20<ul>
+<li>本质是一个Json脚本</li>
+<li>不允许智能合约</li>
+<li>安全公平</li>
+</ul>
+</li>
+<li>优缺点<ul>
+<li>提高网络安全</li>
+<li>提高矿工收入，保障了算力的稳定</li>
+<li>偏离了比特币最初的目标</li>
+<li>造成区块链膨胀，大小变大</li>
+<li>会有垃圾信息</li>
+<li>损害了聪的可替代性</li>
+</ul>
+</li>
+</ul>
+<h2 id="NFT协议"><a href="#NFT协议" class="headerlink" title="NFT协议"></a>NFT协议</h2><h3 id="ERC165"><a href="#ERC165" class="headerlink" title="ERC165"></a>ERC165</h3><ul>
+<li>检查一个智能合约是不是支持了<code>ERC721</code>，<code>ERC1155</code>的接口。</li>
+<li>IERC165接口合约只声明了一个<code>supportsInterface</code>函数，输入要查询的<code>interfaceId</code>接口id，若合约实现了该接口id，则返回true</li>
+<li>即对外表明自己实现了哪些接口标准</li>
+<li>如果想知道某个合约实现了哪些接口合约，只需要将该合约的 <code>Interface ID</code> 传入目标合约的 <code>supportsInterface</code> 函数，返回为true即实现了对应的合约要求</li>
+<li>Interface ID 是接口合约中每个函数选择器 取 keccak256 再异或(^) 取 bytes4 获得</li>
+</ul>
+<h3 id="ERC721"><a href="#ERC721" class="headerlink" title="ERC721"></a>ERC721</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">// by 0xAA</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;./IERC165.sol&quot;;</span><br><span class="line">import &quot;./IERC721.sol&quot;;</span><br><span class="line">import &quot;./IERC721Receiver.sol&quot;;</span><br><span class="line">import &quot;./IERC721Metadata.sol&quot;;</span><br><span class="line">import &quot;./Address.sol&quot;;</span><br><span class="line">import &quot;./String.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract ERC721 is IERC721, IERC721Metadata&#123;</span><br><span class="line">    using Address for address; // 使用Address库，用isContract来判断地址是否为合约</span><br><span class="line">    using Strings for uint256; // 使用String库，</span><br><span class="line"></span><br><span class="line">    // Token名称</span><br><span class="line">    string public override name;</span><br><span class="line">    // Token代号</span><br><span class="line">    string public override symbol;</span><br><span class="line">    // tokenId 到 owner address 的持有人映射</span><br><span class="line">    mapping(uint =&gt; address) private _owners;</span><br><span class="line">    // address 到 持仓数量 的持仓量映射</span><br><span class="line">    mapping(address =&gt; uint) private _balances;</span><br><span class="line">    // tokenID 到 授权地址 的授权映射</span><br><span class="line">    mapping(uint =&gt; address) private _tokenApprovals;</span><br><span class="line">    //  owner地址。到operator地址 的批量授权映射</span><br><span class="line">    mapping(address =&gt; mapping(address =&gt; bool)) private _operatorApprovals;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 构造函数，初始化`name` 和`symbol` .</span><br><span class="line">     */</span><br><span class="line">    constructor(string memory name_, string memory symbol_) &#123;</span><br><span class="line">        name = name_;</span><br><span class="line">        symbol = symbol_;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 实现IERC165接口supportsInterface</span><br><span class="line">    function supportsInterface(bytes4 interfaceId)</span><br><span class="line">        external</span><br><span class="line">        pure</span><br><span class="line">        override</span><br><span class="line">        returns (bool)</span><br><span class="line">    &#123;</span><br><span class="line">        return</span><br><span class="line">            interfaceId == type(IERC721).interfaceId ||</span><br><span class="line">            interfaceId == type(IERC165).interfaceId ||</span><br><span class="line">            interfaceId == type(IERC721Metadata).interfaceId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //查询owner地址的balance。</span><br><span class="line">    function balanceOf(address owner) external view override returns (uint) &#123;</span><br><span class="line">        require(owner != address(0), &quot;owner = zero address&quot;);</span><br><span class="line">        return _balances[owner];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //查询tokenId的owner。</span><br><span class="line">    function ownerOf(uint tokenId) public view override returns (address owner) &#123;</span><br><span class="line">        owner = _owners[tokenId];</span><br><span class="line">        require(owner != address(0), &quot;token doesn&#x27;t exist&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //查询owner地址是否将所持NFT批量授权给了operator地址。</span><br><span class="line">    function isApprovedForAll(address owner, address operator)</span><br><span class="line">        external view override returns (bool)&#123;</span><br><span class="line">        return _operatorApprovals[owner][operator];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //将持有代币全部授权给operator地址</span><br><span class="line">    function setApprovalForAll(address operator, bool approved) external override &#123;</span><br><span class="line">        _operatorApprovals[msg.sender][operator] = approved;</span><br><span class="line">        emit ApprovalForAll(msg.sender, operator, approved);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //查询tokenId的授权地址。</span><br><span class="line">    function getApproved(uint tokenId) external view override returns (address) &#123;</span><br><span class="line">        require(_owners[tokenId] != address(0), &quot;token doesn&#x27;t exist&quot;);</span><br><span class="line">        return _tokenApprovals[tokenId];</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    //内部授权函数，授权 to 地址操作 tokenId。</span><br><span class="line">    function _approve(address owner, address to, uint tokenId) private &#123;</span><br><span class="line">        _tokenApprovals[tokenId] = to;</span><br><span class="line">        emit Approval(owner, to, tokenId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //将tokenId授权给 to 地址</span><br><span class="line">    function approve(address to, uint tokenId) external override &#123;</span><br><span class="line">        address owner = _owners[tokenId];</span><br><span class="line">        require(</span><br><span class="line">            msg.sender == owner || _operatorApprovals[owner][msg.sender],</span><br><span class="line">            &quot;not owner nor approved for all&quot;</span><br><span class="line">        );</span><br><span class="line">        _approve(owner, to, tokenId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 查询 spender地址是否可以使用tokenId（他是owner或被授权地址）。</span><br><span class="line">    function _isApprovedOrOwner(</span><br><span class="line">        address owner,</span><br><span class="line">        address spender,</span><br><span class="line">        uint tokenId</span><br><span class="line">    ) private view returns (bool) &#123;</span><br><span class="line">        return (spender == owner ||</span><br><span class="line">            _tokenApprovals[tokenId] == spender ||</span><br><span class="line">            _operatorApprovals[owner][spender]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //内部转账函数。将 tokenId 从 from 转账给 to</span><br><span class="line">    function _transfer(</span><br><span class="line">        address owner,</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint tokenId</span><br><span class="line">    ) private &#123;</span><br><span class="line">        require(from == owner, &quot;not owner&quot;);</span><br><span class="line">        require(to != address(0), &quot;transfer to the zero address&quot;);</span><br><span class="line"></span><br><span class="line">        _approve(owner, address(0), tokenId);</span><br><span class="line"></span><br><span class="line">        _balances[from] -= 1;</span><br><span class="line">        _balances[to] += 1;</span><br><span class="line">        _owners[tokenId] = to;</span><br><span class="line"></span><br><span class="line">        emit Transfer(from, to, tokenId);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 实现IERC721的transferFrom，非安全转账，不建议使用。调用_transfer函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint tokenId</span><br><span class="line">    ) external override &#123;</span><br><span class="line">        address owner = ownerOf(tokenId);</span><br><span class="line">        require(</span><br><span class="line">            _isApprovedOrOwner(owner, msg.sender, tokenId),</span><br><span class="line">            &quot;not owner nor approved&quot;</span><br><span class="line">        );</span><br><span class="line">        _transfer(owner, from, to, tokenId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 安全转账，安全地将 tokenId 代币从 from 转移到 to，会检查合约接收者是否了解 ERC721 协议，以防止代币被永久锁定。调用了_transfer函数和_checkOnERC721Received函数。条件：</span><br><span class="line">     */</span><br><span class="line">    function _safeTransfer(</span><br><span class="line">        address owner,</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint tokenId,</span><br><span class="line">        bytes memory _data</span><br><span class="line">    ) private &#123;</span><br><span class="line">        _transfer(owner, from, to, tokenId);</span><br><span class="line">        require(_checkOnERC721Received(from, to, tokenId, _data), &quot;not ERC721Receiver&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 实现IERC721的safeTransferFrom，安全转账，调用了_safeTransfer函数。</span><br><span class="line">     */</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint tokenId,</span><br><span class="line">        bytes memory _data</span><br><span class="line">    ) public override &#123;</span><br><span class="line">        address owner = ownerOf(tokenId);</span><br><span class="line">        require(</span><br><span class="line">            _isApprovedOrOwner(owner, msg.sender, tokenId),</span><br><span class="line">            &quot;not owner nor approved&quot;</span><br><span class="line">        );</span><br><span class="line">        _safeTransfer(owner, from, to, tokenId, _data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // safeTransferFrom重载函数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint tokenId</span><br><span class="line">    ) external override &#123;</span><br><span class="line">        safeTransferFrom(from, to, tokenId, &quot;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * 铸造函数。通过调整_balances和_owners变量来铸造tokenId并转账给 to，同时释放Transfer事件。铸造函数。通过调整_balances和_owners变量来铸造tokenId并转账给 to，同时释放Transfer事件。</span><br><span class="line">     * 这个mint函数所有人都能调用，实际使用需要开发人员重写，加上一些条件。</span><br><span class="line">     * 条件:</span><br><span class="line">     * 1. tokenId尚不存在。</span><br><span class="line">     * 2. to不是0地址.</span><br><span class="line">     */</span><br><span class="line">    function _mint(address to, uint tokenId) internal virtual &#123;</span><br><span class="line">        require(to != address(0), &quot;mint to zero address&quot;);</span><br><span class="line">        require(_owners[tokenId] == address(0), &quot;token already minted&quot;);</span><br><span class="line"></span><br><span class="line">        _balances[to] += 1;</span><br><span class="line">        _owners[tokenId] = to;</span><br><span class="line"></span><br><span class="line">        emit Transfer(address(0), to, tokenId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 销毁函数，通过调整_balances和_owners变量来销毁tokenId，同时释放Transfer事件。条件：tokenId存在。</span><br><span class="line">    function _burn(uint tokenId) internal virtual &#123;</span><br><span class="line">        address owner = ownerOf(tokenId);</span><br><span class="line">        require(msg.sender == owner, &quot;not owner of token&quot;);</span><br><span class="line"></span><br><span class="line">        _approve(owner, address(0), tokenId);</span><br><span class="line"></span><br><span class="line">        _balances[owner] -= 1;</span><br><span class="line">        delete _owners[tokenId];</span><br><span class="line"></span><br><span class="line">        emit Transfer(owner, address(0), tokenId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // _checkOnERC721Received：函数，用于在 to 为合约的时候调用IERC721Receiver-onERC721Received, 以防 tokenId 被不小心转入黑洞。</span><br><span class="line">    function _checkOnERC721Received(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint tokenId,</span><br><span class="line">        bytes memory _data</span><br><span class="line">    ) private returns (bool) &#123;</span><br><span class="line">        if (to.isContract()) &#123;</span><br><span class="line">            return</span><br><span class="line">                IERC721Receiver(to).onERC721Received(</span><br><span class="line">                    msg.sender,</span><br><span class="line">                    from,</span><br><span class="line">                    tokenId,</span><br><span class="line">                    _data</span><br><span class="line">                ) == IERC721Receiver.onERC721Received.selector;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 实现IERC721Metadata的tokenURI函数，查询metadata。</span><br><span class="line">     */</span><br><span class="line">    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) &#123;</span><br><span class="line">        require(_owners[tokenId] != address(0), &quot;Token Not Exist&quot;);</span><br><span class="line"></span><br><span class="line">        string memory baseURI = _baseURI();</span><br><span class="line">        return bytes(baseURI).length &gt; 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 计算&#123;tokenURI&#125;的BaseURI，tokenURI就是把baseURI和tokenId拼接在一起，需要开发重写。</span><br><span class="line">     * BAYC的baseURI为ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/ </span><br><span class="line">     */</span><br><span class="line">    function _baseURI() internal view virtual returns (string memory) &#123;</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>利用 <code>tokenId </code>来表示特定的非同质化代币</p>
+</li>
+<li><p>函数</p>
+<ul>
+<li><code>balanceOf</code>：返回某地址的NFT持有量<code>balance</code>。</li>
+<li><code>ownerOf</code>：返回某<code>tokenId</code>的主人<code>owner</code>。</li>
+<li><code>transferFrom</code>：普通转账，参数为转出地址<code>from</code>，接收地址<code>to</code>和<code>tokenId</code>。</li>
+<li><code>safeTransferFrom</code>：安全转账（如果接收方是合约地址，会要求实现<code>ERC721Receiver</code>接口）。参数为转出地址<code>from</code>，接收地址<code>to</code>和<code>tokenId</code></li>
+<li><code>safeTransferFrom</code>：安全转账的重载函数，参数里面包含了<code>data</code></li>
+<li><code>approve</code>：授权另一个地址使用你的NFT。参数为被授权地址<code>approve</code>和<code>tokenId</code>。</li>
+<li><code>getApproved</code>：查询<code>tokenId</code>被批准给了哪个地址。</li>
+<li><code>setApprovalForAll</code>：将自己持有的该系列NFT批量授权给某个地址<code>operator</code>。</li>
+<li><code>isApprovedForAll</code>：查询某地址的NFT是否批量授权给了另一个<code>operator</code>地址。</li>
+</ul>
+</li>
+<li><p>事件</p>
+<ul>
+<li><code>Transfer</code>事件：在转账时被释放，记录代币的发出地址<code>from</code>，接收地址<code>to</code>和<code>tokenid</code>。</li>
+<li><code>Approval</code>事件：在授权时释放，记录授权地址<code>owner</code>，被授权地址<code>approved</code>和<code>tokenid</code>。</li>
+<li><code>ApprovalForAll</code>事件：在批量授权时释放，记录批量授权的发3出地址<code>owner</code>，被授权地址<code>operator</code>和授权与否的<code>approved</code>。</li>
+</ul>
+</li>
+<li><p>检测目标函数是否实现 <code>ERC721Receiver</code> 接口，实现这则说明拥有管理NFT的能力</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function _checkOnERC721Received(</span><br><span class="line">    address from,</span><br><span class="line">    address to,</span><br><span class="line">    uint tokenId,</span><br><span class="line">    bytes memory _data</span><br><span class="line">) private returns (bool) &#123;</span><br><span class="line">    if (to.isContract()) &#123;</span><br><span class="line">    	return IERC721Receiver(to).onERC721Received(</span><br><span class="line">            msg.sender,</span><br><span class="line">            from,</span><br><span class="line">            tokenId,</span><br><span class="line">            _data</span><br><span class="line">    	) == IERC721Receiver.onERC721Received.selector;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">    	return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="ERC1155"><a href="#ERC1155" class="headerlink" title="ERC1155"></a>ERC1155</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">import &quot;https://github.com/AmazingAng/WTFSolidity/blob/main/34_ERC721/IERC165.sol&quot;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @dev ERC1155标准的接口合约，实现了EIP1155的功能</span><br><span class="line"> * 详见：https://eips.ethereum.org/EIPS/eip-1155[EIP].</span><br><span class="line"> */</span><br><span class="line">interface IERC1155 is IERC165 &#123;</span><br><span class="line">    /**</span><br><span class="line">     * @dev 单类代币转账事件</span><br><span class="line">     * 当`value`个`id`种类的代币被`operator`从`from`转账到`to`时释放.</span><br><span class="line">     */</span><br><span class="line">    event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 批量代币转账事件</span><br><span class="line">     * ids和values为转账的代币种类和数量数组</span><br><span class="line">     */</span><br><span class="line">    event TransferBatch(</span><br><span class="line">        address indexed operator,</span><br><span class="line">        address indexed from,</span><br><span class="line">        address indexed to,</span><br><span class="line">        uint256[] ids,</span><br><span class="line">        uint256[] values</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 批量授权事件</span><br><span class="line">     * 当`account`将所有代币授权给`operator`时释放</span><br><span class="line">     */</span><br><span class="line">    event ApprovalForAll(address indexed account, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 当`id`种类的代币的URI发生变化时释放，`value`为新的URI</span><br><span class="line">     */</span><br><span class="line">    event URI(string value, uint256 indexed id);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 持仓查询，返回`account`拥有的`id`种类的代币的持仓量</span><br><span class="line">     */</span><br><span class="line">    function balanceOf(address account, uint256 id) external view returns (uint256);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 批量持仓查询，`accounts`和`ids`数组的长度要想等。</span><br><span class="line">     */</span><br><span class="line">    function balanceOfBatch(address[] calldata accounts, uint256[] calldata ids)</span><br><span class="line">        external</span><br><span class="line">        view</span><br><span class="line">        returns (uint256[] memory);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 批量授权，将调用者的代币授权给`operator`地址。</span><br><span class="line">     * 释放&#123;ApprovalForAll&#125;事件.</span><br><span class="line">     */</span><br><span class="line">    function setApprovalForAll(address operator, bool approved) external;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 批量授权查询，如果授权地址`operator`被`account`授权，则返回`true`</span><br><span class="line">     * 见 &#123;setApprovalForAll&#125;函数.</span><br><span class="line">     */</span><br><span class="line">    function isApprovedForAll(address account, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 安全转账，将`amount`单位`id`种类的代币从`from`转账给`to`.</span><br><span class="line">     * 释放&#123;TransferSingle&#125;事件.</span><br><span class="line">     * 要求:</span><br><span class="line">     * - 如果调用者不是`from`地址而是授权地址，则需要得到`from`的授权</span><br><span class="line">     * - `from`地址必须有足够的持仓</span><br><span class="line">     * - 如果接收方是合约，需要实现`IERC1155Receiver`的`onERC1155Received`方法，并返回相应的值</span><br><span class="line">     */</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 id,</span><br><span class="line">        uint256 amount,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 批量安全转账</span><br><span class="line">     * 释放&#123;TransferBatch&#125;事件</span><br><span class="line">     * 要求：</span><br><span class="line">     * - `ids`和`amounts`长度相等</span><br><span class="line">     * - 如果接收方是合约，需要实现`IERC1155Receiver`的`onERC1155BatchReceived`方法，并返回相应的值</span><br><span class="line">     */</span><br><span class="line">    function safeBatchTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256[] calldata ids,</span><br><span class="line">        uint256[] calldata amounts,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>支持一个合约包含多种代币，在gamefi运用的比较多</p>
+</li>
+<li><p>事件</p>
+<ul>
+<li><code>TransferSingle</code>事件：单类代币转账事件，在单币种转账时释放。</li>
+<li><code>TransferBatch</code>事件：批量代币转账事件，在多币种转账时释放。</li>
+<li><code>ApprovalForAll</code>事件：批量授权事件，在批量授权时释放。</li>
+<li><code>URI</code>事件：元数据地址变更事件，在<code>uri</code>变化时释放。</li>
+</ul>
+</li>
+<li><p>函数</p>
+<ul>
+<li><p><code>balanceOf()</code>：单币种余额查询，返回<code>account</code>拥有的<code>id</code>种类的代币的持仓量。</p>
+</li>
+<li><p><code>balanceOfBatch()</code>：多币种余额查询，查询的地址<code>accounts</code>数组和代币种类<code>ids</code>数组的长度要相等。</p>
+</li>
+<li><p><code>setApprovalForAll()</code>：批量授权，将调用者的代币授权给<code>operator</code>地址。。</p>
+</li>
+<li><p><code>isApprovedForAll()</code>：查询批量授权信息，如果授权地址<code>operator</code>被<code>account</code>授权，则返回<code>true</code>。</p>
+</li>
+<li><p><code>safeTransferFrom()</code>：安全单币转账，将<code>amount</code>单位<code>id</code>种类的代币从<code>from</code>地址转账给<code>to</code>地址。如果<code>to</code>地址是合约，则会验证是否实现了<code>onERC1155Received()</code>接收函数。</p>
+</li>
+<li><p><code>safeBatchTransferFrom()</code>：安全多币转账，与单币转账类似，只不过转账数量<code>amounts</code>和代币种类<code>ids</code>变为数组，且长度相等。如果<code>to</code>地址是合约，则会验证是否实现了<code>onERC1155BatchReceived()</code>接收函数。</p>
+</li>
+</ul>
+</li>
+<li><p>与<code>ERC721</code>标准类似，为了避免代币被转入黑洞合约，<code>ERC1155</code>要求代币接收合约继承<code>IERC1155Receiver</code>并实现两个接收函数：</p>
+<ul>
+<li><code>onERC1155Received()</code>：单币转账接收函数，接受ERC1155安全转账<code>safeTransferFrom</code> 需要实现并返回自己的选择器<code>0xf23a6e61</code>*或 <code>bytes4(keccak256(&quot;onERC1155Received(address,address,uint256,uint256,bytes)&quot;))</code>*。</li>
+<li><code>onERC1155BatchReceived()</code>：多币转账接收函数，接受ERC1155安全多币转账<code>safeBatchTransferFrom</code> 需要实现并返回自己的选择器<code>0xbc197c81</code>*或 <code>bytes4(keccak256(&quot;onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)&quot;))</code>*。</li>
+</ul>
+</li>
+</ul>
+<h3 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h3><h3 id="Atomico"><a href="#Atomico" class="headerlink" title="Atomico"></a>Atomico</h3><h2 id="权益证明协议"><a href="#权益证明协议" class="headerlink" title="权益证明协议"></a>权益证明协议</h2><h3 id="Casper"><a href="#Casper" class="headerlink" title="Casper"></a>Casper</h3><ul>
+<li>ETH中使用的权益证明协议</li>
+<li>有一个验证者Validator<ul>
+<li>需要投入一定的以太币来充当该角色</li>
+<li>以50个区块为一个epoch</li>
+<li>使用两阶段提交</li>
+<li>每轮需要2&#x2F;3的验证者通过</li>
+</ul>
+</li>
+<li>需要交保证金才能成为验证者<ul>
+<li>如果没有完成它的职责，则会被扣除部分保证金</li>
+<li>如果两边投票则没收全部保证金</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统协议"><a href="#系统协议" class="headerlink" title="系统协议"></a>系统协议</h2><h3 id="EIP-2535-Diamonds"><a href="#EIP-2535-Diamonds" class="headerlink" title="EIP-2535 Diamonds"></a>EIP-2535 Diamonds</h3><ul>
+<li>是一个支持构建可在生产中扩展的模块化智能合约系统的标准。钻石是具有多个实施合同的代理合同</li>
+<li></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%8D%8F%E8%AE%AE/" data-id="clrj8k01c00504wuw6skp2bhl" data-title="区块链协议" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web3/" rel="tag">web3</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">区块链安全</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

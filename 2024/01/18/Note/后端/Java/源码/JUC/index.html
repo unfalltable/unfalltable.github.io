@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JUC源码 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="AtomicInteger12&#x2F;&#x2F;自增自减都是通过这个方法实现，unsafe.getAndAddInt(this, valueOffset, 1 &#x2F; -1);  123456789&#x2F;&#x2F;复杂运算public final int updateAndGet(IntUnaryOperator updateFunction) &#123;    int prev, next;    do &#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUC源码">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/JUC/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="AtomicInteger12&#x2F;&#x2F;自增自减都是通过这个方法实现，unsafe.getAndAddInt(this, valueOffset, 1 &#x2F; -1);  123456789&#x2F;&#x2F;复杂运算public final int updateAndGet(IntUnaryOperator updateFunction) &#123;    int prev, next;    do &#123;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.703Z">
+<meta property="article:modified_time" content="2023-08-04T01:34:06.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="源码">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Java/源码/JUC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/JUC/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.703Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      JUC源码
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="AtomicInteger"><a href="#AtomicInteger" class="headerlink" title="AtomicInteger"></a>AtomicInteger</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自增自减都是通过这个方法实现，</span></span><br><span class="line">unsafe.getAndAddInt(<span class="built_in">this</span>, valueOffset, <span class="number">1</span> / -<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//复杂运算</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">updateAndGet</span><span class="params">(IntUnaryOperator updateFunction)</span> &#123;</span><br><span class="line">    <span class="type">int</span> prev, next;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        prev = get();</span><br><span class="line">        next = updateFunction.applyAsInt(prev);</span><br><span class="line">    &#125; <span class="keyword">while</span> (!compareAndSet(prev, next));</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>IntUnaryOperator是一个函数式接口，使用lambda传值</li>
+</ul>
+<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><ul>
+<li>sizeCtl<ul>
+<li>下一次扩容的阈值</li>
+<li>默认为0，初始化时为-1</li>
+<li>扩容时为 - (1 + 扩容线程数)</li>
+</ul>
+</li>
+<li>Node<ul>
+<li>节点</li>
+</ul>
+</li>
+<li>ForwardingNode<ul>
+<li>继承Node</li>
+<li>扩容时作为旧数组的头节点</li>
+</ul>
+</li>
+<li>ReservationNode<ul>
+<li>继承Node</li>
+<li>在compute以及computeIfAbsent时，用来占位</li>
+<li>计算完成后替换为普通Node</li>
+</ul>
+</li>
+<li>TreeBin<ul>
+<li>继承Node</li>
+<li>作为树的头节点</li>
+<li>存储root和first</li>
+<li>加了读写锁</li>
+</ul>
+</li>
+<li>TreeNode<ul>
+<li>继承Node</li>
+<li>作为TreeBin的节点</li>
+<li>存储parent，left，right</li>
+</ul>
+</li>
+<li>Node[] table<ul>
+<li>哈希表</li>
+</ul>
+</li>
+<li>Node[] nextTable<ul>
+<li>扩容时的新哈希表</li>
+</ul>
+</li>
+</ul>
+<h3 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h3><ul>
+<li>tabAt<ul>
+<li>获取Node[]中第 i 个Node</li>
+<li>参数：table，下标</li>
+</ul>
+</li>
+<li>casTabAt<ul>
+<li>cas修改Node[] 中Node的值</li>
+<li>参数：数组table、下标、旧值、新值</li>
+</ul>
+</li>
+<li>setTabAt<ul>
+<li>直接修改Node[] 中 Node的值</li>
+<li>参数：数组table、下标、新值</li>
+</ul>
+</li>
+</ul>
+<h3 id="构造方法-初始化"><a href="#构造方法-初始化" class="headerlink" title="构造方法 &#x2F; 初始化"></a>构造方法 &#x2F; 初始化</h3><ul>
+<li>1.7<ul>
+<li>初始化时就会创建segment数组和HashEntry数组的0号元素<ul>
+<li>segment数组默认大小16</li>
+<li>初始化后segment数组的长度就不能改变</li>
+<li>并发度是ConcurrentHashmap的长度（segment数组的大小）</li>
+<li>这个数组的0号元素为其他HashEntry数组的创建提供原型</li>
+<li>每个片段下的数组大小 &#x3D; 容量 &#x2F; 并发度<ul>
+<li>最小值为2，数组的元素数量超过阈值（0.75）就会扩容</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>指定容量时大于等于接近等级的容量x0.75时，容量会升一级创建</li>
+</ul>
+</li>
+<li>1.8<ul>
+<li>懒惰初始化，第一次put数据时才会创建数组结构，默认初始容量是16</li>
+<li>无参构造创建时，数组初始容量是16</li>
+<li>初始化时传了容量大小时，判断是否超过容量×负载因子<ul>
+<li>大于则创建下一个阶段的大小</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="索引计算"><a href="#索引计算" class="headerlink" title="索引计算"></a>索引计算</h3><ul>
+<li>1.7<ul>
+<li>segment数组索引<ul>
+<li>并发度为16（2^4^）时，看二次hash值的高四位</li>
+<li>并发度为32（2^5^）时，看二次hash值的高五位</li>
+</ul>
+</li>
+<li>数组索引<ul>
+<li>数组的大小为2（2^1^）时，看二次hash的低一位</li>
+<li>数组的大小为4（2^2^）时，看二次hash的低二位</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="put方法"><a href="#put方法" class="headerlink" title="put方法"></a>put方法</h3><ul>
+<li>1.7<ul>
+<li>头插法</li>
+<li>hash找segement，内部数组执行put操作</li>
+<li>使用cas初始化槽</li>
+<li>通过tryLock()获取锁，获取不到就重试，再获取不到就lock住，直到获取锁</li>
+</ul>
+</li>
+<li>1.8<ul>
+<li>尾插法，锁链表头或红黑树根节点</li>
+</ul>
+</li>
+</ul>
+<h3 id="get方法"><a href="#get方法" class="headerlink" title="get方法"></a>get方法</h3><ul>
+<li>1.7<ul>
+<li>计算hash找segement，再hash找数组，再遍历链表</li>
+<li>没加锁，需要考虑并发问题<ul>
+<li>get时有put操作<ul>
+<li>源码中使用了CAS保证初始化segement时也能get</li>
+<li>源码中使用了UNSAFE.putOrderedObject保证put后的数据也能被get到</li>
+<li>源码中使用了volatile 保证扩容时数据也能被get到</li>
+</ul>
+</li>
+<li>get时有remove操作<ul>
+<li>源码中使用了UNSAFE.putOrderedObject保证remove后的数据不会被get到</li>
+<li>源码中使用了volatile 保证remove时数据不会被get到</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1.8<ul>
+<li>计算hash，找数组对应位置<ul>
+<li>如果hash值为0，说明正在扩容或者是红黑树</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="初始化table方法"><a href="#初始化table方法" class="headerlink" title="初始化table方法"></a>初始化table方法</h3><ul>
+<li>1.8<ul>
+<li>size计算实际发生在put，remove改变集合元素的操作之中<ul>
+<li>没有竞争发生，向baseCount累加计数</li>
+<li>有竞争发生，新建counterCells，向其中的一个cell累加计数<ul>
+<li>counterCells初始有两个cell</li>
+<li>如果计数竞争比较激烈，会创建新的cell来累加计数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="链表转红黑树"><a href="#链表转红黑树" class="headerlink" title="链表转红黑树"></a>链表转红黑树</h3><ul>
+<li><h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2></li>
+</ul>
+<h3 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h3><ul>
+<li>1.7<ul>
+<li>segement不能扩容，扩容的是HashEntry数组</li>
+<li>元素个数 &gt; 容量 × 负载因子 时扩容，大小变为2倍，先扩容，再插值</li>
+</ul>
+</li>
+<li>1.8 <ul>
+<li>元素个数 &gt;&#x3D; 四分之三时扩容，与负载因子无关</li>
+<li>以链表为单位，从后往前迁移数据，处理完当前位置会在这个位置打上标记（forwardingNode）</li>
+<li>可以多个线程帮忙扩容，一个线程扩容16个位置，从后往前做数据迁移</li>
+</ul>
+</li>
+</ul>
+<h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><ul>
+<li>锁的竞争是用的CAS机制来实现的</li>
+<li>没有竞争到锁时是使用AQS来存储竞争锁的线程</li>
+<li>锁的重入是内部变量记录了当前持锁线程的id，重入时判断id是否相同</li>
+</ul>
+<h2 id="ThreadLcoal"><a href="#ThreadLcoal" class="headerlink" title="ThreadLcoal"></a>ThreadLcoal</h2><h2 id="LongAdder"><a href="#LongAdder" class="headerlink" title="LongAdder"></a>LongAdder</h2><h3 id="成员变量-1"><a href="#成员变量-1" class="headerlink" title="成员变量"></a>成员变量</h3><ul>
+<li>Cell[] cells<ul>
+<li>累加单元数组，懒惰初始化，24字节</li>
+</ul>
+</li>
+<li>base<ul>
+<li>基础值，如果没有竞争，则用cas累加这个域</li>
+</ul>
+</li>
+<li>cellsBusy<ul>
+<li>在cells创建或扩容时，置位1，表示加锁</li>
+</ul>
+</li>
+<li>Cell<ul>
+<li>内部维护一个value值</li>
+<li>用cas进行累加</li>
+<li>一个缓存行(64字节)可以存下2个Cell，但是会有问题<ul>
+<li>当有两个线程同时修改同一个缓存行中的cell时，一方的修改会导致另一方失败</li>
+<li>@sun.misc.Contended可以解决这个问题，它通过在对象的前后各加上128字节的padding，从而让cpu将对象预读至不同的缓存行，所以不会造成失效</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="任务执行流程"><a href="#任务执行流程" class="headerlink" title="任务执行流程"></a>任务执行流程</h3><ol>
+<li>判断任务是否为null，不为空正常往下走，为空抛异常</li>
+<li>检查是否能创建工作线程，通过比对stl低29位和线程池参数<ul>
+<li>还能创建核心线程，创建并执行任务</li>
+<li>不能创建核心线程<ul>
+<li>有可能创建失败，同时又多个任务进来，然后同时创建新的线程，核心线程数够了的话就会有可能创建失败，也有可能核心线程数已经满了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果不能创建核心线程，判断线程池状态，判断是否能放进阻塞队列中<ul>
+<li>线程池正常并成功放进队列中<ul>
+<li>判断线程池状态，判断是否能去除等待队列中的任务<ul>
+<li>线程池正常并能取出队列中的任务，查看工作线程是否有空闲，空闲直接执行任务，否则创建救急线程</li>
+<li>线程池异常或不能取出队列中的任务，走拒绝策略</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>线程池异常或不能放进队列中，尝试添加救急线程处理，不能添加就走拒绝策略</li>
+</ul>
+</li>
+</ol>
+<h3 id="添加线程流程"><a href="#添加线程流程" class="headerlink" title="添加线程流程"></a>添加线程流程</h3><ul>
+<li><p>核心方法是addWorker方法，方法主要做了两步</p>
+<ol>
+<li><p>检验线程池状态以及工作线程个数</p>
+<ol>
+<li><p>取ctl高三位判断线程池状态，不是running状态则失败</p>
+</li>
+<li><p>通过传入的参数判断是添加核心线程还是救急线程</p>
+</li>
+<li><p>取ctl的低29位，</p>
+<ul>
+<li><p>判断线程数是否超出最大线程数</p>
+</li>
+<li><p>判断创建核心线程还是救急线程</p>
+</li>
+<li><p>使用cas方式对ctl低29位进行+1操作</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>构建线程并且启动</p>
+<ul>
+<li>new一个工作线程，获取他的线程对象</li>
+<li>工作线程是放在一个hashset中的，添加的时候使用了lock锁保证线程安全</li>
+<li>通过线程对象启动任务</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/JUC/" data-id="clrj8k01t008x4wuw09ok1b1e" data-title="JUC源码" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/Spring/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E6%BA%90%E7%A0%81/MyBatis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MyBatis源码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

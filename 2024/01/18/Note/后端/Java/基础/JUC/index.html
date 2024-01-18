@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>JUC并发编程 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简介为什么需要多线程 解决可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况 解决有序性问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序 解决原子性问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题  线程安全问题 多个线程访问同一个共享变量就会出现线程安全问题 private 和 final可以一定程度上提供线程安全 线程安全的方法组合起来就不能保">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUC并发编程">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/JUC/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介为什么需要多线程 解决可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况 解决有序性问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序 解决原子性问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题  线程安全问题 多个线程访问同一个共享变量就会出现线程安全问题 private 和 final可以一定程度上提供线程安全 线程安全的方法组合起来就不能保">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.683Z">
+<meta property="article:modified_time" content="2023-07-27T02:01:36.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Java/基础/JUC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/JUC/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.683Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      JUC并发编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="为什么需要多线程"><a href="#为什么需要多线程" class="headerlink" title="为什么需要多线程"></a>为什么需要多线程</h3><ul>
+<li>解决<strong>可见性</strong>问题：因为CPU和内存间存在缓存，存在主从不一致的情况</li>
+<li>解决<strong>有序性</strong>问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序</li>
+<li>解决<strong>原子性</strong>问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题</li>
+</ul>
+<h3 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h3><ul>
+<li>多个线程访问同一个共享变量就会出现线程安全问题</li>
+<li>private 和 final可以一定程度上提供线程安全</li>
+<li>线程安全的方法组合起来就不能保证线程安全了</li>
+<li>在多线程的情况下满足JMM规范就可以避免线程安全问题</li>
+<li>线程安全程度<ul>
+<li>不可变<ul>
+<li>final、枚举、Number部分子类（Long、Double、BigInteger、BigDecimal）、使用<code>Collections.unmodifiableXXX()</code> 包装的集合</li>
+<li>不可变类：DateFormatter、String</li>
+</ul>
+</li>
+<li>绝对线程安全<ul>
+<li>调用者都不需要任何额外的同步措施</li>
+</ul>
+</li>
+<li>相对线程安全<ul>
+<li>有一定的安全，但有意外的情况，例如顺序的连续调用</li>
+<li>通过一些同步方法来保证安全</li>
+</ul>
+</li>
+<li>线程兼容<ul>
+<li>对象本身不安全，需要通过一些同步方法来保证安全</li>
+</ul>
+</li>
+<li>线程对立<ul>
+<li>即使使用了同步方法也无法保证线程安全</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h3><ul>
+<li>多线程读写同一个共享资源，这个共享资源就称为临界区</li>
+</ul>
+<h3 id="竟态条件"><a href="#竟态条件" class="headerlink" title="竟态条件"></a>竟态条件</h3><ul>
+<li>多个线程同时在临界区内执行，由于代码的执行序列不同而导致结果无法预测，称之为发生了竟态条件</li>
+</ul>
+<h3 id="创建线程的方式"><a href="#创建线程的方式" class="headerlink" title="创建线程的方式"></a>创建线程的方式</h3><ul>
+<li>继承Thread<ul>
+<li>代价比较大，不建议</li>
+<li>内部实现了Runnable接口</li>
+</ul>
+</li>
+<li>实现Runnable接口<ul>
+<li>本质上并不是创建线程，实际执行还是需要通过线程调用</li>
+</ul>
+</li>
+<li>实现Callable接口<ul>
+<li>本质上并不是创建线程，实际执行还是需要通过线程调用</li>
+<li>可以有返回值（FutureTask），需要实现call方法</li>
+<li>内部是FutureTask实现了RunnableFutrue接口，这个接口继承了Runnable和Future接口</li>
+<li>内部实现也是执行的run方法，在方法中创建了Callable对象并执行call方法，将结果值返回</li>
+</ul>
+</li>
+<li>线程池创建<ul>
+<li>合理利用线程资源，减少频繁创建销毁的开销</li>
+<li>内部创建的worker线程也是实现了Runnable接口</li>
+</ul>
+</li>
+</ul>
+<h3 id="守护线程和非守护线程"><a href="#守护线程和非守护线程" class="headerlink" title="守护线程和非守护线程"></a>守护线程和非守护线程</h3><ul>
+<li>守护线程就像是守护其他线程一样，其他的完成了他也就结束了</li>
+<li>非守护线程都运行结束了，即使守护线程还没结束也会直接结束</li>
+<li>main主线程是一个非守护线程</li>
+<li>setDaemon(true) 将线程设置为守护线程<ul>
+<li>垃圾回收器（gc）就是一个守护线程</li>
+<li>Tomcat中的 Acceptor 和 Poller 线程也是守护线程</li>
+</ul>
+</li>
+</ul>
+<h3 id="Java的线程和操作系统的线程有区别吗？"><a href="#Java的线程和操作系统的线程有区别吗？" class="headerlink" title="Java的线程和操作系统的线程有区别吗？"></a>Java的线程和操作系统的线程有区别吗？</h3><ul>
+<li>java线程分为守护线程和用户线程</li>
+<li>在window上线程是一样的，在Unix上采用Pthread实现</li>
+<li>jdk1.2之前是jvm自己有一套线程管理机制，即和操作系统上的不一样</li>
+<li>jdk1.2之后采用了操作系统原生的内核级线程，将线程的调度交给了操作系统内核</li>
+<li>总的来说，java的线程就是操作系统的线程，Java线程与操作系统线程一对一映射，依赖于操作系统的具体实现</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>sleep()</p>
+<ul>
+<li>Thread提供的方法，不会释放锁</li>
+<li>使当前线程进入阻塞状态，可通过interrupt()打断</li>
+<li>睡眠结束后线程未必会立刻得到执行，等cpu轮转</li>
+</ul>
+<p>wait &#x2F; notify</p>
+<ul>
+<li><p>object的方法，必须与synchronized一起使用，会释放锁</p>
+<ul>
+<li>在多个线程之间通信需要保证线程间对共享变量的修改是可见的</li>
+<li>synchronized就可以保证可见性</li>
+</ul>
+</li>
+<li><p>实现多线程之间的通信</p>
+</li>
+<li><p>调用 wait() 方法让当前线程进入waitSet中等待</p>
+</li>
+<li><p>通过 notify() &#x2F; notifyAll() 唤醒等待中的线程</p>
+</li>
+<li><p>防止虚假唤醒</p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;yield&#x3D;&#x3D;</p>
+<ul>
+<li>调度执行其它同优先级的线程<ul>
+<li>如果有，当前线程挂起等待相应的线程执行结束</li>
+<li>如果没有，则继续运行当前线程</li>
+</ul>
+</li>
+</ul>
+<p>interrupt</p>
+<ul>
+<li>interrupt()设置打断标记为true<ul>
+<li>睡眠中的线程被打断不会将标记设置为true</li>
+</ul>
+</li>
+<li>isInterrupted() 判断线程是否被打断 不会清除标记</li>
+<li>interrupted() 判断线程是否被打断 会清除标记 即设置为false</li>
+</ul>
+<p>&#x3D;&#x3D;Join&#x3D;&#x3D;</p>
+<ul>
+<li>在线程中调用另一个线程的 join() 方法，会将当前线程挂起，直到目标线程结束</li>
+</ul>
+<p>Park</p>
+<ul>
+<li>让当前线程停下来</li>
+<li>如果打断标记为false则停止线程 ，如果打断标记为true则不会停止线程<ul>
+<li>即只能打断一次</li>
+</ul>
+</li>
+</ul>
+<p>优先级设置</p>
+<ul>
+<li>setPriority() 为线程设置新的优先级。默认是5</li>
+<li>getPriority() 返回线程的当前优先级</li>
+</ul>
+<p>Fork &#x2F; join</p>
+<ul>
+<li><p>体现的是一种分治思想，把递归交给线程做</p>
+</li>
+<li><p>默认会创建与cpu核心数数量相同的线程池</p>
+</li>
+<li><p>需要继承RecursiveTask&lt;V&gt;（有返回结果）或RecursiveAction（无返回结果）</p>
+<ul>
+<li>覆盖重写compute()方法，实现任务拆分</li>
+</ul>
+</li>
+<li><p>创建ForkJoinPoll线程池，执行RecursiveTask实现类对象</p>
+</li>
+</ul>
+<h2 id="生命周期-运行状态"><a href="#生命周期-运行状态" class="headerlink" title="生命周期 &#x2F; 运行状态"></a>生命周期 &#x2F; 运行状态</h2><p>cpu层面</p>
+<ul>
+<li>创建：create</li>
+<li>就绪：Runnable </li>
+<li>运行：run</li>
+<li>等待：wait</li>
+<li>终结：Terminated</li>
+</ul>
+<p>java层面，在Thread类中有一个枚举类，规定了java线程的六种生命周期</p>
+<ul>
+<li>新建 - New</li>
+<li>运行 &amp; 就绪 -Runnable </li>
+<li>阻塞 - Blocker（Waiting、Time_Wating）</li>
+<li>销毁 - Terminated</li>
+</ul>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h3><ul>
+<li>是Java提供的同步关键字，可以修饰在方法和类上，可以以代码块形式使用</li>
+<li>可以通过锁的对象来控制锁的作用范围<ul>
+<li>锁静态对象或类对象，那么就是一个全局锁</li>
+<li>锁普通实例对象，那就是取决于对象的生命周期</li>
+</ul>
+</li>
+</ul>
+<h4 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h4><p>轻量级锁</p>
+<ul>
+<li>锁对象虽然是多线程访问的，但是线程间不存在竞争，此时Synchronized会优化为一个轻量级锁</li>
+</ul>
+<p>偏向锁</p>
+<ul>
+<li><p>在轻量级锁的情况下，线程每次访问锁对象时都需要进行CAS操作，增加了开销</p>
+</li>
+<li><p>java6时引入了偏向锁来优化，在cas前会判断线程id和锁对象的对象头中的线程id是否一致，一致直接通过</p>
+</li>
+<li><p>偏向锁默认是开启的，但是默认也是延迟的，即看不出实际的效果</p>
+<ul>
+<li>可以设置 <code>-XX:BiasedLockingStartupDelay=0</code> 来禁用延迟</li>
+<li><code>-XX:-UseBiasedLocking</code> 关闭偏向锁</li>
+</ul>
+</li>
+<li><p>偏向锁关闭的情况</p>
+<ul>
+<li>锁升级</li>
+<li>对象调用了hashcode</li>
+<li>调用wait&#x2F;notify</li>
+</ul>
+</li>
+<li><p>当撤销偏向锁的次数超过了阈值，整个类的所有对象都会变为不可偏向</p>
+</li>
+</ul>
+<p>重量级锁（Monitor锁 &#x2F; 管程锁）</p>
+<ul>
+<li>结构<ul>
+<li>WaitSet：</li>
+<li>EntryList：阻塞队列</li>
+<li>Owner：持有的线程</li>
+</ul>
+</li>
+<li>加锁流程<ol>
+<li>当线程获取重量级锁时，Owner指向当前线程</li>
+<li>其他线程获取锁时会会先进行自旋获取锁，失败一定次数后进入EntryList等待<ul>
+<li>jdk 1.6 后自旋是自适应的，会根据之前线程的平均自旋次数自动调整自旋的次数</li>
+</ul>
+</li>
+<li>线程释放锁后，唤醒EntryList中等待的线程来竞争锁，是非公平的</li>
+</ol>
+</li>
+</ul>
+<h4 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h4><p>锁膨胀</p>
+<ul>
+<li>循环的粒度太小导致频繁的加锁释放锁，JIT即时编译器会将锁的粒度变大来优化</li>
+</ul>
+<p>自旋优化</p>
+<ul>
+<li>重量级锁竞争时会先通过自旋尝试获取锁，没获取到再进入阻塞队列</li>
+<li>有一定的次数，也有自适应的自旋</li>
+</ul>
+<p>锁粗化</p>
+<ul>
+<li>多个细粒度的加锁流程会被优化为一个大粒度的锁，减少频繁的加锁释放锁</li>
+</ul>
+<p>锁消除</p>
+<ul>
+<li>JIT即时编译器判断锁对象不会被共享时会消除锁</li>
+</ul>
+<h3 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h3><ul>
+<li>可以保证在多线程环境下共享变量的可见性<ul>
+<li>对于增加了 volatile 关键字修饰的共享变量，JVM会自动增加一个#Lock汇编指令，这个指令会根据CPU 型号自动添加<strong>总线锁</strong>或<strong>缓存锁</strong></li>
+</ul>
+</li>
+<li>通过增加内存屏障防止多个指令之间的重排序<ul>
+<li>因为CPU引入了 StoreBuffer机制，而这一种优化机制会导致 CPU 的乱序执行，Volatile通过内存屏障来避免CPU重排序</li>
+<li>跳过编译器的指令重排序</li>
+</ul>
+</li>
+</ul>
+<h2 id="JUC工具包"><a href="#JUC工具包" class="headerlink" title="JUC工具包"></a>JUC工具包</h2><h3 id="原子变量"><a href="#原子变量" class="headerlink" title="原子变量"></a>原子变量</h3><ul>
+<li>AtomicBoolean、AtomicInteger、AtomicLong<ul>
+<li>底层使用的Unsafe提供的Cas实现线程安全的计算</li>
+</ul>
+</li>
+<li>AtomicReference、AtomicMarkableReference、AtomicStampedReference、AtomicIntegerArray</li>
+<li>…FieldUpdater</li>
+</ul>
+<h3 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h3><ul>
+<li><p>全称是AbstractQueuedSynchronizer，是一个多线程同步器和阻塞式锁的框架，很多JUC组件的底层都是由它实现的，如Lock、CountDownLatch、Semaphore等</p>
+</li>
+<li><p>本质上来说，AQS提供两种锁的机制，分别是排他锁和共享锁，用state属性来表示资源的状态</p>
+</li>
+<li><p>提供了一个volatile修饰的int类型的state</p>
+<ul>
+<li>锁记录线程是否持有</li>
+<li>Semaphore记录有多少资源</li>
+<li>CountDownLatch中作为计数器</li>
+</ul>
+</li>
+<li><p>提供了基于FIFO的等待队列（双向链表），类似于Monitor的EntryList</p>
+</li>
+<li><p>提供条件变量ConditionObject来实现等待队列，也是一个双向链表，</p>
+<ul>
+<li>唤醒机制，调用了await的线程会在这个队列中等待唤醒</li>
+<li>支持多个条件变量。类似于Monitor的WaitSet</li>
+</ul>
+</li>
+</ul>
+<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><ul>
+<li><p>锁的粒度由lock和unlock之间包裹的代码范围决定，作用域则取决于lock实例的生命周期</p>
+</li>
+<li><p>基于AQS，内部有一个sync抽象静态内部类，它有两个实现类</p>
+</li>
+<li><p>支持公平锁和非公平锁，默认非公平</p>
+<ul>
+<li>NonfairSync 非公平同步器</li>
+<li>FailSync 公平同步器<ol>
+<li>自旋获取锁，会判断在自己之前是否有线程</li>
+<li>加入队列执行 addWaiter方法和 acquireQueued方法</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>可重入、可打断、支持锁超时、多条件变量，支持非竞争获取锁</p>
+</li>
+<li><p>锁的竞争是使用 CAS 机制来实现的</p>
+</li>
+</ul>
+<h3 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h3><ul>
+<li><p>基于AQS实现的，将state拆成了两部分</p>
+<ul>
+<li>写锁占state的低16位，读锁是state高16位</li>
+<li>使用了ThreadLocal解决多线程读时无法判断线程的重入次数<ul>
+<li>ThreadLocal记录了线程重入次数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>读读不加锁，类似数据库意向共享锁</p>
+</li>
+<li><p>内部分别使用读锁保护数据的read方法，写锁保护write方法</p>
+</li>
+<li><p>读锁不支持条件变量</p>
+</li>
+<li><p>持有读锁时去获取写锁，会导致获取写锁永久等待</p>
+</li>
+<li><p>读写锁用的是同一个Sycn同步器，所以等待队列，state也是同一个</p>
+</li>
+<li><p>有写锁饥饿问题</p>
+<ul>
+<li>当有大量读操作持有锁时会导致写锁等待</li>
+<li>新的读操作需要排到写操作之后执行才能避免写锁饥饿<ul>
+<li>即每个读锁获取锁资源前先判断是否有等待的写锁</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><ul>
+<li><p>是一种线程隔离机制，它提供了多线程环境下对于共享变量访问的安全性</p>
+</li>
+<li><p>ThreadLocal本身不存储数据，像是一个工具类，去操作Thread中的ThreadLocalMap</p>
+</li>
+<li><p>ThreadLocalMap是ThreadLocal的一个内部类</p>
+<ul>
+<li>ThreadLocalMap是基于Entry数组实现的</li>
+<li>key是ThreadLocal对象本身，value就是要存的数据</li>
+</ul>
+</li>
+<li><p>真正存数据的地方是Thread中的成员遍历ThreadLocalMap</p>
+</li>
+<li><p>Thread的key是弱引用，在GC时会被清除，因为存在内存泄露的风险</p>
+<ul>
+<li>如果想用强引用类型的可以使用ThreadLocal的子类InheritableThreadLocal</li>
+<li>get时遇到key为null值，会将其value置为null</li>
+<li>set时遇到key为null值，会替换key-value，还会删除改位置一定范围内的key为null的键值，范围和map中的元素个数有关</li>
+</ul>
+</li>
+<li><p>推荐使用后用remove删除元素，因为value是会出现内存泄漏的问题的</p>
+</li>
+<li><p>推荐设置ThreadLocal对象为static final 的，这样Gc就不会删除了，避免了内存泄漏</p>
+</li>
+<li><p>每个ThreadLocal会对每一个线程创建一个ThreadLocalMap，第一次使用才会创建</p>
+<ul>
+<li>key是ThreadLocal实例，value是数据</li>
+<li>初始容量是16，扩容2倍，负载因子是2&#x2F;3, 大于等于阈值时扩容</li>
+</ul>
+</li>
+<li><p>开放寻址法解决hash冲突</p>
+<ul>
+<li>插入位置有数据时，接着遍历找没数据的位置后插入</li>
+</ul>
+</li>
+<li><p>存在ABA问题，可以通过版本号解决</p>
+</li>
+</ul>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
+<li><p>本质上还是HashMap，只是做了并发安全的处理</p>
+</li>
+<li><p>扩容时采用了多线程并发扩容的机制，也是通过创建新的数组然后数据qian’yi</p>
+</li>
+<li><p>提供的方法是保证线程安全的，但是多个方法同时使用不是线程安全的</p>
+</li>
+<li><p>结构</p>
+<ul>
+<li><p>1.7：segment段+HashEntry数组+链表</p>
+</li>
+<li><p>1.8：数组+链表 &#x2F; 红黑树</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="LongAdder"><a href="#LongAdder" class="headerlink" title="LongAdder"></a>LongAdder</h3><ul>
+<li>原子累加器，用一个原子整型模拟锁</li>
+<li>用了@Contended解决了伪共享的问题</li>
+</ul>
+<h3 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h3><ul>
+<li>相当于wait&#x2F;notify</li>
+</ul>
+<h3 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h3><ul>
+<li>jdk8加入的，用于优化读性能，使用读写锁时配合使用</li>
+<li>支持乐观读，读取完毕后做一次戳校验，通过则表示这期间没有写操作，数据可以安全使用，如果没通过需要重新读取数据</li>
+<li>不支持条件变量、不可重入</li>
+</ul>
+<h3 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h3><ul>
+<li>信号量，用于限制访问共享资源线程的上限，限流</li>
+</ul>
+<h3 id="CountdownLatch"><a href="#CountdownLatch" class="headerlink" title="CountdownLatch"></a>CountdownLatch</h3><ul>
+<li>用来进行线程同步协作，内部维护一个计数器，线程完成计算减一</li>
+</ul>
+<h3 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h3><ul>
+<li>用来进行线程同步协作，内部维护一个计数器，等待线程满足某个计数，即可调用wait进行等待，再等待满足某个计数再继续执行</li>
+<li>计数要和线程数一致</li>
+</ul>
+<h3 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h3><ul>
+<li>1.8 引入的一个基于事件驱动的异步回调类</li>
+<li>使用异步线程去执行一个任务的时候，在任务结束以后触发一个后续的动作</li>
+<li>提供了 5 种不同的方式<ol>
+<li>thenCombine：把两个任务组合在一起，当两个任务都执行结束后触发事件回调</li>
+<li>thenCompose：把两个任务组合在一起，这两个任务串行执行，也就是第一个任务执行完以后自动触发执行第二个任务</li>
+<li>thenAccept：</li>
+</ol>
+</li>
+</ul>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>是一种资源复用的思想，目的是减小线程频繁创建和销毁带来的开销，因为线程创建会涉及到cpu的上下文切换，内存分配等工作</li>
+<li>仅适合短链接的场景，使用时推荐手动创建ThreadPool对象而不是shi’yong</li>
+<li>核心参数<ul>
+<li>corePoolSize：核心线程数</li>
+<li>maximumPoolSize：最大线程数</li>
+<li>keepAliveTime：救急线程的空闲时间</li>
+<li>unit：时间单位</li>
+<li>workQueue：阻塞队列<ul>
+<li>默认是LinkedBlockingQueue</li>
+</ul>
+</li>
+<li>threadFactory：线程工厂<ul>
+<li>设置线程的信息，起名，设置守护线程、优先级等等</li>
+<li>当任务没有核心线程去执行时会加入阻塞队列，队列满了会创建救急线程</li>
+</ul>
+</li>
+<li>handler：拒绝策略<ul>
+<li>AbortPolicy：抛出异常，默认</li>
+<li>CallerRunsPolicy：主线程帮忙处理任务</li>
+<li>DiscardOldestPolicy：抛弃等待队列头节点任务，即最早的任务</li>
+<li>DiscardPolicy：抛弃当前任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>处理机制<ul>
+<li>当有新的任务进来时<ul>
+<li>如果核心线程数没满，即使有空闲的核心线程也会创建新的核心线程来处理任务</li>
+<li>如果核心线程满了，就把任务加入等待队列</li>
+<li>如果队列满了，创建救急线程处理队列中的任务</li>
+<li>如果最大线程数和等待队列都满了，则根据拒绝策略处理任务</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h3><ul>
+<li>newFixedThreadPool<ul>
+<li>固定的线程池</li>
+<li>都是工作线程</li>
+</ul>
+</li>
+<li>newSingleThreadExecutor<ul>
+<li>单例线程池，只有一个工作线程</li>
+<li>顺序消费</li>
+</ul>
+</li>
+<li>newCachedThreadPool<ul>
+<li>没有工作线程，任务进来后丢进阻塞队列，然后创建救急线程去执行</li>
+<li>频繁的创建和销毁线程，性能不好</li>
+</ul>
+</li>
+<li>newScheduleThreadPool<ul>
+<li>定时任务的线程池</li>
+<li>阻塞队列是DelayWorkQueue，底层是堆</li>
+</ul>
+</li>
+<li>newWorkStealingPool<ul>
+<li>基于ForkJoinPool实现的</li>
+<li>每个线程都有一个阻塞队列，当线程对应的阻塞队列为空时，会去访问其他线程的阻塞队列并取出任务执行</li>
+<li>会将任务进行拆分，然后并行处理，并将所有返回的结果合并</li>
+</ul>
+</li>
+</ul>
+<h3 id="属性-状态"><a href="#属性-状态" class="headerlink" title="属性 &#x2F; 状态"></a>属性 &#x2F; 状态</h3><ul>
+<li>crl<ul>
+<li>原子整形</li>
+<li>32位，高三位是线程池的状态，低29位是线程池的数量</li>
+<li>状态<ul>
+<li>111 &#x3D; -1：Running，正常处理任务，刚构建出来时的状态</li>
+<li>000 &#x3D; 0：Shutdown，不接收新任务，会处理完所有的任务<ul>
+<li>shutdownNow方法会直接进入stop状态</li>
+</ul>
+</li>
+<li>001 &#x3D; 1：stop，不接收新任务，所有的任务中断<ul>
+<li>本质上是执行interrupt方法</li>
+</ul>
+</li>
+<li>010 &#x3D; 2：Tidying，过度阶段</li>
+<li>011 &#x3D; 3：Terminated，关闭线程池<ul>
+<li>可以实现该方法，实现一些关闭前的操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/JUC/" data-id="clrj8k01l006u4wuw30p4clsl" data-title="JUC并发编程" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/Maven/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Maven
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/Java/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaSE</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

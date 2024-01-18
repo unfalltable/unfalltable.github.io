@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>电商 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="商品管理SKU和SPU SKU是 库存量单位 商品信息参数的聚合，如商品的规格参数   SPU是 标准化产品单元 商品信息的聚合，如一个概览信息，也成为销售属性   SPU像是类，SKU像是对象  分类-品牌-属性 各表之间独立存储，通过关联表关联  提供添加关联的功能  属性分组和规格参数关联   属性  属性分组  基本信息 主体信息   规格参数（基本参数）  详细的信息   销售属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E9%A1%B9%E7%9B%AE/%E7%94%B5%E5%95%86/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="商品管理SKU和SPU SKU是 库存量单位 商品信息参数的聚合，如商品的规格参数   SPU是 标准化产品单元 商品信息的聚合，如一个概览信息，也成为销售属性   SPU像是类，SKU像是对象  分类-品牌-属性 各表之间独立存储，通过关联表关联  提供添加关联的功能  属性分组和规格参数关联   属性  属性分组  基本信息 主体信息   规格参数（基本参数）  详细的信息   销售属性">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/pic/image-20230325113549822.png">
+<meta property="article:published_time" content="2024-01-18T13:12:24.709Z">
+<meta property="article:modified_time" content="2023-09-15T01:56:50.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="模块">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/pic/image-20230325113549822.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Java/项目/电商" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E9%A1%B9%E7%9B%AE/%E7%94%B5%E5%95%86/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.709Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      电商
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="商品管理"><a href="#商品管理" class="headerlink" title="商品管理"></a>商品管理</h2><h3 id="SKU和SPU"><a href="#SKU和SPU" class="headerlink" title="SKU和SPU"></a>SKU和SPU</h3><ul>
+<li>SKU是 库存量单位<ul>
+<li>商品信息参数的聚合，如商品的规格参数</li>
+</ul>
+</li>
+<li>SPU是 标准化产品单元<ul>
+<li>商品信息的聚合，如一个概览信息，也成为销售属性</li>
+</ul>
+</li>
+<li>SPU像是类，SKU像是对象</li>
+</ul>
+<h3 id="分类-品牌-属性"><a href="#分类-品牌-属性" class="headerlink" title="分类-品牌-属性"></a>分类-品牌-属性</h3><ul>
+<li><p>各表之间独立存储，通过关联表关联</p>
+</li>
+<li><p>提供添加关联的功能</p>
+<ul>
+<li>属性分组和规格参数关联</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li><p>属性分组</p>
+<ul>
+<li>基本信息</li>
+<li>主体信息</li>
+</ul>
+</li>
+<li><p>规格参数（基本参数）</p>
+<ul>
+<li>详细的信息</li>
+</ul>
+</li>
+<li><p>销售属性</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="仓库管理"><a href="#仓库管理" class="headerlink" title="仓库管理"></a>仓库管理</h2><h3 id="库存维护"><a href="#库存维护" class="headerlink" title="库存维护"></a>库存维护</h3><h3 id="采购单维护"><a href="#采购单维护" class="headerlink" title="采购单维护"></a>采购单维护</h3><p><img src="/../../pic/image-20230325113549822.png" alt="image-20230325113549822"></p>
+<h4 id="合并采购单"><a href="#合并采购单" class="headerlink" title="合并采购单"></a>合并采购单</h4><ul>
+<li>将采购需求合并为一个采购单，并分配给对应的人员</li>
+<li>需要为采购需求设置状态<ul>
+<li>新建、已分配、已领取、已完成、有异常</li>
+</ul>
+</li>
+</ul>
+<h4 id="领取采购单"><a href="#领取采购单" class="headerlink" title="领取采购单"></a>领取采购单</h4><ul>
+<li>领取了采购单则标记为已领取</li>
+</ul>
+<h4 id="完成采购"><a href="#完成采购" class="headerlink" title="完成采购"></a>完成采购</h4><ul>
+<li>需要判断全部采购完成还是部分采购完成</li>
+</ul>
+<h2 id="订单超时处理"><a href="#订单超时处理" class="headerlink" title="订单超时处理"></a>订单超时处理</h2><h3 id="JDK自带的延时队列"><a href="#JDK自带的延时队列" class="headerlink" title="JDK自带的延时队列"></a>JDK自带的延时队列</h3><h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ol>
+<li>把订单插入DelayQueue中，以超时时间作为排序条件，将订单按照超时时间从小到大排序。</li>
+<li>起一个线程不停轮询队列的头部，如果订单的超时时间到了，就出队进行超时处理，并更新订单状态到数据库中。</li>
+<li>为了防止机器重启导致内存中的DelayQueue数据丢失，每次机器启动的时候，需要从数据库中初始化未结束的订单，加入到DelayQueue中。</li>
+</ol>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>简单，不需要借助其他第三方组件，成本低。</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>所有超时处理订单都要加入到DelayQueue中，占用内存大。</li>
+<li>没法做到分布式处理，只能在集群中选一台leader专门处理，效率低。</li>
+<li>不适合订单量比较大的场景。</li>
+</ul>
+<h3 id="RabbitMQ的延时消息"><a href="#RabbitMQ的延时消息" class="headerlink" title="RabbitMQ的延时消息"></a>RabbitMQ的延时消息</h3><h4 id="实现一"><a href="#实现一" class="headerlink" title="实现一"></a>实现一</h4><ul>
+<li>使用官方提供的延时消息插件 RabbitMQ Delayed Message Plugin</li>
+</ul>
+<h5 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>方便，易用</li>
+</ul>
+<h5 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>不是高可用的，节点挂起会导致消息丢失</li>
+</ul>
+<h4 id="实现二"><a href="#实现二" class="headerlink" title="实现二"></a>实现二</h4><ul>
+<li>消息的TTL+死信Exchange<ul>
+<li>TTL：<ul>
+<li>即消息的存活时间。RabbitMQ可以对队列和消息分别设置TTL，如果对队列设置，则队列中所有的消息都具有相同的过期时间。</li>
+<li>超过了这个时间，我们认为这个消息就死了，称之为死信。</li>
+</ul>
+</li>
+<li>死信Exchange（DLX）：一个消息在满足以下条件会进入死信交换机<ul>
+<li>一个消息被Consumer拒收了，并且reject方法的参数里requeue是false。也就是说不会被再次放在队列里，被其他消费者使用。</li>
+<li>TTL到期的消息。</li>
+<li>队列满了被丢弃的消息。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>可以支持海量延时消息，支持分布式处理。</li>
+</ul>
+<h5 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>不灵活，只能支持固定延时等级。</li>
+<li>使用复杂，要配置一堆延时队列。</li>
+</ul>
+<h3 id="RocketMQ的定时消息"><a href="#RocketMQ的定时消息" class="headerlink" title="RocketMQ的定时消息"></a>RocketMQ的定时消息</h3><h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>只要在发送消息时设置延时时间即可</li>
+</ul>
+<h5 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>精度高，支持任意时刻。</li>
+<li>使用门槛低，和使用普通消息一样</li>
+</ul>
+<h5 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>使用限制：定时时长最大值24小时。</li>
+<li>成本高：每个订单需要新增一个定时消息，且不会马上消费，给MQ带来很大的存储成本。</li>
+<li>同一个时刻大量消息会导致消息延迟：定时消息的实现逻辑需要先经过定时存储等待触发，定时时间到达后才会被投递给消费者。因此，如果将大量定时消息的定时时间设置为同一时刻，则到达该时刻后会有大量消息同时需要被处理，会造成系统压力过大，导致消息分发延迟，影响定时精度。</li>
+</ul>
+<h3 id="Redis过期监听"><a href="#Redis过期监听" class="headerlink" title="Redis过期监听"></a>Redis过期监听</h3><h4 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>redis配置文件开启”notify-keyspace-events Ex”</li>
+<li>监听key的过期回调</li>
+<li>每当我们对一个key设置了过期时间，Redis就会把该key带上过期时间，存到过期字典中，在redisDb中通过expires字段维护：</li>
+<li>有定期删除和惰性删除两种</li>
+</ul>
+<h5 id="优点-4"><a href="#优点-4" class="headerlink" title="优点"></a>优点</h5><p>- </p>
+<h5 id="缺点-4"><a href="#缺点-4" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>不可靠，不准确</li>
+</ul>
+<h3 id="定时任务分布式批处理"><a href="#定时任务分布式批处理" class="headerlink" title="定时任务分布式批处理"></a>定时任务分布式批处理</h3><h4 id="实现-3"><a href="#实现-3" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>使用分布式任务调度系统SchedulerX，不但兼容主流开源任务调度系统和Spring @Scheduled注解，还自研了轻量级MapReduce模型[4]，针对任意异构数据源，简单几行代码就可以实现海量数据秒级别跑批<ul>
+<li>通过实现map函数，通过代码自行构造分片，SchedulerX会将分片平均分给超时中心的不同节点分布式执行</li>
+<li>通过实现reduce函数，可以做聚合，可以判断这次跑批有哪些分片跑失败了，从而通知下游处理</li>
+</ul>
+</li>
+</ul>
+<h5 id="优点-5"><a href="#优点-5" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>稳定性强，需要保证业务幂等</li>
+<li>效率高，使用定时任务跑批方案，一次捞出一批订单，处理完了，可以批量更新订单状态，减少数据库的tps。在海量订单处理场景下，批量处理效率最高</li>
+<li>可运维,基于数据库存储，可以很方便的对订单进行修改、暂停、取消等操作，所见即所得。如果业务跑失败了，还可以直接通过sql修改数据库来进行批量运维</li>
+<li><strong>免运维、成本低：</strong>不需要自建任务调度系统，由云上托管。</li>
+<li><strong>可观测：</strong>提供任务执行的历史记录、查看堆栈、日志服务、链路追踪等能力。</li>
+<li><strong>高可用：</strong>支持同城双活容灾，支持多种渠道的监控报警。</li>
+<li><strong>混部：</strong>可以托管阿里云的机器，也可以托管非阿里云的机器。</li>
+</ul>
+<h5 id="缺点-5"><a href="#缺点-5" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>没法做到精度很高。定时任务的延迟时间，由定时任务的调度周期决定。如果把频率设置很小，就会导致数据库的qps比较高，容易造成数据库压力过大，从而影响线上的正常业务</li>
+<li>所以一般需要抽离出超时中心和超时库来单独做订单的超时调度</li>
+</ul>
+<h2 id="抢红包"><a href="#抢红包" class="headerlink" title="抢红包"></a>抢红包</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><ul>
+<li>发红包<ul>
+<li>不需要加锁，发红包没有竞争</li>
+<li>拆分红包<ul>
+<li>确保原子性并且不加锁</li>
+<li>拆分红包使用二倍均值算法：抢到的金额 &#x3D; 随机（0，剩余红包金额 &#x2F; 剩余红包数 * 2）</li>
+</ul>
+</li>
+<li>存红包<ul>
+<li>红包存redis中的list，lpush存，lpop取，设置过期时间，返回一个红包的key</li>
+<li>存redis后会有一个唯一key</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>抢红包<ul>
+<li>根据redis中存的红包key</li>
+<li>用另一个hash表记录红包的消费信息</li>
+<li>使用用户的token判断是否重复抢，没在hash中的才能抢</li>
+</ul>
+</li>
+<li>统计红包记录<ul>
+<li>根据hash表中记录的</li>
+</ul>
+</li>
+<li>红包回退</li>
+<li>配置红包雨数量、金额、时间等</li>
+</ul>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><ul>
+<li>redis集群（写 8万&#x2F;s）</li>
+</ul>
+<h2 id="秒杀"><a href="#秒杀" class="headerlink" title="秒杀"></a>秒杀</h2><h3 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h3><ul>
+<li>秒杀最主要的是查看商品详情页和下单两个模块</li>
+<li>查看商品详情页<ul>
+<li>前端从CDN上取得页面数据，后端将页面静态化后存到cdn上</li>
+<li>添加nginx做负载均衡，然后用redis缓存，nginx访问redis<ul>
+<li>redis中没有数据再去查JVM缓存</li>
+<li>JVM缓存中没有再去查数据库</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h2 id="下单"><a href="#下单" class="headerlink" title="下单"></a>下单</h2></li>
+</ul>
+<h3 id="全局唯一ID"><a href="#全局唯一ID" class="headerlink" title="全局唯一ID"></a>全局唯一ID</h3><ul>
+<li>需要满足唯一性，安全性，高可用，高性能</li>
+<li>使用Redis中的incrby实现<ul>
+<li>符号位（1）+ 时间戳（31）+ 序列号（32）<ul>
+<li>时间戳 &#x3D; 当前时间 - 自定义的一个过去的时间常量</li>
+<li>序列号 &#x3D; “一些前缀” + 当前时间 + 1</li>
+<li>返回     时间戳 &lt;&lt; 32 | 序列号</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用雪花算法<ul>
+<li>1bit + 时间戳（41）+ 机器id（10）+ 序列号（12）</li>
+<li>同一毫秒生成的id不超过4095，超过4095则到下一毫秒生成</li>
+<li>由于每一台机器的工作机器id不同，所以分布式环境下也不会冲突</li>
+</ul>
+</li>
+</ul>
+<h3 id="防止库存超卖"><a href="#防止库存超卖" class="headerlink" title="防止库存超卖"></a>防止库存超卖</h3><ul>
+<li><p>CAS</p>
+</li>
+<li><p>Synchronize</p>
+</li>
+<li><p>分布式锁</p>
+</li>
+</ul>
+<h3 id="一人一单"><a href="#一人一单" class="headerlink" title="一人一单"></a>一人一单</h3><ul>
+<li>需要在扣减库存前进行判断，并且把判断过程和扣减库存用synchronize锁住</li>
+<li>以userId作为锁</li>
+<li>在分布式系统下无法保证，需要使用分布式锁</li>
+</ul>
+<h3 id="异步秒杀"><a href="#异步秒杀" class="headerlink" title="异步秒杀"></a>异步秒杀</h3><ul>
+<li>由于当前大多数业务都是在tomcat中串行执行的，效率低</li>
+<li>把秒杀券信息也保存到redis中</li>
+<li>所以我们可以把判断库存、扣减库存和一人一单校验放在redis中进行<ul>
+<li>使用lua脚本确保原子性</li>
+</ul>
+</li>
+<li>用户秒杀成功后将优惠券id和用户id存入<strong>阻塞队列</strong>中，将订单id返回给用户</li>
+<li>开启线程任务不断读取<strong>阻塞队列</strong>中的订单异步下单</li>
+</ul>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><ul>
+<li><p>使用Stream的Group（消费组）实现消息队列</p>
+<ul>
+<li>消息分流<ul>
+<li>队列中的消息会分流给组内不同的消费者，从而加快消息处理速度</li>
+</ul>
+</li>
+<li>消息标示<ul>
+<li>会维护一个标识记录最后一个被处理的消息，即使宕机重启，还会从标识之后读取消息，确保每一个消息都被消费</li>
+</ul>
+</li>
+<li>消息确认<ul>
+<li>消费者获得消息后，消息会处于pending状态，并存入一个pending-list，当处理完消息后需要通过XACK来确认消息，标记消息已处理，才会从pending-list移除</li>
+</ul>
+</li>
+<li>可以阻塞读取</li>
+<li>消息可回溯，即持久化存储</li>
+</ul>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ul>
+<li>创建一个StreamGroup类型的消息队列，名为stream.orders<ul>
+<li><code>XGROUP CREATE stream.orders g1 0 MKSTREAM</code></li>
+</ul>
+</li>
+<li>使用lua脚本向消息队列中添加消息</li>
+<li>开启一个线程从消息队列中取出消息<ul>
+<li>判断信息是否为空<ul>
+<li>空继续下一轮循环</li>
+<li>非空解析信息然后创建订单</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>确认消息队列中的消息</li>
+<li>如果这个过程出现异常需要处理pending-list</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E9%A1%B9%E7%9B%AE/%E7%94%B5%E5%95%86/" data-id="clrj8k02000aj4wuw9ufe0rgo" data-title="电商" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Rust/Rust/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E9%A1%B9%E7%9B%AE/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">聊天模块</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

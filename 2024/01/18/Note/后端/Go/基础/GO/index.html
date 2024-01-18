@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Go | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简介 速度快，易学，支持高并发 适合网络编程、区块链开发 类c语言 成员属性和方法如果是大写开头就是public的，小写开头的就是private的  命令   命令 功能 备注    build 编译包和依赖    run 编译并运行    clean 移除当前源码包和关联源码包里面编译生成的文件    env 打印Go的环境信息    fix 将旧的API替换成新的API    mod 模块维护">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Go/%E5%9F%BA%E7%A1%80/GO/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介 速度快，易学，支持高并发 适合网络编程、区块链开发 类c语言 成员属性和方法如果是大写开头就是public的，小写开头的就是private的  命令   命令 功能 备注    build 编译包和依赖    run 编译并运行    clean 移除当前源码包和关联源码包里面编译生成的文件    env 打印Go的环境信息    fix 将旧的API替换成新的API    mod 模块维护">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.669Z">
+<meta property="article:modified_time" content="2024-01-07T19:16:11.130Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="language">
+<meta property="article:tag" content="go">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Go/基础/GO" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Go/%E5%9F%BA%E7%A1%80/GO/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.669Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Go/">Go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Go
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>速度快，易学，支持高并发</li>
+<li>适合网络编程、区块链开发</li>
+<li>类c语言</li>
+<li>成员属性和方法如果是大写开头就是public的，小写开头的就是private的</li>
+</ul>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>build</td>
+<td>编译包和依赖</td>
+<td></td>
+</tr>
+<tr>
+<td>run</td>
+<td>编译并运行</td>
+<td></td>
+</tr>
+<tr>
+<td>clean</td>
+<td>移除当前源码包和关联源码包里面编译生成的文件</td>
+<td></td>
+</tr>
+<tr>
+<td>env</td>
+<td>打印Go的环境信息</td>
+<td></td>
+</tr>
+<tr>
+<td>fix</td>
+<td>将旧的API替换成新的API</td>
+<td></td>
+</tr>
+<tr>
+<td>mod</td>
+<td>模块维护</td>
+<td></td>
+</tr>
+<tr>
+<td>get</td>
+<td>将依赖项添加到当前模块并安装它们</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>默认值</th>
+<th>字节</th>
+<th>格式符</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td></td>
+<td>1</td>
+<td>%c</td>
+<td>单个字符</td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+<td></td>
+<td>%s</td>
+<td>\0结束，中文3字符，不可变</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>false</td>
+<td></td>
+<td>%t</td>
+<td></td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+<td>8</td>
+<td>%d</td>
+<td>有符号</td>
+</tr>
+<tr>
+<td>uint</td>
+<td></td>
+<td>8</td>
+<td></td>
+<td>无符号</td>
+</tr>
+<tr>
+<td>float32</td>
+<td></td>
+<td></td>
+<td>%f</td>
+<td>小数点后7</td>
+</tr>
+<tr>
+<td>float64</td>
+<td></td>
+<td></td>
+<td>%f</td>
+<td>小数点后15，常用</td>
+</tr>
+<tr>
+<td>double</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>complex64</td>
+<td></td>
+<td></td>
+<td>%v</td>
+<td>复数，64 位实数+64 位虚数</td>
+</tr>
+<tr>
+<td>complex128</td>
+<td></td>
+<td></td>
+<td>%v</td>
+<td>64 位实数+64 位虚数</td>
+</tr>
+<tr>
+<td>地址值</td>
+<td>十六进制</td>
+<td></td>
+<td>%p</td>
+<td></td>
+</tr>
+<tr>
+<td>类型</td>
+<td></td>
+<td></td>
+<td>%T</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h2><p><strong>切片</strong></p>
+<ul>
+<li><p>截取集合中的一部分数据</p>
+</li>
+<li><p>结构</p>
+<ul>
+<li>一个指针，指向数组中 slice 指定的开始位置</li>
+<li>长度，即 slice 的长度</li>
+<li>最大长度，也就是 slice 开始位置到数组的最后位置的长度</li>
+</ul>
+</li>
+<li><p>内置函数</p>
+<ul>
+<li><p>len：获取长度</p>
+</li>
+<li><p>cap：获取最大容量</p>
+</li>
+<li><p>append：</p>
+<ul>
+<li>追加一个或者多个元素，然后返回一个和 slice 一样类型的slice</li>
+<li>追加元素会影响到原数组和其他指向该数组的切片</li>
+<li>当追加元素超过切片最大长度时会创建一个新的数组空间，不会影响到其他</li>
+</ul>
+</li>
+<li><p>copy：copy 从源 slice 的 src 中复制元素到目标 dst，并且返回复制的元素的个数</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>数组</strong></p>
+<ul>
+<li>函数传递数组是深拷贝，函数传切边是浅拷贝</li>
+<li>切边截取是浅拷贝</li>
+<li>切边扩容x2，大于1024字节后x 1&#x2F;4</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">var</span> 数组名 [元素数量]类型</span><br><span class="line"></span><br><span class="line"><span class="comment">//自动推导,数量可以省略用...替代</span></span><br><span class="line">数组名 := [数量]类型&#123;对应的值&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//嵌套数组</span></span><br><span class="line">数组名 := [<span class="number">2</span>][<span class="number">4</span>]<span class="type">int</span>&#123;</span><br><span class="line">    [<span class="number">4</span>]<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;, </span><br><span class="line">    [<span class="number">4</span>]<span class="type">int</span>&#123;<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可省略，需要数组类型一致</span></span><br><span class="line">数组名 := [<span class="number">2</span>][<span class="number">4</span>]<span class="type">int</span>&#123;</span><br><span class="line">    &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;, </span><br><span class="line">    &#123;<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="keyword">var</span> 数组名[元素数量] 类型 = [数量]类型&#123;对应的值&#125;</span><br><span class="line"><span class="keyword">var</span> 数组名[元素数量] 类型 = [数量]类型&#123;下标:对应的值&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//切片创建</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">var</span> 切片名 []类型</span><br><span class="line"><span class="comment">//2，自动推导</span></span><br><span class="line">切片名 := []类型&#123;&#125;</span><br><span class="line"><span class="comment">//3,长度是初始化长度，容量是最大长度</span></span><br><span class="line"><span class="built_in">make</span>([]类型,长度,容量)</span><br><span class="line"><span class="comment">//4，获取数组切片</span></span><br><span class="line">切片名 = 数组名[开始下标:结束下标]</span><br></pre></td></tr></table></figure>
+
+<p><strong>map</strong></p>
+<ul>
+<li>无序，kv存储</li>
+<li>k不重复</li>
+<li>函数中是浅拷贝</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建 &amp; 初始化 </span></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">map</span>名 <span class="keyword">map</span>(key类型)value类型 = <span class="keyword">map</span>[key类型]value类型&#123;k:v&#125;</span><br><span class="line"><span class="keyword">map</span>名 := <span class="keyword">map</span>(key类型)value类型&#123;k:v&#125;</span><br><span class="line"><span class="keyword">map</span>名 := <span class="built_in">make</span>(<span class="keyword">map</span>(key类型)value类型)</span><br><span class="line"><span class="keyword">map</span>名[k] = v</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断value是否存在, 如果值存在</span></span><br><span class="line">a, b = <span class="keyword">map</span>名[k]</span><br></pre></td></tr></table></figure>
+
+<p><strong>结构体</strong></p>
+<ul>
+<li>函数传递结构体是深拷贝，函数传递切片是浅拷贝</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建</span></span><br><span class="line"><span class="keyword">type</span> 结构体名 <span class="keyword">struct</span>&#123;</span><br><span class="line">    成员变量 类型 <span class="string">`标签:值`</span></span><br><span class="line">    <span class="comment">//如果需要序列化</span></span><br><span class="line">    成员变量 类型 <span class="string">`json:成员变量名`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//切片</span></span><br><span class="line"><span class="keyword">var</span> 切片名[] 类型</span><br><span class="line"></span><br><span class="line"><span class="comment">//转json</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;encoding/json&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//结构体转json</span></span><br><span class="line">hsonStr, err := json.Marshal(结构体)</span><br><span class="line"><span class="comment">//json转结构体</span></span><br><span class="line">err = json.Unmarshal(json, 结构体对象)</span><br></pre></td></tr></table></figure>
+
+<p><strong>指针</strong></p>
+<ul>
+<li>数组指针取值时应该 <code>(*p)[下标]</code>， 因为括号的优先级高<ul>
+<li>Go优化成了：<code>p[下标]</code></li>
+</ul>
+</li>
+<li>指针数组取值时应该 <code>*p[下标]</code> </li>
+<li>多级指针</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建普通指针</span></span><br><span class="line"><span class="keyword">var</span> 指针名 *类型 =  &amp;对象</span><br><span class="line"><span class="comment">//数组指针</span></span><br><span class="line"><span class="keyword">var</span> 指针名 *[数量]类型 = &amp;数组</span><br><span class="line"><span class="comment">//指针数组</span></span><br><span class="line"><span class="keyword">var</span> 指针名 [数量]*类型</span><br><span class="line"></span><br><span class="line"><span class="comment">//切片</span></span><br><span class="line"><span class="keyword">var</span> 指针名 *[]类型</span><br></pre></td></tr></table></figure>
+
+<p><strong>channel</strong></p>
+<ul>
+<li><p>解决协程之间的同步问题</p>
+</li>
+<li><p>没有设置容量的channel为无缓冲channel</p>
+<ul>
+<li>需要同时读写，会阻塞，适合同步任务</li>
+</ul>
+</li>
+<li><p>有缓冲channel适合异步任务</p>
+</li>
+<li><p>channel关闭后不能写数据，但是可以读数据</p>
+</li>
+<li><p>创建时默认是双向channel，可以设置单向channel</p>
+<ul>
+<li>双向channel可以转换为任意单向channel，反之不行</li>
+</ul>
+</li>
+<li><p>有一个定时器的类</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建双向channel</span></span><br><span class="line"><span class="keyword">var</span> ch <span class="keyword">chan</span> channel中数据的类型</span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> channel中数据的类型，容量)</span><br><span class="line"><span class="comment">//单向写channel</span></span><br><span class="line"><span class="keyword">var</span> ch <span class="keyword">chan</span> &lt;- channel中数据的类型</span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> &lt;- channel中数据的类型，容量)</span><br><span class="line"><span class="comment">//单向读channel</span></span><br><span class="line"><span class="keyword">var</span> ch &lt;- <span class="keyword">chan</span> channel中数据的类型</span><br><span class="line">ch := <span class="built_in">make</span>(&lt;- <span class="keyword">chan</span> channel中数据的类型，容量)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入</span></span><br><span class="line">ch &lt;-</span><br><span class="line"><span class="comment">//读取</span></span><br><span class="line">s &lt;- ch</span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭</span></span><br><span class="line"><span class="built_in">close</span>(ch)</span><br></pre></td></tr></table></figure>
+
+<h2 id="常量-变量"><a href="#常量-变量" class="headerlink" title="常量 &#x2F; 变量"></a>常量 &#x2F; 变量</h2><ul>
+<li><p>常量格式</p>
+<ul>
+<li>const 名称  【类型】&#x3D; 值</li>
+</ul>
+</li>
+<li><p>变量格式</p>
+<ul>
+<li>var 名称 类型 【 &#x3D; 值】</li>
+<li>var 名称1，名称2，名称3  类型 【 &#x3D; 值1，值2，值3】</li>
+<li>名称 :&#x3D; 值 （简短声明 &#x2F; 自动推导）（只能用在函数中）</li>
+</ul>
+</li>
+<li><p>_（下划线）是个特殊的内置变量，任何赋予它的值都会被丢弃</p>
+</li>
+<li><p>以声明未使用的值会在编译阶段报错</p>
+</li>
+<li><p>字符串不可变，怎么修改</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1转为字节数组 []byte(c)</span></span><br><span class="line">s := <span class="string">&quot;hello&quot;</span></span><br><span class="line">c := []<span class="type">byte</span>(s) </span><br><span class="line">c[<span class="number">0</span>] = <span class="string">&#x27;c&#x27;</span></span><br><span class="line">s2 := <span class="type">string</span>(c) <span class="comment">// 再转换回 string 类型</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, s2)</span><br><span class="line"></span><br><span class="line"><span class="comment">//2用切片拼接</span></span><br><span class="line">s := <span class="string">&quot;hello&quot;</span></span><br><span class="line">s = <span class="string">&quot;c&quot;</span> + s[<span class="number">1</span>:] <span class="comment">// 字符串虽不能更改，但可进行切片操作</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, s)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想输出多行的字符串，需要使用 &#96; 括起来</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str := <span class="string">`abc</span></span><br><span class="line"><span class="string">		def`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大写字母开头的变量&#x2F;函数，是可导出的，其它包可以读取，小写字母开头的则不行</p>
+</li>
+</ul>
+<h2 id="函数-方法"><a href="#函数-方法" class="headerlink" title="函数 &#x2F; 方法"></a>函数 &#x2F; 方法</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">method</span><span class="params">(参数 类型)</span></span>(返回值<span class="number">1</span> 返回值类型, ...)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用，多个返回值</span></span><br><span class="line">a, b = method();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果方法是公共的，返回值最好命名</li>
+<li>函数也是一种变量，可以通过type来定义它，可以用作参数进行传递</li>
+</ul>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><ul>
+<li><p><strong>defer</strong></p>
+<ul>
+<li>相当于java中的final，c中的析构，即函数结束前执行的操作</li>
+<li>执行顺序是后进先出，栈式执行，逆序执行，先执行最下面的</li>
+<li>return比defer先执行</li>
+</ul>
+</li>
+<li><p>select</p>
+<ul>
+<li>监听channel上的数据流动</li>
+<li>语法类似switch</li>
+<li>多个满足条件的随机执行一个</li>
+<li>如果一直走到default会导致忙轮询，不建议使用default</li>
+</ul>
+</li>
+<li><p>iota</p>
+<ul>
+<li>自动枚举，默认值为0，调用一次加1</li>
+<li>每遇到一个 const 关键字，iota 就会重置</li>
+</ul>
+</li>
+<li><p>fallthrough</p>
+<ul>
+<li>在switch中使用，强制执行满足条件之后的所有条件，包括default</li>
+</ul>
+</li>
+</ul>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><ul>
+<li><p>封装</p>
+<ul>
+<li>定义结构体时的this最好指向对象的地址，这样是浅拷贝</li>
+</ul>
+</li>
+<li><p>继承</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> 子类 <span class="keyword">struct</span>&#123;</span><br><span class="line">    父类</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多态</p>
+<ul>
+<li>父类指针指向子类对象</li>
+</ul>
+</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接口定义</span></span><br><span class="line"><span class="keyword">type</span> 接口名 <span class="keyword">interface</span>&#123;</span><br><span class="line">    方法名() 【返回值类型】</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口实现</span></span><br><span class="line"><span class="keyword">type</span> 实现 <span class="keyword">struct</span>&#123;</span><br><span class="line">    成员变量</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this &amp;实现)</span></span> 接口方法名 【返回值类型】&#123;</span><br><span class="line">	实现方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//万能接口，可接收任意类型</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">method</span><span class="params">(arg <span class="keyword">interface</span>&#123;&#125;)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//万能接口提供了类型断言</span></span><br><span class="line">value, ok := arg.(<span class="type">string</span>) <span class="comment">//判断arg是否是字符串</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取对象的type</span></span><br><span class="line">reflect.TypeOf(对象)</span><br><span class="line"><span class="comment">//获取对象的value</span></span><br><span class="line">reflect.ValueOf(对象)</span><br><span class="line"><span class="comment">//获取对象中的成员的标签</span></span><br><span class="line">t := reflect.TypeOf(对象).Elem()</span><br><span class="line">tagIt.Field(下标).Tag.Get(<span class="string">&quot;标签名&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
+<li>实际发生异常时系统内部是通过panic函数去抛出这个异常，尽量少用</li>
+<li>可以使用errors中的方法对异常进行处理</li>
+<li>延迟函数defer会正常执行</li>
+</ul>
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建文件</span></span><br><span class="line">file, err := os.Create(<span class="string">&quot;路径&quot;</span>)</span><br><span class="line"></span><br><span class="line">str = <span class="string">&quot;内容&quot;</span></span><br><span class="line"><span class="comment">//写入文件1</span></span><br><span class="line">length, err := file.WriteString(str)</span><br><span class="line"><span class="comment">//写入文件2，接收字节数组</span></span><br><span class="line">length, err := file.Write([]<span class="type">byte</span>(str))</span><br><span class="line"><span class="comment">//写入文件3，写入指定位置，会覆盖数据，</span></span><br><span class="line">length, err := file.WriteAt([]<span class="type">byte</span>(str), 下标)</span><br><span class="line"></span><br><span class="line"><span class="comment">//定位文件内容下标</span></span><br><span class="line">length, err := file.Seek(追加空格数，io.SeekEnd)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//读取文件1</span></span><br><span class="line">file, err := os.OpenFile(<span class="string">&quot;路径&quot;</span>， 模式， 权限[<span class="number">0</span><span class="number">-7</span>])</span><br><span class="line"><span class="comment">//读取文件2，只读，无权限</span></span><br><span class="line">file, err := os.Open(<span class="string">&quot;路径&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取文件内容，buffer为读取缓冲区，空余区域会用0填充</span></span><br><span class="line"><span class="comment">//buffer存储的A</span></span><br><span class="line">buffer := <span class="built_in">make</span>([]<span class="type">byte</span>, <span class="number">1024</span> * <span class="number">2</span>)</span><br><span class="line">length, err := file。Read(buffer)</span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭文件</span></span><br><span class="line"><span class="keyword">defer</span> file.<span class="built_in">close</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="协程-gorountine"><a href="#协程-gorountine" class="headerlink" title="协程 gorountine"></a>协程 gorountine</h2><ul>
+<li><p>提高CPU的利用率</p>
+</li>
+<li><p>主要是gorountine和channel</p>
+</li>
+<li><p>内存占用几kb</p>
+</li>
+<li><p>早期的调度器需要获取锁才能执行go协程，性能比较差</p>
+</li>
+<li><p>调度器设计策略</p>
+<ul>
+<li>复用线程</li>
+<li>利用并行</li>
+<li>抢占</li>
+<li>全局G队列</li>
+</ul>
+</li>
+</ul>
+<h2 id="GMP"><a href="#GMP" class="headerlink" title="GMP"></a>GMP</h2><h2 id="Go调用以太坊"><a href="#Go调用以太坊" class="headerlink" title="Go调用以太坊"></a>Go调用以太坊</h2><ul>
+<li><p>启动rpc端口</p>
+<ul>
+<li><code>geth --identity &quot;XZ&quot; --http --http.port 8545 --datadir &quot;C:\Go\test2\testBlock&quot; --http.api &quot;net,eth,personal,db,web3&quot; --http.corsdomain &quot;*&quot; console</code><ul>
+<li>identity：节点身份标识</li>
+<li>http：开启rpc</li>
+<li>http.port ：rpc端口</li>
+<li>http.api：对外提供的api</li>
+<li>http.corsdomain：允许连接的url，*无限制，默认只有本机能访问</li>
+<li>datadir：区块数据文件夹</li>
+<li>networkid：net_version的id，即网络类型<ul>
+<li>1是主网络，其余是测试网络</li>
+</ul>
+</li>
+<li>port：监听其他端口</li>
+<li>nodiscover：隐藏节点，需手动添加</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在区块数据文件夹下创建Go工程</p>
+</li>
+<li><p>导入以太坊相关api</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取连接Client</span></span><br><span class="line"><span class="keyword">var</span> client Client</span><br><span class="line">client = rpc.Dial(<span class="string">&quot;ip：端口&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取网络类型networkid</span></span><br><span class="line"><span class="keyword">var</span> networkid <span class="type">string</span></span><br><span class="line">client.Call(&amp;networkid, <span class="string">&quot;net_version&quot;</span>)</span><br><span class="line"><span class="comment">//获取是否监听</span></span><br><span class="line"><span class="keyword">var</span> is_listing <span class="type">bool</span></span><br><span class="line">client.Call(&amp;is_listing, <span class="string">&quot;net_listening&quot;</span>)</span><br><span class="line"><span class="comment">//获取节点数量</span></span><br><span class="line"><span class="keyword">var</span> count <span class="type">string</span></span><br><span class="line">client.Call(&amp;count, <span class="string">&quot;net_peerCount&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取账户</span></span><br><span class="line"><span class="keyword">var</span> account []<span class="type">string</span></span><br><span class="line">client.Call(&amp;account, <span class="string">&quot;eth_accounts&quot;</span>)</span><br><span class="line"><span class="comment">//获取账户余额</span></span><br><span class="line"><span class="keyword">var</span> balance <span class="type">string</span></span><br><span class="line">client.Call(&amp;balance, <span class="string">&quot;eth_getBalance&quot;</span>, 账户地址，区块编号(latest、))</span><br><span class="line"><span class="comment">//获取当前gas价格</span></span><br><span class="line"><span class="keyword">var</span> gas <span class="type">string</span></span><br><span class="line">client.Call(&amp;gas, <span class="string">&quot;eth_gasPrice&quot;</span>)</span><br><span class="line"><span class="comment">//获取挖矿地址账户</span></span><br><span class="line"><span class="keyword">var</span> coinbase <span class="type">string</span></span><br><span class="line">client.Call(&amp;coinbase, <span class="string">&quot;eth_coinbase&quot;</span>)</span><br><span class="line"><span class="comment">//获取当前以太坊协议版本</span></span><br><span class="line"><span class="keyword">var</span> protocolVersion <span class="type">string</span></span><br><span class="line">client.Call(&amp;protocolVersion, <span class="string">&quot;eth_protocolVersion&quot;</span>)</span><br><span class="line"><span class="comment">//获取当前是否在挖矿</span></span><br><span class="line"><span class="keyword">var</span> isMining <span class="type">bool</span></span><br><span class="line">client.Call(&amp;isMining, <span class="string">&quot;eth_mining&quot;</span>)</span><br><span class="line"><span class="comment">//获取挖矿速率</span></span><br><span class="line"><span class="keyword">var</span> hashrate <span class="type">string</span></span><br><span class="line">client.Call(&amp;hashrate, <span class="string">&quot;eth_hashrate&quot;</span>)</span><br><span class="line"><span class="comment">//获取指定地址发生的交易数量</span></span><br><span class="line"><span class="keyword">var</span> transactionCount <span class="type">string</span></span><br><span class="line">client.Call(&amp;transactionCount, <span class="string">&quot;eth_getTransactionCount&quot;</span>, <span class="string">&quot;地址&quot;</span>，区块编号(latest、))</span><br><span class="line"><span class="comment">//获取节点当前块编号</span></span><br><span class="line"><span class="keyword">var</span> blockNum <span class="type">string</span></span><br><span class="line">client.Call(&amp;blockNum, <span class="string">&quot;eth_blockNumber&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建账户</span></span><br><span class="line"><span class="keyword">var</span> account <span class="type">string</span> </span><br><span class="line"><span class="keyword">var</span> pwd <span class="type">string</span> <span class="comment">// 参数</span></span><br><span class="line">client.Call(&amp;account, <span class="string">&quot;personal_newAccount&quot;</span>, pwd)</span><br><span class="line"><span class="comment">//获取账户列表</span></span><br><span class="line"><span class="keyword">var</span> accounts []<span class="type">string</span> </span><br><span class="line">client.Call(&amp;accounts, <span class="string">&quot;personal_listAccounts&quot;</span>)</span><br><span class="line"><span class="comment">//锁定指定账户</span></span><br><span class="line"><span class="keyword">var</span> lock <span class="type">bool</span></span><br><span class="line">client.Call(&amp;lock, <span class="string">&quot;personal_lockAccount&quot;</span>, <span class="string">&quot;地址&quot;</span>)</span><br><span class="line"><span class="comment">//解锁指定账户</span></span><br><span class="line"><span class="keyword">var</span> lock <span class="type">bool</span></span><br><span class="line">client.Call(&amp;lock, <span class="string">&quot;personal_unlockAccount&quot;</span>, <span class="string">&quot;地址&quot;</span>, <span class="string">&quot;密码&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入数据库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Go调用智能合约"><a href="#Go调用智能合约" class="headerlink" title="Go调用智能合约"></a>Go调用智能合约</h2><ol>
+<li>通过remix部署合约获取abi信息，新建一个abi后缀名的文件<ul>
+<li>或者通过工具solc生成<ul>
+<li><code>solc -bin test.sol -o test.abi</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用abigen工具，根据abi文件生成对应的go文件<ul>
+<li><code>abigen --abi abi文件 --pkg 包名 --type 结构体名 --out 文件名.go</code></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Go/%E5%9F%BA%E7%A1%80/GO/" data-id="clrj8k01g00614wuw1ouh9beq" data-title="Go" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/language/" rel="tag">language</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Go/%E5%9F%BA%E7%A1%80/Go%E5%BA%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E6%BA%90%E7%A0%81/%E6%AF%94%E7%89%B9%E5%B8%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

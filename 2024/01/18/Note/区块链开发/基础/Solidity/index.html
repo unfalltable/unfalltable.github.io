@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Solidity | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简介 用于智能合约开发，是面向对象的，强类型语言 单线程的，线程安全 使用时需要先声明Solidity的版本号 使用remix开发 https:&#x2F;&#x2F;remix.ethereum.org   智能合约是用来编写控制逻辑的 发布到区块链上的交易不一定都是成功执行的 为了扣除汽油费   智能合约可以获得的信息比较有限 因为每个节点的环境不同   智能合约编译后的字节码最大不超过24KB  格式12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solidity">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/Solidity/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介 用于智能合约开发，是面向对象的，强类型语言 单线程的，线程安全 使用时需要先声明Solidity的版本号 使用remix开发 https:&#x2F;&#x2F;remix.ethereum.org   智能合约是用来编写控制逻辑的 发布到区块链上的交易不一定都是成功执行的 为了扣除汽油费   智能合约可以获得的信息比较有限 因为每个节点的环境不同   智能合约编译后的字节码最大不超过24KB  格式12345">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.656Z">
+<meta property="article:modified_time" content="2024-01-17T11:09:55.863Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="solidity">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/区块链开发/基础/Solidity" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/Solidity/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.656Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web3/">Web3</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Solidity
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>用于智能合约开发，是面向对象的，强类型语言</li>
+<li>单线程的，线程安全</li>
+<li>使用时需要先声明Solidity的版本号</li>
+<li>使用remix开发<ul>
+<li><a target="_blank" rel="noopener" href="https://remix.ethereum.org/">https://remix.ethereum.org</a></li>
+</ul>
+</li>
+<li>智能合约是用来编写控制逻辑的</li>
+<li>发布到区块链上的交易不一定都是成功执行的<ul>
+<li>为了扣除汽油费</li>
+</ul>
+</li>
+<li>智能合约可以获得的信息比较有限<ul>
+<li>因为每个节点的环境不同</li>
+</ul>
+</li>
+<li>智能合约编译后的字节码最大不超过24KB</li>
+</ul>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//声明使用的solidity版本</span><br><span class="line">pragma solidity ^0.8.7;</span><br><span class="line">//合约</span><br><span class="line">contract A &#123;</span><br><span class="line">	</span><br><span class="line">	//状态变量</span><br><span class="line">	string public _string = &quot;Hello Web3!&quot;;</span><br><span class="line">	</span><br><span class="line">	//方法</span><br><span class="line">    function method1 public &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>constant</td>
+<td>定义常量</td>
+<td>gas费较低，不能修改</td>
+</tr>
+<tr>
+<td>immutable</td>
+<td>将变量定义为常量</td>
+<td>gas费较低，需要赋值</td>
+</tr>
+<tr>
+<td>indexed</td>
+<td>事件中用于修饰变量，他们会保存在以太坊虚拟机日志的 topics 中</td>
+<td>相当于检索事件的索引“键”，方便搜索，大小为固定的256比特，超过这个大小会自动计算成哈希存储</td>
+</tr>
+<tr>
+<td>ether</td>
+<td>以太坊代币单位</td>
+<td>1 ether &#x3D; 10^18 wei</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>将变量存储在内存</td>
+<td>只在函数调用期间存在，函数执行结束就会被清除，消耗<code>gas</code>少</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>变量会永久存储在区块链</td>
+<td>函数之外声明的变量默认为<code>storage</code>类型，消耗<code>gas</code>多</td>
+</tr>
+<tr>
+<td>calldata</td>
+<td>将变量存储在函数之外</td>
+<td>只能修饰输入参数，不能修改，函数间传递参数消耗<code>gas</code>少</td>
+</tr>
+<tr>
+<td>public</td>
+<td>公共的</td>
+<td>修饰的状态变量会生成访问函数，修饰的函数可以被调用，内外部都可以调用</td>
+</tr>
+<tr>
+<td>private</td>
+<td>私有的</td>
+<td>合约内部可用，不可被继承，比public节约gas</td>
+</tr>
+<tr>
+<td>external</td>
+<td>外部的</td>
+<td>只能通过外部读取函数，可以通过this调用但消耗gas，不可被继承</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>内部的</td>
+<td>合约内部可用，可以被继承</td>
+</tr>
+<tr>
+<td>payable</td>
+<td>付费</td>
+<td>调用合约方法需要转账，标记的地址可以发送代币</td>
+</tr>
+<tr>
+<td>view</td>
+<td>可视的</td>
+<td>可以读取状态变量，不能修改状态变量</td>
+</tr>
+<tr>
+<td>pure</td>
+<td>纯函数</td>
+<td>不能读取状态变量，只能拥有局部变量，用户调用pure函数不用gas，合约调用需要支付gas</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td>可重写的</td>
+<td></td>
+</tr>
+<tr>
+<td>override</td>
+<td>重写的</td>
+<td>修饰 <code>public</code> 变量会重写该变量的 get 方法</td>
+</tr>
+<tr>
+<td>returns</td>
+<td>返回值</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>值传递还是引用传递<ul>
+<li>函数外的storage状态变量赋值给函数内的storage变量时，修改函数内storage变量<strong>会影响</strong>函数外的状态变量</li>
+<li>函数外的storage状态变量赋值给函数内的memory变量时，修改函数内memory变量<strong>不会影响</strong>函数外的状态变量</li>
+<li>memory变量赋值给memory变量时，会影响原变量</li>
+<li>变量赋值给storage变量，会创建独立的副本</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ul>
+<li><p>分为状态变量，局部变量和全局变量</p>
+<ul>
+<li>状态变量：写在合约内函数外，如果没有提供修改的方法，那么它将永远的写在区块链上了</li>
+<li>局部变量：写在函数内，调用函数时就会在虚拟机中产生</li>
+<li>全局变量：内置变量</li>
+</ul>
+</li>
+<li><p>状态变量默认是internal</p>
+</li>
+<li><p>局部变量不能使用public</p>
+</li>
+</ul>
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte、bytes8、bytes32</td>
+<td></td>
+<td>固定长度，十六进制</td>
+<td>0x00…</td>
+</tr>
+<tr>
+<td>int、uint、uint8、uint32、uint256</td>
+<td>整型、正整数</td>
+<td>int默认是256位的，uint256(-1)是最大值</td>
+<td>0</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>布尔</td>
+<td>true &#x2F; false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>string</td>
+<td>字符串</td>
+<td>消耗的gas多</td>
+<td>“”</td>
+</tr>
+</tbody></table>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+<th>备注</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>address</td>
+<td>地址信息</td>
+<td>十六进制</td>
+<td>0x00地址</td>
+</tr>
+<tr>
+<td>mapping</td>
+<td>映射 &#x2F; hash表</td>
+<td>不支持遍历，默认值0，key不能是结构体</td>
+<td>type的默认值</td>
+</tr>
+<tr>
+<td>bytes &#x2F; bytes1[]</td>
+<td>字节数组</td>
+<td>bytes的gas更便宜</td>
+<td>动态：[] <br />静态：类型默认值</td>
+</tr>
+<tr>
+<td>struct</td>
+<td>结构体</td>
+<td>创建对象不用new</td>
+<td>成员默认值</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>枚举</td>
+<td>取值是取下标</td>
+<td>第一个值</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>mapping</p>
+<ul>
+<li>使用<code>keccak256(key)</code>当成offset存取value。</li>
+</ul>
+</li>
+<li><p>address</p>
+<ul>
+<li><p>在以太坊中存储的是20字节的值，即uint160</p>
+</li>
+<li><p>address有成员变量，用payable修饰的地址多了 <code>transfer</code> 和 <code>send</code> 成员变量</p>
+</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>push</td>
+<td>将元素插入数组尾部</td>
+<td>动态数组才可以使用该方法</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>将指定的元素变为默认值</td>
+<td>delete 数组[下标]，不改变数组长度</td>
+</tr>
+<tr>
+<td>pop</td>
+<td>弹出数组尾部元素</td>
+<td>数组的长度会-1</td>
+</tr>
+<tr>
+<td>length</td>
+<td>获取数组中元素个数</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="内置变量"><a href="#内置变量" class="headerlink" title="内置变量"></a>内置变量</h3><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>含义</th>
+<th>返回值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>msg.sender</td>
+<td>调用者地址</td>
+<td>address</td>
+<td></td>
+</tr>
+<tr>
+<td>msg.value</td>
+<td>获取payable的转账金额</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>msg.data</td>
+<td>完整的调用信息calldata</td>
+<td></td>
+<td>前4个字节为函数选择器selector<br />后面32个字节为输入的参数</td>
+</tr>
+<tr>
+<td>msg.gas</td>
+<td>剩余的gas</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>msg.sig</td>
+<td>calldata的前4个字节</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>block.blockhash</td>
+<td>获得最近256个区块的哈希值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>block.coinbase</td>
+<td>当前块矿工地址</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>block.diffculty</td>
+<td>当前块难度</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>block.gaslimit</td>
+<td>当前块gas限制</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>block.number</td>
+<td>当前块区块号</td>
+<td>uint</td>
+<td></td>
+</tr>
+<tr>
+<td>block.timestamp</td>
+<td>当前块时间戳</td>
+<td>uint</td>
+<td></td>
+</tr>
+<tr>
+<td>now</td>
+<td>当前区块</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>gasleft</td>
+<td>剩余的gas</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tx.gasprice</td>
+<td>当前交易的gas价格</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tx.origin</td>
+<td>交易的发送者</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>msg.data一般包含2个部分<ul>
+<li>函数签名：函数名称 + 参数类型 &#x3D;&gt; hash 后取前四位bytes值</li>
+<li>参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">function test() public &#123;</span><br><span class="line">	//if-else</span><br><span class="line">	if(条件判断)&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;else if(条件判断)&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //三元</span><br><span class="line">    条件判断 ? 返回值2 : 返回值2</span><br><span class="line">    </span><br><span class="line">    //for循环</span><br><span class="line">    for(uint i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //while循环</span><br><span class="line">    while(i &lt; 10)&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //do-while循环</span><br><span class="line">    do&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;while(i &lt; 10);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="格式-1"><a href="#格式-1" class="headerlink" title="格式"></a>格式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">contract A&#123;	</span><br><span class="line">	//需要子类重写的方法</span><br><span class="line">	function a() virtual&#123;</span><br><span class="line">	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">contract B is A&#123;</span><br><span class="line">	function b()&#123;</span><br><span class="line">	</span><br><span class="line">    &#125;</span><br><span class="line">    //重写父类方法</span><br><span class="line">    function a() override&#123;</span><br><span class="line">	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修饰器也可以被继承，也可以重写</p>
+</li>
+<li><p>调用父合约</p>
+<ul>
+<li>通过父合约名.函数名</li>
+<li>通过super.函数名<ul>
+<li>会执行最远的父合约函数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>父类构造函数需要传参的情况</p>
+<ul>
+<li><p>可以在继承时在父类合约名后加上参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contract C is  A(参数), B(参数)&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以在子类构造函数中传值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract C is A, B&#123;</span><br><span class="line">	constructor(参数1, 参数2) A(参数1) B(参数2)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="多继承"><a href="#多继承" class="headerlink" title="多继承"></a>多继承</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contract a&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">contract b is a&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">contract c is a&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">contract d is b, c&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>允许多继承，同名函数遵循最远继承规则<ul>
+<li>多继承时父类的顺序应该由高到低</li>
+<li>多个父类都有的函数子类必须重写</li>
+<li>重写多个父类都有的函数时，需要标注所有父合约的名字<ul>
+<li><code>override(父a，父b ...)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>钻石继承<ul>
+<li>即父合约之间继承于同一个合约</li>
+<li>使用super时每一个父合约的函数都会被执行，但顶级合约的函数只会执行一次</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><ul>
+<li><p>是EVM上对日志的抽象</p>
+</li>
+<li><p>接口订阅和监听</p>
+</li>
+<li><p>存储数据，每个大概消耗2,000 gas，链上存储至少需要20,000 gas</p>
+</li>
+<li><p>是一种写入方法，所以不能被标记为view &#x2F; pure</p>
+</li>
+<li><p>事件的参数可以使用indexed标记，标记过的变量就可以在链外进行搜索查询</p>
+<ul>
+<li>最多只能标记三个变量</li>
+</ul>
+</li>
+<li><p>用法</p>
+<ul>
+<li>发生代币转移时</li>
+<li>部署合约时返回合约地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="格式-2"><a href="#格式-2" class="headerlink" title="格式"></a>格式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">contract a &#123;</span><br><span class="line">	//建立事件</span><br><span class="line">    event 事件名(类型 [indexed] 参数a ...)</span><br><span class="line">    //使用 emit 激活 / 调用事件</span><br><span class="line">    emit 事件名</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>require</td>
+<td>条件、异常描述</td>
+<td>要求达到对应的条件，不会消耗gas并终止执行</td>
+</tr>
+<tr>
+<td>assert</td>
+<td>条件</td>
+<td>断言，会消耗gas并继续执行</td>
+</tr>
+<tr>
+<td>revert</td>
+<td></td>
+<td>直接抛出异常，不需要写条件，会消耗gas</td>
+</tr>
+<tr>
+<td>error</td>
+<td>方法</td>
+<td>自定义错误，可以携带信息，gas更低</td>
+</tr>
+</tbody></table>
+<h3 id="自定义错误"><a href="#自定义错误" class="headerlink" title="自定义错误"></a>自定义错误</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">error thorized(类型 变量名);</span><br><span class="line">contract a &#123;</span><br><span class="line">	function method() public &#123;</span><br><span class="line">		revert thorized(变量);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>节约gas费</li>
+<li>能够在错误中定义变量，即抛出异常时可以抛出变量，报错信息详细</li>
+<li>可以定义在合约中或者合约外</li>
+</ul>
+<h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try-catch"></a>try-catch</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try externalContract.f() [returns(类型 val)]&#123;</span><br><span class="line">	// call成功的情况下 运行一些代码</span><br><span class="line">&#125; catch Error(string memory reason) &#123;</span><br><span class="line">	// 捕获失败的 revert() 和 require()</span><br><span class="line">&#125; catch (bytes memory reason) &#123;</span><br><span class="line">	// 捕获失败的 assert()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>只有<code>external</code> 函数和构造函数可以使用</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>函数默认会分配4个32字节的内存空间</li>
+<li>函数可以重载，即同名不同参数</li>
+</ul>
+<h3 id="格式-3"><a href="#格式-3" class="headerlink" title="格式"></a>格式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.7;</span><br><span class="line">contract A &#123;</span><br><span class="line">    //构造函数</span><br><span class="line">    //在合约部署的时候会调用一次，是不会写到链上的</span><br><span class="line">    constructor()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	//普通函数</span><br><span class="line">	//有返回值名的情况下函数体内可以不用写return语句，隐式返回</span><br><span class="line">    function 函数名 [修饰符...] [returns (类型 返回值1 [, 类型 返回值2, ...])] &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    //fallback函数</span><br><span class="line">    fallback() external payable&#123;&#125;</span><br><span class="line">    //receive函数</span><br><span class="line">    receive() external payable&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fallback 和 receive函数<ul>
+<li>都是作为兜底函数，即外部合约调用了不存在的函数时会调用这两个函数<ul>
+<li>调用时如果没传入数据会执行receive函数，前提是有定义receive函数，其他情况都是调用的fallback函数</li>
+</ul>
+</li>
+<li>需要<code>payable、external</code>关键字</li>
+<li>receive和fallback不要写太多逻辑，因为如果是send&#x2F;transfer转账的话gas费只有2300，容易超出</li>
+</ul>
+</li>
+</ul>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>参数</th>
+<th>返回值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>creationCode</td>
+<td>获取合约代码</td>
+<td></td>
+<td></td>
+<td>type(合约).creationCode</td>
+</tr>
+<tr>
+<td>address</td>
+<td>获取地址</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>balance</td>
+<td>获取合约余额</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>transfer</td>
+<td>转账</td>
+<td></td>
+<td></td>
+<td>余额不足会报错，2300gas</td>
+</tr>
+<tr>
+<td>send</td>
+<td>转账</td>
+<td></td>
+<td>bool</td>
+<td>余额不足情况需要处理，2300gas</td>
+</tr>
+<tr>
+<td>call</td>
+<td>转账 &#x2F; 调用合约</td>
+<td>{[value:ETH数],[gas:gas数]}(转账金额 &#x2F; 二进制编码)</td>
+<td>bool,data</td>
+<td>余额不足情况需要处理，支付全部gas</td>
+</tr>
+<tr>
+<td>callcode</td>
+<td>转账 &#x2F; 调用合约</td>
+<td></td>
+<td></td>
+<td>调用底层</td>
+</tr>
+<tr>
+<td>delegatecall</td>
+<td>转账 &#x2F; 调用合约</td>
+<td></td>
+<td></td>
+<td>可以发gas，不能发eth</td>
+</tr>
+<tr>
+<td>staticall</td>
+<td>静态调用</td>
+<td></td>
+<td></td>
+<td>不会有写入操作</td>
+</tr>
+<tr>
+<td>keccak256</td>
+<td>将任何长度的数据转换为256位的哈希值</td>
+<td>数据</td>
+<td>bytes32</td>
+<td>哈希算法</td>
+</tr>
+<tr>
+<td>create</td>
+<td></td>
+<td>创建者地址，nonce</td>
+<td>不准确</td>
+<td></td>
+</tr>
+<tr>
+<td>create2</td>
+<td>预测合约部署后的地址</td>
+<td>常数，创建者地址，盐，机器码</td>
+<td>8.0新特性</td>
+<td></td>
+</tr>
+<tr>
+<td>abi.encode</td>
+<td>压缩</td>
+<td></td>
+<td>bytes</td>
+<td>会将每个参数用0填充到32字节，避免hash碰撞</td>
+</tr>
+<tr>
+<td>abi.encodePacked</td>
+<td>压缩</td>
+<td></td>
+<td>bytes</td>
+<td>不定长的，有一定的压缩，如果参数是连续的字符串可能会出现hash碰撞</td>
+</tr>
+<tr>
+<td>abi.decode</td>
+<td>解码</td>
+<td>bytes, (类型)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>abi.encodeWithSignature</td>
+<td>获得二进制编码</td>
+<td>函数(参数类型)，参数</td>
+<td></td>
+<td>第一个参数为函数签名</td>
+</tr>
+<tr>
+<td>abi.encodeWithSelector</td>
+<td>获得二进制编码</td>
+<td>地址.函数.selector，参数</td>
+<td>bytes</td>
+<td></td>
+</tr>
+<tr>
+<td>ecrecover</td>
+<td>获取消息的签名者地址</td>
+<td>加密信息，签名</td>
+<td>address</td>
+<td></td>
+</tr>
+<tr>
+<td>selfdestruct</td>
+<td>自毁合约</td>
+<td>address</td>
+<td>&#x2F;</td>
+<td>强制发送剩余代币</td>
+</tr>
+</tbody></table>
+<ul>
+<li>create和create2<ul>
+<li>create2创建合约时，目标智能合约的构造函数中不能有参数，create可以有参数</li>
+<li>create函数不能创建已经创建过的地址，create2可以<ul>
+<li>因为nonce指的是交易数，之前部署过了nonce会增加</li>
+<li>为什么会要创建已经创建过的地址呢，是因为合约自销毁后想重新部署到源地址就无法实现了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ABI函数<ul>
+<li>配合call实现底层调用</li>
+<li>ether.js中实现合约的导入和函数调用</li>
+<li>对不开源的合约进行反编译后，由于查不到函数名，所以可以通过abi进行调用</li>
+</ul>
+</li>
+</ul>
+<h3 id="合约外函数"><a href="#合约外函数" class="headerlink" title="合约外函数"></a>合约外函数</h3><ul>
+<li>在8.0之后允许函数定义在合约外</li>
+</ul>
+<h3 id="修饰器"><a href="#修饰器" class="headerlink" title="修饰器"></a>修饰器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//权限校验</span><br><span class="line">modifier auth()&#123;</span><br><span class="line">	require(</span><br><span class="line">		//检验逻辑，返回布尔类型</span><br><span class="line">	);</span><br><span class="line">	_;</span><br><span class="line">&#125;</span><br><span class="line">//代码复用(三明治结构)</span><br><span class="line">modifier rep([参数])&#123;</span><br><span class="line">	//代码</span><br><span class="line">	_;//被修饰函数中的代码</span><br><span class="line">	//代码</span><br><span class="line">&#125;</span><br><span class="line">//对应的方法上添加修饰器即可生效</span><br><span class="line">function test() public auth rep([参数])&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数签名-选择器"><a href="#函数签名-选择器" class="headerlink" title="函数签名 &#x2F; 选择器"></a>函数签名 &#x2F; 选择器</h3><ul>
+<li>calldata中的前4个字节为函数选择器，是将函数经过哈希运算求得<ul>
+<li><code>bytes4(keccak256(&quot;函数名(参数类型)&quot;))</code></li>
+</ul>
+</li>
+<li>有可能会发生冲突<ul>
+<li>可以使用透明代理和通用可升级代理解决</li>
+<li>透明代理：代理合约的fallback函数限制管理员调用</li>
+<li>通用可升级代理：将代理合约中的升级函数放在逻辑函数中</li>
+</ul>
+</li>
+</ul>
+<h2 id="合约"><a href="#合约" class="headerlink" title="合约"></a>合约</h2><h3 id="合约创建"><a href="#合约创建" class="headerlink" title="合约创建"></a>合约创建</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//直接创建合约对象</span><br><span class="line">合约名 合约对象 = new 合约名();</span><br><span class="line"></span><br><span class="line">//间接创建合约对象</span><br><span class="line">address addr = new 合约名();</span><br><span class="line">合约名 合约对象 = 合约名(address);</span><br><span class="line"></span><br><span class="line">//工厂合约创建合约对象</span><br><span class="line">contract A&#123;&#125;</span><br><span class="line">contract AFactory&#123;</span><br><span class="line">	A[] public As;</span><br><span class="line">	function createA()&#123;</span><br><span class="line">		As.push(new A())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="合约调用"><a href="#合约调用" class="headerlink" title="合约调用"></a>合约调用</h3><ul>
+<li><p>外部用户直接调用合约</p>
+<ul>
+<li>合约对象直接调用出现错误时，调用方会出现错误并回滚</li>
+</ul>
+</li>
+<li><p>外部用户间接调用合约</p>
+<ul>
+<li>call<ul>
+<li>格式： <code>合约地址.call(abi.encodeWithSignature(&quot;函数名(参数类型1, 参数类型2...)&quot;, 参数1, 参数2...))</code></li>
+<li>调用合约出现错误时，调用方不会回滚</li>
+<li>call通过触发<code>fallback</code>或<code>receive</code>函数发送<code>ETH</code></li>
+<li>call调用会切换上下文，即进入到被调用的合约内部</li>
+<li>不建议直接通过call来调用合约，因为主动权给了被调用的合约，有安全风险，推荐通过创建合约对象来调用</li>
+</ul>
+</li>
+<li>delegatecall<ul>
+<li>用法和call一致</li>
+<li>调用合约出现错误时，调用方不会回滚</li>
+<li>不会切换上下文，即还在调用方合约，即委托合约内部</li>
+<li>不能使用value方法</li>
+<li>delegatecall有安全隐患，需要保证当前合约和目标合约的状态变量类型相同，并且目标合约安全</li>
+<li>delegatecall 调用目标合约时，调用者是调用delegatecall的源头</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>合约调用合约</p>
+<ul>
+<li><p>需要有被调用合约的地址，且知道其函数信息才可以调用</p>
+</li>
+<li><p>需要传递代币的话就用 <code>&#123;value: msg.value&#125;</code> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">contract A &#123;</span><br><span class="line">	function testA1(address _B)&#123;</span><br><span class="line">		B(_B).testB1()</span><br><span class="line">    &#125;</span><br><span class="line">    function testA2(B _B)&#123;</span><br><span class="line">		_B.testB1()</span><br><span class="line">    &#125;</span><br><span class="line">    function testA3(address _B)&#123;</span><br><span class="line">		B(_B).testB2&#123;value: msg.value&#125;()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">contract B &#123;</span><br><span class="line">	function testB1()&#123;</span><br><span class="line">	</span><br><span class="line">    &#125;</span><br><span class="line">    function testB2() payable&#123;</span><br><span class="line">	</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>多重调用</p>
+<ul>
+<li>将对合约的多次调用整合到一个交易中，再对合约进行调用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">contract TestMultiCall &#123;</span><br><span class="line">    function test(uint _i) external pure returns (uint) &#123;</span><br><span class="line">        return _i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getData(uint _i) external pure returns (bytes memory) &#123;</span><br><span class="line">        return abi.encodeWithSelector(this.test.selector, _i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//多重调用合约</span><br><span class="line">contract MultiCall &#123;</span><br><span class="line">    function multiCall(address[] calldata targets, bytes[] calldata data)</span><br><span class="line">        external</span><br><span class="line">        view</span><br><span class="line">        returns (bytes[] memory)</span><br><span class="line">    &#123;</span><br><span class="line">        require(targets.length == data.length, &quot;target length != data length&quot;);</span><br><span class="line"></span><br><span class="line">        bytes[] memory results = new bytes[](data.length);</span><br><span class="line"></span><br><span class="line">        for (uint i; i &lt; targets.length; i++) &#123;</span><br><span class="line">            (bool success, bytes memory result) = targets[i].staticcall(data[i]);</span><br><span class="line">            require(success, &quot;call failed&quot;);</span><br><span class="line">            results[i] = result;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return results;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多重委托调用</p>
+<ul>
+<li>只能调用自身的合约方法，即如果调用他人的合约即无法使用</li>
+<li>注意在合约调用中不要重复计算主币数量，或者让多重委托调用合约不能接受主币</li>
+</ul>
+</li>
+</ul>
+<h3 id="代理合约"><a href="#代理合约" class="headerlink" title="代理合约"></a>代理合约</h3><ul>
+<li>为了解决合约的更新问题，因为链上代码不可变和数据迁移的费用昂贵</li>
+<li>委托调用不会改变逻辑合约中的值，改变的是代理合约的值，即使用逻辑合约的逻辑</li>
+<li>代理模式将合约数据和逻辑分开，分别保存在不同合约中<ul>
+<li>代理合约Proxy：存储所有相关的变量、逻辑合约的地址</li>
+<li>逻辑合约Logic：存储所有的函数，通过<code>delegatecall</code>执行，逻辑合约也需要定义和代理合约完全一样的变量（类型 &#x2F; 顺序 &#x2F; 名称），在这些变量之后可以定义独有的变量</li>
+</ul>
+</li>
+</ul>
+<h3 id="抽象合约"><a href="#抽象合约" class="headerlink" title="抽象合约"></a>抽象合约</h3><ul>
+<li>合约用<code>abstract</code> 修饰，合约中至少有一个没有被实现的函数，该函数需要标注<code>virtual</code></li>
+</ul>
+<h3 id="接口合约"><a href="#接口合约" class="headerlink" title="接口合约"></a>接口合约</h3><ul>
+<li>不清楚目标合约的代码的具体信息，但知道其函数名称参数返回值等等，就可以通过接口合约调用</li>
+<li>不能有状态变量、构造函数</li>
+<li>只能继承接口合约，所有函数都得标注 <code>external</code></li>
+<li>类似模拟了一个目标合约</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//目标合约</span><br><span class="line">contract TargetContract&#123;</span><br><span class="line">	//具体细节不明</span><br><span class="line">	function A()&#123;</span><br><span class="line">		//详细代码</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//接口合约</span><br><span class="line">interface ITargetContract&#123;</span><br><span class="line">	function A()&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">contract Test&#123;</span><br><span class="line">	function test(address _TargetContract)&#123;</span><br><span class="line">		ITargetContract(_TargetContract).A();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="库合约"><a href="#库合约" class="headerlink" title="库合约"></a>库合约</h3><ul>
+<li><p>提取复用性强的代码作为库合约以便复用</p>
+</li>
+<li><p>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library a&#123;</span><br><span class="line">	//函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>特点</p>
+<ul>
+<li>不能存在状态变量</li>
+<li>不能够继承或被继承</li>
+<li>不能接收以太币</li>
+<li>不可以被销毁</li>
+<li>一般会将函数定义为 internal</li>
+</ul>
+</li>
+<li><p>使用</p>
+<ul>
+<li>使用 <code>using 库合约 for 类型</code> 使该类型可以直接调用库合约方法</li>
+<li>使用 <code>库合约名.函数</code></li>
+</ul>
+</li>
+<li><p>常用库合约</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/Strings.sol">String</a>：将<code>uint256</code>转换为<code>String</code></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/Address.sol">Address</a>：判断某个地址是否为合约地址</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/Create2.sol">Create2</a>：更安全的使用<code>Create2 EVM opcode</code></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/4a9cc8b4918ef3736229a5cc5a310bdc17bf759f/contracts/utils/Arrays.sol">Arrays</a>：跟数组相关的库函数</li>
+</ul>
+</li>
+</ul>
+<h3 id="重入锁"><a href="#重入锁" class="headerlink" title="重入锁"></a>重入锁</h3><ul>
+<li>防止函数被重复调用</li>
+<li>使用函数修改器实现</li>
+</ul>
+<h3 id="时间锁"><a href="#时间锁" class="headerlink" title="时间锁"></a>时间锁</h3><ul>
+<li>保护管理员权限，将操作排进队列中，经过一段时间后执行</li>
+</ul>
+<h3 id="代币锁"><a href="#代币锁" class="headerlink" title="代币锁"></a>代币锁</h3><ul>
+<li>可以把合约中的代币锁仓一段时间，受益人在锁仓期满后才可以取走代币</li>
+</ul>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ul>
+<li>合约执行具有原子性，发生异常时消耗的汽油费不会退回</li>
+<li>常见错误情况<ul>
+<li>汽油费不够</li>
+<li>出现异常</li>
+</ul>
+</li>
+</ul>
+<h2 id="内联汇编"><a href="#内联汇编" class="headerlink" title="内联汇编"></a>内联汇编</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>解决solidity现有方法中无法实现的一些操作</li>
+<li>使用内联汇编自由度更高，性能更强，节约gas费</li>
+<li>格式为使用 assembly{} 代码块</li>
+<li>批量操作适合使用内联汇编</li>
+<li>因为EVM时基于栈的虚拟机，想要难道栈顶之外的数据比较困难，所以要使用内联汇编</li>
+<li>可以获取合约的代码，并加载到bytes变量中</li>
+<li>可以判断一个地址是合约地址还是用户地址</li>
+<li>函数操作需要结合地址和数据</li>
+</ul>
+<h3 id="格式-4"><a href="#格式-4" class="headerlink" title="格式"></a>格式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//汇编代码块</span><br><span class="line">assembly&#123;</span><br><span class="line">	//通过let关键字来定义变量，作用域只在当前大括号中</span><br><span class="line">	let a := 1;</span><br><span class="line">	//for循环</span><br><span class="line">	for&#123;let i := 0&#125; lt(i, x) &#123;i := add(i ,1)&#125;&#123;</span><br><span class="line">		//循环体</span><br><span class="line">	&#125;</span><br><span class="line">	//if</span><br><span class="line">	if slt(x, 0)&#123;</span><br><span class="line">		//。。。</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><ol>
+<li><strong>算术和逻辑操作</strong>：<ul>
+<li><strong>add</strong>：将栈上的两个元素相加。</li>
+<li><strong>sub</strong>：从栈上的第二个元素中减去第一个元素。</li>
+<li><strong>mul</strong>：将栈上的两个元素相乘。</li>
+<li><strong>div</strong>：将栈上的第二个元素除以第一个元素（整数除法）。</li>
+<li><strong>sdiv</strong>：带符号的整数除法。</li>
+<li><strong>mod</strong>：取模运算。</li>
+<li><strong>smod</strong>：带符号的取模运算。</li>
+<li><strong>addmod</strong>：(x + y) mod z，加法后取模。</li>
+<li><strong>mulmod</strong>：(x * y) mod z，乘法后取模。</li>
+<li><strong>exp</strong>：指数运算。</li>
+<li><strong>signextend</strong>：符号扩展。</li>
+</ul>
+</li>
+<li><strong>比较和位操作</strong>：<ul>
+<li><strong>lt</strong>、<strong>gt</strong>、<strong>slt</strong>、<strong>sgt</strong>、<strong>eq</strong>：比较栈上的两个元素，分别对应小于、大于、带符号小于、带符号大于、等于。</li>
+<li><strong>iszero</strong>：如果栈顶元素为0，则返回1，否则返回0。</li>
+<li><strong>and</strong>、<strong>or</strong>、<strong>xor</strong>、<strong>not</strong>：位运算。</li>
+<li><strong>shiftleft</strong>、<strong>shiftright</strong>：位移操作。</li>
+</ul>
+</li>
+<li><strong>内存和存储操作</strong>：<ul>
+<li><strong>mstore</strong>、<strong>mstore8</strong>：将值存储到内存中。</li>
+<li><strong>mload</strong>：从内存中加载z值</li>
+<li><strong>sstore</strong>：将值存储到合约存储中。</li>
+<li><strong>push</strong>、<strong>pop</strong>：栈操作，用于将值压入栈或从栈中弹出。</li>
+</ul>
+</li>
+<li><strong>控制流</strong>：<ul>
+<li><strong>jump</strong>、<strong>jumpi</strong>：跳转到指定位置。</li>
+<li><strong>return</strong>：结束执行并返回结果。</li>
+<li><strong>revert</strong>：停止执行。</li>
+<li><strong>selfdestruct</strong>（原名为<code>suicide</code>）：销毁合约并发送资金。</li>
+</ul>
+</li>
+<li><strong>栈操作</strong>：<ul>
+<li><strong>dup</strong>：复制栈顶元素。</li>
+<li><strong>swap</strong>：交换栈上的两个元素。</li>
+</ul>
+</li>
+<li><strong>日志和事件</strong>：<ul>
+<li><strong>log0</strong>、<strong>log1</strong>、<strong>log2</strong>、<strong>log3</strong>、<strong>log4</strong>：生成日志事件，用于外部监听和分析。</li>
+</ul>
+</li>
+<li><strong>系统操作</strong>：<ul>
+<li><code>blockhash</code>：获取指定区块的哈希。</li>
+<li><code>coinbase</code>：获取当前区块的矿工地址。</li>
+<li><code>timestamp</code>：获取当前区块的时间戳。</li>
+<li><code>number</code>：获取当前区块号。</li>
+<li><code>difficulty</code>：获取当前区块的难度。</li>
+<li><code>gaslimit</code>：获取当前区块的燃气上限。</li>
+<li><code>origin</code>：获取交易的发起者地址。</li>
+<li><code>caller</code>：获取当前函数的调用者地址。</li>
+<li><code>callvalue</code>：获取当前交易的金额（以wei为单位）。</li>
+<li><code>calldataload</code>、<code>calldatasize</code>、<code>calldatacopy</code>：访问输入数据。</li>
+<li><code>codesize</code>、<code>codecopy</code>：访问合约代码。</li>
+<li><code>gasprice</code>：获取当前交易的燃气价格。</li>
+<li><code>extcodesize</code>、<code>extcodecopy</code>：访问外部合约的代码。</li>
+<li><code>returndatasize</code>、<code>returndatacopy</code>：访问返回值数据。</li>
+</ul>
+</li>
+</ol>
+<h2 id="8-0特性"><a href="#8-0特性" class="headerlink" title="8.0特性"></a>8.0特性</h2><h3 id="安全数学-SafeMath"><a href="#安全数学-SafeMath" class="headerlink" title="安全数学 SafeMath"></a>安全数学 SafeMath</h3><ul>
+<li>提高安全的数学运算</li>
+<li>自动检测溢出</li>
+</ul>
+<h3 id="Create2"><a href="#Create2" class="headerlink" title="Create2"></a>Create2</h3><ul>
+<li>加盐部署，可以获得合约部署出的合约地址</li>
+<li>在内联汇编中才可以使用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//使用solidity实现</span><br><span class="line">//_salt作为参数传入</span><br><span class="line">Contract A = new A&#123;salt: byte32(_salt)&#125;();</span><br><span class="line">//获取部署合约的地址</span><br><span class="line">function getAddress(address addr, uint _salt)public view returns(address)&#123;</span><br><span class="line">	bytes memory bytecode = getCode(addr);</span><br><span class="line">	bytes32 hash = keccak256(abi.encodePacked(</span><br><span class="line">		//固定的1字节字符串 + he&#x27;yu地址 + 盐 + 待部署合约代码哈希</span><br><span class="line">		bytes1(0xff), address(this), _salt, keccak256(bytecode)</span><br><span class="line">	));</span><br><span class="line">	return address(uin160(uint(hash)));</span><br><span class="line">&#125;</span><br><span class="line">//获取bytecode</span><br><span class="line">function getBytecode(address _owner) public pure returns (bytes memory) &#123;</span><br><span class="line">	bytes memory bytecode = type(合约).creationCode;</span><br><span class="line">	return abi.encodePacked(bytecode, abi.encode(_owner));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//使用内联汇编实现</span><br><span class="line">//获取地址中的代码</span><br><span class="line">function getCode(address _addr) public view returns (bytes memory)&#123;</span><br><span class="line">	assembly&#123;</span><br><span class="line">		//获取代码长度</span><br><span class="line">		let size := extcodesize(_addr)</span><br><span class="line">		//分配一块足够大的内存空间</span><br><span class="line">		let codePtr := mload(0x40)</span><br><span class="line">		//初始化为20，预留空间给代码长度和代码本身</span><br><span class="line">		mstore(codePtr, 0x20);</span><br><span class="line">		let codeEnd := add(codePtr, 0x20)  </span><br><span class="line">		//把size存入该内存空间</span><br><span class="line">		mstore(add(codePtr, 0x10), size)</span><br><span class="line">		// 获取代码并保存  </span><br><span class="line">        extcodecopy(_addr, codePtr, size)  </span><br><span class="line">        // 更新代码结束位置  </span><br><span class="line">        mstore(codeEnd, mload(codeEnd))  </span><br><span class="line">        // 返回代码  </span><br><span class="line">        return(codePtr, size)  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function deploy(bytes32 salt, address addr) public view returns (address pair)&#123;</span><br><span class="line">	bytes memory bytecode = getCode(addr);</span><br><span class="line">	assembly&#123;</span><br><span class="line">		pair := create2(0, add(bytecode, 32), mload(bytecode), salt)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function insertSort(uint[] memory a) public pure returns (uint[] memory) &#123;</span><br><span class="line">    for(uint i = 1; i &lt; a.length; ++i)&#123;</span><br><span class="line">        uint tmp = a[i];</span><br><span class="line">        uint j;</span><br><span class="line">        for(j = i; j &gt; 0 &amp;&amp;  a[j - 1] &gt; tmp; --j)&#123;</span><br><span class="line">        	a[j] = a[j-1];</span><br><span class="line">        &#125;</span><br><span class="line">        a[j] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="签名验证"><a href="#签名验证" class="headerlink" title="签名验证"></a>签名验证</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">contract Verify&#123;</span><br><span class="line">    function verify(address _signer, string memory _message, bytes memory _sig) external pure returns(bool)&#123;</span><br><span class="line">    	//1. 将消息进行哈希</span><br><span class="line">    	bytes32 msgHash = getMsgHash(_message);</span><br><span class="line">    	//2. 将哈希消息拼接上一段字符串进行二次哈希</span><br><span class="line">    	bytes32 ethMsgHash = getEthMsgHash(msgHash);</span><br><span class="line">        //3. 验证签名和签名者是否一致</span><br><span class="line">        return recover(ethMsgHash, _sig) == _signer;</span><br><span class="line">    &#125;</span><br><span class="line">    //哈希</span><br><span class="line">    function getMsgHash(string memory _message) public pure returns(bytes32) &#123;</span><br><span class="line">    	return keccak256(abi.encodePacked(_message));</span><br><span class="line">    &#125;</span><br><span class="line">    //二次hash</span><br><span class="line">    function getEthMsgHash(bytes32 _message) public pure returns(bytes32) &#123;</span><br><span class="line">    	return keccak256(abi.encodePacked(</span><br><span class="line">    		&quot;\x19Ethereum Signed Message:\n32&quot;, _message</span><br><span class="line">        ));</span><br><span class="line">    &#125;</span><br><span class="line">    //取得加密消息中的签名用户地址</span><br><span class="line">    function recover(bytes32 _msg, bytes memory _sig) public pure returns(address)&#123;</span><br><span class="line">    	(bytes32 r, bytes32 s, uint8 v) = _split(_sig);</span><br><span class="line">    	return ecrecover(_msg, v, r, s);</span><br><span class="line">    &#125;</span><br><span class="line">    //分割签名取出r, s, v</span><br><span class="line">    function _split(bytes memory _sig) internal pure returns (bytes32 r, bytes32 s, uint8 v)&#123;</span><br><span class="line">    	//验证参数是否是65位的字符串</span><br><span class="line">    	require(_sig.length == 65, &quot;invalid signature length!&quot;)</span><br><span class="line">    	//sig = r + s + v</span><br><span class="line">    	assembly&#123;</span><br><span class="line">    		r := mload(add(_sig, 32))</span><br><span class="line">    		s := mload(add(_sig, 64))</span><br><span class="line">    		v := byte(0, mload(add(_sig, 96)))</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="权限控制"><a href="#权限控制" class="headerlink" title="权限控制"></a>权限控制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">contract AccessControl&#123;</span><br><span class="line">	event GrantRole(bytes32 indexed role, address indexed account);</span><br><span class="line">	event RevokeRole(bytes32 indexed role, address indexed account);</span><br><span class="line">	//角色映射集合</span><br><span class="line">	mapping(bytes32 =&gt; mapping(address =&gt; bool)) public roles;</span><br><span class="line">	</span><br><span class="line">	//角色</span><br><span class="line">	bytes32 private constant ADMIN = keccak256(abi.encodePacked(&quot;ADMIN&quot;));</span><br><span class="line">	bytes32 private constant USER = keccak256(abi.encodePacked(&quot;USER&quot;));</span><br><span class="line">	</span><br><span class="line">	//函数修饰器</span><br><span class="line">	modifier OnlyRole(bytes32 _role)&#123;</span><br><span class="line">		require(roles[_role][msg.sender], &quot;Not Authorized!&quot;);</span><br><span class="line">		_;</span><br><span class="line">    &#125;</span><br><span class="line">    //给合约部署者管理员权限</span><br><span class="line">    constructor()&#123;</span><br><span class="line">    	_grantRole(ADMIN, msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	//升级角色-内部调用</span><br><span class="line">	function _grantRole(bytes32 _role, address _account) internal &#123;</span><br><span class="line">		roles[_role][_account] = true;</span><br><span class="line">		emit GrantRole(_role, _account);</span><br><span class="line">	&#125;</span><br><span class="line">	//升级角色</span><br><span class="line">	function grantRole(bytes32 _role, address _account) external OnlyRole(ADMIN)&#123;</span><br><span class="line">		_grantRole(_role, _account);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//撤销角色-内部调用</span><br><span class="line">	function _revokeRole(bytes32 _role, address _account) internal &#123;</span><br><span class="line">		roles[_role][_account] = false;</span><br><span class="line">		emit RevokeRole(_role, _account);</span><br><span class="line">	&#125;</span><br><span class="line">	//撤销角色</span><br><span class="line">	function revokeRole(bytes32 _role, address _account) external OnlyRole(ADMIN)&#123;</span><br><span class="line">		_revokeRole(_role, _account);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多签钱包"><a href="#多签钱包" class="headerlink" title="多签钱包"></a>多签钱包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">contract MultiSigWallet &#123;</span><br><span class="line">    event Deposit(address indexed sender, uint amount);//收款事件</span><br><span class="line">    event Submit(uint indexed txId);//提交交易事件</span><br><span class="line">    event Approve(address indexed owner, uint indexed txId);//批准交易事件</span><br><span class="line">    event Revoke(address indexed owner，uint indexed txId);//撤销批准事件</span><br><span class="line">    event Execute(uint indexed txId);//交易执行事件</span><br><span class="line">    </span><br><span class="line">    //拥有者列表</span><br><span class="line">    address[] public owners;</span><br><span class="line">    //拥有者地址映射</span><br><span class="line">    mapping(address =&gt; bool) public isOwner;</span><br><span class="line">    //交易确认数</span><br><span class="line">    uint public required;</span><br><span class="line">    </span><br><span class="line">    //交易结构</span><br><span class="line">    struct Transaction &#123;</span><br><span class="line">    	address to;</span><br><span class="line">    	uint value;</span><br><span class="line">    	bytes data;</span><br><span class="line">    	bool executed;</span><br><span class="line">    &#125;</span><br><span class="line">    //交易记录</span><br><span class="line">    Transaction[] public transactions;</span><br><span class="line">    //同意交易的拥有者</span><br><span class="line">    mapping(uint =&gt; mapping(address =&gt; bool)) public approved;</span><br><span class="line">    //设置持有者和交易确认数</span><br><span class="line">    constructor(address[] memory _owners, uint _required)&#123;</span><br><span class="line">    	require(_owners.length &gt; 0，&quot;owners required&quot;);</span><br><span class="line">    	require(</span><br><span class="line">    		_required &gt; 0 &amp;&amp; _required &lt;= owners.length,</span><br><span class="line">    		&quot;invalid required number of owners&quot;</span><br><span class="line">		);</span><br><span class="line">        for (uint i; i &lt; owners.length; i++) &#123;</span><br><span class="line">        	address owner = _owners[il;</span><br><span class="line">            require(owner != address(0)，&quot;invalidowner&quot;);</span><br><span class="line">            require(!isOwner[owner]，&quot;owner is not unique&quot;);</span><br><span class="line">            isOwner[owner] = true;</span><br><span class="line">            owners.push(owner);</span><br><span class="line">        &#125;</span><br><span class="line">        required = required;</span><br><span class="line">    &#125; </span><br><span class="line">    //接受主币</span><br><span class="line">    receive() external payable&#123;</span><br><span class="line">    	emit Deposit(msg.sender, msg.value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    modifier onlyOwner()&#123;</span><br><span class="line">    	require(isOwner[msg.sender], &quot;Not Owner!&quot;);</span><br><span class="line">    	_;</span><br><span class="line">    &#125;</span><br><span class="line">    modifier txExists(uint _txId)&#123;</span><br><span class="line">    	require(_txId &lt; transactions.length, &quot;Tx does not exist!&quot;);</span><br><span class="line">    	_;</span><br><span class="line">    &#125; </span><br><span class="line">    modifier notApproved(uint _txId)&#123;</span><br><span class="line">    	require(!approved[_txId][msg.sender], &quot;Tx already approved!&quot;);</span><br><span class="line">    	_;</span><br><span class="line">    &#125;</span><br><span class="line">    modifier notExecuted(uint _txId)&#123;</span><br><span class="line">    	require(!transactions[_txId].executed, &quot;Tx already executed!&quot;);</span><br><span class="line">    	_;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //提交交易</span><br><span class="line">    function submit(address _to, uint _value, bytes calldata _data) external onlyOwner&#123;</span><br><span class="line">        transactions.push(Transaction(&#123;</span><br><span class="line">        to: to,</span><br><span class="line">        value: value,</span><br><span class="line">        data: data,</span><br><span class="line">        executed: false</span><br><span class="line">        &#125;));</span><br><span class="line">        emit Submit(transactions.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">    //批准交易</span><br><span class="line">    function approve(uint txId) external</span><br><span class="line">    	onlyOwner </span><br><span class="line">    	txExists( txId)</span><br><span class="line">        notApproved( txId)</span><br><span class="line">        notExecuted( txId)</span><br><span class="line">    &#123;</span><br><span class="line">		approved[ txId][msg.sender] = true;</span><br><span class="line">		emit Approve(msg.sender, txId);</span><br><span class="line">	&#125;	</span><br><span class="line">	//获取某个交易的批准数量</span><br><span class="line">    function _getApprovalCount(uint _txId) private view returns (uint count)&#123;</span><br><span class="line">        for(uint i; i &lt; owners.length; i++) &#123;</span><br><span class="line">            if (approved[_txId][owners[i]]) &#123;</span><br><span class="line">            	count += 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //执行交易</span><br><span class="line">    function execute(uint txId) external txExists( txId) notExecuted( txId)&#123;</span><br><span class="line">        require(_getApprovalCount(_txId) &gt;= required, &quot;approvals &lt; required&quot;);</span><br><span class="line">        Transaction storage transaction = transactions[_txId];</span><br><span class="line">        transaction.executed = true;</span><br><span class="line">        (bool success，) = </span><br><span class="line">        	transaction.to.call&#123;value: transaction.value&#125;(transaction.data);</span><br><span class="line">        require(success，&quot;tx failed&quot;);</span><br><span class="line">        emit Execute(_txId);</span><br><span class="line">    &#125;</span><br><span class="line">    //撤销批准</span><br><span class="line">    function revoke(uint _txId) external onlyOwner txExists( txId) notExecuted(_txId)&#123;</span><br><span class="line">        require(approved[_txId][msg.sender],&quot;tx not approved&quot;);</span><br><span class="line">        approved[_txId][msg.sender] = false;</span><br><span class="line">        emit Revoke(msg.sender，_txId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="荷兰拍卖"><a href="#荷兰拍卖" class="headerlink" title="荷兰拍卖"></a>荷兰拍卖</h3><ol>
+<li>1个NFT部署一个合约</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//随着时间价格越来越低</span><br><span class="line">//使用NFT标准ERC721</span><br><span class="line">contract DutchAuction is ERC721&#123;</span><br><span class="line">	uint private constant DURATION = 7 days;		//拍卖周期</span><br><span class="line">    IERC721 public immutable nft;					//NFT对象</span><br><span class="line">    uint public immutable nftId;					//NFT的ID</span><br><span class="line">    address payable public immutable seller;		//NFT售卖者</span><br><span class="line">    uint public immutable startingPrice;			//起拍价</span><br><span class="line">    uint public immutable startAt;					//竞拍时间</span><br><span class="line">    uint public immutable expiresAt;				//结束时间</span><br><span class="line">    uint public immutable discountRate;				//折损率</span><br><span class="line">    </span><br><span class="line">    //通过构造函数给变量赋值</span><br><span class="line">    constructor(uint _startingPrice, uint _discountRate, address _nft, uint _nftId )&#123;</span><br><span class="line">        seller = payable(msg.sender);</span><br><span class="line">        startingPrice = _startingPrice;</span><br><span class="line">        discountRate = _discountRate;</span><br><span class="line">        startAt = block.timestamp;</span><br><span class="line">        expiresAt = block.timestamp + DURATION;</span><br><span class="line">        require(</span><br><span class="line">            _startingPrice &gt;= _discountRate * DURATION,</span><br><span class="line">            &quot;starting price &lt; discount&quot;</span><br><span class="line">        );</span><br><span class="line">        nft = IERC721(_nft);</span><br><span class="line">        nftId = _nftId;</span><br><span class="line">    &#125;</span><br><span class="line">    //获得NFT价格</span><br><span class="line">    function getPrice() public view returns (uint) &#123;</span><br><span class="line">    	uint timeElapsed = block.timestamp - startAt;</span><br><span class="line">    	uint discount = discountRate * timeElapsed;</span><br><span class="line">    	return startingPrice - discount;</span><br><span class="line">    &#125;</span><br><span class="line">    //购买NFT</span><br><span class="line">    function buy() external payable &#123;</span><br><span class="line">		require(block.timestamp &lt; expiresAt，&quot;auction expired&quot;);</span><br><span class="line">        uint price = getPrice();</span><br><span class="line">        require(msg.value &gt;= price，&quot;ETH &lt; price&quot;);</span><br><span class="line">        ntf.transferFrom(seller, msg.sender, nftId);</span><br><span class="line">        //因为价格一直在变动，所以可能需要退差价</span><br><span class="line">        uint refund = msg.value - price;</span><br><span class="line">        if (refund &gt; 0) &#123;</span><br><span class="line">        	payable(msg.sender).transfer(refund);</span><br><span class="line">        &#125;</span><br><span class="line">        selfdestruct(seller);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>多个NFT部署一个合约</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line">import &quot;https://github.com/AmazingAng/WTFSolidity/blob/main/34_ERC721/ERC721.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract DutchAuction is Ownable, ERC721 &#123;</span><br><span class="line">    uint256 public constant COLLECTOIN_SIZE = 10000; // NFT总数</span><br><span class="line">    uint256 public constant AUCTION_START_PRICE = 1 ether; // 起拍价(最高价)</span><br><span class="line">    uint256 public constant AUCTION_END_PRICE = 0.1 ether; // 结束价(最低价/地板价)</span><br><span class="line">    uint256 public constant AUCTION_TIME = 10 minutes; // 拍卖时间，为了测试方便设为10分钟</span><br><span class="line">    uint256 public constant AUCTION_DROP_INTERVAL = 1 minutes; // 每过多久时间，价格衰减一次</span><br><span class="line">    uint256 public constant AUCTION_DROP_PER_STEP =</span><br><span class="line">        (AUCTION_START_PRICE - AUCTION_END_PRICE) /</span><br><span class="line">        (AUCTION_TIME / AUCTION_DROP_INTERVAL); // 每次价格衰减步长</span><br><span class="line">    </span><br><span class="line">    uint256 public auctionStartTime; // 拍卖开始时间戳</span><br><span class="line">    string private _baseTokenURI;   // metadata URI</span><br><span class="line">    uint256[] private _allTokens; // 记录所有存在的tokenId </span><br><span class="line">    </span><br><span class="line">    constructor() ERC721(&quot;name&quot;,&quot;symbol&quot;) &#123;</span><br><span class="line">        auctionStartTime = block.timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //设置拍卖时间开始时间</span><br><span class="line">    function setAuctionStartTime(uint32 timestamp) external onlyOwner &#123;</span><br><span class="line">        auctionStartTime = timestamp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 获取拍卖实时价格</span><br><span class="line">    function getAuctionPrice() public view returns (uint256) &#123;</span><br><span class="line">        if (block.timestamp &lt; auctionStartTime) &#123;</span><br><span class="line">        	return AUCTION_START_PRICE;</span><br><span class="line">        &#125;else if (block.timestamp - auctionStartTime &gt;= AUCTION_TIME) &#123;</span><br><span class="line">        	return AUCTION_END_PRICE;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            uint256 steps = </span><br><span class="line">            	(block.timestamp - auctionStartTime) / AUCTION_DROP_INTERVAL;</span><br><span class="line">            return AUCTION_START_PRICE - (steps * AUCTION_DROP_PER_STEP);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 拍卖mint函数，quantity数量</span><br><span class="line">    // TODO 需要调整</span><br><span class="line">    function auctionMint(uint256 quantity) external payable&#123;</span><br><span class="line">    	// 建立local变量，减少gas花费</span><br><span class="line">        uint256 _saleStartTime = uint256(auctionStartTime); </span><br><span class="line">        // 检查是否设置起拍时间，拍卖是否开始</span><br><span class="line">        require(</span><br><span class="line">            _saleStartTime != 0 &amp;&amp; block.timestamp &gt;= _saleStartTime,</span><br><span class="line">            &quot;sale has not started yet&quot;</span><br><span class="line">        ); </span><br><span class="line">        // 检查是否超过NFT上限</span><br><span class="line">        require(</span><br><span class="line">        	totalSupply() + quantity &lt;= COLLECTOIN_SIZE,</span><br><span class="line">        	&quot;not enough remaining reserved for auction to support desired mint amount&quot;</span><br><span class="line">        ); </span><br><span class="line">		// 计算mint成本</span><br><span class="line">        uint256 totalCost = getAuctionPrice() * quantity; </span><br><span class="line">        // 检查用户是否支付足够ETH</span><br><span class="line">        require(msg.value &gt;= totalCost, &quot;Need to send more ETH.&quot;); </span><br><span class="line">        </span><br><span class="line">        // Mint NFT</span><br><span class="line">        for(uint256 i = 0; i &lt; quantity; i++) &#123;</span><br><span class="line">            uint256 mintIndex = totalSupply();</span><br><span class="line">            _mint(msg.sender, mintIndex);</span><br><span class="line">            _addTokenToAllTokensEnumeration(mintIndex);</span><br><span class="line">        &#125;</span><br><span class="line">        // 多余ETH退款</span><br><span class="line">        // TODO 加锁</span><br><span class="line">        if (msg.value &gt; totalCost) &#123;</span><br><span class="line">            payable(msg.sender).transfer(msg.value - totalCost); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="英式拍卖"><a href="#英式拍卖" class="headerlink" title="英式拍卖"></a>英式拍卖</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">contract EnglishAuction &#123;</span><br><span class="line">	event Start();</span><br><span class="line">	event Bid(address indexed sender, uint amount);</span><br><span class="line">	event Withdraw(address indexed bidder, uint amount);</span><br><span class="line"></span><br><span class="line">	IERC721 public immutable nft;</span><br><span class="line">	uint public immutable nftId;</span><br><span class="line">    address payable public immutable seller;</span><br><span class="line">    uint32 public endAt;</span><br><span class="line">    bool public started;</span><br><span class="line">    bool public ended;</span><br><span class="line">    </span><br><span class="line">    address public highestBidder;</span><br><span class="line">    uint public highestBid;</span><br><span class="line">    mapping(address =&gt; uint) public bids;</span><br><span class="line">    </span><br><span class="line">    constructor(address _nft,uint _nftId,uint _startingBid)&#123;</span><br><span class="line">        nft = IERC721(_nft);</span><br><span class="line">        nftId = _nftId;</span><br><span class="line">        seller = payable(msg.sender);</span><br><span class="line">        highestBid = _startingBid;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //开始拍卖</span><br><span class="line">    function start() external &#123;</span><br><span class="line">        require(msg.sender == seller,&quot;not seller&quot;);</span><br><span class="line">        require(!started,&quot;started&quot; ) ;</span><br><span class="line">        started = true;</span><br><span class="line">        endAt = uint32(block.timestamp + 60);</span><br><span class="line">        nft,transferFrom(seller， address(this)， nftId);</span><br><span class="line">        emit Start();</span><br><span class="line">    &#125;</span><br><span class="line">    //竞拍</span><br><span class="line">    function bid() external payable &#123;</span><br><span class="line">        require(started,&quot;not started&quot;);</span><br><span class="line">        require(block.timestamp &lt; endAt，&quot;ended&quot;);</span><br><span class="line">        require(msg.value &gt; highestBid, &quot;value &lt; highest bid&quot;);</span><br><span class="line">        if (highestBidder != address(0)) &#123;</span><br><span class="line">        	bids[highestBidder] += highestBid;</span><br><span class="line">        &#125;</span><br><span class="line">        highestBid = msg.value;</span><br><span class="line">        highestBidder = msg.sender;</span><br><span class="line">        emit Bid(msg.sender， msg.value);</span><br><span class="line">    &#125;</span><br><span class="line">    //取回上一次竞拍的出价</span><br><span class="line">    function withdraw() external &#123;</span><br><span class="line">        uint bal = bids[msg.sender];</span><br><span class="line">        bids[msg.sender] = 0;</span><br><span class="line">        payable(msg.sender).transfer(bal);</span><br><span class="line">        emit Withdraw(msg.sender，bal);</span><br><span class="line">    &#125;</span><br><span class="line">    //结束竞拍</span><br><span class="line">    function end() external &#123;</span><br><span class="line">        require(started, &quot;not started&quot;);</span><br><span class="line">        require(block.timestamp &gt;= endAt, &quot;not ended&quot;);</span><br><span class="line">        require(!ended, &quot;ended&quot;);</span><br><span class="line"></span><br><span class="line">        ended = true;</span><br><span class="line">        if (highestBidder != address(0)) &#123;</span><br><span class="line">            nft.safeTransferFrom(address(this), highestBidder, nftId);</span><br><span class="line">            seller.transfer(highestBid);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            nft.safeTransferFrom(address(this), seller, nftId);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        emit End(highestBidder, highestBid);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="众筹合约"><a href="#众筹合约" class="headerlink" title="众筹合约"></a>众筹合约</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">contract CrowdFund &#123;</span><br><span class="line">    event Launch(</span><br><span class="line">        uint id,</span><br><span class="line">        address indexed creator,</span><br><span class="line">        uint goal,</span><br><span class="line">        uint32 startAt,</span><br><span class="line">        uint32 endAt</span><br><span class="line">    );</span><br><span class="line">    event Cancel(uint id);</span><br><span class="line">    event Pledge(uint indexed id, address indexed caller, uint amount);</span><br><span class="line">    event Unpledge(uint indexed id, address indexed caller, uint amount);</span><br><span class="line">    event Claim(uint id);</span><br><span class="line">    event Refund(uint id, address indexed caller, uint amount);</span><br><span class="line"></span><br><span class="line">	//众筹结构体</span><br><span class="line">    struct Campaign &#123;</span><br><span class="line">        address creator;	//发起人</span><br><span class="line">        uint goal;			//目标</span><br><span class="line">        uint pledged;		//已经获得的众筹数量</span><br><span class="line">        uint32 startAt;		//开始时间</span><br><span class="line">        uint32 endAt;		//结束时间</span><br><span class="line">        bool claimed;		//是否领取</span><br><span class="line">    &#125;</span><br><span class="line">	//众筹使用的代币</span><br><span class="line">    IERC20 public immutable token;</span><br><span class="line">    //众筹数</span><br><span class="line">    uint public count;</span><br><span class="line">    //记录众筹</span><br><span class="line">    mapping(uint =&gt; Campaign) public campaigns;</span><br><span class="line">    //记录某一次众筹参与用户和数额</span><br><span class="line">    mapping(uint =&gt; mapping(address =&gt; uint)) public pledgedAmount;</span><br><span class="line"></span><br><span class="line">    constructor(address _token) &#123;</span><br><span class="line">        token = IERC20(_token);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	//创建一个众筹</span><br><span class="line">    function launch(uint _goal, uint32 _startAt, uint32 _endAt) external &#123;</span><br><span class="line">        require(_startAt &gt;= block.timestamp, &quot;start at &lt; now&quot;);</span><br><span class="line">        require(_endAt &gt;= _startAt, &quot;end at &lt; start at&quot;);</span><br><span class="line">        require(_endAt &lt;= block.timestamp + 90 days, &quot;end at &gt; max duration&quot;);</span><br><span class="line"></span><br><span class="line">        count += 1;</span><br><span class="line">        campaigns[count] = Campaign(&#123;</span><br><span class="line">            creator: msg.sender,</span><br><span class="line">            goal: _goal,</span><br><span class="line">            pledged: 0,</span><br><span class="line">            startAt: _startAt,</span><br><span class="line">            endAt: _endAt,</span><br><span class="line">            claimed: false</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        emit Launch(count, msg.sender, _goal, _startAt, _endAt);</span><br><span class="line">    &#125;</span><br><span class="line">	//取消一个众筹</span><br><span class="line">    function cancel(uint _id) external &#123;</span><br><span class="line">        Campaign memory campaign = campaigns[_id];</span><br><span class="line">        require(campaign.creator == msg.sender, &quot;not creator&quot;);</span><br><span class="line">        require(block.timestamp &lt; campaign.startAt, &quot;started&quot;);</span><br><span class="line"></span><br><span class="line">        delete campaigns[_id];</span><br><span class="line">        emit Cancel(_id);</span><br><span class="line">    &#125;</span><br><span class="line">	//参与众筹</span><br><span class="line">    function pledge(uint _id, uint _amount) external &#123;</span><br><span class="line">        Campaign storage campaign = campaigns[_id];</span><br><span class="line">        require(block.timestamp &gt;= campaign.startAt, &quot;not started&quot;);</span><br><span class="line">        require(block.timestamp &lt;= campaign.endAt, &quot;ended&quot;);</span><br><span class="line"></span><br><span class="line">        campaign.pledged += _amount;</span><br><span class="line">        pledgedAmount[_id][msg.sender] += _amount;</span><br><span class="line">        token.transferFrom(msg.sender, address(this), _amount);</span><br><span class="line"></span><br><span class="line">        emit Pledge(_id, msg.sender, _amount);</span><br><span class="line">    &#125;</span><br><span class="line">	//退出众筹</span><br><span class="line">    function unpledge(uint _id, uint _amount) external &#123;</span><br><span class="line">        Campaign storage campaign = campaigns[_id];</span><br><span class="line">        require(block.timestamp &lt;= campaign.endAt, &quot;ended&quot;);</span><br><span class="line"></span><br><span class="line">        campaign.pledged -= _amount;</span><br><span class="line">        pledgedAmount[_id][msg.sender] -= _amount;</span><br><span class="line">        token.transfer(msg.sender, _amount);</span><br><span class="line"></span><br><span class="line">        emit Unpledge(_id, msg.sender, _amount);</span><br><span class="line">    &#125;</span><br><span class="line">	//众筹成功取出筹款</span><br><span class="line">    function claim(uint _id) external &#123;</span><br><span class="line">        Campaign storage campaign = campaigns[_id];</span><br><span class="line">        require(campaign.creator == msg.sender, &quot;not creator&quot;);</span><br><span class="line">        require(block.timestamp &gt; campaign.endAt, &quot;not ended&quot;);</span><br><span class="line">        require(campaign.pledged &gt;= campaign.goal, &quot;pledged &lt; goal&quot;);</span><br><span class="line">        require(!campaign.claimed, &quot;claimed&quot;);</span><br><span class="line"></span><br><span class="line">        campaign.claimed = true;</span><br><span class="line">        token.transfer(campaign.creator, campaign.pledged);</span><br><span class="line"></span><br><span class="line">        emit Claim(_id);</span><br><span class="line">    &#125;</span><br><span class="line">	//众筹失败退回筹款</span><br><span class="line">    function refund(uint _id) external &#123;</span><br><span class="line">        Campaign memory campaign = campaigns[_id];</span><br><span class="line">        require(block.timestamp &gt; campaign.endAt, &quot;not ended&quot;);</span><br><span class="line">        require(campaign.pledged &lt; campaign.goal, &quot;pledged &gt;= goal&quot;);</span><br><span class="line"></span><br><span class="line">        uint bal = pledgedAmount[_id][msg.sender];</span><br><span class="line">        pledgedAmount[_id][msg.sender] = 0;</span><br><span class="line">        token.transfer(msg.sender, bal);</span><br><span class="line"></span><br><span class="line">        emit Refund(_id, msg.sender, bal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代币水龙头"><a href="#代币水龙头" class="headerlink" title="代币水龙头"></a>代币水龙头</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">contract Faucet &#123;</span><br><span class="line">	uint256 public amountAllowed = 100; // 每次领 100 单位代币</span><br><span class="line">	address public tokenContract;   // token合约地址</span><br><span class="line">	mapping(address =&gt; bool) public requestedAddress;   // 记录领取过代币的地址</span><br><span class="line">	</span><br><span class="line">	// SendToken事件    </span><br><span class="line">	event SendToken(address indexed Receiver, uint256 indexed Amount); </span><br><span class="line">	</span><br><span class="line">	// 部署时设定ERC2代币合约</span><br><span class="line">    constructor(address _tokenContract) &#123;</span><br><span class="line">        tokenContract = _tokenContract; // set token contract</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 用户领取代币函数</span><br><span class="line">    function requestTokens() external &#123;</span><br><span class="line">     	// 每个地址只能领一次</span><br><span class="line">        require(requestedAddress[msg.sender] == false, </span><br><span class="line">        	&quot;Can&#x27;t Request Multiple Times!&quot;);</span><br><span class="line">        IERC20 token = IERC20(tokenContract); // 创建IERC20合约对象</span><br><span class="line">        require(token.balanceOf(address(this)) &gt;= amountAllowed, &quot;Faucet Empty!&quot;); // 水龙头空了</span><br><span class="line"></span><br><span class="line">        token.transfer(msg.sender, amountAllowed); // 发送token</span><br><span class="line">        requestedAddress[msg.sender] = true; // 记录领取地址 </span><br><span class="line"></span><br><span class="line">        emit SendToken(msg.sender, amountAllowed); // 释放SendToken事件</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="空投"><a href="#空投" class="headerlink" title="空投"></a>空投</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">contract Airdrop &#123;</span><br><span class="line">	// 数组求和函数</span><br><span class="line">    function getSum(uint256[] calldata _arr) public pure returns(uint sum)</span><br><span class="line">    &#123;</span><br><span class="line">        for(uint i = 0; i &lt; _arr.length; i++)</span><br><span class="line">            sum = sum + _arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /// @notice 向多个地址转账ERC20代币，使用前需要先授权</span><br><span class="line">    function multiTransferToken(</span><br><span class="line">        address _token,					//转账的ERC20代币地址</span><br><span class="line">        address[] calldata _addresses,	//空投地址数组</span><br><span class="line">        uint256[] calldata _amounts		//代币数量数组（每个地址的空投数量）</span><br><span class="line">        ) external &#123;</span><br><span class="line">        require(_addresses.length == _amounts.length, </span><br><span class="line">        	&quot;Lengths of Addresses and Amounts NOT EQUAL&quot;);</span><br><span class="line">        	</span><br><span class="line">        IERC20 token = IERC20(_token); // 声明IERC合约变量</span><br><span class="line">        uint _amountSum = getSum(_amounts); // 计算空投代币总量</span><br><span class="line">        // 检查：授权代币数量 &gt;= 空投代币总量</span><br><span class="line">        require(token.allowance(msg.sender, address(this)) &gt;= _amountSum, &quot;Need Approve ERC20 token&quot;);</span><br><span class="line"></span><br><span class="line">        // for循环，利用transferFrom函数发送空投</span><br><span class="line">        for (uint8 i; i &lt; _addresses.length; i++) &#123;</span><br><span class="line">            token.transferFrom(msg.sender, _addresses[i], _amounts[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /// 向多个地址转账ETH</span><br><span class="line">    function multiTransferETH(</span><br><span class="line">        address payable[] calldata _addresses,</span><br><span class="line">        uint256[] calldata _amounts</span><br><span class="line">    ) public payable &#123;</span><br><span class="line">        require(_addresses.length == _amounts.length, </span><br><span class="line">        	&quot;Lengths of Addresses and Amounts NOT EQUAL&quot;);</span><br><span class="line">        	</span><br><span class="line">        uint _amountSum = getSum(_amounts); // 计算空投ETH总量</span><br><span class="line">        // 检查转入ETH等于空投总量</span><br><span class="line">        require(msg.value == _amountSum, &quot;Transfer amount error&quot;);</span><br><span class="line">        // for循环，利用transfer函数发送ETH</span><br><span class="line">        for (uint256 i = 0; i &lt; _addresses.length; i++) &#123;</span><br><span class="line">            _addresses[i].transfer(_amounts[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="白名单"><a href="#白名单" class="headerlink" title="白名单"></a>白名单</h3><ol>
+<li>通过MerkleTree发放</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">contract MerkleTree is ERC721 &#123;</span><br><span class="line">    bytes32 immutable public root; // Merkle树的根</span><br><span class="line">    mapping(address =&gt; bool) public mintedAddress;   // 记录已经mint的地址</span><br><span class="line"></span><br><span class="line">    // 构造函数，初始化NFT合集的名称、代号、Merkle树的根</span><br><span class="line">    constructor(string memory name, string memory symbol, bytes32 merkleroot)</span><br><span class="line">    ERC721(name, symbol)</span><br><span class="line">    &#123;</span><br><span class="line">        root = merkleroot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 利用Merkle树验证地址并完成mint</span><br><span class="line">    function mint(address account, uint256 tokenId, bytes32[] calldata proof)</span><br><span class="line">    external</span><br><span class="line">    &#123;</span><br><span class="line">        require(_verify(_leaf(account), proof), &quot;Invalid merkle proof&quot;); // Merkle检验通过</span><br><span class="line">        require(!mintedAddress[account], &quot;Already minted!&quot;); // 地址没有mint过</span><br><span class="line">        _mint(account, tokenId); // mint</span><br><span class="line">        mintedAddress[account] = true; // 记录mint过的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 计算Merkle树叶子的哈希值</span><br><span class="line">    function _leaf(address account)</span><br><span class="line">    internal pure returns (bytes32)</span><br><span class="line">    &#123;</span><br><span class="line">        return keccak256(abi.encodePacked(account));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Merkle树验证，调用MerkleProof库的verify()函数</span><br><span class="line">    function _verify(bytes32 leaf, bytes32[] memory proof)</span><br><span class="line">    internal view returns (bool)</span><br><span class="line">    &#123;</span><br><span class="line">        return MerkleProof.verify(proof, root, leaf);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>通过签名发放</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">contract SignatureNFT is ERC721 &#123;</span><br><span class="line">    address immutable public signer; // 签名地址</span><br><span class="line">    mapping(address =&gt; bool) public mintedAddress;   // 记录已经mint的地址</span><br><span class="line"></span><br><span class="line">    // 构造函数，初始化NFT合集的名称、代号、签名地址</span><br><span class="line">    constructor(string memory _name, string memory _symbol, address _signer)</span><br><span class="line">    ERC721(_name, _symbol)</span><br><span class="line">    &#123;</span><br><span class="line">        signer = _signer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 利用ECDSA验证签名并mint</span><br><span class="line">    function mint(address _account, uint256 _tokenId, bytes memory _signature)</span><br><span class="line">    external</span><br><span class="line">    &#123;</span><br><span class="line">    	// 将_account和_tokenId打包消息</span><br><span class="line">        bytes32 _msgHash = getMessageHash(_account, _tokenId); </span><br><span class="line">        // 计算以太坊签名消息</span><br><span class="line">        bytes32 _ethSignedMessageHash = ECDSA.toEthSignedMessageHash(_msgHash); </span><br><span class="line">        // ECDSA检验通过</span><br><span class="line">        require(verify(_ethSignedMessageHash, _signature), &quot;Invalid signature&quot;); </span><br><span class="line">         // 地址没有mint过</span><br><span class="line">        require(!mintedAddress[_account], &quot;Already minted!&quot;);</span><br><span class="line">        // mint</span><br><span class="line">        _mint(_account, _tokenId); </span><br><span class="line">        // 记录mint过的地址</span><br><span class="line">        mintedAddress[_account] = true; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function getMessageHash(address _account, uint256 _tokenId) public pure returns(bytes32)&#123;</span><br><span class="line">        return keccak256(abi.encodePacked(_account, _tokenId));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // ECDSA验证，调用ECDSA库的verify()函数</span><br><span class="line">    function verify(bytes32 _msgHash, bytes memory _signature)</span><br><span class="line">    public view returns (bool)</span><br><span class="line">    &#123;</span><br><span class="line">        return ECDSA.verify(_msgHash, _signature, signer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="交易所"><a href="#交易所" class="headerlink" title="交易所"></a>交易所</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">contract NFTSwap is IERC721Receiver&#123;</span><br><span class="line">    event List(address indexed seller, address indexed nftAddr, uint256 indexed tokenId, uint256 price);</span><br><span class="line">    event Purchase(address indexed buyer, address indexed nftAddr, uint256 indexed tokenId, uint256 price);</span><br><span class="line">    event Revoke(address indexed seller, address indexed nftAddr, uint256 indexed tokenId);    </span><br><span class="line">    event Update(address indexed seller, address indexed nftAddr, uint256 indexed tokenId, uint256 newPrice);</span><br><span class="line">    </span><br><span class="line">    fallback() external payable&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    // 定义order结构体</span><br><span class="line">    struct Order&#123;</span><br><span class="line">        address owner;</span><br><span class="line">        uint256 price; </span><br><span class="line">    &#125;</span><br><span class="line">    // NFT地址 - NFT id -  Order映射</span><br><span class="line">    mapping(address =&gt; mapping(uint256 =&gt; Order)) public nftList;</span><br><span class="line">    </span><br><span class="line">    // 实现&#123;IERC721Receiver&#125;的onERC721Received，能够接收ERC721代币</span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external override returns (bytes4)&#123;</span><br><span class="line">        return IERC721Receiver.onERC721Received.selector;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 挂单: 卖家上架NFT，合约地址为_nftAddr，tokenId为_tokenId，价格_price为以太坊（单位是wei）</span><br><span class="line">    function list(address _nftAddr, uint256 _tokenId, uint256 _price) public&#123;</span><br><span class="line">        IERC721 _nft = IERC721(_nftAddr); // 声明IERC721接口合约变量</span><br><span class="line">        require(_nft.getApproved(_tokenId) == address(this), &quot;Need Approval&quot;); // 合约得到授权</span><br><span class="line">        require(_price &gt; 0); // 价格大于0</span><br><span class="line"></span><br><span class="line">        Order storage _order = nftList[_nftAddr][_tokenId]; //设置NF持有人和价格</span><br><span class="line">        _order.owner = msg.sender;</span><br><span class="line">        _order.price = _price;</span><br><span class="line">        // 将NFT转账到合约</span><br><span class="line">        _nft.safeTransferFrom(msg.sender, address(this), _tokenId);</span><br><span class="line"></span><br><span class="line">        // 释放List事件</span><br><span class="line">        emit List(msg.sender, _nftAddr, _tokenId, _price);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 撤单： 卖家取消挂单</span><br><span class="line">    function revoke(address _nftAddr, uint256 _tokenId) public &#123;</span><br><span class="line">        Order storage _order = nftList[_nftAddr][_tokenId]; // 取得Order        </span><br><span class="line">        require(_order.owner == msg.sender, &quot;Not Owner&quot;); // 必须由持有人发起</span><br><span class="line">        // 声明IERC721接口合约变量</span><br><span class="line">        IERC721 _nft = IERC721(_nftAddr);</span><br><span class="line">        require(_nft.ownerOf(_tokenId) == address(this), &quot;Invalid Order&quot;); // NFT在合约中</span><br><span class="line">        </span><br><span class="line">        // 将NFT转给卖家</span><br><span class="line">        _nft.safeTransferFrom(address(this), msg.sender, _tokenId);</span><br><span class="line">        delete nftList[_nftAddr][_tokenId]; // 删除order</span><br><span class="line">      </span><br><span class="line">        // 释放Revoke事件</span><br><span class="line">        emit Revoke(msg.sender, _nftAddr, _tokenId);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 调整价格: 卖家调整挂单价格</span><br><span class="line">    function update(address _nftAddr, uint256 _tokenId, uint256 _newPrice) public &#123;</span><br><span class="line">        require(_newPrice &gt; 0, &quot;Invalid Price&quot;); // NFT价格大于0</span><br><span class="line">        Order storage _order = nftList[_nftAddr][_tokenId]; // 取得Order        </span><br><span class="line">        require(_order.owner == msg.sender, &quot;Not Owner&quot;); // 必须由持有人发起</span><br><span class="line">        // 声明IERC721接口合约变量</span><br><span class="line">        IERC721 _nft = IERC721(_nftAddr);</span><br><span class="line">        require(_nft.ownerOf(_tokenId) == address(this), &quot;Invalid Order&quot;); // NFT在合约中</span><br><span class="line">        </span><br><span class="line">        // 调整NFT价格</span><br><span class="line">        _order.price = _newPrice;</span><br><span class="line">      </span><br><span class="line">        // 释放Update事件</span><br><span class="line">        emit Update(msg.sender, _nftAddr, _tokenId, _newPrice);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 购买: 买家购买NFT，合约为_nftAddr，tokenId为_tokenId，调用函数时要附带ETH</span><br><span class="line">    function purchase(address _nftAddr, uint256 _tokenId) payable public &#123;</span><br><span class="line">        Order storage _order = nftList[_nftAddr][_tokenId]; // 取得Order        </span><br><span class="line">        require(_order.price &gt; 0, &quot;Invalid Price&quot;); // NFT价格大于0</span><br><span class="line">        require(msg.value &gt;= _order.price, &quot;Increase price&quot;); // 购买价格大于标价</span><br><span class="line">        // 声明IERC721接口合约变量</span><br><span class="line">        IERC721 _nft = IERC721(_nftAddr);</span><br><span class="line">        require(_nft.ownerOf(_tokenId) == address(this), &quot;Invalid Order&quot;); // NFT在合约中</span><br><span class="line"></span><br><span class="line">        // 将NFT转给买家</span><br><span class="line">        _nft.safeTransferFrom(address(this), msg.sender, _tokenId);</span><br><span class="line">        // 将ETH转给卖家，多余ETH给买家退款</span><br><span class="line">        payable(_order.owner).transfer(_order.price);</span><br><span class="line">        payable(msg.sender).transfer(msg.value-_order.price);</span><br><span class="line"></span><br><span class="line">        delete nftList[_nftAddr][_tokenId]; // 删除order</span><br><span class="line"></span><br><span class="line">        // 释放Purchase事件</span><br><span class="line">        emit Purchase(msg.sender, _nftAddr, _tokenId, msg.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分账"><a href="#分账" class="headerlink" title="分账"></a>分账</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 分账合约 </span><br><span class="line"> * @dev 这个合约会把收到的ETH按事先定好的份额分给几个账户。收到ETH会存在分账合约中，需要每个受益人调用release()函数来领取。</span><br><span class="line"> */</span><br><span class="line">contract PaymentSplit&#123;</span><br><span class="line"></span><br><span class="line">    // 事件</span><br><span class="line">    event PayeeAdded(address account, uint256 shares); // 增加受益人事件</span><br><span class="line">    event PaymentReleased(address to, uint256 amount); // 受益人提款事件</span><br><span class="line">    event PaymentReceived(address from, uint256 amount); // 合约收款事件</span><br><span class="line">    </span><br><span class="line">    uint256 public totalShares; // 总份额</span><br><span class="line">    uint256 public totalReleased; // 总支付</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint256) public shares; // 每个受益人的份额</span><br><span class="line">    mapping(address =&gt; uint256) public released; // 支付给每个受益人的金额</span><br><span class="line">    address[] public payees; // 受益人数组</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * @dev 初始化受益人数组_payees和分账份额数组_shares</span><br><span class="line">     * 数组长度不能为0，两个数组长度要相等。_shares中元素要大于0，_payees中地址不能为0地址且不能有重复地址</span><br><span class="line">     */</span><br><span class="line">    constructor(address[] memory _payees, uint256[] memory _shares) payable &#123;</span><br><span class="line">        // 检查_payees和_shares数组长度相同，且不为0</span><br><span class="line">        require(_payees.length == _shares.length, &quot;PaymentSplitter: payees and shares length mismatch&quot;);</span><br><span class="line">        require(_payees.length &gt; 0, &quot;PaymentSplitter: no payees&quot;);</span><br><span class="line">        // 调用_addPayee，更新受益人地址payees、受益人份额shares和总份额totalShares</span><br><span class="line">        for (uint256 i = 0; i &lt; _payees.length; i++) &#123;</span><br><span class="line">            _addPayee(_payees[i], _shares[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 回调函数，收到ETH释放PaymentReceived事件</span><br><span class="line">     */</span><br><span class="line">    receive() external payable virtual &#123;</span><br><span class="line">        emit PaymentReceived(msg.sender, msg.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 为有效受益人地址_account分帐，相应的ETH直接发送到受益人地址。任何人都可以触发这个函数，但钱会打给account地址。</span><br><span class="line">     * 调用了releasable()函数。</span><br><span class="line">     */</span><br><span class="line">    function release(address payable _account) public virtual &#123;</span><br><span class="line">        // account必须是有效受益人</span><br><span class="line">        require(shares[_account] &gt; 0, &quot;PaymentSplitter: account has no shares&quot;);</span><br><span class="line">        // 计算account应得的eth</span><br><span class="line">        uint256 payment = releasable(_account);</span><br><span class="line">        // 应得的eth不能为0</span><br><span class="line">        require(payment != 0, &quot;PaymentSplitter: account is not due payment&quot;);</span><br><span class="line">        // 更新总支付totalReleased和支付给每个受益人的金额released</span><br><span class="line">        totalReleased += payment;</span><br><span class="line">        released[_account] += payment;</span><br><span class="line">        // 转账</span><br><span class="line">        _account.transfer(payment);</span><br><span class="line">        emit PaymentReleased(_account, payment);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 计算一个账户能够领取的eth。</span><br><span class="line">     * 调用了pendingPayment()函数。</span><br><span class="line">     */</span><br><span class="line">    function releasable(address _account) public view returns (uint256) &#123;</span><br><span class="line">        // 计算分账合约总收入totalReceived</span><br><span class="line">        uint256 totalReceived = address(this).balance + totalReleased;</span><br><span class="line">        // 调用_pendingPayment计算account应得的ETH</span><br><span class="line">        return pendingPayment(_account, totalReceived, released[_account]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 根据受益人地址`_account`, 分账合约总收入`_totalReceived`和该地址已领取的钱`_alreadyReleased`，计算该受益人现在应分的`ETH`。</span><br><span class="line">     */</span><br><span class="line">    function pendingPayment(</span><br><span class="line">        address _account,</span><br><span class="line">        uint256 _totalReceived,</span><br><span class="line">        uint256 _alreadyReleased</span><br><span class="line">    ) public view returns (uint256) &#123;</span><br><span class="line">        // account应得的ETH = 总应得ETH - 已领到的ETH</span><br><span class="line">        return (_totalReceived * shares[_account]) / totalShares - _alreadyReleased;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 新增受益人_account以及对应的份额_accountShares。只能在构造器中被调用，不能修改。</span><br><span class="line">     */</span><br><span class="line">    function _addPayee(address _account, uint256 _accountShares) private &#123;</span><br><span class="line">        // 检查_account不为0地址</span><br><span class="line">        require(_account != address(0), &quot;PaymentSplitter: account is the zero address&quot;);</span><br><span class="line">        // 检查_accountShares不为0</span><br><span class="line">        require(_accountShares &gt; 0, &quot;PaymentSplitter: shares are 0&quot;);</span><br><span class="line">        // 检查_account不重复</span><br><span class="line">        require(shares[_account] == 0, &quot;PaymentSplitter: account already has shares&quot;);</span><br><span class="line">        // 更新payees，shares和totalShares</span><br><span class="line">        payees.push(_account);</span><br><span class="line">        shares[_account] = _accountShares;</span><br><span class="line">        totalShares += _accountShares;</span><br><span class="line">        // 释放增加受益人事件</span><br><span class="line">        emit PayeeAdded(_account, _accountShares);</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="线性释放代币"><a href="#线性释放代币" class="headerlink" title="线性释放代币"></a>线性释放代币</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">contract TokenVesting &#123;</span><br><span class="line">    // 事件</span><br><span class="line">    event ERC20Released(address indexed token, uint256 amount); // 提币事件</span><br><span class="line">    </span><br><span class="line">    // 状态变量</span><br><span class="line">    mapping(address =&gt; uint256) public erc20Released; // 代币地址-&gt;释放数量的映射，记录已经释放的代币</span><br><span class="line">    address public immutable beneficiary; // 受益人地址</span><br><span class="line">    uint256 public immutable start; // 起始时间戳</span><br><span class="line">    uint256 public immutable duration; // 归属期</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * @dev 初始化受益人地址，释放周期(秒), 起始时间戳(当前区块链时间戳)</span><br><span class="line">     */</span><br><span class="line">    constructor(</span><br><span class="line">        address beneficiaryAddress,</span><br><span class="line">        uint256 durationSeconds</span><br><span class="line">    ) &#123;</span><br><span class="line">        require(beneficiaryAddress != address(0), &quot;VestingWallet: beneficiary is zero address&quot;);</span><br><span class="line">        beneficiary = beneficiaryAddress;</span><br><span class="line">        start = block.timestamp;</span><br><span class="line">        duration = durationSeconds;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 受益人提取已释放的代币。</span><br><span class="line">     * 调用vestedAmount()函数计算可提取的代币数量，然后transfer给受益人。</span><br><span class="line">     * 释放 &#123;ERC20Released&#125; 事件.</span><br><span class="line">     */</span><br><span class="line">    function release(address token) public &#123;</span><br><span class="line">        // 调用vestedAmount()函数计算可提取的代币数量</span><br><span class="line">        uint256 releasable = vestedAmount(token, uint256(block.timestamp)) - erc20Released[token];</span><br><span class="line">        // 更新已释放代币数量   </span><br><span class="line">        erc20Released[token] += releasable; </span><br><span class="line">        // 转代币给受益人</span><br><span class="line">        emit ERC20Released(token, releasable);</span><br><span class="line">        IERC20(token).transfer(beneficiary, releasable);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 根据线性释放公式，计算已经释放的数量。开发者可以通过修改这个函数，自定义释放方式。</span><br><span class="line">     * @param token: 代币地址</span><br><span class="line">     * @param timestamp: 查询的时间戳</span><br><span class="line">     */</span><br><span class="line">    function vestedAmount(address token, uint256 timestamp) public view returns (uint256) &#123;</span><br><span class="line">        // 合约里总共收到了多少代币（当前余额 + 已经提取）</span><br><span class="line">        uint256 totalAllocation = IERC20(token).balanceOf(address(this)) + erc20Released[token];</span><br><span class="line">        // 根据线性释放公式，计算已经释放的数量</span><br><span class="line">        if (timestamp &lt; start) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125; else if (timestamp &gt; start + duration) &#123;</span><br><span class="line">            return totalAllocation;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return (totalAllocation * (timestamp - start)) / duration;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用库"><a href="#常用库" class="headerlink" title="常用库"></a>常用库</h2><ul>
+<li>openzeelping</li>
+<li>MerkleProof<ul>
+<li>验证交易合法xing</li>
+</ul>
+</li>
+</ul>
+<h2 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h2><h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><ul>
+<li>Gas优化<ul>
+<li>使用calldata</li>
+<li>如果频繁修改状态变量的话，可以将修改记录后再一次性修改</li>
+<li>循环判断条件使用 &amp;&amp; 拼接</li>
+<li>用++替换+&#x3D;1</li>
+<li>提前将变量提取出来，避免重复计算</li>
+<li>当函数代码太多时可以将一些代码用单独的大括号划分出来，避免堆栈太深导致gas超额</li>
+</ul>
+</li>
+</ul>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><ol>
+<li>将代码完成后编译成bytecode，存在data域</li>
+<li>发起一个转账交易到0x0地址，from地址为当前合约<ul>
+<li>转账金额为0</li>
+<li>支付汽油费</li>
+<li>合约的代码放在data域中</li>
+</ul>
+</li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
+<li>估算gas费<ol>
+<li>remix在部署后执行函数调用会估算gas费</li>
+<li>使用hardhat-gas-reporter插件生成gas报告</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/Solidity/" data-id="clrj8k01a004n4wuw3ugbfwse" data-title="Solidity" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链安全
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

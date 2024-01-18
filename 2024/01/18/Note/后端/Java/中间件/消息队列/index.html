@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>消息队列 | JianHong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="MQ协议MOM（Message Oriented Middleware 面向消息中间件）  PO  面向过程 OO 面向对象 AO  面向切面  JMS（Java Message Service）  Java消息服务协议，是一种MOM的设计实现 标准的生产、发送、接收消息 ActiveMQ是该协议的典型实现  STOMP（Streaming Text Orientated Message Prot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息队列">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="MQ协议MOM（Message Oriented Middleware 面向消息中间件）  PO  面向过程 OO 面向对象 AO  面向切面  JMS（Java Message Service）  Java消息服务协议，是一种MOM的设计实现 标准的生产、发送、接收消息 ActiveMQ是该协议的典型实现  STOMP（Streaming Text Orientated Message Prot">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/blog/source/images/image-20230411170928441.png">
+<meta property="article:published_time" content="2024-01-18T13:12:24.680Z">
+<meta property="article:modified_time" content="2023-08-04T01:39:14.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="中间件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/blog/source/images/image-20230411170928441.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JianHong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JianHong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Note/后端/Java/中间件/消息队列" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T13:12:24.680Z" itemprop="datePublished">2024-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      消息队列
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="MQ协议"><a href="#MQ协议" class="headerlink" title="MQ协议"></a>MQ协议</h1><p>MOM（Message Oriented Middleware 面向消息中间件）</p>
+<ul>
+<li>PO  面向过程</li>
+<li>OO 面向对象</li>
+<li>AO  面向切面</li>
+</ul>
+<p>JMS（Java Message Service）</p>
+<ul>
+<li>Java消息服务协议，是一种MOM的设计实现</li>
+<li>标准的生产、发送、接收消息</li>
+<li>ActiveMQ是该协议的典型实现</li>
+</ul>
+<p>STOMP（Streaming Text Orientated Message Protocol）</p>
+<ul>
+<li>面向文本流的消息协议，是一种MOM的设计实现</li>
+<li>可互操作的连接格式，允许客户端与任意的STOMP消息代理进行交互</li>
+<li>ActiveMQ是该协议的典型实现，RabbitMQ可通过插件实现</li>
+</ul>
+<p>AMQP（Advanced Message Queuing Protocol）</p>
+<ul>
+<li>高级消息队列协议，是一种MOM的设计实现</li>
+<li>是一个应用层协议，是一种标准，不受客户端&#x2F;中间件&#x2F;语言的限制</li>
+<li>RabbitMQ是该协议的典型实现</li>
+</ul>
+<p>MQTT（Message Queuing Telemetry Transport）</p>
+<ul>
+<li>消息队列遥测传输，即时通信协议，是一种二进制协议，也是一种MOM的设计实现</li>
+<li>用于服务器和低功耗LOT设备间的通信，支持所有平台，可以把所有联网物品和外部连接起来</li>
+<li>RabbitMQ可通过插件实现</li>
+</ul>
+<h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1><h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ul>
+<li>Producer<ul>
+<li>消息生产者</li>
+<li>Producer Group<ul>
+<li>一类Producer集合，发送一类消息，发送逻辑一致</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Consumer<ul>
+<li>消息消费者，后台异步消费</li>
+<li>Push Consumer<ul>
+<li>服务端向消费者端推送消息</li>
+</ul>
+</li>
+<li>Pull Consumer<ul>
+<li>消费者端向服务端定时拉取消息</li>
+</ul>
+</li>
+<li>Consumer Group<ul>
+<li>一类Consumer集合，消费一类消息，消费逻辑一致</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NameServer<ul>
+<li>组织协调者</li>
+<li>收集Broker的工作情况</li>
+</ul>
+</li>
+<li>Broker<ul>
+<li>pic的核心，负责消息的发送，接收，高可用等（是真正干活的）</li>
+<li>需要定时发送自身情况到NameServer，10秒发送一次，超过2分钟没发，NameServer会认为该Broker失效</li>
+</ul>
+</li>
+<li>Topic<ul>
+<li>在Broker中</li>
+<li>不同类型的消息以不同的Topic进行区分</li>
+<li>MessageQueue<ul>
+<li>消息队列，用于存储消息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建Topic"><a href="#创建Topic" class="headerlink" title="创建Topic"></a>创建Topic</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">CreateTopic</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//设置nameserver的地址</span></span><br><span class="line">    producer.setNameservAddr(<span class="string">&quot;ip地址:端口号&quot;</span>);</span><br><span class="line">    <span class="comment">//启动生产者</span></span><br><span class="line">    producer.start();</span><br><span class="line">    <span class="comment">//创建topic</span></span><br><span class="line">    producer.createTopic(<span class="string">&quot;broker名称&quot;</span>, <span class="string">&quot;topic名称&quot;</span>, 队列数量);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><ul>
+<li>生产者需要在构造时创建或加入分组</li>
+<li>信息需要设置topic、broke名，可以添加tags，队列数量</li>
+<li>发送消息<ul>
+<li>同步：send(message)<ul>
+<li>message需要设置topic、tags、消息内容（字节数组）</li>
+</ul>
+</li>
+<li>异步：send(message, new SendCallback(){  &#x2F;&#x2F;重写两个方法 })</li>
+</ul>
+</li>
+</ul>
+<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><ul>
+<li>订阅topic，设置接收的信息类型（可以根据tags选择）</li>
+<li>创建监听器（并发 &#x2F; 顺序）<ul>
+<li>消息过滤器(需要开启)<ul>
+<li>消费者接收消息是可以进行筛选<ul>
+<li>MessageSelector.bySql(“”)</li>
+</ul>
+</li>
+<li>生产者发送信息时可为信息设置一些属性<ul>
+<li>message.putUserProperty(name, value)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果需要实现顺序消费消息<ul>
+<li>生产者需要将信息存入同一个topic中同一个队列</li>
+<li>消费者需要按顺序从同一条队列中取消息<ul>
+<li>监听器选择MessageListenerOrderly</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="分布式事务消息"><a href="#分布式事务消息" class="headerlink" title="分布式事务消息"></a>分布式事务消息</h2><h3 id="生产者-1"><a href="#生产者-1" class="headerlink" title="生产者"></a>生产者</h3><ul>
+<li>使用TransactionMQProducer，设置NamesrvAddr，设置事务监听器（TransactionListener），需要传入事务监听器实现类<ul>
+<li>实现类需要实现executeLocalTransaction（业务实现）和checkLocalTransaction（回查）</li>
+</ul>
+</li>
+<li>事务回查<ul>
+<li>在executeLocalTransaction中需要设置各个阶段事务的状态，存储在一个Map集合中，事务id为key</li>
+<li>在checkLocalTransaction中，从Map中根据事务id从Map中获取事务状态返回</li>
+</ul>
+</li>
+<li>使用Spring<ul>
+<li>实现<code>PicLocalTransactionListener</code> 接口</li>
+<li>添加<code>@PicTransactionListener(txProducerGroup = &quot;生产者组名&quot;)</code></li>
+<li>保存事务的状态</li>
+</ul>
+</li>
+</ul>
+<h2 id="消息推送"><a href="#消息推送" class="headerlink" title="消息推送"></a>消息推送</h2><h3 id="消费者推送模式"><a href="#消费者推送模式" class="headerlink" title="消费者推送模式"></a>消费者推送模式</h3><ul>
+<li>push模式<ul>
+<li>服务端有消息就推送给客户端，需要建立长连接，客户端多时消耗资源</li>
+</ul>
+</li>
+<li>pull模式<ul>
+<li>客户端轮询服务端，有消息就拉取，存在实时性问题</li>
+</ul>
+</li>
+<li>长轮询<ul>
+<li>使用长轮询解决了push和pull的问题，即长连接+轮询</li>
+</ul>
+</li>
+</ul>
+<h3 id="消息模式"><a href="#消息模式" class="headerlink" title="消息模式"></a>消息模式</h3><ul>
+<li>集群（默认）<ul>
+<li>某个消费者可以接收</li>
+</ul>
+</li>
+<li>广播<ul>
+<li>每个消费者都可以接收</li>
+</ul>
+</li>
+<li>通过 <code>setMessageModel</code> 设置</li>
+</ul>
+<h3 id="重复消息"><a href="#重复消息" class="headerlink" title="重复消息"></a>重复消息</h3><ul>
+<li>消费端处理业务保证幂等性</li>
+<li>每条消息都有唯一的编号，判断消息是否处理过即可</li>
+<li>不保证消息不重复，需要在业务端处理</li>
+</ul>
+<h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><ul>
+<li>零拷贝（mmap+write） </li>
+<li>文件系统采用Linux Ext4</li>
+<li>往磁盘写入是顺序写入的，由ConsumeQueue和CommitLog配合<ul>
+<li>CommitLog 真正存储数据的文件</li>
+<li>ConsumeQueue 存储消息在CommitLog 中的位置信息</li>
+</ul>
+</li>
+</ul>
+<h2 id="刷盘"><a href="#刷盘" class="headerlink" title="刷盘"></a>刷盘</h2><ul>
+<li>同步刷盘<ul>
+<li>写入磁盘后再返回成功</li>
+</ul>
+</li>
+<li>异步刷盘<ul>
+<li>写入内存后就返回成功，内存积累一定信息后批量刷盘</li>
+</ul>
+</li>
+</ul>
+<h2 id="重试策略"><a href="#重试策略" class="headerlink" title="重试策略"></a>重试策略</h2><h3 id="生产者-2"><a href="#生产者-2" class="headerlink" title="生产者"></a>生产者</h3><ul>
+<li>设置重试次数<ul>
+<li><code>setRetryATimesWhenSendFaild(次数)</code></li>
+</ul>
+</li>
+<li>在发送消息时指定超时时间<ul>
+<li><code>send(message, 超时时间)</code></li>
+</ul>
+</li>
+<li>并不是所有的异常都会触发重试</li>
+</ul>
+<h3 id="消费者-1"><a href="#消费者-1" class="headerlink" title="消费者"></a>消费者</h3><ul>
+<li>异常失败<ul>
+<li>每次重试的时间间隔不同，不能修改</li>
+<li>重新获取的消息id是不同的，但是内容是相同的</li>
+</ul>
+</li>
+<li>超时失败<ul>
+<li>RQ服务器会不断重试发送，直到发送成功</li>
+</ul>
+</li>
+</ul>
+<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><h3 id="集群模式"><a href="#集群模式" class="headerlink" title="集群模式"></a>集群模式</h3><ul>
+<li>单master<ul>
+<li>风险最大</li>
+</ul>
+</li>
+<li>多master<ul>
+<li>全是master</li>
+<li>一个机器宕机，未消费的信息不可订阅，实时性受到影响</li>
+</ul>
+</li>
+<li>多master多slave<ul>
+<li>异步复制<ul>
+<li>master和slave之间有短暂消息延迟，毫秒级，速度快，磁盘损坏丢失少量信息</li>
+</ul>
+</li>
+<li>同步双写<ul>
+<li>master和slave同时写，速度慢，消息无延迟，高可用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h2 id="组件-1"><a href="#组件-1" class="headerlink" title="组件"></a>组件</h2><p><img src="/../../../blog/source/images/image-20230411170928441.png" alt="image-20230411170928441"></p>
+<ul>
+<li>channel：操作MQ的工具</li>
+<li>exchange：路由消息到队列中</li>
+<li>queue：缓存消息</li>
+<li>virtualHost：虚拟主机<ul>
+<li>多租户，相互隔离</li>
+<li>创建角色后需要为其分配虚拟主机</li>
+<li>类似命名空间</li>
+</ul>
+</li>
+</ul>
+<h2 id="消息模型"><a href="#消息模型" class="headerlink" title="消息模型"></a>消息模型</h2><h3 id="基本消息队列（BasicQueue）"><a href="#基本消息队列（BasicQueue）" class="headerlink" title="基本消息队列（BasicQueue）"></a>基本消息队列（BasicQueue）</h3><h3 id="工作消息队列（WorkQueue）"><a href="#工作消息队列（WorkQueue）" class="headerlink" title="工作消息队列（WorkQueue）"></a>工作消息队列（WorkQueue）</h3><h3 id="发布订阅（Publish、Subscribe）"><a href="#发布订阅（Publish、Subscribe）" class="headerlink" title="发布订阅（Publish、Subscribe）"></a>发布订阅（Publish、Subscribe）</h3><ul>
+<li>Fanout Exchange：广播</li>
+<li>Direct Exchange：路由</li>
+<li>Topic Exchange：主题</li>
+</ul>
+<h2 id="生产者-消费者"><a href="#生产者-消费者" class="headerlink" title="生产者&#x2F;消费者"></a>生产者&#x2F;消费者</h2><h4 id="生产者-3"><a href="#生产者-3" class="headerlink" title="生产者"></a>生产者</h4><ol>
+<li>创建连接<ul>
+<li>通过连接工厂（ConnectionFactory）</li>
+<li>设置地址、端口、虚拟主机、用户名、密码</li>
+</ul>
+</li>
+<li>建立连接</li>
+<li>创建通道</li>
+<li>创建队列</li>
+<li>发送消息</li>
+<li>关闭通道和连接</li>
+</ol>
+<h3 id="消费者-2"><a href="#消费者-2" class="headerlink" title="消费者"></a>消费者</h3><ol>
+<li>创建连接<ul>
+<li>通过连接工厂（ConnectionFactory）</li>
+<li>设置地址、端口、虚拟主机、用户名、密码</li>
+</ul>
+</li>
+<li>建立连接</li>
+<li>创建通道</li>
+<li>创建队列<ul>
+<li>防止队列不存在，因为消费者有可能先建立了连接</li>
+</ul>
+</li>
+<li><h2 id="订阅信息-消费信息-回调函数异步处理消息"><a href="#订阅信息-消费信息-回调函数异步处理消息" class="headerlink" title="订阅信息 &#x2F; 消费信息- 回调函数异步处理消息"></a>订阅信息 &#x2F; 消费信息<br>- 回调函数异步处理消息</h2></li>
+</ol>
+<h2 id="手动事务消息"><a href="#手动事务消息" class="headerlink" title="手动事务消息"></a>手动事务消息</h2><ul>
+<li>提供了一套api实现</li>
+<li>会导致Channel阻塞，造成吞吐量下降</li>
+</ul>
+<h2 id="生产者确认机制（Publisher-Confirm）"><a href="#生产者确认机制（Publisher-Confirm）" class="headerlink" title="生产者确认机制（Publisher Confirm）"></a>生产者确认机制（Publisher Confirm）</h2><ul>
+<li>新版本扩展</li>
+<li>类似的事务消息基本一致</li>
+</ul>
+<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" data-id="clrj8k01k006r4wuwd6uvbqsk" data-title="消息队列" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          服务发现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OSS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E4%B8%AD%E9%97%B4%E4%BB%B6/">Java中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web3/">Web3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9B%E6%89%A3/">力扣</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/">源码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defi/" rel="tag">defi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/language/" rel="tag">language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">代码随想录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" rel="tag">力扣热题100</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" rel="tag">力扣题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E7%90%86/" rel="tag">原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A6%E7%A5%9E/" rel="tag">左神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%93/" rel="tag">库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97/" rel="tag">模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" rel="tag">系统an&#39;quan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AE%E9%A2%98/" rel="tag">问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E6%88%90/" rel="tag">集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9B%86%E7%BE%A4/" rel="tag">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/defi/" style="font-size: 10px;">defi</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/language/" style="font-size: 10px;">language</a> <a href="/tags/solidity/" style="font-size: 10px;">solidity</a> <a href="/tags/web3/" style="font-size: 12.86px;">web3</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 20px;">中间件</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" style="font-size: 10px;">代码随想录</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E7%83%AD%E9%A2%98100/" style="font-size: 10px;">力扣热题100</a> <a href="/tags/%E5%8A%9B%E6%89%A3%E9%A2%98/" style="font-size: 10px;">力扣题</a> <a href="/tags/%E5%8E%9F%E7%90%86/" style="font-size: 10px;">原理</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15.71px;">基础</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B7%A6%E7%A5%9E/" style="font-size: 10px;">左神</a> <a href="/tags/%E5%BA%93/" style="font-size: 10px;">库</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">开发</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 11.43px;">技巧</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12.86px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.43px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 17.14px;">数据结构和算法</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 14.29px;">框架</a> <a href="/tags/%E6%A8%A1%E5%9D%97/" style="font-size: 15.71px;">模块</a> <a href="/tags/%E6%A8%A1%E5%9E%8B/" style="font-size: 11.43px;">模型</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 12.86px;">源码</a> <a href="/tags/%E7%90%86%E5%BF%B5/" style="font-size: 14.29px;">理念</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9Fan-quan/" style="font-size: 10px;">系统an'quan</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" style="font-size: 10px;">系统设计</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A7%84%E8%8C%83/" style="font-size: 10px;">规范</a> <a href="/tags/%E9%97%AE%E9%A2%98/" style="font-size: 10px;">问题</a> <a href="/tags/%E9%9B%86%E6%88%90/" style="font-size: 10px;">集成</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 12.86px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E7%AE%80%E5%8E%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%8B%B1%E8%AF%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 JianHong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
