@@ -30,13 +30,13 @@
 <meta property="og:site_name" content="JianHong">
 <meta property="og:description" content="分布式 为了解决单体应用带来的各种问题（CAP理论）  优缺点 优点 缺点 依赖网络 维护成本高 CAP无法同时满足    高可用 最大限度保证服务正常、健康的运行，不影响用户的正常使用  实现 合理的负载均衡策略 线程隔离、集群隔离、读写分离，热点数据隔离、爬虫隔离 Nginx限流，Redis+lua限流，应用层限流，降级处理、补偿机制 Nginx限流：流量入口限流，连接数，整体请求数量限制 R">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/pic/image-20230329083801876.png">
+<meta property="og:image" content="http://example.com/pic/image-20230329083801876.png">
 <meta property="article:published_time" content="2024-01-18T13:12:24.732Z">
 <meta property="article:modified_time" content="2024-01-14T16:25:41.876Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="理念">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/pic/image-20230329083801876.png">
+<meta name="twitter:image" content="http://example.com/pic/image-20230329083801876.png">
   
   
   
@@ -191,8 +191,7 @@
 <li>副本控制协议，保证强一致性，读必须是最新的数据、牺牲可用性</li>
 <li>kafka</li>
 </ul>
-<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="../pic/image-20230329083801876.png"/></div></div>
-
+<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../pic/image-20230329083801876.png" alt="image-20230329083801876"></p>
 <ul>
 <li>解决强一致性的算法，是一种思想&#x2F;协议 or 共识算法，就某个节点的值达成一致</li>
 <li>只要Proposer的提案有半数以上的Acceptor接受，则提案通过</li>

@@ -30,15 +30,15 @@
 <meta property="og:site_name" content="JianHong">
 <meta property="og:description" content="Spring5IOC IOC：控制反转，即将对象的创建个调用交给Spring管理 DI：依赖注入  容器主要通过两个接口来实现容器的创建  BeanFactory： spring核心容器，主要是内部使用 使用到对象是才创建，懒加载 提供getBean()方法   ApplicationContext： 继承了BeanFactory，扩展了更多功能国际化、匹配资源、发布事件、环境信息等 加载配置是就">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/pic/image-20220113151640290.png">
-<meta property="og:image" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/pic/image-20230509162000402.png">
-<meta property="og:image" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/pic/image-20230513114552313.png">
+<meta property="og:image" content="http://example.com/pic/image-20220113151640290.png">
+<meta property="og:image" content="http://example.com/pic/image-20230509162000402.png">
+<meta property="og:image" content="http://example.com/pic/image-20230513114552313.png">
 <meta property="article:published_time" content="2024-01-18T13:12:24.685Z">
-<meta property="article:modified_time" content="2024-01-18T13:38:54.762Z">
+<meta property="article:modified_time" content="2024-01-18T13:45:31.388Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="框架">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/01/18/Note/%E5%90%8E%E7%AB%AF/pic/image-20220113151640290.png">
+<meta name="twitter:image" content="http://example.com/pic/image-20220113151640290.png">
   
   
   
@@ -431,7 +431,8 @@
 </ul>
 </li>
 <li><p>配置拦截器，xml或者配置类</p>
-<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="../../../pic/image-20220113151640290.png"/></div></div></li>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../../../pic/image-20220113151640290.png" alt="image-20220113151640290"></p>
+</li>
 </ul>
 </li>
 </ul>
@@ -716,8 +717,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="../../../pic/image-20230509162000402.png"/></div></div>
-
+<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../../../pic/image-20230509162000402.png" alt="image-20230509162000402"></p>
 <ul>
 <li>认证器（Authentication）<ul>
 <li>AuthenticationManager主要的实现类为ProviderManager，该实现类中管理了很多AuthenticationProvider实例，用来允许实现多种认证方式</li>
@@ -747,8 +747,7 @@
 <h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
 <li>由SpringSecurityFilterChain管理了所有需要使用的过滤器</li>
 </ul>
-<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./../../../pic/image-20230513114552313.png"/></div></div>
-
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/./../../../pic/image-20230513114552313.png" alt="image-20230513114552313"></p>
 <ul>
 <li>默认会加载这15个filter</li>
 </ul>
