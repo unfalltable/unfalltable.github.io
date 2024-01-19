@@ -122,6 +122,37 @@ Master主库在事务提交时，会把数据变更记录在Binlog中
 前提是需要有对应的Mapper类并基础BaseMapper&lt;T&gt;
 
 123456789@Data@EqualsAndHashCode(callSuper = true)@Accessors(chain = true)public class User extends Model&lt;User&gt; &#123;    private L...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E8%A7%84%E8%8C%83/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?规范,技巧,开发"/></div><h2 class="post-title">代码规范</h2><div class="excerpt"><p>概念数据模型
+
+
+值
+场景
+
+
+
+DTO
+接口入参，即前端传给后端的Json接收对象
+
+
+VO
+接口返回对象，即后端传给前端展示数据用的对象
+
+
+PO
+数据库表对应的对象，和Entity等同
+
+
+BO
+业务对象，即一组PO，例如员工信息，包括了（基础，入职、离职等等）
+
+
+DAO
+数据访问对象，操作数据库的对象
+
+
+LomboK
+避免使用@Data注解，使用@Getter、@Setter、@...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?开发"/></div><h2 class="post-title">系统设计</h2><div class="excerpt"><p>简介CRM（客户关系管理系统）
 应用
@@ -161,37 +192,6 @@ IaaS（基础架构即服务）
 
 
 项...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E8%A7%84%E8%8C%83/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?规范,技巧,开发"/></div><h2 class="post-title">代码规范</h2><div class="excerpt"><p>概念数据模型
-
-
-值
-场景
-
-
-
-DTO
-接口入参，即前端传给后端的Json接收对象
-
-
-VO
-接口返回对象，即后端传给前端展示数据用的对象
-
-
-PO
-数据库表对应的对象，和Entity等同
-
-
-BO
-业务对象，即一组PO，例如员工信息，包括了（基础，入职、离职等等）
-
-
-DAO
-数据访问对象，操作数据库的对象
-
-
-LomboK
-避免使用@Data注解，使用@Getter、@Setter、@...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?问题,开发"/></div><h2 class="post-title">常见开发问题</h2><div class="excerpt"><p>找不到resource下的文件
 在pom下加
@@ -210,13 +210,13 @@ LomboK
 </a><a class="post-card post " href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E6%8A%80%E5%B7%A7/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?技巧,开发"/></div><h2 class="post-title">开发技巧</h2><div class="excerpt"><p>开发技巧一对多表修改1234567891011121314151617181920212223242526272829303132/***  修改信息通用方法*  exists 数据库存在的记录*  params 修改时传的记录*  T 是实体pojo*  S 是对应的service对象，需要继承 IService*  id 是主表的id*  key 存id，value存记录*/public...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.690Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E5%B7%A5%E5%85%B7/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?工具,开发"/></div><h2 class="post-title">工具</h2><div class="excerpt"><p>EasyExcel
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?开发,工具"/></div><h2 class="post-title">工具</h2><div class="excerpt"><p>EasyExcel
 可以使用pig4封装过后的EasyExcel，提供了注解式的使用导入导出，比较方便
 
 下拉框service层
 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354public void template(HttpServletR...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.689Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%BC%80%E5%8F%91/%E4%BC%98%E5%8C%96/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?开发,优化"/></div><h2 class="post-title">开发优化</h2><div class="excerpt"><p>JVM优化目的
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?优化,开发"/></div><h2 class="post-title">开发优化</h2><div class="excerpt"><p>JVM优化目的
 减少STW出现的次数
 
 工具
