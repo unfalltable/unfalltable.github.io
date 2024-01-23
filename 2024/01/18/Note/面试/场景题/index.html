@@ -31,7 +31,7 @@
 <meta property="og:description" content="QQ号如何保证申请不重复  使用类似布隆过滤器的机制实现判断qq是否存在     查询年龄大于16岁，性别为女，注册日期范围为2019年的人数，复合索索引怎么建？    500w多万数据，qps很高的情况下查询慢怎么解决    放redis也依旧很热怎么处理    计算100的阶乘    假设日志文件记录每个接口请求耗时，怎么快速找到接口耗时＞500ms的请求？    做SDK怎么提升性能">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-18T13:12:24.741Z">
-<meta property="article:modified_time" content="2023-08-03T15:45:44.000Z">
+<meta property="article:modified_time" content="2024-01-21T18:02:33.937Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -82,7 +82,7 @@
 
 
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">Recent Update</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/"><span class="title">区块链安全</span></a><a class="item title" href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/Solidity/"><span class="title">Solidity</span></a><a class="item title" href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E6%BA%90%E7%A0%81/EVM/"><span class="title">EVM</span></a><a class="item title" href="/2024/01/18/Note/%E5%90%8E%E7%AB%AF/Java/%E5%9F%BA%E7%A1%80/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/"><span class="title">Spring全家桶</span></a><a class="item title" href="/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"><span class="title">MySQL</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">Recent Update</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/Solidity/"><span class="title">Solidity</span></a><a class="item title" href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span class="title">开发工具</span></a><a class="item title" href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/"><span class="title">区块链安全</span></a><a class="item title" href="/2024/01/18/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%9F%BA%E7%A1%80/DeFi/"><span class="title">DeFi</span></a><a class="item title" href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/"><span class="title">场景题</span></a></div></widget>
 
 
 
@@ -204,6 +204,15 @@ QQ号如何保证申请不重复</p>
 1000W数据入库，实时返回成功条数</p>
 <ul>
 <li>分片读取到内存，对数据进行检验，利用多线程批量入库</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+100桶酒，其中一桶有毒，一只实验老鼠喝了酒之后一小时有结果，问一小时之内最少几只老鼠可以试出毒酒</p>
+<ul>
+<li>将酒桶编号为二进制，第一桶为0000001，第100桶为1000000</li>
+<li>所有低位第一位为1的酒混合，低位第二位为1的酒混合，一次类推</li>
+<li>一共有七个瓶子，喂七只小白鼠</li>
+<li>哪只小白鼠死了，对应的二进制为就为1</li>
 </ul>
 </li>
 </ul>
