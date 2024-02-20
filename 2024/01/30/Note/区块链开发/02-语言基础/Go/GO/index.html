@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Golang - JianHong</title>
+
+  
+    <meta name="description" content="简介 速度快，易学，支持高并发，适合网络编程和区块链开发，类c语言  格式 12345package main&#x2F;&#x2F;程序入口func main()&#123;    &#125;  命令   命令 功能 参数 备注    go build 编译包和依赖     go run 编译并运行     go clean 移除当前源码包和关联源码包里面编译生成的文件     go env 打印Go的环境信息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang">
+<meta property="og:url" content="http://example.com/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Go/GO/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介 速度快，易学，支持高并发，适合网络编程和区块链开发，类c语言  格式 12345package main&#x2F;&#x2F;程序入口func main()&#123;    &#125;  命令   命令 功能 参数 备注    go build 编译包和依赖     go run 编译并运行     go clean 移除当前源码包和关联源码包里面编译生成的文件     go env 打印Go的环境信息">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-30T09:43:41.281Z">
+<meta property="article:modified_time" content="2024-02-20T08:01:18.885Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="go">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="go">
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?go"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Golang</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">复合数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F-%E5%8F%98%E9%87%8F"><span class="toc-text">常量 &#x2F; 变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0-%E6%96%B9%E6%B3%95"><span class="toc-text">函数 &#x2F; 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-text">异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="toc-text">文本处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B-gorountine"><span class="toc-text">协程 gorountine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%B0%83%E7%94%A8%E4%BB%A5%E5%A4%AA%E5%9D%8A"><span class="toc-text">Go调用以太坊</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%B0%83%E7%94%A8%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6"><span class="toc-text">Go调用智能合约</span></a></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Go/">Go</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-30T09:43:41.281Z">2024-01-30</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>Golang</span></h1>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><p>速度快，易学，支持高并发，适合网络编程和区块链开发，类c语言</p>
+</li>
+<li><p>格式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">//程序入口</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>go build</td>
+<td>编译包和依赖</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>go run</td>
+<td>编译并运行</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>go clean</td>
+<td>移除当前源码包和关联源码包里面编译生成的文件</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>go env</td>
+<td>打印Go的环境信息</td>
+<td>-w GOOS&#x3D;window&#x2F;linux 设置运行环境</td>
+<td></td>
+</tr>
+<tr>
+<td>go fix</td>
+<td>将旧的API替换成新的API</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>go mod</td>
+<td>模块维护</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>go get</td>
+<td>将依赖项添加到当前模块并安装它们</td>
+<td>-u 检查是否已安装且最新<br />-v 显示安装细节</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>默认值</th>
+<th>字节</th>
+<th>格式符</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td></td>
+<td>1</td>
+<td>%c</td>
+<td>单个字符</td>
+</tr>
+<tr>
+<td>string</td>
+<td></td>
+<td></td>
+<td>%s</td>
+<td>\0结束，中文3字符，不可变</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>false</td>
+<td></td>
+<td>%t</td>
+<td></td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+<td>8</td>
+<td>%d</td>
+<td>有符号</td>
+</tr>
+<tr>
+<td>uint</td>
+<td></td>
+<td>8</td>
+<td></td>
+<td>无符号</td>
+</tr>
+<tr>
+<td>float32</td>
+<td></td>
+<td></td>
+<td>%f</td>
+<td>小数点后7</td>
+</tr>
+<tr>
+<td>float64</td>
+<td></td>
+<td></td>
+<td>%f</td>
+<td>小数点后15，常用</td>
+</tr>
+<tr>
+<td>double</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>complex64</td>
+<td></td>
+<td></td>
+<td>%v</td>
+<td>复数，64 位实数+64 位虚数</td>
+</tr>
+<tr>
+<td>complex128</td>
+<td></td>
+<td></td>
+<td>%v</td>
+<td>64 位实数+64 位虚数</td>
+</tr>
+<tr>
+<td>地址值</td>
+<td>十六进制</td>
+<td></td>
+<td>%p</td>
+<td></td>
+</tr>
+<tr>
+<td>类型</td>
+<td></td>
+<td></td>
+<td>%T</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h2><p><strong>切片</strong></p>
+<ul>
+<li><p>截取集合中的一部分数据</p>
+</li>
+<li><p>结构</p>
+<ul>
+<li>一个指针，指向数组中 slice 指定的开始位置</li>
+<li>长度，即 slice 的长度</li>
+<li>最大长度，也就是 slice 开始位置到数组的最后位置的长度</li>
+</ul>
+</li>
+<li><p>内置函数</p>
+<ul>
+<li><p>len：获取长度</p>
+</li>
+<li><p>cap：获取最大容量</p>
+</li>
+<li><p>append：</p>
+<ul>
+<li>追加一个或者多个元素，然后返回一个和 slice 一样类型的slice</li>
+<li>追加元素会影响到原数组和其他指向该数组的切片</li>
+<li>当追加元素超过切片最大长度时会创建一个新的数组空间，不会影响到其他</li>
+</ul>
+</li>
+<li><p>copy：copy 从源 slice 的 src 中复制元素到目标 dst，并且返回复制的元素的个数</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>数组</strong></p>
+<ul>
+<li>函数传递数组是深拷贝，函数传切边是浅拷贝</li>
+<li>切边截取是浅拷贝</li>
+<li>切边扩容x2，大于1024字节后x 1&#x2F;4</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">var</span> 数组名 [元素数量]类型</span><br><span class="line"></span><br><span class="line"><span class="comment">//自动推导,数量可以省略用...替代</span></span><br><span class="line">数组名 := [数量]类型&#123;对应的值&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//嵌套数组</span></span><br><span class="line">数组名 := [<span class="number">2</span>][<span class="number">4</span>]<span class="type">int</span>&#123;</span><br><span class="line">    [<span class="number">4</span>]<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;, </span><br><span class="line">    [<span class="number">4</span>]<span class="type">int</span>&#123;<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可省略，需要数组类型一致</span></span><br><span class="line">数组名 := [<span class="number">2</span>][<span class="number">4</span>]<span class="type">int</span>&#123;</span><br><span class="line">    &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;, </span><br><span class="line">    &#123;<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="keyword">var</span> 数组名[元素数量] 类型 = [数量]类型&#123;对应的值&#125;</span><br><span class="line"><span class="keyword">var</span> 数组名[元素数量] 类型 = [数量]类型&#123;下标:对应的值&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//切片创建</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">var</span> 切片名 []类型</span><br><span class="line"><span class="comment">//2，自动推导</span></span><br><span class="line">切片名 := []类型&#123;&#125;</span><br><span class="line"><span class="comment">//3,长度是初始化长度，容量是最大长度</span></span><br><span class="line"><span class="built_in">make</span>([]类型,长度,容量)</span><br><span class="line"><span class="comment">//4，获取数组切片</span></span><br><span class="line">切片名 = 数组名[开始下标:结束下标]</span><br></pre></td></tr></table></figure>
+
+<p><strong>map</strong></p>
+<ul>
+<li>无序，kv存储</li>
+<li>k不重复</li>
+<li>函数中是浅拷贝</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建 &amp; 初始化 </span></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">map</span>名 <span class="keyword">map</span>(key类型)value类型 = <span class="keyword">map</span>[key类型]value类型&#123;k:v&#125;</span><br><span class="line"><span class="keyword">map</span>名 := <span class="keyword">map</span>(key类型)value类型&#123;k:v&#125;</span><br><span class="line"><span class="keyword">map</span>名 := <span class="built_in">make</span>(<span class="keyword">map</span>(key类型)value类型)</span><br><span class="line"><span class="keyword">map</span>名[k] = v</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断value是否存在, 如果值存在</span></span><br><span class="line">a, b = <span class="keyword">map</span>名[k]</span><br></pre></td></tr></table></figure>
+
+<p><strong>结构体</strong></p>
+<ul>
+<li>函数传递结构体是深拷贝，函数传递切片是浅拷贝</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建</span></span><br><span class="line"><span class="keyword">type</span> 结构体名 <span class="keyword">struct</span>&#123;</span><br><span class="line">    成员变量 类型 <span class="string">`标签:值`</span></span><br><span class="line">    <span class="comment">//如果需要序列化</span></span><br><span class="line">    成员变量 类型 <span class="string">`json:成员变量名`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//切片</span></span><br><span class="line"><span class="keyword">var</span> 切片名[] 类型</span><br><span class="line"></span><br><span class="line"><span class="comment">//转json</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;encoding/json&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//结构体转json</span></span><br><span class="line">hsonStr, err := json.Marshal(结构体)</span><br><span class="line"><span class="comment">//json转结构体</span></span><br><span class="line">err = json.Unmarshal(json, 结构体对象)</span><br></pre></td></tr></table></figure>
+
+<p><strong>指针</strong></p>
+<ul>
+<li>数组指针取值时应该 <code>(*p)[下标]</code>， 因为括号的优先级高<ul>
+<li>Go优化成了：<code>p[下标]</code></li>
+</ul>
+</li>
+<li>指针数组取值时应该 <code>*p[下标]</code> </li>
+<li>多级指针</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建普通指针</span></span><br><span class="line"><span class="keyword">var</span> 指针名 *类型 =  &amp;对象</span><br><span class="line"><span class="comment">//数组指针</span></span><br><span class="line"><span class="keyword">var</span> 指针名 *[数量]类型 = &amp;数组</span><br><span class="line"><span class="comment">//指针数组</span></span><br><span class="line"><span class="keyword">var</span> 指针名 [数量]*类型</span><br><span class="line"></span><br><span class="line"><span class="comment">//切片</span></span><br><span class="line"><span class="keyword">var</span> 指针名 *[]类型</span><br></pre></td></tr></table></figure>
+
+<p><strong>channel</strong></p>
+<ul>
+<li><p>解决协程之间的同步问题</p>
+</li>
+<li><p>没有设置容量的channel为无缓冲channel</p>
+<ul>
+<li>需要同时读写，会阻塞，适合同步任务</li>
+</ul>
+</li>
+<li><p>有缓冲channel适合异步任务</p>
+</li>
+<li><p>channel关闭后不能写数据，但是可以读数据</p>
+</li>
+<li><p>创建时默认是双向channel，可以设置单向channel</p>
+<ul>
+<li>双向channel可以转换为任意单向channel，反之不行</li>
+</ul>
+</li>
+<li><p>有一个定时器的类</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建双向channel</span></span><br><span class="line"><span class="keyword">var</span> ch <span class="keyword">chan</span> channel中数据的类型</span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> channel中数据的类型，容量)</span><br><span class="line"><span class="comment">//单向写channel</span></span><br><span class="line"><span class="keyword">var</span> ch <span class="keyword">chan</span> &lt;- channel中数据的类型</span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> &lt;- channel中数据的类型，容量)</span><br><span class="line"><span class="comment">//单向读channel</span></span><br><span class="line"><span class="keyword">var</span> ch &lt;- <span class="keyword">chan</span> channel中数据的类型</span><br><span class="line">ch := <span class="built_in">make</span>(&lt;- <span class="keyword">chan</span> channel中数据的类型，容量)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入</span></span><br><span class="line">ch &lt;-</span><br><span class="line"><span class="comment">//读取</span></span><br><span class="line">s &lt;- ch</span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭</span></span><br><span class="line"><span class="built_in">close</span>(ch)</span><br></pre></td></tr></table></figure>
+
+<h2 id="常量-变量"><a href="#常量-变量" class="headerlink" title="常量 &#x2F; 变量"></a>常量 &#x2F; 变量</h2><ul>
+<li><p>常量格式</p>
+<ul>
+<li>const 名称  【类型】&#x3D; 值</li>
+</ul>
+</li>
+<li><p>变量格式</p>
+<ul>
+<li>var 名称 类型 【 &#x3D; 值】</li>
+<li>var 名称1，名称2，名称3  类型 【 &#x3D; 值1，值2，值3】</li>
+<li>名称 :&#x3D; 值 （简短声明 &#x2F; 自动推导）（只能用在函数中）</li>
+</ul>
+</li>
+<li><p>_（下划线）是个特殊的内置变量，任何赋予它的值都会被丢弃</p>
+</li>
+<li><p>以声明未使用的值会在编译阶段报错</p>
+</li>
+<li><p>字符串不可变，怎么修改</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1转为字节数组 []byte(c)</span></span><br><span class="line">s := <span class="string">&quot;hello&quot;</span></span><br><span class="line">c := []<span class="type">byte</span>(s) </span><br><span class="line">c[<span class="number">0</span>] = <span class="string">&#x27;c&#x27;</span></span><br><span class="line">s2 := <span class="type">string</span>(c) <span class="comment">// 再转换回 string 类型</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, s2)</span><br><span class="line"></span><br><span class="line"><span class="comment">//2用切片拼接</span></span><br><span class="line">s := <span class="string">&quot;hello&quot;</span></span><br><span class="line">s = <span class="string">&quot;c&quot;</span> + s[<span class="number">1</span>:] <span class="comment">// 字符串虽不能更改，但可进行切片操作</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, s)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想输出多行的字符串，需要使用 &#96; 括起来</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str := <span class="string">`abc</span></span><br><span class="line"><span class="string">		def`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大写字母开头的变量&#x2F;函数，是可导出的，其它包可以读取，小写字母开头的则不行</p>
+</li>
+</ul>
+<h2 id="函数-方法"><a href="#函数-方法" class="headerlink" title="函数 &#x2F; 方法"></a>函数 &#x2F; 方法</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">method</span><span class="params">(参数 类型)</span></span>(返回值<span class="number">1</span> 返回值类型, ...)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用，多个返回值</span></span><br><span class="line">a, b = method();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果方法是公共的，返回值最好命名</li>
+<li>函数也是一种变量，可以通过type来定义它，可以用作参数进行传递</li>
+<li>成员属性和方法如果是大写开头就是public的，小写开头的就是private的</li>
+</ul>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><ul>
+<li><p>defer</p>
+<ul>
+<li>相当于java中的final，c中的析构，即函数结束前执行的操作</li>
+<li>执行顺序是后进先出，栈式执行，逆序执行，先执行最下面的</li>
+<li>return比defer先执行</li>
+</ul>
+</li>
+<li><p>select</p>
+<ul>
+<li>监听channel上的数据流动</li>
+<li>语法类似switch</li>
+<li>多个满足条件的随机执行一个</li>
+<li>如果一直走到default会导致忙轮询，不建议使用default</li>
+</ul>
+</li>
+<li><p>iota</p>
+<ul>
+<li>自动枚举，默认值为0，调用一次加1</li>
+<li>每遇到一个 const 关键字，iota 就会重置</li>
+</ul>
+</li>
+<li><p>fallthrough</p>
+<ul>
+<li>在switch中使用，强制执行满足条件之后的所有条件，包括default</li>
+</ul>
+</li>
+</ul>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><ul>
+<li><p>封装</p>
+<ul>
+<li>定义结构体时的this最好指向对象的地址，这样是浅拷贝</li>
+</ul>
+</li>
+<li><p>继承</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> 子类 <span class="keyword">struct</span>&#123;</span><br><span class="line">    父类</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多态</p>
+<ul>
+<li>父类指针指向子类对象</li>
+</ul>
+</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接口定义</span></span><br><span class="line"><span class="keyword">type</span> 接口名 <span class="keyword">interface</span>&#123;</span><br><span class="line">    方法名() 【返回值类型】</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口实现</span></span><br><span class="line"><span class="keyword">type</span> 实现 <span class="keyword">struct</span>&#123;</span><br><span class="line">    成员变量</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this &amp;实现)</span></span> 接口方法名 【返回值类型】&#123;</span><br><span class="line">	实现方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//万能接口，可接收任意类型</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">method</span><span class="params">(arg <span class="keyword">interface</span>&#123;&#125;)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//万能接口提供了类型断言</span></span><br><span class="line">value, ok := arg.(<span class="type">string</span>) <span class="comment">//判断arg是否是字符串</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取对象的type</span></span><br><span class="line">reflect.TypeOf(对象)</span><br><span class="line"><span class="comment">//获取对象的value</span></span><br><span class="line">reflect.ValueOf(对象)</span><br><span class="line"><span class="comment">//获取对象中的成员的标签</span></span><br><span class="line">t := reflect.TypeOf(对象).Elem()</span><br><span class="line">tagIt.Field(下标).Tag.Get(<span class="string">&quot;标签名&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
+<li>实际发生异常时系统内部是通过panic函数去抛出这个异常，尽量少用</li>
+<li>可以使用errors中的方法对异常进行处理</li>
+<li>延迟函数defer会正常执行</li>
+</ul>
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建文件</span></span><br><span class="line">file, err := os.Create(<span class="string">&quot;路径&quot;</span>)</span><br><span class="line"></span><br><span class="line">str = <span class="string">&quot;内容&quot;</span></span><br><span class="line"><span class="comment">//写入文件1</span></span><br><span class="line">length, err := file.WriteString(str)</span><br><span class="line"><span class="comment">//写入文件2，接收字节数组</span></span><br><span class="line">length, err := file.Write([]<span class="type">byte</span>(str))</span><br><span class="line"><span class="comment">//写入文件3，写入指定位置，会覆盖数据，</span></span><br><span class="line">length, err := file.WriteAt([]<span class="type">byte</span>(str), 下标)</span><br><span class="line"></span><br><span class="line"><span class="comment">//定位文件内容下标</span></span><br><span class="line">length, err := file.Seek(追加空格数，io.SeekEnd)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//读取文件1</span></span><br><span class="line">file, err := os.OpenFile(<span class="string">&quot;路径&quot;</span>， 模式， 权限[<span class="number">0</span><span class="number">-7</span>])</span><br><span class="line"><span class="comment">//读取文件2，只读，无权限</span></span><br><span class="line">file, err := os.Open(<span class="string">&quot;路径&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取文件内容，buffer为读取缓冲区，空余区域会用0填充</span></span><br><span class="line"><span class="comment">//buffer存储的A</span></span><br><span class="line">buffer := <span class="built_in">make</span>([]<span class="type">byte</span>, <span class="number">1024</span> * <span class="number">2</span>)</span><br><span class="line">length, err := file。Read(buffer)</span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭文件</span></span><br><span class="line"><span class="keyword">defer</span> file.<span class="built_in">close</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="协程-gorountine"><a href="#协程-gorountine" class="headerlink" title="协程 gorountine"></a>协程 gorountine</h2><ul>
+<li><p>提高CPU的利用率</p>
+</li>
+<li><p>主要是gorountine和channel</p>
+</li>
+<li><p>内存占用几kb</p>
+</li>
+<li><p>早期的调度器需要获取锁才能执行go协程，性能比较差</p>
+</li>
+<li><p>调度器设计策略</p>
+<ul>
+<li>复用线程</li>
+<li>利用并行</li>
+<li>抢占</li>
+<li>全局G队列</li>
+</ul>
+</li>
+</ul>
+<h2 id="Go调用以太坊"><a href="#Go调用以太坊" class="headerlink" title="Go调用以太坊"></a>Go调用以太坊</h2><ul>
+<li><p>启动rpc端口</p>
+<ul>
+<li><code>geth --identity &quot;XZ&quot; --http --http.port 8545 --datadir &quot;C:\Go\test2\testBlock&quot; --http.api &quot;net,eth,personal,db,web3&quot; --http.corsdomain &quot;*&quot; console</code><ul>
+<li>identity：节点身份标识</li>
+<li>http：开启rpc</li>
+<li>http.port ：rpc端口</li>
+<li>http.api：对外提供的api</li>
+<li>http.corsdomain：允许连接的url，*无限制，默认只有本机能访问</li>
+<li>datadir：区块数据文件夹</li>
+<li>networkid：net_version的id，即网络类型<ul>
+<li>1是主网络，其余是测试网络</li>
+</ul>
+</li>
+<li>port：监听其他端口</li>
+<li>nodiscover：隐藏节点，需手动添加</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在区块数据文件夹下创建Go工程</p>
+</li>
+<li><p>导入以太坊相关api</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取连接Client</span></span><br><span class="line"><span class="keyword">var</span> client Client</span><br><span class="line">client = rpc.Dial(<span class="string">&quot;ip：端口&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取网络类型networkid</span></span><br><span class="line"><span class="keyword">var</span> networkid <span class="type">string</span></span><br><span class="line">client.Call(&amp;networkid, <span class="string">&quot;net_version&quot;</span>)</span><br><span class="line"><span class="comment">//获取是否监听</span></span><br><span class="line"><span class="keyword">var</span> is_listing <span class="type">bool</span></span><br><span class="line">client.Call(&amp;is_listing, <span class="string">&quot;net_listening&quot;</span>)</span><br><span class="line"><span class="comment">//获取节点数量</span></span><br><span class="line"><span class="keyword">var</span> count <span class="type">string</span></span><br><span class="line">client.Call(&amp;count, <span class="string">&quot;net_peerCount&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取账户</span></span><br><span class="line"><span class="keyword">var</span> account []<span class="type">string</span></span><br><span class="line">client.Call(&amp;account, <span class="string">&quot;eth_accounts&quot;</span>)</span><br><span class="line"><span class="comment">//获取账户余额</span></span><br><span class="line"><span class="keyword">var</span> balance <span class="type">string</span></span><br><span class="line">client.Call(&amp;balance, <span class="string">&quot;eth_getBalance&quot;</span>, 账户地址，区块编号(latest、))</span><br><span class="line"><span class="comment">//获取当前gas价格</span></span><br><span class="line"><span class="keyword">var</span> gas <span class="type">string</span></span><br><span class="line">client.Call(&amp;gas, <span class="string">&quot;eth_gasPrice&quot;</span>)</span><br><span class="line"><span class="comment">//获取挖矿地址账户</span></span><br><span class="line"><span class="keyword">var</span> coinbase <span class="type">string</span></span><br><span class="line">client.Call(&amp;coinbase, <span class="string">&quot;eth_coinbase&quot;</span>)</span><br><span class="line"><span class="comment">//获取当前以太坊协议版本</span></span><br><span class="line"><span class="keyword">var</span> protocolVersion <span class="type">string</span></span><br><span class="line">client.Call(&amp;protocolVersion, <span class="string">&quot;eth_protocolVersion&quot;</span>)</span><br><span class="line"><span class="comment">//获取当前是否在挖矿</span></span><br><span class="line"><span class="keyword">var</span> isMining <span class="type">bool</span></span><br><span class="line">client.Call(&amp;isMining, <span class="string">&quot;eth_mining&quot;</span>)</span><br><span class="line"><span class="comment">//获取挖矿速率</span></span><br><span class="line"><span class="keyword">var</span> hashrate <span class="type">string</span></span><br><span class="line">client.Call(&amp;hashrate, <span class="string">&quot;eth_hashrate&quot;</span>)</span><br><span class="line"><span class="comment">//获取指定地址发生的交易数量</span></span><br><span class="line"><span class="keyword">var</span> transactionCount <span class="type">string</span></span><br><span class="line">client.Call(&amp;transactionCount, <span class="string">&quot;eth_getTransactionCount&quot;</span>, <span class="string">&quot;地址&quot;</span>，区块编号(latest、))</span><br><span class="line"><span class="comment">//获取节点当前块编号</span></span><br><span class="line"><span class="keyword">var</span> blockNum <span class="type">string</span></span><br><span class="line">client.Call(&amp;blockNum, <span class="string">&quot;eth_blockNumber&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建账户</span></span><br><span class="line"><span class="keyword">var</span> account <span class="type">string</span> </span><br><span class="line"><span class="keyword">var</span> pwd <span class="type">string</span> <span class="comment">// 参数</span></span><br><span class="line">client.Call(&amp;account, <span class="string">&quot;personal_newAccount&quot;</span>, pwd)</span><br><span class="line"><span class="comment">//获取账户列表</span></span><br><span class="line"><span class="keyword">var</span> accounts []<span class="type">string</span> </span><br><span class="line">client.Call(&amp;accounts, <span class="string">&quot;personal_listAccounts&quot;</span>)</span><br><span class="line"><span class="comment">//锁定指定账户</span></span><br><span class="line"><span class="keyword">var</span> lock <span class="type">bool</span></span><br><span class="line">client.Call(&amp;lock, <span class="string">&quot;personal_lockAccount&quot;</span>, <span class="string">&quot;地址&quot;</span>)</span><br><span class="line"><span class="comment">//解锁指定账户</span></span><br><span class="line"><span class="keyword">var</span> lock <span class="type">bool</span></span><br><span class="line">client.Call(&amp;lock, <span class="string">&quot;personal_unlockAccount&quot;</span>, <span class="string">&quot;地址&quot;</span>, <span class="string">&quot;密码&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写入数据库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Go调用智能合约"><a href="#Go调用智能合约" class="headerlink" title="Go调用智能合约"></a>Go调用智能合约</h2><ol>
+<li>通过remix部署合约获取abi信息，新建一个abi后缀名的文件<ul>
+<li>或者通过工具solc生成<ul>
+<li><code>solc -bin test.sol -o test.abi</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用abigen工具，根据abi文件生成对应的go文件<ul>
+<li><code>abigen --abi abi文件 --pkg 包名 --type 结构体名 --out 文件名.go</code></li>
+</ul>
+</li>
+</ol>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/04-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91/%E6%A1%86%E6%9E%B6%E7%9B%B8%E5%85%B3/">框架相关</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Go/Go%E5%BA%93/">Golang库</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
