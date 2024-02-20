@@ -141,6 +141,18 @@
 管理平台：内容管理、用户管理、数据统计、标签管理、公...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.708Z">2024-01-18</time></span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E9%A1%B9%E7%9B%AE/%E4%B8%AD%E5%8F%B0/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?"/></div><h2 class="post-title">2024-01-18</h2><div class="excerpt"><p></p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.707Z">2024-01-18</time></span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/MySQL/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?code"/></div><h2 class="post-title">MySQL源码</h2><div class="excerpt"><p>执行流程
+首先客户端发起sql查询
+sql到达服务器先经过连接器，进行身份、权限等校验
+然后再经过分析器，进行词法分析和语法分析
+mysql8.0之前会先去查询缓存中找
+
+
+在经过优化器，以优化器认为最优的执行方案去执行
+然后交给执行器，会先进行权限校验，权限通过就会去调用存储引擎的接口，进行具体的执行
+
+</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.704Z">2024-01-18</time></span><span class="cap breadcrumb">源码</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/Mybatis2/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?"/></div><h2 class="post-title">2024-01-18</h2><div class="excerpt"><p>架构
 组件及其调用关系
@@ -156,18 +168,6 @@ JDK代理前16次通过反射调用方法，后续都是
 
 
 123456789101112ClassLoader loder = 被代理类.class.getClassLoader();//被代理对象Target target = new Target();接口 proxy = (接口) Proxy....</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.704Z">2024-01-18</time></span><span class="cap breadcrumb">源码</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/MySQL/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?code"/></div><h2 class="post-title">MySQL源码</h2><div class="excerpt"><p>执行流程
-首先客户端发起sql查询
-sql到达服务器先经过连接器，进行身份、权限等校验
-然后再经过分析器，进行词法分析和语法分析
-mysql8.0之前会先去查询缓存中找
-
-
-在经过优化器，以优化器认为最优的执行方案去执行
-然后交给执行器，会先进行权限校验，权限通过就会去调用存储引擎的接口，进行具体的执行
-
-</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.704Z">2024-01-18</time></span><span class="cap breadcrumb">源码</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/JUC/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?源码"/></div><h2 class="post-title">JUC源码</h2><div class="excerpt"><p>AtomicInteger12//自增自减都是通过这个方法实现，unsafe.getAndAddInt(this, valueOffset, 1 / -1);
 
