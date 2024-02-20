@@ -140,6 +140,24 @@ FileOutputStream
 字符流
 
 FileRea...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.686Z">2024-01-18</time></span><span class="cap breadcrumb">Java基础</span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JVM/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">JVM虚拟机</h2><div class="excerpt"><p>简介JVM内存模型堆
+存放new出来的对象、字符串常量池、静态变量
+字符串常量池是在1.7的时候移入堆中，之前都是在方法区中
+
+
+堆内存由年轻代和老年代组成
+
+栈
+主要存放的是线程，每个线程开辟一块内存空间，称为线程栈
+最多占用1m内存
+
+
+线程栈中由多个栈帧组成，栈帧是调用的每个方法
+栈帧包括：，局部变量，
+操作数栈：方法运行期间数据的操作空间 
+动态链接：符号引用转变为直接引用
+方法出口...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></span><span class="cap breadcrumb">Java基础</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/Maven/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">Maven</h2><div class="excerpt"><p>命令
 
@@ -187,24 +205,6 @@ mvn deploy
 scope
 
 provid...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></span><span class="cap breadcrumb">Java基础</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JVM/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">JVM虚拟机</h2><div class="excerpt"><p>简介JVM内存模型堆
-存放new出来的对象、字符串常量池、静态变量
-字符串常量池是在1.7的时候移入堆中，之前都是在方法区中
-
-
-堆内存由年轻代和老年代组成
-
-栈
-主要存放的是线程，每个线程开辟一块内存空间，称为线程栈
-最多占用1m内存
-
-
-线程栈中由多个栈帧组成，栈帧是调用的每个方法
-栈帧包括：，局部变量，
-操作数栈：方法运行期间数据的操作空间 
-动态链接：符号引用转变为直接引用
-方法出口...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></span><span class="cap breadcrumb">Java基础</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JUC/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">JUC并发编程</h2><div class="excerpt"><p>简介为什么需要多线程
 解决可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况

@@ -99,7 +99,17 @@
 
 <div class="nav-wrap"><nav class="sub post cap"><a href="/">Recent</a><a class="active" href="/categories">Category: 源码</a><a href="/tags">Tags</a><a href="/archives">Archives</a></nav></div>
 
-  <div class="post-list post"><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/MySQL/">
+  <div class="post-list post"><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/Spring/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?源码"/></div><h2 class="post-title">Spring</h2><div class="excerpt"><p>SpringIOCAOPJDK代理
+被代理对象需要实现接口
+
+JDK代理和被代理对象同级，兄弟关系
+
+JDK代理前16次通过反射调用方法，后续都是
+
+
+123456789101112ClassLoader loder = 被代理类.class.getClassLoader();//被代理对象Target target = new Target();接口 proxy = (接口) Proxy....</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.704Z">2024-01-18</time></span><span class="cap breadcrumb">源码</span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/MySQL/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?code"/></div><h2 class="post-title">MySQL源码</h2><div class="excerpt"><p>执行流程
 首先客户端发起sql查询
 sql到达服务器先经过连接器，进行身份、权限等校验
@@ -111,16 +121,6 @@ mysql8.0之前会先去查询缓存中找
 然后交给执行器，会先进行权限校验，权限通过就会去调用存储引擎的接口，进行具体的执行
 
 </p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.704Z">2024-01-18</time></span><span class="cap breadcrumb">源码</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/Spring/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?源码"/></div><h2 class="post-title">Spring</h2><div class="excerpt"><p>SpringIOCAOPJDK代理
-被代理对象需要实现接口
-
-JDK代理和被代理对象同级，兄弟关系
-
-JDK代理前16次通过反射调用方法，后续都是
-
-
-123456789101112ClassLoader loder = 被代理类.class.getClassLoader();//被代理对象Target target = new Target();接口 proxy = (接口) Proxy....</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.704Z">2024-01-18</time></span><span class="cap breadcrumb">源码</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/JUC/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?源码"/></div><h2 class="post-title">JUC源码</h2><div class="excerpt"><p>AtomicInteger12//自增自减都是通过这个方法实现，unsafe.getAndAddInt(this, valueOffset, 1 / -1);
 
