@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Spring全家桶 - JianHong</title>
+
+  
+    <meta name="description" content="Spring5IOC IOC：控制反转，即将对象的创建个调用交给Spring管理 DI：依赖注入  容器主要通过两个接口来实现容器的创建  BeanFactory： spring核心容器，主要是内部使用 使用到对象是才创建，懒加载 提供getBean()方法   ApplicationContext： 继承了BeanFactory，扩展了更多功能国际化、匹配资源、发布事件、环境信息等 加载配置是就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring全家桶">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="Spring5IOC IOC：控制反转，即将对象的创建个调用交给Spring管理 DI：依赖注入  容器主要通过两个接口来实现容器的创建  BeanFactory： spring核心容器，主要是内部使用 使用到对象是才创建，懒加载 提供getBean()方法   ApplicationContext： 继承了BeanFactory，扩展了更多功能国际化、匹配资源、发布事件、环境信息等 加载配置是就">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/pic/image-20220113151640290.png">
+<meta property="og:image" content="http://example.com/pic/image-20230509162000402.png">
+<meta property="og:image" content="http://example.com/pic/image-20230513114552313.png">
+<meta property="article:published_time" content="2024-01-18T13:12:24.685Z">
+<meta property="article:modified_time" content="2024-01-18T13:45:31.388Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/pic/image-20220113151640290.png">
+  
+  
+  
+  <meta name="keywords" content="框架">
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?框架"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Spring全家桶</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC"><span class="toc-text">IOC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-text">容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean"><span class="toc-text">Bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">后处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Bean%E5%90%8E%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">Bean后处理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanFactory%E5%90%8E%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">BeanFactory后处理器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP"><span class="toc-text">AOP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%8A%9F%E8%83%BD"><span class="toc-text">内置功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86"><span class="toc-text">密码加密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-text">监听器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="toc-text">解决乱码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%EF%BC%88Interceptor%EF%BC%89"><span class="toc-text">拦截器（Interceptor）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-text">注册中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-text">配置中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ribbon"><span class="toc-text">Ribbon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E5%88%99"><span class="toc-text">规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoadBalance"><span class="toc-text">LoadBalance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-text">远程调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dubbo"><span class="toc-text">Dubbo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-text">简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feign"><span class="toc-text">Feign</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-3"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">性能优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">最佳实践</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenFeign"><span class="toc-text">OpenFeign</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%85%B3"><span class="toc-text">网关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gateway"><span class="toc-text">Gateway</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E7%9B%91%E6%8E%A7"><span class="toc-text">安全监控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentinel"><span class="toc-text">Sentinel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-text">流量控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%AA%E5%B4%A9%E9%97%AE%E9%A2%98"><span class="toc-text">雪崩问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB"><span class="toc-text">隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%8D%E7%BA%A7"><span class="toc-text">降级</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%88%E6%9D%83%E8%A7%84%E5%88%99"><span class="toc-text">授权规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">规则持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E9%9A%94%E7%A6%BB"><span class="toc-text">线程隔离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E9%99%8D%E7%BA%A7"><span class="toc-text">熔断降级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-4"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="toc-text">身份验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-text">权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">整体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81-%E5%8E%9F%E7%90%86"><span class="toc-text">认证 &amp; 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">过滤器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81"><span class="toc-text">自定义认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86-1"><span class="toc-text">密码加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Remenber-Me"><span class="toc-text">Remenber Me</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="toc-text">会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9FCROS"><span class="toc-text">跨域CROS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%88%E6%9D%83-%E6%8E%88%E6%9D%83%E6%A8%A1%E5%9E%8B"><span class="toc-text">授权 &amp; 授权模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95"><span class="toc-text">单点登录</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java%E6%A1%86%E6%9E%B6/">Java框架</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.685Z">2024-01-18</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>Spring全家桶</span></h1>
+<h1 id="Spring5"><a href="#Spring5" class="headerlink" title="Spring5"></a>Spring5</h1><h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><ul>
+<li>IOC：控制反转，即将对象的创建个调用交给Spring管理</li>
+<li>DI：依赖注入</li>
+</ul>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>主要通过两个接口来实现容器的创建</p>
+<ul>
+<li>BeanFactory：<ul>
+<li>spring核心容器，主要是内部使用</li>
+<li>使用到对象是才创建，懒加载</li>
+<li>提供getBean()方法</li>
+</ul>
+</li>
+<li>ApplicationContext：<ul>
+<li>继承了BeanFactory，扩展了更多功能国际化、匹配资源、发布事件、环境信息等</li>
+<li>加载配置是就创建所有的对象，体验更好但是启动慢</li>
+</ul>
+</li>
+</ul>
+<h2 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h2><p><strong>加载方式</strong></p>
+<ul>
+<li>XML中 &lt;Bean id&#x3D;”” class&#x3D;”” &#x2F;&gt;</li>
+<li>@Component、@service、@Controller、@Repository、@Import、@Bean</li>
+<li>@ComponentScan(“路径”)、@Configuration</li>
+<li>@ImportResource(“xml名”)</li>
+<li>@Configuration(proxyBeanMethods &#x3D;)</li>
+<li>FactoryBean&lt;T&gt;</li>
+<li>容器对象.registerBean()</li>
+<li>容器对象.registerSingleton(“Bean名”, Bean对象)    不会走bean的创建、依赖注入、初始化过程</li>
+<li>实现 ImportSelector、ImportBeanDefinitionRegister、BeanDefinitionRegistryPostProcessor 接口，实现对应的方法</li>
+<li>构造注入</li>
+</ul>
+<p><strong>加载控制</strong></p>
+<ul>
+<li>@Conditional()</li>
+<li>根据一些条件决定是否加载Bean</li>
+</ul>
+<p><strong>作用域</strong></p>
+<ul>
+<li>singleton：单例</li>
+<li>prototype：多例</li>
+<li>request</li>
+<li>session</li>
+<li>application</li>
+</ul>
+<p><strong>生命周期</strong></p>
+<ul>
+<li>实例化前</li>
+<li>实例化后</li>
+<li>初始化前</li>
+<li>初始化后</li>
+<li>使用</li>
+<li>销毁</li>
+</ul>
+<h2 id="后处理器"><a href="#后处理器" class="headerlink" title="后处理器"></a>后处理器</h2><h3 id="Bean后处理器"><a href="#Bean后处理器" class="headerlink" title="Bean后处理器"></a>Bean后处理器</h3><ul>
+<li><p>AutowiredAnnotationBeanPostProcessor</p>
+<ul>
+<li>解析@Autowired、@Value</li>
+</ul>
+</li>
+<li><p>CommonAnnotationBeanPostProcessor</p>
+<ul>
+<li>解析@Resource、@PostConstruct、@PostDestroy</li>
+</ul>
+</li>
+<li><p>ConfigurationPropertiesBindingPostProcessor</p>
+<ul>
+<li>解析@ConfigurationProperties</li>
+</ul>
+</li>
+<li><p>AnnotationAwareAspectJAutoProxyCreator</p>
+<ul>
+<li><p>解析AOP相关注解</p>
+</li>
+<li><p>获取所有切面</p>
+<ul>
+<li>通过findEligibleAdvisors(目标类) 找到所有作用于目标类的切面，会将高级切面转化为低级切面</li>
+</ul>
+</li>
+<li><p>创建代理</p>
+<ul>
+<li>通过wrapIfNecessary(目标类对象)，需要判断findEligibleAdvisors()返回的集合是否为空</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="BeanFactory后处理器"><a href="#BeanFactory后处理器" class="headerlink" title="BeanFactory后处理器"></a>BeanFactory后处理器</h3><ul>
+<li><p>ConfigurationClassPostProcessor</p>
+<ul>
+<li>解析@ComponentScan、@Bean、@import、@ImportResource</li>
+</ul>
+</li>
+<li><p>MapperScannerConfigurer</p>
+<ul>
+<li>解析@MapperScan</li>
+</ul>
+</li>
+<li><p>internalConfigurationAnnotationProcessor</p>
+<ul>
+<li>解析@Configuration、@Bean</li>
+</ul>
+</li>
+</ul>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p><strong>是什么</strong></p>
+<ul>
+<li>AOP是IOC流程中的一个扩展点</li>
+<li>作用是在不通过修改源代码的基础上，对其进行功能的添加</li>
+<li>体现了装饰器模式</li>
+<li>代理对象一般是在初始化之后创建</li>
+<li>出现循环依赖时，则会在依赖注入之前创建，并暂存二级缓存中</li>
+</ul>
+<p><strong>使用的场景</strong></p>
+<ul>
+<li>记录日志、缓存处理、spring内置的事务处理</li>
+</ul>
+<p><strong>实现</strong></p>
+<ul>
+<li>ajc编译器静态代理<ul>
+<li>需要添加aspec-maven-plugin</li>
+<li>原理是直接将增强方法写进类中，不使用代理，不走IOC</li>
+</ul>
+</li>
+<li>Agent类静态代理<ul>
+<li>需要添加JVM参数 <code>-Javaagent:maven仓库路径/</code></li>
+<li>原理也是直接将增强方法写进类中，不使用代理，不走IOC</li>
+</ul>
+</li>
+<li>JDK动态代理<ul>
+<li>代理对象有实现接口则使用JDK代理，创建的代理和代理对象一个等级</li>
+<li>前16次通过反射调用方法，后续都是直接调用</li>
+</ul>
+</li>
+<li>Cglib动态代理<ul>
+<li>创建的子类代理对象，所以被代理对象不能是final修饰的</li>
+<li>直接调用被代理方法</li>
+<li>基于ASM 实现的，动态字节码操作</li>
+</ul>
+</li>
+<li>AspectJ<ul>
+<li>属于编译时增强，基于字节码操作</li>
+<li>切面多的话AspectJ性能更强</li>
+</ul>
+</li>
+</ul>
+<p><strong>使用</strong></p>
+<ol>
+<li>创建一个AOP处理类，添加@AspectJ 和 @Component</li>
+<li>使用@Pointcut标注一个方法，指定代理的方法<ul>
+<li>execution 表达式匹配方法名</li>
+<li>@Annotation() 表达式匹配注解名</li>
+</ul>
+</li>
+<li>选择对应的通知类型<ul>
+<li>@Before、@After、@AfterReturning、@Around、@AfterThrowing</li>
+</ul>
+</li>
+<li>切面<ul>
+<li>@Advice</li>
+</ul>
+</li>
+<li>优先级<ul>
+<li>@Order(值)    前置通知值小优先，后置通知值大优先</li>
+</ul>
+</li>
+</ol>
+<p><strong>注意</strong></p>
+<ul>
+<li>代理对象无法增强静态方法</li>
+<li>Jdk代理和代理对象时同级关系，而cglib代理和代理对象时父子关系，所以代理对象不能是final修饰</li>
+<li>Jdk代理前16次都是通过反射的方式调用目标方法</li>
+<li>cglib代理通过代理方法直接调用目标方法</li>
+</ul>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p><strong>是什么</strong></p>
+<ul>
+<li>即要么都成功，要么都失败，不能存在中间状态</li>
+<li>事务一般加在Service层</li>
+<li>底层使用AOP，通过TransactionInterceptor实现</li>
+<li>@Transaction<ul>
+<li>propagation传播属性</li>
+<li>isolation隔离级别</li>
+<li>rollbackFor</li>
+<li>noRollbackFor</li>
+</ul>
+</li>
+</ul>
+<p><strong>事务的传播行为</strong></p>
+<ul>
+<li>Requirded：A有B就用A的，没有就创建</li>
+<li>Required_New：不管A有没有，B创建新的</li>
+<li>Supports：A有就用A的，没有就不用</li>
+<li>Not_Supports：A有就挂起，B不用事务</li>
+<li>Mandatory：A没有就抛异常</li>
+<li>Never：A有就抛异常</li>
+<li>Nested：A里有，B在A里的事务执行，A里没有就在里面创建</li>
+</ul>
+<p><strong>事务失效的场景</strong></p>
+<ul>
+<li><p>异常捕获处理</p>
+<ul>
+<li>即catch到异常并处理时，spring就没发现有异常，所以事务失效</li>
+<li>需要抛出才能回滚</li>
+</ul>
+</li>
+<li><p>抛出非运行时异常&#x2F;检查异常</p>
+<ul>
+<li>非运行时异常如io读取异常等等，即编译阶段可以发现的异常</li>
+<li>在@Transaction标注回滚异常类型为Exception可以解决</li>
+</ul>
+</li>
+<li><p>非public方法</p>
+</li>
+<li><p>非代理对象调用被代理对象的方法</p>
+</li>
+<li><p>在事务方法中直接调用其他事务方法</p>
+<ul>
+<li>因为直接调用不是用到代理对象调用，其实是用的this</li>
+<li>设置@EnableTransactionManagement(exposeProxy &#x3D; true)，然后使用AopContext.currentProxy()获取代理对象，然后执行方法</li>
+</ul>
+</li>
+<li><p>多线程下可能出现失效</p>
+</li>
+<li><p>mysql没开启事务</p>
+</li>
+</ul>
+<h2 id="内置功能"><a href="#内置功能" class="headerlink" title="内置功能"></a>内置功能</h2><p><strong>Aware</strong></p>
+<ul>
+<li><p>BeanNameAware：注入Bean的名字</p>
+</li>
+<li><p>BeanFactoryAware ：注入BeanFactory容器   </p>
+</li>
+<li><p>ApplicationContextAware：</p>
+<ul>
+<li>接口</li>
+<li>注入ApplicationContext容器</li>
+</ul>
+</li>
+<li><p>EmbeddedValueResolverAware：解析 $ { }</p>
+</li>
+</ul>
+<p><strong>InitializingBean</strong></p>
+<ul>
+<li>容器初始化接口</li>
+</ul>
+<h1 id="SpringWebFlux"><a href="#SpringWebFlux" class="headerlink" title="SpringWebFlux"></a>SpringWebFlux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><p>异步非阻塞的框架、响应式编程，功能和SpringMVC类似，基于Netty</p>
+</li>
+<li><p>SpringWebFlux + Reactor + Netty</p>
+</li>
+<li><p>请求和响应是 ServerReuquest 和 ServerResponse</p>
+</li>
+<li><p>观察者模式 Oberver（Flow取代）</p>
+</li>
+<li><p>主要使用Flux 和 Mono</p>
+<ul>
+<li><p>Flux</p>
+<ul>
+<li>声明多个数据流</li>
+<li>可传入数组（fromArray）、集合（fromItertr）、流（fromStream）</li>
+</ul>
+</li>
+<li><p>Mono</p>
+<ul>
+<li>声明0个或1个数据流</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可以发送信号</p>
+<ul>
+<li>错误信号</li>
+</ul>
+</li>
+<li><p>需要订阅后才能发出数据流</p>
+<ul>
+<li>subscribe()</li>
+</ul>
+</li>
+<li><p>操作符</p>
+<ul>
+<li>map 映射</li>
+<li>flatMap 将元素映射成流</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>基于spring的框架，有内置的tomcat，可以独立运行</li>
+<li>约定大于配置理念，最大的简化配置</li>
+<li>核心功能在于依赖管理和自动配置<ul>
+<li>依赖管理：<ul>
+<li>spring-boot-dependencies 几乎声明了所有开发中常用依赖的版本号，实现自动版本仲裁</li>
+</ul>
+</li>
+<li>自动配置<ul>
+<li>启动时自动加载所有的自动配置类</li>
+<li>如果不想使用默认的配置，可以直接@Bean替换底层的组件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="密码加密"><a href="#密码加密" class="headerlink" title="密码加密"></a>密码加密</h3><ul>
+<li>自定义后置处理器，实现EnvironmentPostProcessor接口</li>
+</ul>
+<h2 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h2><h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h2 id="解决乱码问题"><a href="#解决乱码问题" class="headerlink" title="解决乱码问题"></a>解决乱码问题</h2><ul>
+<li><p>配置全局过滤的filter</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span></span><br><span class="line">       org.springframework.web.filter.CharacterEncodingFilter</span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="拦截器（Interceptor）"><a href="#拦截器（Interceptor）" class="headerlink" title="拦截器（Interceptor）"></a>拦截器（Interceptor）</h2><ul>
+<li><p>自定义拦截器</p>
+<ul>
+<li><p>创建拦截器类实现HandlerInterceptor接口</p>
+<ul>
+<li>preHandle()<ul>
+<li>处理前被调用</li>
+<li>有返回值，返回false后续的方法都不会执行了</li>
+</ul>
+</li>
+<li>postHandle<ul>
+<li>处理之后被调用 </li>
+<li>在DispatcherServlet进行视图渲染之前调用，所以我们可以对ModelAndView对象进行操作</li>
+</ul>
+</li>
+<li>afterCompletion</li>
+</ul>
+</li>
+<li><p>配置拦截器，xml或者配置类</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../../../pic/image-20220113151640290.png" alt="image-20220113151640290"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpringCLoud"><a href="#SpringCLoud" class="headerlink" title="SpringCLoud"></a>SpringCLoud</h1><h2 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h2><p>Eureka</p>
+<ul>
+<li>支持服务注册和拉取、心跳检测</li>
+<li>Eureka采用AP方式</li>
+<li>服务提供者启动时会向Eureka注册信息，每30秒发送一次心跳</li>
+<li>Eureka为服务消费者提供服务提供者的信息</li>
+<li>负载均衡策略<ul>
+<li>默认是轮询，定时任务30s获取服务提供者信息</li>
+</ul>
+</li>
+</ul>
+<p>Nacos</p>
+<ul>
+<li><p>支持服务注册和拉取、心跳检测</p>
+<ul>
+<li>临时实例采用心跳检测，非临时采用主动检测</li>
+<li>临时实例不正常会剔除，非临时不会</li>
+</ul>
+</li>
+<li><p>支持服务列表变更的消息推送模式，服务列表更新更及时</p>
+</li>
+<li><p>Nacos集群采用AP模式，集群中存在非临时实例采用CP模式</p>
+</li>
+<li><p>基于Java语言实现的</p>
+</li>
+<li><p>服务分级存储模型</p>
+<ul>
+<li>服务 - 集群 - 实例</li>
+<li>可以进行地域划分集群</li>
+</ul>
+</li>
+<li><p>负载均衡策略</p>
+<ul>
+<li>默认是随机访问</li>
+<li>需要在配置文件中配置使用Nacos负载均衡规则<ul>
+<li>服务调用优先调用本地集群，本地集群不可用时访问其他集群</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可以在nacos控制面板中设置实例权重</p>
+<ul>
+<li>权重设置为0则不处理请求</li>
+</ul>
+</li>
+<li><p>实例可以选择临时实例或者非临时实例</p>
+</li>
+<li><p>本质上也是通过mvc调用接口实现</p>
+</li>
+</ul>
+<h2 id="配置中心"><a href="#配置中心" class="headerlink" title="配置中心"></a>配置中心</h2><p>Nacos</p>
+<ul>
+<li>统一配置管理，实现热更新，常配置开关或者格式</li>
+<li>服务拉取Nacos配置<ul>
+<li><p>新建一个boostrapt.yml 或者 properties 文件</p>
+<ul>
+<li>配置Nacos地址，配置文件后缀名，模块名</li>
+</ul>
+</li>
+<li><p>使用@NacosValue可以获取配置文件信息</p>
+</li>
+</ul>
+</li>
+<li>配置自动刷新，优先使用nacos的配置<ul>
+<li>接口上添加 @RefreshScope 实现自动刷新</li>
+<li>也可以创建一个类专门完成属性的加载<ul>
+<li>类上添加 @ConfigurationProperties(prefix &#x3D; “”)、@Component</li>
+<li>对应Nacos配置中的前缀</li>
+<li>创建一个变量接收这个配置的信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>环境隔离NameSpace 多环境配置共享<ul>
+<li>Nacos控制面板中可以创建命名空间，在配置文件中配置namespace，内容是命名空间自动生成的id</li>
+<li>多种配置的优先级<ul>
+<li>服务名称-开发环境.yaml  &gt; 服务名称.yaml 中 &gt; 本地配置</li>
+</ul>
+</li>
+<li>命名空间可以按服务来划分，各个服务使用自己的命名空间</li>
+<li>可以使用配置多配置文件，将配置信息都放在nacos上</li>
+</ul>
+</li>
+</ul>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><h3 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h3><ul>
+<li>请求先到Ribbon，然后Ribbon取注册中心找服务地址</li>
+<li>使用时往Spring容器中添加IRule对应的子类即可（全局），也可以在配置文件中配置（部分微服务）</li>
+<li>默认是懒加载的，第一次访问时才会创建LoadBalanceClient，请求时间比较长<ul>
+<li>可以设置饥饿加载，启动时就会创建，可以指定饥饿加载的服务器</li>
+</ul>
+</li>
+</ul>
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>RoundRobinRule：轮询</li>
+<li>AvailabilityFilteringRule：忽略短路和并发数过高（可以指定上限）的服务器</li>
+<li>WeightedResponseTimeRule：服务器响应时间越久，服务器的权重越小</li>
+<li>ZoneAvoidanceRule：分区，再对区内轮询</li>
+<li>BestAvailableRule：忽略短路的服务器，选择并发数低的服务器</li>
+<li>RandomRule：随机</li>
+<li>RetryRule：重试机制</li>
+</ul>
+<h3 id="LoadBalance"><a href="#LoadBalance" class="headerlink" title="LoadBalance"></a>LoadBalance</h3><h2 id="远程调用"><a href="#远程调用" class="headerlink" title="远程调用"></a>远程调用</h2><h3 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h3><h4 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>服务治理框架</li>
+<li>支持多协议</li>
+</ul>
+<h3 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h3><h4 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h4><ul>
+<li><p>是一个声明式Http客户端</p>
+</li>
+<li><p>传统的Http远程调用是使用 RestTemplate ，存在一些问题</p>
+<ul>
+<li>代码可读性差，编程不统一</li>
+<li>参数复杂Url难以维护</li>
+</ul>
+</li>
+<li><p>自定义Fegin的配置</p>
+<ul>
+<li>Fegin运行自定义的配置来覆盖默认配置</li>
+<li>配置：<ul>
+<li><p>fegin.Longger.Level：修改日志等级</p>
+<ul>
+<li>NONE：没任何日志</li>
+<li>BASIC：一次请求的请求时间，结束时间，耗时时间等基本信息</li>
+<li>HEADERS：基本信息 + 请求头信息</li>
+<li>FULL：基本信息 + 请求头信息 + 请求体 + 响应体</li>
+</ul>
+</li>
+<li><p>fegin.codec.Decoder：响应结果的解析器，将Json 转换为 Java对象</p>
+</li>
+<li><p>fegin.codec.Encoder：请求参数编码</p>
+</li>
+<li><p>fegin.Contract：支持的注解格式，规定支持的注解，默认是SpringMVC的注解</p>
+</li>
+<li><p>fegin.Retryer：失败重试机制，默认是不重试</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用</p>
+<ul>
+<li>配置文件</li>
+<li>加入Spring容器，创建对应的配置类<ul>
+<li>全局配置：@EnableFeignClient(defaultConfiguration &#x3D; 配置类)</li>
+<li>局部配置：@FeignClient(value &#x3D; “作用的服务”, configuration &#x3D; 配置类)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><ul>
+<li>底层的客户端，修改为支持连接池的客户端（导包 - 配置）<ul>
+<li>默认是 URLConnection，不支持连接池</li>
+<li>Apache HttpClient：支持连接池</li>
+<li>OKHttp：支持连接池</li>
+</ul>
+</li>
+<li>日志级别最好设置为Basic</li>
+</ul>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><ul>
+<li>继承<ul>
+<li>创建一个接口写这个方法声明，再让Client和Controller去继承和实现</li>
+<li>缺点<ul>
+<li>对SpringMVC不起作用，这个接口的参数列表中的映射不会被继承</li>
+<li>服务紧耦合</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>抽取<ul>
+<li>将方法声明，使用到的Pojo，默认配置等抽取为一个模块</li>
+<li>缺点<ul>
+<li>会将所有方法引入，多余了一些</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="OpenFeign"><a href="#OpenFeign" class="headerlink" title="OpenFeign"></a>OpenFeign</h3><h2 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h2><h3 id="Gateway"><a href="#Gateway" class="headerlink" title="Gateway"></a>Gateway</h3><ul>
+<li>基于WebFlux实现d</li>
+<li>拦截所有客户端请求，进行身份认证和权限校验</li>
+<li>进行服务路由，负载均衡</li>
+<li>请求限流</li>
+<li>路由断言工厂 （predicates）<ul>
+<li>配置写的字符串会被 Predicate Factory 读取并处理，转变为路由判断的条件</li>
+<li>spring 提供了11个断言工厂<ul>
+<li>After、Before、Between、Cookie、Header、Host、Method、Path、Query、RemoteAddr、Weight</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>过滤器 （filters）<ul>
+<li><p>当前路由过滤器</p>
+</li>
+<li><p>默认过滤器</p>
+<ul>
+<li>Default-filter</li>
+</ul>
+</li>
+<li><p>全局过滤器</p>
+<ul>
+<li>GlobalFilter 接口</li>
+</ul>
+</li>
+<li><p>执行顺序</p>
+<ul>
+<li>指定Order来决定执行顺序，值相同时，先执行默认，然后局部，然后全局</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="安全监控"><a href="#安全监控" class="headerlink" title="安全监控"></a>安全监控</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><ul>
+<li>雪崩问题<ul>
+<li>超时处理：一定时间没响应就返回错误信息</li>
+<li>舱壁模式（线程隔离）：限定每个业务能使用的线程数，避免tomcat资源耗尽</li>
+<li>熔断降级：断路器统计业务执行的异常比例。超出阈值则熔断该业务，拦截访问该业务的一切请求</li>
+<li>流量控制：限制业务访问的QPS，避免服务流量突增发生故障</li>
+</ul>
+</li>
+</ul>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><h3 id="雪崩问题"><a href="#雪崩问题" class="headerlink" title="雪崩问题"></a>雪崩问题</h3><h4 id="隔离"><a href="#隔离" class="headerlink" title="隔离"></a>隔离</h4><ul>
+<li>线程池隔离</li>
+<li>信号量隔离</li>
+</ul>
+<h4 id="降级"><a href="#降级" class="headerlink" title="降级"></a>降级</h4><h3 id="授权规则"><a href="#授权规则" class="headerlink" title="授权规则"></a>授权规则</h3><ul>
+<li>通过过滤器给请求添加一个特殊标识的头信息，携带这个信息的请求才可以正常访问</li>
+</ul>
+<h3 id="规则持久化"><a href="#规则持久化" class="headerlink" title="规则持久化"></a>规则持久化</h3><h3 id="线程隔离"><a href="#线程隔离" class="headerlink" title="线程隔离"></a>线程隔离</h3><ul>
+<li>线程池<ul>
+<li>支持主动超时、支持异步调用</li>
+<li>线程开销大</li>
+<li>支持低扇出</li>
+</ul>
+</li>
+<li>信号量（默认实现）<ul>
+<li>轻量级，开销小</li>
+<li>无主动超时和异步调用</li>
+<li>高频调用、高扇出</li>
+</ul>
+</li>
+</ul>
+<h2 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h2><ul>
+<li>断路器<ul>
+<li>closed：服务正常调用，统计服务异常比例，达到阈值则熔断，进入open状态</li>
+<li>open：熔断状态，禁止目标服务调用，熔断持续一段时间后进入half-open状态</li>
+<li>half-open：尝试请求服务，如果能正常访问则恢复到closed状态</li>
+</ul>
+</li>
+<li>熔断策略<ul>
+<li>慢调用：响应时间慢，一点数量的请求慢则熔断，可以设置响应时间阈值</li>
+<li>异常比例：在一定请求中抛异常的请求数量超过一定比例则熔断</li>
+<li>异常数：异常请求达到设置的异常数则熔断</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpringSecurity"><a href="#SpringSecurity" class="headerlink" title="SpringSecurity"></a>SpringSecurity</h1><h2 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h2><h3 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h3><h3 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h3><ul>
+<li>按照安全规则或者安全策略控制用户只能访问被授权的资源</li>
+<li>权限管理包括用户身份认证和授权，简称认证授权<ul>
+<li>认证：身份认证，就是判断用户是否合法（登录、指纹、人脸等等）</li>
+<li>授权：即访问控制，对不同的用户分配不同的权限</li>
+</ul>
+</li>
+</ul>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
+<li><p>shiro</p>
+<ul>
+<li>轻量、简单、易于集成</li>
+<li>但在微服务和扩展能力没有优势</li>
+</ul>
+</li>
+<li><p>SpringSecurity</p>
+<ul>
+<li>易于集成，微服务首选框架</li>
+</ul>
+</li>
+<li><p>自定义权限管理</p>
+<ul>
+<li>大项目、大公司需要，因为可以做到更安全</li>
+</ul>
+</li>
+</ul>
+<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../../../pic/image-20230509162000402.png" alt="image-20230509162000402"></p>
+<ul>
+<li>认证器（Authentication）<ul>
+<li>AuthenticationManager主要的实现类为ProviderManager，该实现类中管理了很多AuthenticationProvider实例，用来允许实现多种认证方式</li>
+<li>Authentication实现类用来保存认证以及认证成功的信息</li>
+<li>SecurityContextHolder用于获取认证信息， <ul>
+<li>原理是用的ThreadLocal实现与线程绑定</li>
+<li>第一次认证时的登录信息会保存到SecurityContextHolder中，使用完后会保存到session中，然后清空SecurityContextHolder</li>
+<li>之后再请求时会先查session，如果存在登录信息则放入SecurityContextHolder中，用完再放回session并清空</li>
+<li>方便在各个层级使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>授权器（Authorization）<ul>
+<li>AccessDecisionManager：访问决策管理器，用来决定此次访问是否被允许</li>
+<li>AccessDecisionVoter：访问决策投票者，会检查用户是否有对应的角色并进行投票</li>
+<li>ConfigAttribute：用来保存授权时的角色信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="认证-原理"><a href="#认证-原理" class="headerlink" title="认证 &amp; 原理"></a>认证 &amp; 原理</h3><ul>
+<li>本质上是用的一系列的spring提供的过滤器filter，并不是原生的filter</li>
+<li>spring提供了DelegatingFilterProxy，将spring的filter转换为原生的filter，使用了代理模式实现</li>
+<li>使用了FilterChainProxy，管理了spring的filter，并使其按一定的顺序执行，使用了责任链的设计模式</li>
+<li>通过FilterChainProxy嵌入到原生的filter过滤链中，由FilterChainProxy统一管理SecurityFilter</li>
+</ul>
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
+<li>由SpringSecurityFilterChain管理了所有需要使用的过滤器</li>
+</ul>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/./../../../pic/image-20230513114552313.png" alt="image-20230513114552313"></p>
+<ul>
+<li>默认会加载这15个filter</li>
+</ul>
+<h3 id="自定义认证"><a href="#自定义认证" class="headerlink" title="自定义认证"></a>自定义认证</h3><h3 id="密码加密-1"><a href="#密码加密-1" class="headerlink" title="密码加密"></a>密码加密</h3><h3 id="Remenber-Me"><a href="#Remenber-Me" class="headerlink" title="Remenber Me"></a>Remenber Me</h3><h3 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h3><h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><h3 id="跨域CROS"><a href="#跨域CROS" class="headerlink" title="跨域CROS"></a>跨域CROS</h3><h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><h3 id="授权-授权模型"><a href="#授权-授权模型" class="headerlink" title="授权 &amp; 授权模型"></a>授权 &amp; 授权模型</h3><h1 id="OAuth2-Jwt"><a href="#OAuth2-Jwt" class="headerlink" title="OAuth2 &amp; Jwt"></a>OAuth2 &amp; Jwt</h1><h3 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h3><h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><p><strong>@Bean</strong></p>
+<ul>
+<li>向容器注册组件</li>
+<li>只能标注方法</li>
+<li>@Bean标注的方法不支持重载，只有参数最多的方法会执行</li>
+</ul>
+<p><strong>@Autowired</strong></p>
+<ul>
+<li><p>spring提供的，先ByType后ByName，对象必须存在</p>
+</li>
+<li><p>失效的情况</p>
+<ul>
+<li>创建对象后创建BeanFactoryPostProcessor</li>
+</ul>
+</li>
+<li><p>scope失效的情况</p>
+<ul>
+<li>单例对象中注入多例对象，多例会失效<ul>
+<li>可以添加@Lazy解决（原理是代理）</li>
+<li>可以在@Scope(value &#x3D; “prototype”, proxyMode &#x3D; ScopedProxyMode.TARGET_CLASS)</li>
+<li>使用ObjectFactory&lt;多例对象&gt;解决</li>
+<li>使用容器对象的getBean方法获取多例对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>@Qualifer</strong></p>
+<ul>
+<li>不注入</li>
+</ul>
+<p><strong>@Resource</strong></p>
+<ul>
+<li>有JDK提供，ByType和ByName，可以指定Name</li>
+</ul>
+<p><strong>@Value</strong></p>
+<p>- </p>
+<p><strong>@Import</strong></p>
+<ul>
+<li>向容器中创建组件，默认组件名字是全类名</li>
+</ul>
+<p><strong>@Mapper</strong></p>
+<ul>
+<li>扫描mapper包，获取其元信息，判断是否是注解</li>
+<li>获取Bean定义，传入MapperFactoryBean类作为参数</li>
+</ul>
+<p><strong>@Configuration</strong></p>
+<ul>
+<li>被标注的类相当于一个工厂类，类中@Bean标注的方法相当于工厂方法</li>
+<li>会给标注的类生成代理对象，目的是保证bean的单例特性<ul>
+<li>默认是单例模式，可设置为多例</li>
+</ul>
+</li>
+</ul>
+<p><strong>@Nullable</strong></p>
+<p>- </p>
+<p><strong>@Indexed</strong></p>
+<ul>
+<li>在编译时将标注了该注解的Bean，会生成&#x2F;META-INF&#x2F;spring.components文件并加入其中</li>
+<li>扫描包时会先查这个文件并加载其中的Bean</li>
+<li>没有再走包sao’miao</li>
+</ul>
+<p><strong>@Order</strong></p>
+<ul>
+<li>数字越小的优先级越大</li>
+</ul>
+<p><strong>@Lazy</strong></p>
+<ul>
+<li>标注类上是延迟创建</li>
+<li>标注方法参数或成员变量上，</li>
+</ul>
+<p><strong>@primary</strong></p>
+<ul>
+<li>优先注入该Bean</li>
+</ul>
+<p><strong>@Conditional</strong></p>
+<ul>
+<li>条件装配，有很多子实现</li>
+<li>写在方法上有先后执行</li>
+<li>设定条件，按条件装配容器</li>
+</ul>
+<p><strong>@ImportResource</strong></p>
+<ul>
+<li>导入资源（xml）</li>
+</ul>
+<p><strong>@RequestMapping</strong></p>
+<ul>
+<li>映射浏览器的请求</li>
+</ul>
+<p><strong>@ResponseBody</strong></p>
+<ul>
+<li>将方法返回的内容写给浏览器</li>
+</ul>
+<p><strong>@RestController</strong></p>
+<ul>
+<li>等于 @ResponseBody 加 @Controller</li>
+</ul>
+<p><strong>@EnableConfigurationProperties</strong></p>
+<ul>
+<li>启用 @ConfigurationProperties 的功能</li>
+</ul>
+<p><strong>@ConfigurationProperties</strong></p>
+<ul>
+<li>将.property文件中的键值信息和Bean的属性进行绑定</li>
+</ul>
+<p>@RequestMapping</p>
+<ul>
+<li>method  请求方式<ul>
+<li>method &#x3D; RequestMethod.请求方式</li>
+</ul>
+</li>
+<li>params   指定限制请求参数的条件，支持简单的表达式</li>
+<li>页面跳转<ul>
+<li>直接返回字符串<ul>
+<li>进行视图跳转</li>
+</ul>
+</li>
+<li>通过ModelAndView对象返回<ul>
+<li>new一个ModelAndView对象进行返回</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>@RequestBody</p>
+<ul>
+<li>将前端传递过来的Json数据映射到类上</li>
+</ul>
+<p>@ResponseBody</p>
+<ul>
+<li>将后端返回的数据封装为Json格式返回</li>
+</ul>
+<p>@RequestParam</p>
+<ul>
+<li>当请求的参数名称与业务方法上形参的名字不一致时，使用该注解命名<ul>
+<li>value                客户端请求的参数名</li>
+<li>required           是否必须包含value值，默认时true，没有则报错</li>
+<li>defaultValue    默认值</li>
+</ul>
+</li>
+</ul>
+<p>@PathVariable</p>
+<ul>
+<li>在请求映射上添加占位符(请求方式为get)<ul>
+<li>@RequestMapping(“&#x2F;user&#x2F;<strong>{username}</strong>“);<ul>
+<li>可以用method 来区分请求方式</li>
+</ul>
+</li>
+<li>形参前加**@PathVariable**(value&#x3D;”username”)<ul>
+<li>username 的值会自动赋值给形参</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>@RequestHeader</p>
+<ul>
+<li>获得请求头信息<ul>
+<li>value       请求头名字</li>
+<li>required  是否必须携带此请求头</li>
+</ul>
+</li>
+</ul>
+<p>@CookieValue</p>
+<ul>
+<li>可以获得指定的Cookie的值</li>
+</ul>
+<p>@RestController</p>
+<ul>
+<li>@ResponseBody  +  @Controller</li>
+</ul>
+<p>@CrossOrigin</p>
+<ul>
+<li>处理Ajax请求的跨域问题</li>
+</ul>
+<p>@RequestPart</p>
+<ul>
+<li>用于接收MultipartFile等复杂类型的入参</li>
+</ul>
+<h1 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h1><p>DigestUtils</p>
+<ul>
+<li>md5加密</li>
+</ul>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/Web/">Web</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/Maven/">Maven</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

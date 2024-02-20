@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Rust - JianHong</title>
+
+  
+    <meta name="description" content="简介 高性能，运行速度与 C &#x2F; C++ 一样  零开销抽象：rust的标准实现一定是最优的 无GC的自动内存管理RALL：没有像java的自动gc，也不像c的完全用程序员管理 类C 的ABI一致内存模型：编译的二进制文件与c编译的一样，互相兼容，相互调用   内存安全  Ownership，move Borrowchecker 强类型系统 无空值设计   无忧并发  多线程并发时不会出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust">
+<meta property="og:url" content="http://example.com/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Rust/Rust/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介 高性能，运行速度与 C &#x2F; C++ 一样  零开销抽象：rust的标准实现一定是最优的 无GC的自动内存管理RALL：没有像java的自动gc，也不像c的完全用程序员管理 类C 的ABI一致内存模型：编译的二进制文件与c编译的一样，互相兼容，相互调用   内存安全  Ownership，move Borrowchecker 强类型系统 无空值设计   无忧并发  多线程并发时不会出">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-30T09:43:41.281Z">
+<meta property="article:modified_time" content="2024-02-20T08:01:55.477Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="rust">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="rust">
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?rust"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Rust</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">标量类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#i-u"><span class="toc-text">i&#x2F;u</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#String"><span class="toc-text">String</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#io%E5%87%BD%E6%95%B0"><span class="toc-text">io函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E5%87%BD%E6%95%B0"><span class="toc-text">String函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-text">内置函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#loop"><span class="toc-text">loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#match"><span class="toc-text">match</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-text">宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%93"><span class="toc-text">库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rand"><span class="toc-text">Rand</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Rust/">Rust</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-30T09:43:41.281Z">2024-01-30</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>Rust</span></h1>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><p>高性能，运行速度与 C &#x2F; C++ 一样</p>
+<ul>
+<li>零开销抽象：rust的标准实现一定是最优的</li>
+<li>无GC的自动内存管理RALL：没有像java的自动gc，也不像c的完全用程序员管理</li>
+<li>类C 的ABI一致内存模型：编译的二进制文件与c编译的一样，互相兼容，相互调用</li>
+</ul>
+</li>
+<li><p>内存安全</p>
+<ul>
+<li>Ownership，move</li>
+<li>Borrowchecker</li>
+<li>强类型系统</li>
+<li>无空值设计</li>
+</ul>
+</li>
+<li><p>无忧并发</p>
+<ul>
+<li>多线程并发时不会出现数据竞争和临界值破坏</li>
+<li>并发抽象Sync，Send</li>
+<li>融入类型系统</li>
+<li>基于Ownership，Borrowchecker实现</li>
+</ul>
+</li>
+<li><p>格式</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用库函数</span></span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数，程序入口</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()&#123;</span><br><span class="line">    <span class="comment">//定义变量</span></span><br><span class="line">    <span class="comment">//使用`:`来指定变量的类型</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">num</span>: <span class="type">u32</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rustc 文件名</td>
+<td>编译</td>
+<td></td>
+<td>会生成pdb文件和exe文件，适合单文件</td>
+</tr>
+<tr>
+<td>cargo new 项目名</td>
+<td>创建项目</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cargo build</td>
+<td>编译</td>
+<td>–release 开启优化</td>
+<td>会一直使用build生成的lock文件中依赖的版本，lock定义了小版本的最新版</td>
+</tr>
+<tr>
+<td>cargo run</td>
+<td>编译并运行</td>
+<td></td>
+<td>如果源码没修过会直接运行</td>
+</tr>
+<tr>
+<td>cargo check</td>
+<td>检测代码</td>
+<td></td>
+<td>确保编译，比build快</td>
+</tr>
+<tr>
+<td>cargo update</td>
+<td>依据toml中的版本来更新依赖</td>
+<td></td>
+<td>将依赖更新到小版本的最新版</td>
+</tr>
+</tbody></table>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h3><h4 id="i-u"><a href="#i-u" class="headerlink" title="i&#x2F;u"></a>i&#x2F;u</h4><ul>
+<li>有符号&#x2F;无符号整型</li>
+<li>有8~128位的类型，</li>
+<li>还有isize、usize，这两个是和计算机位数对应的，主要是用于对xx集合进行索引操作</li>
+</ul>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><ul>
+<li>字符串，utf8编码格式</li>
+</ul>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>let</td>
+<td>定义变量</td>
+<td>默认创建的变量都是不可变的，可覆盖创建的变量</td>
+</tr>
+<tr>
+<td>mut</td>
+<td>修饰变量使其可修改</td>
+<td></td>
+</tr>
+<tr>
+<td>use</td>
+<td>引入库</td>
+<td></td>
+</tr>
+<tr>
+<td>const</td>
+<td>定义常量</td>
+<td>不能用mut修饰</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//程序入口</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="io函数"><a href="#io函数" class="headerlink" title="io函数"></a>io函数</h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>expect</td>
+<td>程序出错后输出</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>stdin</td>
+<td>返回Stdin实例，用作句柄来处理终端中的输入</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>read_line</td>
+<td>获得用户输入，复制到可变字符串中</td>
+<td>String</td>
+<td>Result枚举（Ok，Err）</td>
+</tr>
+</tbody></table>
+<h3 id="String函数"><a href="#String函数" class="headerlink" title="String函数"></a>String函数</h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>trim</td>
+<td>去除左右两边空白</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>parse</td>
+<td>解析为指定类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h3 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h3><h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//比较a和b的值</span></span><br><span class="line"><span class="keyword">match</span> a.<span class="title function_ invoke__">cmp</span>(&amp;b) &#123;</span><br><span class="line">    std::cmp::Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;small&quot;</span>),</span><br><span class="line">    std::cmp::Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;big&quot;</span>),</span><br><span class="line">    std::cmp::Ordering::Equal =&gt; <span class="built_in">println!</span>(<span class="string">&quot;win&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//处理错误</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">guess</span>: <span class="type">u32</span> = <span class="keyword">match</span> guess.<span class="title function_ invoke__">trim</span>().<span class="title function_ invoke__">parse</span>()&#123;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(num) =&gt; num,</span><br><span class="line">    <span class="title function_ invoke__">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>println!</td>
+<td>打印文本</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="库"><a href="#库" class="headerlink" title="库"></a>库</h2><h3 id="Rand"><a href="#Rand" class="headerlink" title="Rand"></a>Rand</h3><p>随机数相关库</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//安装 cargo add rand</span></span><br><span class="line"><span class="keyword">use</span> rand::Rng</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="comment">//获取随机数         随机数生成器   指定范围</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">number</span> = rand::<span class="title function_ invoke__">thread_rng</span>().<span class="title function_ invoke__">gen_range</span>(<span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Go/Go%E5%BA%93/">Golang库</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">2024-01-30</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

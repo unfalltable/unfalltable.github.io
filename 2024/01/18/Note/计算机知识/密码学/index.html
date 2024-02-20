@@ -23,18 +23,22 @@
   <title>密码学 - JianHong</title>
 
   
-    <meta name="description" content="简介-  加密理念 柯尔霍夫原则 密钥是保密的，算法和参数是公开的 不需要数学上不可解，现实不可解即可    散列函数MD5对称加密DES 属于分组加密算法，每次处理固定长度的分组，分组大小为64位，需要加密的数据不足64位的倍数会填充  AES伪随机数生成非对称加密RSA 基于数论中一个非常简单的原理：将两个大素数相乘非常容易，但是想要对它们的乘积进行因式分解却极其困难 公钥太大，一般大于256">
+    <meta name="description" content="简介-  模型椭圆曲线 是一个二维平面上点的集合，这些在x轴上对称   P + Q &#x3D; R（PQ连线交于-R，映射到R即为结果）     K &#x3D; k * G &#x3D;&gt; G1+G2+…Gk 已知K和G，无法求出k     加密理念 柯尔霍夫原则 密钥是保密的，算法和参数是公开的 不需要数学上不可解，现实不可解即可    散列函数MD5Base58Check​	Base">
 <meta property="og:type" content="article">
 <meta property="og:title" content="密码学">
 <meta property="og:url" content="http://example.com/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/%E5%AF%86%E7%A0%81%E5%AD%A6/index.html">
 <meta property="og:site_name" content="JianHong">
-<meta property="og:description" content="简介-  加密理念 柯尔霍夫原则 密钥是保密的，算法和参数是公开的 不需要数学上不可解，现实不可解即可    散列函数MD5对称加密DES 属于分组加密算法，每次处理固定长度的分组，分组大小为64位，需要加密的数据不足64位的倍数会填充  AES伪随机数生成非对称加密RSA 基于数论中一个非常简单的原理：将两个大素数相乘非常容易，但是想要对它们的乘积进行因式分解却极其困难 公钥太大，一般大于256">
+<meta property="og:description" content="简介-  模型椭圆曲线 是一个二维平面上点的集合，这些在x轴上对称   P + Q &#x3D; R（PQ连线交于-R，映射到R即为结果）     K &#x3D; k * G &#x3D;&gt; G1+G2+…Gk 已知K和G，无法求出k     加密理念 柯尔霍夫原则 密钥是保密的，算法和参数是公开的 不需要数学上不可解，现实不可解即可    散列函数MD5Base58Check​	Base">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/pic/image-20240124200239345.png">
+<meta property="og:image" content="http://example.com/pic/image-20240124200409253.png">
+<meta property="og:image" content="http://example.com/pic/image-20240124203847088.png">
 <meta property="article:published_time" content="2024-01-18T13:12:24.732Z">
-<meta property="article:modified_time" content="2024-01-21T17:46:08.176Z">
+<meta property="article:modified_time" content="2024-01-28T19:25:59.701Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="密码学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/pic/image-20240124200239345.png">
   
   
   
@@ -81,7 +85,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">密码学</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E5%BF%B5"><span class="toc-text">理念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0"><span class="toc-text">散列函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MD5"><span class="toc-text">MD5</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">对称加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DES"><span class="toc-text">DES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AES"><span class="toc-text">AES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90"><span class="toc-text">伪随机数生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">非对称加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA"><span class="toc-text">RSA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL"><span class="toc-text">SSL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSV%EF%BC%88Random-Scalar-Value%EF%BC%89"><span class="toc-text">RSV（Random Scalar Value）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ECDSA%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="toc-text">ECDSA签名算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BLS"><span class="toc-text">BLS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Schnorr"><span class="toc-text">Schnorr</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-text">哈希算法</span></a></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">密码学</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF"><span class="toc-text">椭圆曲线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E5%BF%B5"><span class="toc-text">理念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0"><span class="toc-text">散列函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MD5"><span class="toc-text">MD5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Base58Check"><span class="toc-text">Base58Check</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">对称加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DES"><span class="toc-text">DES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AES"><span class="toc-text">AES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90"><span class="toc-text">伪随机数生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">非对称加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA"><span class="toc-text">RSA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL"><span class="toc-text">SSL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHA%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-text">SHA哈希算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SHA1"><span class="toc-text">SHA1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SHA256"><span class="toc-text">SHA256</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SHA-512"><span class="toc-text">SHA-512</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HMAC-SHA512"><span class="toc-text">HMAC-SHA512</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="toc-text">签名算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ECDSA"><span class="toc-text">ECDSA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BLS"><span class="toc-text">BLS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Schnorr"><span class="toc-text">Schnorr</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keccak256%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-text">Keccak256哈希算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RIPEMD-160%E4%BF%A1%E6%81%AF%E6%91%98%E8%A6%81%E7%AE%97%E6%B3%95"><span class="toc-text">RIPEMD-160信息摘要算法</span></a></li></ol></div></div></widget>
 
 
 
@@ -102,6 +106,21 @@
 <article class='md-text content post'>
 <h1 class="article-title"><span>密码学</span></h1>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>- </p>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><h2 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h2><ul>
+<li><p>是一个二维平面上点的集合，这些在x轴上对称</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../pic/image-20240124200239345.png" alt="image-20240124200239345"></p>
+</li>
+<li><p>P + Q &#x3D; R（PQ连线交于-R，映射到R即为结果）</p>
+</li>
+</ul>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../pic/image-20240124200409253.png" alt="image-20240124200409253"></p>
+<ul>
+<li>K &#x3D; k * G &#x3D;&gt; G1+G2+…Gk<ul>
+<li>已知K和G，无法求出k</li>
+</ul>
+</li>
+</ul>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../pic/image-20240124203847088.png" alt="image-20240124203847088"></p>
 <h1 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h1><h2 id="理念"><a href="#理念" class="headerlink" title="理念"></a>理念</h2><ul>
 <li>柯尔霍夫原则<ul>
 <li>密钥是保密的，算法和参数是公开的</li>
@@ -109,7 +128,23 @@
 </ul>
 </li>
 </ul>
-<h2 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><h3 id="DES"><a href="#DES" class="headerlink" title="DES"></a>DES</h3><ul>
+<h2 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><h3 id="Base58Check"><a href="#Base58Check" class="headerlink" title="Base58Check"></a>Base58Check</h3><p>​	Base58Check是一种用于将二进制数据编码为可读字符串的格式，主要用于数字加密货币领域，如比特币。这种编码方式常用于生成比特币的地址和钱包地址。</p>
+<p>Base58Check编码的特点如下：</p>
+<ol>
+<li>去除歧义字符：Base58Check编码中不使用0（零）、O（大写字母o）、I（大写字母i）、l（小写字母L）等易混淆的字符，只使用数字、大小写字母作为编码字符。</li>
+<li>错误检测：Base58Check编码包含错误检测码，用于检测数据在转录或传输过程中出现的错误。错误检测码是通过计算数据的哈希值得到的，确保数据的完整性和正确性。</li>
+<li>可读性：通过Base58Check编码，将二进制数据转换为可读的字符串形式，方便人阅读和识别。</li>
+<li>易用性：Base58Check编码在数字加密货币领域广泛应用，易于生成、解析和使用，也便于与计算机程序进行交互。</li>
+</ol>
+<p>Base58Check编码的过程包括以下步骤：</p>
+<ol>
+<li>去除数据中的前导零：如果数据以多个零开头，需要去除这些零，以避免在编码结果中出现过多的零。</li>
+<li>计算数据的哈希值：对数据进行哈希运算，得到一个固定长度的哈希值。</li>
+<li>添加错误检测码：将哈希值的前几个字节作为错误检测码添加到数据末尾。</li>
+<li>进行Base58Check编码：将数据和错误检测码一起进行Base58Check编码，得到最终的编码结果。</li>
+</ol>
+<p>通过Base58Check编码，可以生成比特币的地址和钱包地址，并保证地址的唯一性和数据的完整性。同时，Base58Check编码还具有简洁、易读、易于编程实现等特点，使得它在数字加密货币领域得到广泛应用。</p>
+<h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><h3 id="DES"><a href="#DES" class="headerlink" title="DES"></a>DES</h3><ul>
 <li>属于分组加密算法，每次处理固定长度的分组，分组大小为64位，需要加密的数据不足64位的倍数会填充</li>
 </ul>
 <h3 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h3><h3 id="伪随机数生成"><a href="#伪随机数生成" class="headerlink" title="伪随机数生成"></a>伪随机数生成</h3><h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><h3 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h3><ul>
@@ -151,35 +186,42 @@
 </ol>
 </li>
 </ul>
-<h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><h3 id="RSV（Random-Scalar-Value）"><a href="#RSV（Random-Scalar-Value）" class="headerlink" title="RSV（Random Scalar Value）"></a>RSV（Random Scalar Value）</h3><ul>
-<li><p>基于ECDSA（椭圆曲线数字签名算法）的一种加密方式</p>
-</li>
-<li><p>是签名过程中使用的随机标量值，用于确保签名的随机性和不可预测性。</p>
-</li>
-<li><p>在签名过程中，RSV的作用是作为哈希函数的输入，与私钥一起生成签名值。具体来说，RSV的选择应该是随机的，并且与私钥和待签名的消息一起哈希，以确保签名的唯一性和不可伪造性。</p>
-</li>
-<li><p>RSV的计算通常基于随机数生成器生成一个随机的标量值，然后与私钥和消息一起传递给哈希函数进行计算。具体的计算过程取决于所使用的签名算法和哈希函数，不同的非对称加密算法可能具有不同的计算方法和要求。</p>
-</li>
-<li><p>需要注意的是，RSV的选择和计算必须严格保密，以确保签名的安全性和可信度。此外，为了确保签名的有效性，RSV必须经过适当的验证和过滤，以防止潜在的安全漏洞和攻击。</p>
+<h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>- </p>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="SHA哈希算法"><a href="#SHA哈希算法" class="headerlink" title="SHA哈希算法"></a>SHA哈希算法</h2><h3 id="SHA1"><a href="#SHA1" class="headerlink" title="SHA1"></a>SHA1</h3><h3 id="SHA256"><a href="#SHA256" class="headerlink" title="SHA256"></a>SHA256</h3><ul>
+<li>collisiom resistance：输入转hash结果不变，但存在哈希碰撞</li>
+<li>hiding：根据哈希值无法预测输入</li>
+<li>puzzle friendly：根据输入无法预测哈希值</li>
+</ul>
+<h3 id="SHA-512"><a href="#SHA-512" class="headerlink" title="SHA-512"></a>SHA-512</h3><h3 id="HMAC-SHA512"><a href="#HMAC-SHA512" class="headerlink" title="HMAC-SHA512"></a>HMAC-SHA512</h3><ul>
+<li>键控哈希算法，结合了密钥和SHA-512哈希函数来提供数据的完整性和认证</li>
+<li>HMAC代表哈希消息认证码（Hash-based Message Authentication Code），它是一种通过特定算法使用密钥和消息作为输入来生成消息摘要的安全机制</li>
+<li>过程<ul>
+<li>HMAC进程将密钥与消息数据通过特定的方式组合，并对其进行哈希处理</li>
+<li>这个哈希值再次与密钥混合，并进行第二次哈希运算。最终输出的哈希值长度为512位</li>
+</ul>
 </li>
 </ul>
-<h3 id="ECDSA签名算法"><a href="#ECDSA签名算法" class="headerlink" title="ECDSA签名算法"></a>ECDSA签名算法</h3><ul>
+<h2 id="签名算法"><a href="#签名算法" class="headerlink" title="签名算法"></a>签名算法</h2><h3 id="ECDSA"><a href="#ECDSA" class="headerlink" title="ECDSA"></a>ECDSA</h3><ul>
+<li>基于椭圆曲线的签名算法，不支持聚合签名，多签需要逐个验证</li>
 <li>计算出r, s并返回用于rsv签名<ul>
 <li>v是一个恢复ID。v的值是由r的奇偶性决定的，如果r是偶数，则v&#x3D;27；如果r是奇数，则v&#x3D;28</li>
 </ul>
 </li>
+<li>计算出私钥k，公钥K</li>
 <li>过程<ol>
-<li>选择一条椭圆曲线Ep(a,b)，和基点G。</li>
-<li>选择私有密钥k（k&lt;n，n为G的阶），利用基点G计算公开密钥K&#x3D;kG。</li>
-<li>产生一个随机整数r（r&lt;n），计算点R&#x3D;rG。</li>
-<li>将原数据和点R的坐标值x,y作为参数，计算SHA1做为hash，即Hash&#x3D;SHA1(原数据,x,y)。</li>
-<li>计算s≡r - Hash * k (mod n)。</li>
+<li>选择一条椭圆曲线Ep(a, b)，和基点G（对应曲线的G值是确定的）。</li>
+<li>获取私钥k（k是利用随机数生成器生成的一个256位的二进制数字），再利用基点G计算公钥K &#x3D; k * G</li>
+<li>产生一个随机整数r，计算点R &#x3D; r * G</li>
+<li>获得R的坐标x，y</li>
+<li>计算HASH &#x3D; <strong>SHA1</strong>(原数据, x, y)</li>
+<li>计算s &#x3D; r - Hash * k (mod n)</li>
 <li>r和s做为签名值。如果r和s其中一个为0，重新从第3步开始执行</li>
 </ol>
 </li>
+<li>签名 &#x3D; Hash（私钥k，消息，r，s，v）</li>
 </ul>
 <h3 id="BLS"><a href="#BLS" class="headerlink" title="BLS"></a>BLS</h3><ul>
-<li><p>可将多个签名聚合成一个签名，并且可以对每个签名进行验证</p>
+<li><p>可将多个签名聚合成一个签名，并且可以对每个签名进行验证，不需要与签名者交互</p>
 </li>
 <li><p>准备</p>
 <ol>
@@ -220,13 +262,16 @@
 </li>
 </ul>
 <h3 id="Schnorr"><a href="#Schnorr" class="headerlink" title="Schnorr"></a>Schnorr</h3><ul>
-<li>签名和公钥较短</li>
+<li>签名和公钥较短，支持聚合签名，但需要与签名者进行交互</li>
 </ul>
-<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><ul>
-<li>collisiom resistance：输入转hash结果不变，但存在哈希碰撞</li>
-<li>hiding：根据哈希值无法预测输入</li>
-<li>puzzle friendly：根据输入无法预测哈希值</li>
-</ul>
+<h2 id="Keccak256哈希算法"><a href="#Keccak256哈希算法" class="headerlink" title="Keccak256哈希算法"></a>Keccak256哈希算法</h2><h2 id="RIPEMD-160信息摘要算法"><a href="#RIPEMD-160信息摘要算法" class="headerlink" title="RIPEMD-160信息摘要算法"></a>RIPEMD-160信息摘要算法</h2><p>​	RIPEMD-160（RACE Integrity Primitives Evaluation Message Digest）是一种信息摘要算法，主要用于数字签名和认证，也是区块链中使用的信息摘要算法之一。RIPEMD-160是由荷兰FOM（Institute for Applied Mathematics St. Martens Voeren）以及比利时UCL（Universite catholique de Louvain）在1992年推出的信息摘要算法，这种算法由160位的消息摘要组成，具有更高的安全性和流行性。</p>
+<p>​	RIPEMD-160是一个修改版本的MD4算法，能够生成20字节的摘要值，安全性基本等同于SHA-1（注意，SHA-1标准没有说K值是怎么确定的，这一点非常可疑）。RIPEMD-160可视为左右两个MD4并行计算，如果使用两个线程，性能不会有很大区别。RIPEMD-160内部维护64字节的输入缓存，20字节的输出缓存、20字节左计算缓存、20字节右计算缓存、8字节计数器和1字节的输入计数器。</p>
+<p>​	RIPEMD-160的一个典型应用是在比特币和其他基于比特币的加密货币中，它被用来生成公钥哈希（public key hash），即地址（address）。具体来说，比特币地址是由以下步骤生成的：</p>
+<ol>
+<li>生成一个椭圆曲线数字签名算法（ECDSA）的公钥和私钥对。</li>
+<li>对公钥进行SHA-256哈希运算，得到一个256位的哈希值。</li>
+<li>对上一步得到的哈希值进行RIPEMD-160哈希运算，得到一个160位的哈希值，即公钥哈希。</li>
+</ol>
 
 
 
@@ -235,7 +280,7 @@
 
 </article>
 
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E5%BF%B5/">分布式微服务思想</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL/">SQL</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E5%BF%B5/">分布式微服务思想</a></div></section></div>
 
 
 

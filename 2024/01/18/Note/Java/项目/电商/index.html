@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>电商 - JianHong</title>
+
+  
+    <meta name="description" content="商品管理SKU和SPU SKU是 库存量单位 商品信息参数的聚合，如商品的规格参数   SPU是 标准化产品单元 商品信息的聚合，如一个概览信息，也成为销售属性   SPU像是类，SKU像是对象  分类-品牌-属性 各表之间独立存储，通过关联表关联  提供添加关联的功能  属性分组和规格参数关联   属性  属性分组  基本信息 主体信息   规格参数（基本参数）  详细的信息   销售属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/Java/%E9%A1%B9%E7%9B%AE/%E7%94%B5%E5%95%86/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="商品管理SKU和SPU SKU是 库存量单位 商品信息参数的聚合，如商品的规格参数   SPU是 标准化产品单元 商品信息的聚合，如一个概览信息，也成为销售属性   SPU像是类，SKU像是对象  分类-品牌-属性 各表之间独立存储，通过关联表关联  提供添加关联的功能  属性分组和规格参数关联   属性  属性分组  基本信息 主体信息   规格参数（基本参数）  详细的信息   销售属性">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/pic/image-20230325113549822.png">
+<meta property="article:published_time" content="2024-01-18T13:12:24.709Z">
+<meta property="article:modified_time" content="2023-09-15T01:56:50.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="模块">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/pic/image-20230325113549822.png">
+  
+  
+  
+  <meta name="keywords" content="模块">
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?模块"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">电商</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86"><span class="toc-text">商品管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SKU%E5%92%8CSPU"><span class="toc-text">SKU和SPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB-%E5%93%81%E7%89%8C-%E5%B1%9E%E6%80%A7"><span class="toc-text">分类-品牌-属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86"><span class="toc-text">仓库管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%93%E5%AD%98%E7%BB%B4%E6%8A%A4"><span class="toc-text">库存维护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E8%B4%AD%E5%8D%95%E7%BB%B4%E6%8A%A4"><span class="toc-text">采购单维护</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E9%87%87%E8%B4%AD%E5%8D%95"><span class="toc-text">合并采购单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%86%E5%8F%96%E9%87%87%E8%B4%AD%E5%8D%95"><span class="toc-text">领取采购单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%88%90%E9%87%87%E8%B4%AD"><span class="toc-text">完成采购</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E8%B6%85%E6%97%B6%E5%A4%84%E7%90%86"><span class="toc-text">订单超时处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK%E8%87%AA%E5%B8%A6%E7%9A%84%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97"><span class="toc-text">JDK自带的延时队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RabbitMQ%E7%9A%84%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF"><span class="toc-text">RabbitMQ的延时消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%80"><span class="toc-text">实现一</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-1"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%BA%8C"><span class="toc-text">实现二</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-2"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="toc-text">缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RocketMQ%E7%9A%84%E5%AE%9A%E6%97%B6%E6%B6%88%E6%81%AF"><span class="toc-text">RocketMQ的定时消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-3"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-3"><span class="toc-text">缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E8%BF%87%E6%9C%9F%E7%9B%91%E5%90%AC"><span class="toc-text">Redis过期监听</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-4"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-4"><span class="toc-text">缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">定时任务分布式批处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-3"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-5"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-5"><span class="toc-text">缺点</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A2%E7%BA%A2%E5%8C%85"><span class="toc-text">抢红包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-text">架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%92%E6%9D%80"><span class="toc-text">秒杀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="toc-text">总体思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E5%8D%95"><span class="toc-text">下单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%94%AF%E4%B8%80ID"><span class="toc-text">全局唯一ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2%E5%BA%93%E5%AD%98%E8%B6%85%E5%8D%96"><span class="toc-text">防止库存超卖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%BA%E4%B8%80%E5%8D%95"><span class="toc-text">一人一单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%A7%92%E6%9D%80"><span class="toc-text">异步秒杀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li></ol></li></ol></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%A8%A1%E5%9D%97/">模块</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.709Z">2024-01-18</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>电商</span></h1>
+<h2 id="商品管理"><a href="#商品管理" class="headerlink" title="商品管理"></a>商品管理</h2><h3 id="SKU和SPU"><a href="#SKU和SPU" class="headerlink" title="SKU和SPU"></a>SKU和SPU</h3><ul>
+<li>SKU是 库存量单位<ul>
+<li>商品信息参数的聚合，如商品的规格参数</li>
+</ul>
+</li>
+<li>SPU是 标准化产品单元<ul>
+<li>商品信息的聚合，如一个概览信息，也成为销售属性</li>
+</ul>
+</li>
+<li>SPU像是类，SKU像是对象</li>
+</ul>
+<h3 id="分类-品牌-属性"><a href="#分类-品牌-属性" class="headerlink" title="分类-品牌-属性"></a>分类-品牌-属性</h3><ul>
+<li><p>各表之间独立存储，通过关联表关联</p>
+</li>
+<li><p>提供添加关联的功能</p>
+<ul>
+<li>属性分组和规格参数关联</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li><p>属性分组</p>
+<ul>
+<li>基本信息</li>
+<li>主体信息</li>
+</ul>
+</li>
+<li><p>规格参数（基本参数）</p>
+<ul>
+<li>详细的信息</li>
+</ul>
+</li>
+<li><p>销售属性</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="仓库管理"><a href="#仓库管理" class="headerlink" title="仓库管理"></a>仓库管理</h2><h3 id="库存维护"><a href="#库存维护" class="headerlink" title="库存维护"></a>库存维护</h3><h3 id="采购单维护"><a href="#采购单维护" class="headerlink" title="采购单维护"></a>采购单维护</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../../pic/image-20230325113549822.png" alt="image-20230325113549822"></p>
+<h4 id="合并采购单"><a href="#合并采购单" class="headerlink" title="合并采购单"></a>合并采购单</h4><ul>
+<li>将采购需求合并为一个采购单，并分配给对应的人员</li>
+<li>需要为采购需求设置状态<ul>
+<li>新建、已分配、已领取、已完成、有异常</li>
+</ul>
+</li>
+</ul>
+<h4 id="领取采购单"><a href="#领取采购单" class="headerlink" title="领取采购单"></a>领取采购单</h4><ul>
+<li>领取了采购单则标记为已领取</li>
+</ul>
+<h4 id="完成采购"><a href="#完成采购" class="headerlink" title="完成采购"></a>完成采购</h4><ul>
+<li>需要判断全部采购完成还是部分采购完成</li>
+</ul>
+<h2 id="订单超时处理"><a href="#订单超时处理" class="headerlink" title="订单超时处理"></a>订单超时处理</h2><h3 id="JDK自带的延时队列"><a href="#JDK自带的延时队列" class="headerlink" title="JDK自带的延时队列"></a>JDK自带的延时队列</h3><h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ol>
+<li>把订单插入DelayQueue中，以超时时间作为排序条件，将订单按照超时时间从小到大排序。</li>
+<li>起一个线程不停轮询队列的头部，如果订单的超时时间到了，就出队进行超时处理，并更新订单状态到数据库中。</li>
+<li>为了防止机器重启导致内存中的DelayQueue数据丢失，每次机器启动的时候，需要从数据库中初始化未结束的订单，加入到DelayQueue中。</li>
+</ol>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>简单，不需要借助其他第三方组件，成本低。</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>所有超时处理订单都要加入到DelayQueue中，占用内存大。</li>
+<li>没法做到分布式处理，只能在集群中选一台leader专门处理，效率低。</li>
+<li>不适合订单量比较大的场景。</li>
+</ul>
+<h3 id="RabbitMQ的延时消息"><a href="#RabbitMQ的延时消息" class="headerlink" title="RabbitMQ的延时消息"></a>RabbitMQ的延时消息</h3><h4 id="实现一"><a href="#实现一" class="headerlink" title="实现一"></a>实现一</h4><ul>
+<li>使用官方提供的延时消息插件 RabbitMQ Delayed Message Plugin</li>
+</ul>
+<h5 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>方便，易用</li>
+</ul>
+<h5 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>不是高可用的，节点挂起会导致消息丢失</li>
+</ul>
+<h4 id="实现二"><a href="#实现二" class="headerlink" title="实现二"></a>实现二</h4><ul>
+<li>消息的TTL+死信Exchange<ul>
+<li>TTL：<ul>
+<li>即消息的存活时间。RabbitMQ可以对队列和消息分别设置TTL，如果对队列设置，则队列中所有的消息都具有相同的过期时间。</li>
+<li>超过了这个时间，我们认为这个消息就死了，称之为死信。</li>
+</ul>
+</li>
+<li>死信Exchange（DLX）：一个消息在满足以下条件会进入死信交换机<ul>
+<li>一个消息被Consumer拒收了，并且reject方法的参数里requeue是false。也就是说不会被再次放在队列里，被其他消费者使用。</li>
+<li>TTL到期的消息。</li>
+<li>队列满了被丢弃的消息。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>可以支持海量延时消息，支持分布式处理。</li>
+</ul>
+<h5 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>不灵活，只能支持固定延时等级。</li>
+<li>使用复杂，要配置一堆延时队列。</li>
+</ul>
+<h3 id="RocketMQ的定时消息"><a href="#RocketMQ的定时消息" class="headerlink" title="RocketMQ的定时消息"></a>RocketMQ的定时消息</h3><h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>只要在发送消息时设置延时时间即可</li>
+</ul>
+<h5 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>精度高，支持任意时刻。</li>
+<li>使用门槛低，和使用普通消息一样</li>
+</ul>
+<h5 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>使用限制：定时时长最大值24小时。</li>
+<li>成本高：每个订单需要新增一个定时消息，且不会马上消费，给MQ带来很大的存储成本。</li>
+<li>同一个时刻大量消息会导致消息延迟：定时消息的实现逻辑需要先经过定时存储等待触发，定时时间到达后才会被投递给消费者。因此，如果将大量定时消息的定时时间设置为同一时刻，则到达该时刻后会有大量消息同时需要被处理，会造成系统压力过大，导致消息分发延迟，影响定时精度。</li>
+</ul>
+<h3 id="Redis过期监听"><a href="#Redis过期监听" class="headerlink" title="Redis过期监听"></a>Redis过期监听</h3><h4 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>redis配置文件开启”notify-keyspace-events Ex”</li>
+<li>监听key的过期回调</li>
+<li>每当我们对一个key设置了过期时间，Redis就会把该key带上过期时间，存到过期字典中，在redisDb中通过expires字段维护：</li>
+<li>有定期删除和惰性删除两种</li>
+</ul>
+<h5 id="优点-4"><a href="#优点-4" class="headerlink" title="优点"></a>优点</h5><p>- </p>
+<h5 id="缺点-4"><a href="#缺点-4" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>不可靠，不准确</li>
+</ul>
+<h3 id="定时任务分布式批处理"><a href="#定时任务分布式批处理" class="headerlink" title="定时任务分布式批处理"></a>定时任务分布式批处理</h3><h4 id="实现-3"><a href="#实现-3" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>使用分布式任务调度系统SchedulerX，不但兼容主流开源任务调度系统和Spring @Scheduled注解，还自研了轻量级MapReduce模型[4]，针对任意异构数据源，简单几行代码就可以实现海量数据秒级别跑批<ul>
+<li>通过实现map函数，通过代码自行构造分片，SchedulerX会将分片平均分给超时中心的不同节点分布式执行</li>
+<li>通过实现reduce函数，可以做聚合，可以判断这次跑批有哪些分片跑失败了，从而通知下游处理</li>
+</ul>
+</li>
+</ul>
+<h5 id="优点-5"><a href="#优点-5" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>稳定性强，需要保证业务幂等</li>
+<li>效率高，使用定时任务跑批方案，一次捞出一批订单，处理完了，可以批量更新订单状态，减少数据库的tps。在海量订单处理场景下，批量处理效率最高</li>
+<li>可运维,基于数据库存储，可以很方便的对订单进行修改、暂停、取消等操作，所见即所得。如果业务跑失败了，还可以直接通过sql修改数据库来进行批量运维</li>
+<li><strong>免运维、成本低：</strong>不需要自建任务调度系统，由云上托管。</li>
+<li><strong>可观测：</strong>提供任务执行的历史记录、查看堆栈、日志服务、链路追踪等能力。</li>
+<li><strong>高可用：</strong>支持同城双活容灾，支持多种渠道的监控报警。</li>
+<li><strong>混部：</strong>可以托管阿里云的机器，也可以托管非阿里云的机器。</li>
+</ul>
+<h5 id="缺点-5"><a href="#缺点-5" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>没法做到精度很高。定时任务的延迟时间，由定时任务的调度周期决定。如果把频率设置很小，就会导致数据库的qps比较高，容易造成数据库压力过大，从而影响线上的正常业务</li>
+<li>所以一般需要抽离出超时中心和超时库来单独做订单的超时调度</li>
+</ul>
+<h2 id="抢红包"><a href="#抢红包" class="headerlink" title="抢红包"></a>抢红包</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><ul>
+<li>发红包<ul>
+<li>不需要加锁，发红包没有竞争</li>
+<li>拆分红包<ul>
+<li>确保原子性并且不加锁</li>
+<li>拆分红包使用二倍均值算法：抢到的金额 &#x3D; 随机（0，剩余红包金额 &#x2F; 剩余红包数 * 2）</li>
+</ul>
+</li>
+<li>存红包<ul>
+<li>红包存redis中的list，lpush存，lpop取，设置过期时间，返回一个红包的key</li>
+<li>存redis后会有一个唯一key</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>抢红包<ul>
+<li>根据redis中存的红包key</li>
+<li>用另一个hash表记录红包的消费信息</li>
+<li>使用用户的token判断是否重复抢，没在hash中的才能抢</li>
+</ul>
+</li>
+<li>统计红包记录<ul>
+<li>根据hash表中记录的</li>
+</ul>
+</li>
+<li>红包回退</li>
+<li>配置红包雨数量、金额、时间等</li>
+</ul>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><ul>
+<li>redis集群（写 8万&#x2F;s）</li>
+</ul>
+<h2 id="秒杀"><a href="#秒杀" class="headerlink" title="秒杀"></a>秒杀</h2><h3 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h3><ul>
+<li>秒杀最主要的是查看商品详情页和下单两个模块</li>
+<li>查看商品详情页<ul>
+<li>前端从CDN上取得页面数据，后端将页面静态化后存到cdn上</li>
+<li>添加nginx做负载均衡，然后用redis缓存，nginx访问redis<ul>
+<li>redis中没有数据再去查JVM缓存</li>
+<li>JVM缓存中没有再去查数据库</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h2 id="下单"><a href="#下单" class="headerlink" title="下单"></a>下单</h2></li>
+</ul>
+<h3 id="全局唯一ID"><a href="#全局唯一ID" class="headerlink" title="全局唯一ID"></a>全局唯一ID</h3><ul>
+<li>需要满足唯一性，安全性，高可用，高性能</li>
+<li>使用Redis中的incrby实现<ul>
+<li>符号位（1）+ 时间戳（31）+ 序列号（32）<ul>
+<li>时间戳 &#x3D; 当前时间 - 自定义的一个过去的时间常量</li>
+<li>序列号 &#x3D; “一些前缀” + 当前时间 + 1</li>
+<li>返回     时间戳 &lt;&lt; 32 | 序列号</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用雪花算法<ul>
+<li>1bit + 时间戳（41）+ 机器id（10）+ 序列号（12）</li>
+<li>同一毫秒生成的id不超过4095，超过4095则到下一毫秒生成</li>
+<li>由于每一台机器的工作机器id不同，所以分布式环境下也不会冲突</li>
+</ul>
+</li>
+</ul>
+<h3 id="防止库存超卖"><a href="#防止库存超卖" class="headerlink" title="防止库存超卖"></a>防止库存超卖</h3><ul>
+<li><p>CAS</p>
+</li>
+<li><p>Synchronize</p>
+</li>
+<li><p>分布式锁</p>
+</li>
+</ul>
+<h3 id="一人一单"><a href="#一人一单" class="headerlink" title="一人一单"></a>一人一单</h3><ul>
+<li>需要在扣减库存前进行判断，并且把判断过程和扣减库存用synchronize锁住</li>
+<li>以userId作为锁</li>
+<li>在分布式系统下无法保证，需要使用分布式锁</li>
+</ul>
+<h3 id="异步秒杀"><a href="#异步秒杀" class="headerlink" title="异步秒杀"></a>异步秒杀</h3><ul>
+<li>由于当前大多数业务都是在tomcat中串行执行的，效率低</li>
+<li>把秒杀券信息也保存到redis中</li>
+<li>所以我们可以把判断库存、扣减库存和一人一单校验放在redis中进行<ul>
+<li>使用lua脚本确保原子性</li>
+</ul>
+</li>
+<li>用户秒杀成功后将优惠券id和用户id存入<strong>阻塞队列</strong>中，将订单id返回给用户</li>
+<li>开启线程任务不断读取<strong>阻塞队列</strong>中的订单异步下单</li>
+</ul>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><ul>
+<li><p>使用Stream的Group（消费组）实现消息队列</p>
+<ul>
+<li>消息分流<ul>
+<li>队列中的消息会分流给组内不同的消费者，从而加快消息处理速度</li>
+</ul>
+</li>
+<li>消息标示<ul>
+<li>会维护一个标识记录最后一个被处理的消息，即使宕机重启，还会从标识之后读取消息，确保每一个消息都被消费</li>
+</ul>
+</li>
+<li>消息确认<ul>
+<li>消费者获得消息后，消息会处于pending状态，并存入一个pending-list，当处理完消息后需要通过XACK来确认消息，标记消息已处理，才会从pending-list移除</li>
+</ul>
+</li>
+<li>可以阻塞读取</li>
+<li>消息可回溯，即持久化存储</li>
+</ul>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ul>
+<li>创建一个StreamGroup类型的消息队列，名为stream.orders<ul>
+<li><code>XGROUP CREATE stream.orders g1 0 MKSTREAM</code></li>
+</ul>
+</li>
+<li>使用lua脚本向消息队列中添加消息</li>
+<li>开启一个线程从消息队列中取出消息<ul>
+<li>判断信息是否为空<ul>
+<li>空继续下一轮循环</li>
+<li>非空解析信息然后创建订单</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>确认消息队列中的消息</li>
+<li>如果这个过程出现异常需要处理pending-list</li>
+</ul>
+</li>
+</ul>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E5%B7%A5%E5%85%B7%E5%BA%93/Git/">2024-01-18</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/Java/%E9%A1%B9%E7%9B%AE/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/">聊天模块</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

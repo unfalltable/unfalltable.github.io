@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>JianHong</title>
+
+  
+    <meta name="description" content="架构 组件及其调用关系 目录结构 解析配置文件读取xml文件流123456789public static InputStream getResourceAsStream(ClassLoader loader, String resource) throws IOException &#123;    InputStream in &#x3D; classLoaderWrapper.getResourceA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JianHong">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/Mybatis2/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="架构 组件及其调用关系 目录结构 解析配置文件读取xml文件流123456789public static InputStream getResourceAsStream(ClassLoader loader, String resource) throws IOException &#123;    InputStream in &#x3D; classLoaderWrapper.getResourceA">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image-20230317103336946.png">
+<meta property="og:image" content="http://example.com/image-20230317115152145.png">
+<meta property="og:image" content="http://example.com/image-20230317115410587.png">
+<meta property="og:image" content="http://example.com/pic/image-20230319215902238.png">
+<meta property="article:published_time" content="2024-01-18T13:12:24.704Z">
+<meta property="article:modified_time" content="2024-01-07T19:18:56.606Z">
+<meta property="article:author" content="JianHong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image-20230317103336946.png">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">TOC</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%8F%8A%E5%85%B6%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB"><span class="toc-text">组件及其调用关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">解析配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96xml%E6%96%87%E4%BB%B6%E6%B5%81"><span class="toc-text">读取xml文件流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BASqlSessionFactory"><span class="toc-text">构建SqlSessionFactory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BASqlSession%E5%AF%B9%E8%B1%A1"><span class="toc-text">创建SqlSession对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SqlSession%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">SqlSession执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SqlSession%E5%8E%9F%E7%90%86"><span class="toc-text">SqlSession原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%99%A8%E5%8E%9F%E7%90%86"><span class="toc-text">执行器原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SimpleExecutor"><span class="toc-text">SimpleExecutor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReuseExecutor"><span class="toc-text">ReuseExecutor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E5%8E%9F%E7%90%86"><span class="toc-text">分页原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.704Z">2024-01-18</time></div></div>
+
+<article class='md-text content post'>
+
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/image-20230317103336946.png" alt="image-20230317103336946"></p>
+<h2 id="组件及其调用关系"><a href="#组件及其调用关系" class="headerlink" title="组件及其调用关系"></a>组件及其调用关系</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/image-20230317115152145.png" alt="image-20230317115152145"></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/image-20230317115410587.png" alt="image-20230317115410587"></p>
+<h2 id="解析配置文件"><a href="#解析配置文件" class="headerlink" title="解析配置文件"></a>解析配置文件</h2><h3 id="读取xml文件流"><a href="#读取xml文件流" class="headerlink" title="读取xml文件流"></a>读取xml文件流</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> InputStream <span class="title function_">getResourceAsStream</span><span class="params">(ClassLoader loader, String resource)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> classLoaderWrapper.getResourceAsStream(resource, loader);</span><br><span class="line">    <span class="keyword">if</span> (in == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;Could not find resource &quot;</span> + resource);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> in;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> InputStream <span class="title function_">getResourceAsStream</span><span class="params">(String resource, ClassLoader classLoader)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getResourceAsStream(resource, <span class="built_in">this</span>.getClassLoaders(classLoader));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ClassLoader[] getClassLoaders(ClassLoader classLoader) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ClassLoader</span>[]&#123;</span><br><span class="line">        classLoader, </span><br><span class="line">        <span class="built_in">this</span>.defaultClassLoader, </span><br><span class="line">        Thread.currentThread().getContextClassLoader(), </span><br><span class="line">        <span class="built_in">this</span>.getClass().getClassLoader(), </span><br><span class="line">        <span class="built_in">this</span>.systemClassLoader&#125;;</span><br><span class="line">&#125;</span><br><span class="line">InputStream <span class="title function_">getResourceAsStream</span><span class="params">(String resource, ClassLoader[] classLoader)</span> &#123;</span><br><span class="line">    ClassLoader[] var3 = classLoader;</span><br><span class="line">    <span class="type">int</span> <span class="variable">var4</span> <span class="operator">=</span> classLoader.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">var5</span> <span class="operator">=</span> <span class="number">0</span>; var5 &lt; var4; ++var5) &#123;</span><br><span class="line">        <span class="type">ClassLoader</span> <span class="variable">cl</span> <span class="operator">=</span> var3[var5];</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">null</span> != cl) &#123;</span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">returnValue</span> <span class="operator">=</span> cl.getResourceAsStream(resource);</span><br><span class="line">            <span class="comment">//重试，尝试+&quot;/&quot;能不能获取到</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="literal">null</span> == returnValue) returnValue = cl.getResourceAsStream(<span class="string">&quot;/&quot;</span> + resource);</span><br><span class="line">            <span class="keyword">if</span> (<span class="literal">null</span> != returnValue) <span class="keyword">return</span> returnValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="构建SqlSessionFactory"><a href="#构建SqlSessionFactory" class="headerlink" title="构建SqlSessionFactory"></a>构建SqlSessionFactory</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> SqlSessionFactory <span class="title function_">build</span><span class="params">(InputStream inputStream, String environment, Properties properties)</span> &#123;</span><br><span class="line">    SqlSessionFactory var5;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="type">XMLConfigBuilder</span> <span class="variable">parser</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XMLConfigBuilder</span>(inputStream, environment, properties);</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        var5 = <span class="built_in">this</span>.build(parser.parse());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception var14) &#123;</span><br><span class="line">        <span class="keyword">throw</span> ExceptionFactory.wrapException(<span class="string">&quot;Error building SqlSession.&quot;</span>, var14);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        ErrorContext.instance().reset();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            inputStream.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException var13) &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">XMLConfigBuilder</span><span class="params">(InputStream inputStream, String environment, Properties props)</span> &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">this</span>(<span class="keyword">new</span> <span class="title class_">XPathParser</span>(inputStream, <span class="literal">true</span>, props, <span class="keyword">new</span> <span class="title class_">XMLMapperEntityResolver</span>()), environment, props);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="title function_">XMLConfigBuilder</span><span class="params">(XPathParser parser, String environment, Properties props)</span> &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">super</span>(<span class="keyword">new</span> <span class="title class_">Configuration</span>());</span><br><span class="line">    <span class="built_in">this</span>.localReflectorFactory = <span class="keyword">new</span> <span class="title class_">DefaultReflectorFactory</span>();</span><br><span class="line">    ErrorContext.instance().resource(<span class="string">&quot;SQL Mapper Configuration&quot;</span>);</span><br><span class="line">    <span class="built_in">this</span>.configuration.setVariables(props);</span><br><span class="line">    <span class="built_in">this</span>.parsed = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">this</span>.environment = environment;</span><br><span class="line">    <span class="built_in">this</span>.parser = parser;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Configuration <span class="title function_">parse</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//默认为false</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.parsed) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BuilderException</span>(<span class="string">&quot;Each XMLConfigBuilder can only be used once.&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//这个解析方法只能调用一次，即配置文件只能解析一次</span></span><br><span class="line">        <span class="built_in">this</span>.parsed = <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">this</span>.parseConfiguration(<span class="built_in">this</span>.parser.evalNode(<span class="string">&quot;/configuration&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.configuration;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    parser.evalNode 解析configuration节点及其子节点，封装到一个XNode对象中</span></span><br><span class="line"><span class="comment">    parseConfiguration 解析XNode对象（properties、settings、environments、mapper等等）</span></span><br><span class="line"><span class="comment">    1.将解析出的内容设置到configuration中</span></span><br><span class="line"><span class="comment">    2.解析mapper</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">parseConfiguration</span><span class="params">(XNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.propertiesElement(root.evalNode(<span class="string">&quot;properties&quot;</span>));</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">settings</span> <span class="operator">=</span> <span class="built_in">this</span>.settingsAsProperties(root.evalNode(<span class="string">&quot;settings&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.loadCustomVfs(settings);</span><br><span class="line">        <span class="built_in">this</span>.loadCustomLogImpl(settings);</span><br><span class="line">        <span class="built_in">this</span>.typeAliasesElement(root.evalNode(<span class="string">&quot;typeAliases&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.pluginElement(root.evalNode(<span class="string">&quot;plugins&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.objectFactoryElement(root.evalNode(<span class="string">&quot;objectFactory&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.objectWrapperFactoryElement(root.evalNode(<span class="string">&quot;objectWrapperFactory&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.reflectorFactoryElement(root.evalNode(<span class="string">&quot;reflectorFactory&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.settingsElement(settings);</span><br><span class="line">        <span class="built_in">this</span>.environmentsElement(root.evalNode(<span class="string">&quot;environments&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.databaseIdProviderElement(root.evalNode(<span class="string">&quot;databaseIdProvider&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.typeHandlerElement(root.evalNode(<span class="string">&quot;typeHandlers&quot;</span>));</span><br><span class="line">        <span class="comment">//解析mapper</span></span><br><span class="line">        <span class="built_in">this</span>.mapperElement(root.evalNode(<span class="string">&quot;mappers&quot;</span>));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception var3) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BuilderException</span>(<span class="string">&quot;Error parsing SQL Mapper Configuration. Cause: &quot;</span> + var3, var3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">mapperElement</span><span class="params">(XNode parent)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="comment">//获取&lt;mappers&gt;的子节点，解析属性</span></span><br><span class="line">    <span class="comment">//获取子节点中的 url/resources ，转化为字节流，交给 XMLMapperBuilder 解析</span></span><br><span class="line">    <span class="comment">//调用XMLMapperBuilder.parse 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据传入的字节流，构建Document对象</span></span><br><span class="line"><span class="keyword">private</span> <span class="title function_">XMLMapperBuilder</span><span class="params">(XPathParser parser, Configuration configuration, String resource, Map&lt;String, XNode&gt; sqlFragments)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(configuration);</span><br><span class="line">    <span class="built_in">this</span>.builderAssistant = <span class="keyword">new</span> <span class="title class_">MapperBuilderAssistant</span>(configuration, resource);</span><br><span class="line">    <span class="built_in">this</span>.parser = parser;</span><br><span class="line">    <span class="built_in">this</span>.sqlFragments = sqlFragments;</span><br><span class="line">    <span class="built_in">this</span>.resource = resource;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">parse</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.configuration.isResourceLoaded(<span class="built_in">this</span>.resource)) &#123;</span><br><span class="line">        <span class="comment">//获取mapper的命名空间，解析（cache、sql、resultmap、crud）</span></span><br><span class="line">        <span class="built_in">this</span>.configurationElement(<span class="built_in">this</span>.parser.evalNode(<span class="string">&quot;/mapper&quot;</span>));</span><br><span class="line">        <span class="built_in">this</span>.configuration.addLoadedResource(<span class="built_in">this</span>.resource);</span><br><span class="line">        <span class="built_in">this</span>.bindMapperForNamespace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.parsePendingResultMaps();</span><br><span class="line">    <span class="built_in">this</span>.parsePendingCacheRefs();</span><br><span class="line">    <span class="built_in">this</span>.parsePendingStatements();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//解析crud标签</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">buildStatementFromContext</span><span class="params">(List&lt;XNode&gt; list, String requiredDatabaseId)</span> &#123;</span><br><span class="line">    <span class="type">Iterator</span> <span class="variable">var3</span> <span class="operator">=</span> list.iterator();</span><br><span class="line">    <span class="keyword">while</span>(var3.hasNext()) &#123;</span><br><span class="line">        <span class="type">XNode</span> <span class="variable">context</span> <span class="operator">=</span> (XNode)var3.next();</span><br><span class="line">        <span class="type">XMLStatementBuilder</span> <span class="variable">statementParser</span> <span class="operator">=</span> </span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">XMLStatementBuilder</span>(<span class="built_in">this</span>.configuration, <span class="built_in">this</span>.builderAssistant, context, requiredDatabaseId);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//解析，封装</span></span><br><span class="line">            statementParser.parseStatementNode();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IncompleteElementException var7) &#123;</span><br><span class="line">            <span class="built_in">this</span>.configuration.addIncompleteStatement(statementParser);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">parseStatementNode</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//获取标签中的id</span></span><br><span class="line">    <span class="comment">//判断标签是crud中的哪一个，设置标签类型</span></span><br><span class="line">    <span class="comment">//解析属性</span></span><br><span class="line">    <span class="comment">//解析sql，替换占位符，保存占位符中的值（重点）</span></span><br><span class="line">    <span class="type">SqlSource</span> <span class="variable">sqlSource</span> <span class="operator">=</span> </span><br><span class="line">        langDriver.createSqlSource(<span class="built_in">this</span>.configuration, <span class="built_in">this</span>.context, parameterTypeClass);</span><br><span class="line">    <span class="comment">//解析属性</span></span><br><span class="line">    <span class="comment">//通过构建者助手，创建MappedStatement对象，存入configuration中的MapperStatementMap中</span></span><br><span class="line">    <span class="built_in">this</span>.builderAssistant.addMappedStatement(</span><br><span class="line">        			id, sqlSource, statementType, </span><br><span class="line">                     sqlCommandType, fetchSize, timeout, </span><br><span class="line">                     parameterMap, parameterTypeClass, resultMap,</span><br><span class="line">                     resultTypeClass, resultSetTypeEnum, flushCache, </span><br><span class="line">                     useCache, resultOrdered, (KeyGenerator)keyGenerator,</span><br><span class="line">                     keyProperty, keyColumn, databaseId, </span><br><span class="line">                     langDriver, resultSets);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> SqlSource <span class="title function_">createSqlSource</span><span class="params">(Configuration configuration, XNode script, Class&lt;?&gt; parameterType)</span> &#123;</span><br><span class="line">    <span class="comment">//初始化动态sql处理器，初始化节点处理器集合（when、where、if等等）</span></span><br><span class="line">    <span class="type">XMLScriptBuilder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XMLScriptBuilder</span>(configuration, script, parameterType);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    	解析动态sql</span></span><br><span class="line"><span class="comment">    	将带有$&#123;&#125;的sql封装到TextSqlNode</span></span><br><span class="line"><span class="comment">    	将带有#&#123;&#125;的sql封装到StaticTextSqlNode</span></span><br><span class="line"><span class="comment">    	将动态SQL标签中的SQL信息分别封装到不同的SqlNode中，对应不同的节点处理器去解析</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">return</span> builder.parseScriptNode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建SqlSession对象"><a href="#创建SqlSession对象" class="headerlink" title="创建SqlSession对象"></a>创建SqlSession对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> SqlSession <span class="title function_">openSession</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//参数：执行器类型、事务隔离级别、是否自动提交事务</span></span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">        <span class="built_in">this</span>.openSessionFromDataSource(</span><br><span class="line">        	<span class="comment">//默认是简单执行器</span></span><br><span class="line">        	<span class="built_in">this</span>.configuration.getDefaultExecutorType(),(TransactionIsolationLevel)<span class="literal">null</span>, <span class="literal">false</span></span><br><span class="line">    	);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> SqlSession <span class="title function_">openSessionFromDataSource</span><span class="params">(ExecutorType execType, </span></span><br><span class="line"><span class="params">                                             TransactionIsolationLevel level, <span class="type">boolean</span> autoCommit)</span> &#123;</span><br><span class="line">    <span class="type">Transaction</span> <span class="variable">tx</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    DefaultSqlSession var8;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//获取Environment对象</span></span><br><span class="line">        <span class="type">Environment</span> <span class="variable">environment</span> <span class="operator">=</span> <span class="built_in">this</span>.configuration.getEnvironment();</span><br><span class="line">        <span class="comment">//获得事务工厂对象</span></span><br><span class="line">        <span class="type">TransactionFactory</span> <span class="variable">transactionFactory</span> <span class="operator">=</span> <span class="built_in">this</span>.getTransactionFactoryFromEnvironment(environment);</span><br><span class="line">        <span class="comment">//创建事务对象</span></span><br><span class="line">        tx = transactionFactory.newTransaction(environment.getDataSource(), level, autoCommit);</span><br><span class="line">        <span class="comment">//创建执行器对象，默认是SimpleExecutor，如果开启缓存的话会是CacheingExecutor（装饰器模式）</span></span><br><span class="line">        <span class="type">Executor</span> <span class="variable">executor</span> <span class="operator">=</span> <span class="built_in">this</span>.configuration.newExecutor(tx, execType);</span><br><span class="line">        <span class="comment">//创建DefaultSqlSession对象</span></span><br><span class="line">        var8 = <span class="keyword">new</span> <span class="title class_">DefaultSqlSession</span>(<span class="built_in">this</span>.configuration, executor, autoCommit);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception var12) &#123;</span><br><span class="line">        <span class="built_in">this</span>.closeTransaction(tx);</span><br><span class="line">        <span class="keyword">throw</span> ExceptionFactory.wrapException(<span class="string">&quot;Error opening session.  Cause: &quot;</span> + var12, var12);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        ErrorContext.instance().reset();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> var8;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SqlSession执行流程"><a href="#SqlSession执行流程" class="headerlink" title="SqlSession执行流程"></a>SqlSession执行流程</h2><ol>
+<li>调用SqlSession对应的Api，传入statementId（namespace.id）和参数</li>
+<li>获取BoundSql，里面的sql已经经过处理和解析了</li>
+<li>如果有开启缓存则在查询时生成缓存key（默认是开启的）<ol>
+<li>对应的执行器去创建缓存key</li>
+<li>根据缓存key去二级缓存中查数据，没有再去一级缓存中找，一级缓存没有再去查数据库，存到一个缓存中<ol>
+<li>查询数据库前会现在一级缓存中进行一个占位操作</li>
+<li>然后查询数据库<ol>
+<li>获取configuration对象</li>
+<li>调用configuration去构建StatementHandler相关处理器<ul>
+<li>使用的是RoutingStatementHandler去选择，是一个装饰器，并且执行插件</li>
+<li>由StatementType决定（可配置），默认是PreparedStatementHandler</li>
+</ul>
+</li>
+<li>准备处理器，包括创建statement和动态参数的设置<ul>
+<li>获取一个连接，通过事务对象获取</li>
+<li>创建Statement对象</li>
+<li>通过parameterHandler参数处理器去设置参数<ul>
+<li>从boundSql获取每个占位符（#{}）中的值的集合</li>
+<li>遍历，判断是入参还是出差，出差不处理</li>
+<li>判断是否存在能处理该参数的类型处理器（TypeHandler）（入参类型）</li>
+<li>使用TypeHandler为对应占位符赋值</li>
+</ul>
+</li>
+<li>返回statement对象</li>
+</ul>
+</li>
+<li>查询数据库<ul>
+<li>将statement对象转换为PreparedStatement对象</li>
+<li>执行sql</li>
+<li>使用ResultSetHandler处理结果集<ol>
+<li>获取ResultSet对象<ul>
+<li>通过Statement获取ResultSetWrapper</li>
+</ul>
+</li>
+<li>获取映射关系<ul>
+<li>通过Statement获取ResultMap</li>
+<li>遍历ResultMap获取ResultSet</li>
+</ul>
+</li>
+<li>根据映射关系封装实体<ul>
+<li>构建默认的结果集处理器（DefaultResultHandler）</li>
+<li>对结果集进行映射封装，将封装后的对象存入DefaultResultHandler<ul>
+<li>判断是否有内置嵌套结果映射，并进行相应的处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>将数据填充到占位的缓存中</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="SqlSession原理"><a href="#SqlSession原理" class="headerlink" title="SqlSession原理"></a>SqlSession原理</h2><ul>
+<li>门面模式</li>
+</ul>
+<h2 id="执行器原理"><a href="#执行器原理" class="headerlink" title="执行器原理"></a>执行器原理</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../../pic/image-20230319215902238.png" alt="image-20230319215902238"></p>
+<h3 id="SimpleExecutor"><a href="#SimpleExecutor" class="headerlink" title="SimpleExecutor"></a>SimpleExecutor</h3><ul>
+<li>简单执行器，每次执行sql都会进行预编译sql</li>
+</ul>
+<h3 id="ReuseExecutor"><a href="#ReuseExecutor" class="headerlink" title="ReuseExecutor"></a>ReuseExecutor</h3><ul>
+<li>重用执行器</li>
+</ul>
+<h2 id="分页原理"><a href="#分页原理" class="headerlink" title="分页原理"></a>分页原理</h2><ul>
+<li>分页参数放到ThreadLocal中，拦截执行的sql，根据数据库类型重写sql，计算分页的各种数据</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>源码中大量使用了工厂模式<ul>
+<li>SqlSessionFactory、DatasourceFactory、TransactionFactory</li>
+</ul>
+</li>
+<li>但是源码中很多地方都是使用的硬编码来和xml中的节点做匹配</li>
+<li></li>
+</ul>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/MySQL/">MySQL源码</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/Spring/">Spring</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

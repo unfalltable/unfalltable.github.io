@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>集群 - JianHong</title>
+
+  
+    <meta name="description" content="MySQL主从复制 Master主库在事务提交时，会把数据变更记录在Binlog中 从库读取主库的Binlog，写入到从库的中继日志Relay Log 从库重做RelayLog中的事件，将改变反映它自己的数据  步骤 主库配置  修改&#x2F;etc&#x2F;my.cnf  12345678#mysql服务ID，保证整个集群环境中为唯一，取值范围：1 - 2^32 - 1,默认唯一server-id&#x3D;1#是否只读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集群">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E9%9B%86%E7%BE%A4/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="MySQL主从复制 Master主库在事务提交时，会把数据变更记录在Binlog中 从库读取主库的Binlog，写入到从库的中继日志Relay Log 从库重做RelayLog中的事件，将改变反映它自己的数据  步骤 主库配置  修改&#x2F;etc&#x2F;my.cnf  12345678#mysql服务ID，保证整个集群环境中为唯一，取值范围：1 - 2^32 - 1,默认唯一server-id&#x3D;1#是否只读">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.693Z">
+<meta property="article:modified_time" content="2023-08-04T01:36:48.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="集群">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="开发,集群">
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?集群,开发"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">集群</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="toc-text">主从复制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.693Z">2024-01-18</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>集群</span></h1>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><ul>
+<li>Master主库在事务提交时，会把数据变更记录在Binlog中</li>
+<li>从库读取主库的Binlog，写入到从库的中继日志Relay Log</li>
+<li>从库重做RelayLog中的事件，将改变反映它自己的数据</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li><p>主库配置</p>
+<ul>
+<li><p>修改<code>/etc/my.cnf</code> </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysql服务ID，保证整个集群环境中为唯一，取值范围：1 - 2^32 - 1,默认唯一</span></span><br><span class="line"><span class="string">server-id=1</span></span><br><span class="line"><span class="comment">#是否只读，1代表只读，0代表读写</span></span><br><span class="line"><span class="string">read-only=0</span></span><br><span class="line"><span class="comment">#忽略的数据，指不需要同步的数据库</span></span><br><span class="line"><span class="comment">#binglog-ignore-db=mysql</span></span><br><span class="line"><span class="comment">#指定同步的数据库</span></span><br><span class="line"><span class="comment">#binlog-do-db=db01</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启mysql</p>
+<ul>
+<li><code>systemctl restart mysqld</code></li>
+</ul>
+</li>
+<li><p>登录mysql，创建远程连接的账号，并授予主从复制权限</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建itcast用户，并设置密码，该用户可在任意主机连接该MySQL</span></span><br><span class="line"><span class="string">CREATE</span> <span class="string">USER</span> <span class="string">&#x27;itcast&#x27;</span><span class="string">@&#x27;%&#x27;</span> <span class="string">IDENTIFIED</span> <span class="string">WITH</span> <span class="string">mysql_native_password</span> <span class="string">BY</span> <span class="string">&#x27;Root@123456&#x27;</span><span class="string">;</span></span><br><span class="line"><span class="comment">#为&#x27;itcast@%&#x27;用户分配主从复制权限&#x27;</span></span><br><span class="line"><span class="string">GRANT</span> <span class="string">REPLICATION</span> <span class="string">SLAVE</span> <span class="string">ON</span> <span class="string">*.*</span> <span class="string">TO</span> <span class="string">&#x27;itcast&#x27;</span><span class="string">@&#x27;%&#x27;;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>从库配置</p>
+<ul>
+<li><p>修改配置文件&#x2F;etc&#x2F;my.cnf</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#服务ID，保证整个集群环境中唯一</span></span><br><span class="line"><span class="string">server-id=2</span></span><br><span class="line"><span class="comment">#是否只读，1代表只读</span></span><br><span class="line"><span class="string">read-only=1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启mysql</p>
+<ul>
+<li><code>systemctl restart mysqld</code></li>
+</ul>
+</li>
+<li><p>登录mysql，设置主库配置</p>
+</li>
+<li><p>开启同步</p>
+</li>
+<li><p>查看主从状态</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Es集群"><a href="#Es集群" class="headerlink" title="Es集群"></a>Es集群</h1><ol>
+<li>创建es-cluster文件夹，在下面创建节点目录</li>
+<li>需要将es下的<code>elasticsearch.yml</code>和<code>jvm.options</code>拷贝到节点目录下</li>
+<li>编辑<code>elasticsearch.yml</code>，添加节点名字<ul>
+<li><code>cluster.name: 集群名字</code></li>
+<li><code>node.name: 节点名字</code></li>
+<li><code>http.port: 端口号</code></li>
+<li><code>discovery.zen.ping.unicast.hosts: [&quot;广播地址&quot;]</code></li>
+<li><code>discovery.zen.minimum_master_nodes: 最小master节点数</code></li>
+<li><code>node.master: 是否为master节点</code></li>
+<li><code>node.data: 是否为data节点</code></li>
+</ul>
+</li>
+<li>编辑<code>jvm.options</code> ，修改jvm最大和最小堆内存</li>
+<li>docker创建容器进行配置文件挂载</li>
+</ol>
+<h1 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h1><ol>
+<li><p>使用Docker搭建redis集群，使用host网络类型，配置</p>
+<ul>
+<li>拉取镜像-创建容器-启动容器指定host网络类型</li>
+</ul>
+</li>
+<li><p>创建<code>ClusterConfigurationProperties</code> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix=&quot;spring.redis.cluster&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClusterConfigurationProperties</span>&#123;</span><br><span class="line">    <span class="comment">//存放所有节点的ip地址</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; nodes;</span><br><span class="line">    <span class="comment">//最大重定向次数</span></span><br><span class="line">    <span class="keyword">private</span> Integer maxRedirects;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>建立连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisClusterConfig</span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ClusterConfigurationProperties clusterProperties;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisConnectionFactory <span class="title function_">connectionFactory</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">RedisClusterConfiguration</span> <span class="variable">configuration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RedisClusterConfiguration</span>(clusterProperties.getMaxRedirects());</span><br><span class="line">        configuration.setMaxRedirects(clusterProperties.getMaxRedirects());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">JedisConnectionFactory</span>(configuration);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;String, String&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionfactory)</span>&#123;</span><br><span class="line">        RedisTemplate&lt;String, String&gt; redisTemplate = <span class="keyword">new</span> <span class="title class_">redisTemplate</span>&lt;&gt;();</span><br><span class="line">        redisTemplate.setConnectionFactory(redisConnectionfactory);</span><br><span class="line">        redisTemplate.setKeySerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>());</span><br><span class="line">        redisTemplate.setValueSerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>());</span><br><span class="line">        redisTemplate.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> redisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>采用统一控制缓存逻辑，使用拦截器实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Interceptor</span>()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(StringUtils.equalsIgnoreCase(request.getMethod(), <span class="string">&quot;OPTIONS&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//判断请求方式</span></span><br><span class="line">        <span class="keyword">if</span>(!StringUtils.equalsIgnoreCase(request.getMethod(), <span class="string">&quot;GET&quot;</span>))&#123;</span><br><span class="line">            <span class="comment">//非Get，如果不是graphql，则放行</span></span><br><span class="line">            <span class="keyword">if</span>(!StringUtils.equalsIgnoreCase(request.getRequestURI(), <span class="string">&quot;/graphql&quot;</span>))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//通过缓存做命中，查询redis，redisKey ? 组成md5</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">redisKey</span> <span class="operator">=</span> createRedisKey(request);</span><br><span class="line">        <span class="type">String</span> <span class="variable">data</span> <span class="operator">=</span> <span class="built_in">this</span>.redisTemplate.opsForValue().get(redisKey);</span><br><span class="line">        <span class="keyword">if</span>(StringUtils.isEmpty(data)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//支持跨域</span></span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>, <span class="string">&quot;GET,POST,PUT,DELETE,OPTIONS&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;Content-Type,X-Token&quot;</span>);</span><br><span class="line">        response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line">        response.getWriter().write(data);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">createRedisKey</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">paramStr</span> <span class="operator">=</span> request.getRequestURI();</span><br><span class="line">        Map&lt;String, String[]&gt; parameterMap = request.getParameterMap();</span><br><span class="line">        <span class="keyword">if</span>(parameterMap.isEmpty())&#123;</span><br><span class="line">            paramStr += IOUtils.toString(request.getInputStream(), <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            paramStr += mapper.writeValueAsString(request.getParameterMap());</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将拦截器注入Spring容器</p>
+<ul>
+<li>将数据库查询结果写入Redis缓存中<ul>
+<li>使用<strong>ResponseBodyAdvice</strong> 在响应结果被处理前拦截，拦截的逻辑自己实现，这样就可以将响应结果写入缓存中了<ul>
+<li>@ControllerAdvice进行拦截</li>
+<li>supprot方法返回true才会执行beforeBodyWrite方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E9%9B%86%E6%88%90/">集成</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

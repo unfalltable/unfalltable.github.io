@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>JavaSE - JianHong</title>
+
+  
+    <meta name="description" content="简介面向对象语言 封装  将数据和操作封装为一个不可分割的整体 隐藏内部的实现细节，对外暴露安全的访问方法 提高了安全性和复用性，减少耦合   继承  从已有对象中派生出一个类，这个类具有父类的属性和方法 private方法不会被继承 提高了复用性，增加了耦合性   多态  条件：继承，子类对象指针指向父类、满足里氏替换原则  优缺点  优点：提高代码的可扩展性 缺点：无法使用子类特有方法   分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaSE">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/Java/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="简介面向对象语言 封装  将数据和操作封装为一个不可分割的整体 隐藏内部的实现细节，对外暴露安全的访问方法 提高了安全性和复用性，减少耦合   继承  从已有对象中派生出一个类，这个类具有父类的属性和方法 private方法不会被继承 提高了复用性，增加了耦合性   多态  条件：继承，子类对象指针指向父类、满足里氏替换原则  优缺点  优点：提高代码的可扩展性 缺点：无法使用子类特有方法   分">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pdai.tech/images/java/java-basic-exception-1.png">
+<meta property="article:published_time" content="2024-01-18T13:12:24.683Z">
+<meta property="article:modified_time" content="2023-09-08T07:22:12.000Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pdai.tech/images/java/java-basic-exception-1.png">
+  
+  
+  
+  <meta name="keywords" content="基础">
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?基础"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">JavaSE</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AF%AD%E8%A8%80"><span class="toc-text">面向对象语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rt-jar%E3%80%81dt-jar%E3%80%81tools-jar"><span class="toc-text">rt.jar、dt.jar、tools.jar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fail-Fast%E5%92%8CFail-Safe"><span class="toc-text">Fail-Fast和Fail-Safe</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#transient"><span class="toc-text">transient</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#static"><span class="toc-text">static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile"><span class="toc-text">volatile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#final"><span class="toc-text">final</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#try-catch-finally"><span class="toc-text">try &#x2F; catch &#x2F; finally</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throw-throws"><span class="toc-text">throw &#x2F; throws</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">引用数据类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hashcode-equals"><span class="toc-text">hashcode() &#x2F; equals()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-text">注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="toc-text">元注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="toc-text">预定义注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="toc-text">自定义注解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-text">异常</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="toc-text">自定义异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7"><span class="toc-text">异常捕获</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%95%E5%B1%82"><span class="toc-text">底层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-text">泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-text">代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">序列化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-text">集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-text">List</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ArrayList"><span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedList"><span class="toc-text">LinkedList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vector"><span class="toc-text">Vector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CopyOnWriteArrayList"><span class="toc-text">CopyOnWriteArrayList</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deque"><span class="toc-text">Deque</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ArrayDeque"><span class="toc-text">ArrayDeque</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue"><span class="toc-text">Queue</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PriorityQueue"><span class="toc-text">PriorityQueue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BlockingQueue"><span class="toc-text">BlockingQueue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedQueue"><span class="toc-text">LinkedQueue</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashSet"><span class="toc-text">HashSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedHashSet"><span class="toc-text">LinkedHashSet</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map"><span class="toc-text">Map</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedHashMap"><span class="toc-text">LinkedHashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HashTable"><span class="toc-text">HashTable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TreeMap"><span class="toc-text">TreeMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WeakHashMap"><span class="toc-text">WeakHashMap</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stream%E6%B5%81"><span class="toc-text">Stream流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="toc-text">函数式接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-text">动态代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPI%E6%9C%BA%E5%88%B6"><span class="toc-text">SPI机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unsafe"><span class="toc-text">Unsafe</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.683Z">2024-01-18</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>JavaSE</span></h1>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="面向对象语言"><a href="#面向对象语言" class="headerlink" title="面向对象语言"></a>面向对象语言</h3><ul>
+<li><p>封装</p>
+<ul>
+<li>将数据和操作封装为一个不可分割的整体</li>
+<li>隐藏内部的实现细节，对外暴露安全的访问方法</li>
+<li>提高了安全性和复用性，减少耦合</li>
+</ul>
+</li>
+<li><p>继承</p>
+<ul>
+<li>从已有对象中派生出一个类，这个类具有父类的属性和方法</li>
+<li>private方法不会被继承</li>
+<li>提高了复用性，增加了耦合性</li>
+</ul>
+</li>
+<li><p>多态</p>
+<ul>
+<li><p>条件：继承，子类对象指针指向父类、满足里氏替换原则</p>
+</li>
+<li><p>优缺点</p>
+<ul>
+<li>优点：提高代码的可扩展性</li>
+<li>缺点：无法使用子类特有方法</li>
+</ul>
+</li>
+<li><p>分为编译时多态和运行时多态</p>
+<ul>
+<li>编译时多态：方法的重载</li>
+<li>运行时多态：程序中定义的对象引用所指向的具体类型在运行期间才确定</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="rt-jar、dt-jar、tools-jar"><a href="#rt-jar、dt-jar、tools-jar" class="headerlink" title="rt.jar、dt.jar、tools.jar"></a>rt.jar、dt.jar、tools.jar</h3><ul>
+<li>rt.jar<ul>
+<li>代表runtime JAR，包含Core Java API的所有类，包含所有核心Java 运行环境的已编译calss文件</li>
+<li>位于JRE的lib目录下，包含了JVM信任的class文件，JVM加载时不会对其他class文件进行严格的安全检查</li>
+<li>是一个类似zip的压缩文件，精确称为 Java archive（Jar），存储了Java class文件和程序所需的全部资源。它还可以包含&#x3D;&#x3D;mainfest&#x3D;&#x3D;文件，还可以包含&#x3D;&#x3D;Main-Class条目&#x3D;&#x3D;，变成可执行JAR</li>
+</ul>
+</li>
+<li>dt.jar<ul>
+<li>是系统用来编译一个类的时候用到的，即执行javac的时候用到。</li>
+</ul>
+</li>
+<li>tools.jar<ul>
+<li>dt.jar是关于运行环境的类库，主要是swing包。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Fail-Fast和Fail-Safe"><a href="#Fail-Fast和Fail-Safe" class="headerlink" title="Fail-Fast和Fail-Safe"></a>Fail-Fast和Fail-Safe</h3><ul>
+<li>Fail-Fast：一旦发现遍历时有修改，则立刻抛异常，例如ArrayList，vector<ul>
+<li>ArrayList内部的modCount记录了修改次数，当遍历时会获取modCount</li>
+<li>遍历过程会比较当前modCount和获取时的值，不一致抛异常</li>
+</ul>
+</li>
+<li>Fail-Safe：遍历的同时有修改，会有相应的策略，例如CopyOnWriteArrayList</li>
+</ul>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><h4 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h4><ul>
+<li>修饰的字段不参与序列化，只能修饰变量</li>
+<li>当这个变量可以通过其他变量来获得时就可以不参加序列化，即添加transient修饰<ul>
+<li>例如：三角形的长，宽，面积，则面积可以不参与序列化</li>
+<li>Logger对象也不需要</li>
+</ul>
+</li>
+</ul>
+<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><ul>
+<li>修饰的静态变量是不参与序列化的</li>
+</ul>
+<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><ul>
+<li>修饰的变量不会被cpu所缓存</li>
+</ul>
+<h4 id="final"><a href="#final" class="headerlink" title="final"></a>final</h4><h4 id="try-catch-finally"><a href="#try-catch-finally" class="headerlink" title="try &#x2F; catch &#x2F; finally"></a>try &#x2F; catch &#x2F; finally</h4><h4 id="throw-throws"><a href="#throw-throws" class="headerlink" title="throw &#x2F; throws"></a>throw &#x2F; throws</h4><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th></th>
+<th>长度 &#x2F; 字节数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td>4字节</td>
+</tr>
+<tr>
+<td>long</td>
+<td></td>
+<td>8字节</td>
+</tr>
+<tr>
+<td>float</td>
+<td></td>
+<td>4字节</td>
+</tr>
+<tr>
+<td>double</td>
+<td></td>
+<td>8字节</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h4><ul>
+<li>String<ul>
+<li>使用双引号创建字符串和使用new创建字符串是不一样的</li>
+</ul>
+</li>
+</ul>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><ul>
+<li>自底向上的抽象，将共性方法抽取出来作为父类</li>
+<li>有抽象方法的类是抽象类，但抽象类也可以有其他普通方法</li>
+</ul>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><ul>
+<li><p>自顶向下，对行为的规范，体现了模板设计思想</p>
+</li>
+<li><p>1.8之前只能有抽象方法，1.8之后可以有默认方法、静态方法</p>
+<ul>
+<li>静态方法只能被接口调用</li>
+<li>默认方法，作用是实现接口演化，为老接口扩展新功能，并且其实现类不用重新实现该新方法从，但是所有实现类都会默认携带这个新方法，有一点违背接口隔离原则</li>
+</ul>
+</li>
+<li><p>只能有static final 修饰的成员变量</p>
+</li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="hashcode-equals"><a href="#hashcode-equals" class="headerlink" title="hashcode() &#x2F; equals()"></a>hashcode() &#x2F; equals()</h4><ul>
+<li>在集合中存储自定义对象类型最好重写这两个方法</li>
+<li>重写hashcode()是为了对象的key在整个hashmap中有更好的分布，提高查询性能</li>
+<li>重写equals()是为了防止两个对象的hash值一样，通过比较值来区分</li>
+</ul>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><ul>
+<li>可以在运行期间获取类的各种信息，常用于一些动态修改属性值的操作</li>
+<li>如果对象为private等类型，可使用setAccessible(true)暴力获取</li>
+</ul>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><h4 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h4><ul>
+<li>@Target：描述注解能够作用的位置</li>
+<li>@Retention：描述注解被保留的阶段</li>
+<li>@Documented：描述注解是否被抽取到api文档</li>
+<li>@Inherited：描述注解是否被子类继承</li>
+</ul>
+<h4 id="预定义注解"><a href="#预定义注解" class="headerlink" title="预定义注解"></a>预定义注解</h4><ul>
+<li><p>@Override：检测方法是否覆盖重写父类方法</p>
+</li>
+<li><p>@Deprecated：标注的内容表示已过时</p>
+</li>
+<li><p>@suppressWarnings：压制警告</p>
+</li>
+</ul>
+<h4 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h4><ol>
+<li>本质上就是一个接口，可定义方法，需要有返回值</li>
+<li>创建一个。。。。实现功能</li>
+</ol>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pdai.tech/images/java/java-basic-exception-1.png" alt="img"></p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>Throwable<ul>
+<li>包含了线程创建时线程执行堆栈的快照，提供了printStackTrace()等接口用于获取堆栈信息</li>
+</ul>
+</li>
+<li>Error<ul>
+<li>是程序无法处理的异常，例如虚拟机运行错误、堆栈溢出等等</li>
+<li>无法检测的异常</li>
+</ul>
+</li>
+<li>Exception<ul>
+<li>程序可以捕获且处理的异常</li>
+<li>分为运行时异常和编译时异常<ul>
+<li>运行时异常：RuntimeException类及其子类</li>
+<li>编译时异常：需要处理才能编译通过的异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h4><ul>
+<li>需要继承RuntimeException</li>
+<li>定义错误码和错误消息，还有各种参数的构造函数，包含异常信息，在抛异常的时候传入</li>
+</ul>
+<h4 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h4><ul>
+<li>使用try&#x2F;catch手动捕获<ul>
+<li>自己对异常进行处理</li>
+</ul>
+</li>
+<li>直接抛出方法外，让调用方对异常进行处理</li>
+<li>使用异常拦截器拦截统一处理（推荐）</li>
+</ul>
+<h4 id="底层"><a href="#底层" class="headerlink" title="底层"></a>底层</h4><ul>
+<li>底层是通过异常表Exception Table</li>
+<li>异常表中包含了一个或多个异常处理者(Exception Handler)的信息，这些信息包含如下<ul>
+<li><strong>from</strong> 可能发生异常的起始点</li>
+<li><strong>to</strong> 可能发生异常的结束点</li>
+<li><strong>target</strong> 上述from和to之前发生异常后的异常处理者的位置</li>
+<li><strong>type</strong> 异常处理者处理的异常的类信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><ul>
+<li>可以在定义类或方法时不传入特定类型的对象或参数，更具通用性</li>
+<li>可以控制类的上限和下限</li>
+<li>静态方法和异常中不能使用类的泛型</li>
+<li>如果没有指定泛型的类型，默认是Object</li>
+</ul>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><ul>
+<li>常用于集中管理相同类型的信息，避免硬编码于代码中</li>
+</ul>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><ul>
+<li>就是将对象转换成字节序列，实现持久化和网络传输</li>
+<li>方式<ul>
+<li>实现Serializable接口</li>
+<li>实现Externalizable接口<ul>
+<li>实现writeExternal()</li>
+<li>实现readExternal()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>transient可以防止属性序列化，因为序列化可能会破坏单例</li>
+</ul>
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><ul>
+<li>有序，可重复，可null</li>
+<li>底层是数组，增加、删除、扩容都是通过数组的复制</li>
+<li>可以利用CPU缓存，&#x3D;&#x3D;局部性原理&#x3D;&#x3D;</li>
+</ul>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><ul>
+<li>占用内存多，可null</li>
+<li>底层是一个双向链表</li>
+<li>内部维护了First和last节点，所以对首尾的操作方便</li>
+<li>&#x3D;&#x3D;在遍历时会判断从前往后较快还是从后往前较快&#x3D;&#x3D;</li>
+</ul>
+<h4 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h4><ul>
+<li>线程安全，速度慢，早期使用Elements遍历<ul>
+<li>Enumeration接口是迭代器前身</li>
+</ul>
+</li>
+</ul>
+<h4 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h4><ul>
+<li>底层实现采用写入时拷贝的思想，增删改会将数组拷贝一份，在拷贝的数据上更改，不影响其他线程的并发读，读写分离</li>
+</ul>
+<h3 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque</h3><h4 id="ArrayDeque"><a href="#ArrayDeque" class="headerlink" title="ArrayDeque"></a>ArrayDeque</h4><ul>
+<li>用作栈或队列</li>
+<li>初始容量8，扩容两倍</li>
+<li>底层是循环数组，维护了 head 和 tail，非线程安全，不可存null值</li>
+</ul>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><h4 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h4><ul>
+<li>优先级队列，不可null</li>
+<li>能保证每次取出的元素都是队列中权值最小的</li>
+<li>底层是小顶堆结构，用数组实现，是按层序遍历树排列</li>
+<li>初始容量11，扩容通过数组的复制，最大长度是数组的最大值</li>
+</ul>
+<h4 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h4><ul>
+<li><p>获取队列元素时队列为空会阻塞等待至队列不为空时，存储元素时队列满了会阻塞至队列直到队列可用</p>
+</li>
+<li><p>可以很好的实现生产者消费者模型</p>
+</li>
+<li><p>ArrayBlockingQueue</p>
+<ul>
+<li>有界阻塞队列，</li>
+<li>基于循环数组实现，需要提前初始化数组</li>
+<li>内部维护一把锁，ReentrantLock 和 Condition</li>
+</ul>
+</li>
+<li><p>LinkedBlockingQueue</p>
+<ul>
+<li>无界阻塞队列</li>
+<li>内部使用了两把锁，分别锁头尾指针，允许两个线程同时执行</li>
+<li>保证了头尾节点的线程安全</li>
+</ul>
+</li>
+</ul>
+<h4 id="LinkedQueue"><a href="#LinkedQueue" class="headerlink" title="LinkedQueue"></a>LinkedQueue</h4><p>ConcurrentLinkedQueue</p>
+<ul>
+<li>内部维护两把CAS锁，允许两个线程同时执行</li>
+</ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><ul>
+<li>非线程安全，不重复，无序，底层hash表</li>
+<li>对HashMap进行了一个封装，内部都是调用的hashmap的方法，适配器模式<ul>
+<li>key存值，value存的是常量</li>
+</ul>
+</li>
+</ul>
+<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><ul>
+<li>有序，不重复</li>
+<li>底层哈希表</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><ul>
+<li>无序，可null，数组是懒惰创建的</li>
+<li>底层<ul>
+<li>1.7：数组+链表</li>
+<li>1.8：数组+链表 or 红黑树</li>
+</ul>
+</li>
+<li>默认16，扩容2倍，数组复制<ul>
+<li>1.7：<ul>
+<li>大于等于阈值且插入时的位置不为空时扩容</li>
+</ul>
+</li>
+<li>1.8：<ul>
+<li>大于阈值就扩容，不改变原链表或红黑树的顺序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>put元素时<ul>
+<li><p>1.7</p>
+<ul>
+<li>插入后超过阈值则扩容</li>
+<li>将key和value封装为entry对象</li>
+<li>头插法插入到当前节点下链表的头部（扩容死链出现的原因）</li>
+</ul>
+</li>
+<li><p>1.8</p>
+<ul>
+<li>插入前超过阈值或链表长度大于8时则扩容</li>
+<li>判断当前位置下是链表还是红黑树<ul>
+<li>链表：将entry尾插，节点数大于8转换为红黑树</li>
+<li>红黑树：将node插入</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见问题<ul>
+<li><p>HashMap用红黑树？为什么不用AVL树 </p>
+<ul>
+<li><p>用树结构主要是用来避免DoS攻击，防止链表超长时性能下降</p>
+</li>
+<li><p>红黑树插入删除快，AVL慢，因为AVL旋转次数更多，平衡和调试更难，但AVL读取快，适合读取密集型任务</p>
+</li>
+</ul>
+</li>
+<li><p>HashMap红黑树何时会退化？</p>
+<ul>
+<li><p>当因为扩容时导致树的节点少于6时会退化为链表</p>
+</li>
+<li><p>当删除树的节点时，主要看root，root.left，root.right，root.left.left</p>
+<ul>
+<li>如果删除前以上节点还存在则不会退化为链表，反之退化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HashMap树化阈值为什么为8？</p>
+<ul>
+<li>hash值如果足够随机，则在hash表内按泊松分布，在负载因子为0.75的情况下，链表长度超过8的概率为 6*10^-7^</li>
+</ul>
+</li>
+<li><p>索引如何计算？</p>
+<ul>
+<li>计算对象的hashCode()，再调用HashMap的hash()方法进行第二次哈希运算，最后 &amp; (容量 - 1) 得到索引<ul>
+<li>二次哈希值 &#x3D; 原始哈希code ^ 原始哈希code&gt;&gt;&gt;16</li>
+<li>注意这里的容量必须是2的n次幂</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>已经有hashCode方法为什么还要提供hash方法？</p>
+<ul>
+<li>为了使哈希分布更加均匀，减少哈希碰撞</li>
+</ul>
+</li>
+<li><p>容量为何是2的n次幂？</p>
+<ul>
+<li><p>在HashMap中进行二次hash时可以用按位与运算代替掉取模运算，从而提升一定的计算性能</p>
+</li>
+<li><p>容量是2的n次幂存在一个问题，当要存储的元素奇偶分布不均时，哈希分布就不那么均匀了</p>
+</li>
+<li><p>把容量设置为一个质数可以解决这个问题</p>
+</li>
+<li><p>设置为质数可以在第一次hash时就能有不错的散列分布</p>
+</li>
+<li><p>如果想要好的性能则选2的n次幂，想要更好的散列分布则选质数</p>
+</li>
+</ul>
+</li>
+<li><p>扩容时如何确定新位置？</p>
+<ul>
+<li>1.8才有的优化<ul>
+<li><p>在扩容时会将元素的二次hash值 和 未扩容前的原始容量 进行按位与（**&amp;**）运算</p>
+<ul>
+<li><p>如果结果为0，表示这些元素扩容后位置不会发生改变</p>
+</li>
+<li><p>如果结果不为0，则表示这些元素将移动到新的位置</p>
+</li>
+<li><p>新的位置 &#x3D; 原始位置 + 原始容量</p>
+</li>
+</ul>
+</li>
+<li><p>会把结果为0的和结果不为0的串成两条链表，批量操作</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>扩容因子为什么默认是0.75？ </p>
+<ul>
+<li><p>在空间占用和查询时间之间取得较好的平衡</p>
+</li>
+<li><p>大于这个值，空间节省了，但是链表较长影响性能</p>
+</li>
+<li><p>小于这个值，冲突减少了，但链表扩容频繁，空间占用多</p>
+</li>
+</ul>
+</li>
+<li><p>多线程下hashMap存在什么问题？</p>
+<ul>
+<li><p>jdk7有扩容死链问题</p>
+<ul>
+<li>是因为1.7扩容后的链表会以头插法插入</li>
+<li>当多个线程同时进行扩容时，一个线程扩容后次序改变了，另一个线程再扩容导致死链</li>
+</ul>
+</li>
+<li><p>jdk8有数据丢失问题</p>
+<ul>
+<li>当多个线程同时往map的同一个位置存放数据时，容易出现覆盖丢失数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><ul>
+<li>非线程安全，有序，可null</li>
+<li>底层是哈希表+双向链表（存储顺序）</li>
+</ul>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h4><ul>
+<li>单线程，线程安全，速度慢，不可null</li>
+<li>底层是哈希表</li>
+<li>初始容量是11，每次扩容是：容量 × 2 + 1，因为容量为质数有较好的hash分布</li>
+</ul>
+<h4 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h4><ul>
+<li>不能重复，有序，非线程安全</li>
+<li>底层红黑树</li>
+</ul>
+<h4 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h4><ul>
+<li>key是弱引用，gc时回收</li>
+</ul>
+<h2 id="Stream流"><a href="#Stream流" class="headerlink" title="Stream流"></a>Stream流</h2><h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><ul>
+<li>Comparator&lt;T&gt;：</li>
+<li>Supplier&lt;T&gt;：返回一个指定类型的数据</li>
+<li>Consumer&lt;T&gt;：用于消费数据</li>
+<li>Predicate&lt;T&gt;：对数据进行判断</li>
+<li>Function&lt;T,R&gt;：将一个类型的数据转换为另一个类型的数据</li>
+</ul>
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stream()</td>
+<td>将集合转换为流</td>
+<td></td>
+</tr>
+<tr>
+<td>Stream.of(数组)</td>
+<td>将集合转换为流</td>
+<td></td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>实现聚合计算，求和</td>
+<td></td>
+</tr>
+<tr>
+<td>mapToXXX()</td>
+<td>映射为对应的类型</td>
+<td></td>
+</tr>
+<tr>
+<td>orElse() &#x2F; orElseGet()</td>
+<td>找不到值则返回给定的值</td>
+<td>使用方法时，即使没有值，也会执行 orElse 内的方法</td>
+</tr>
+<tr>
+<td>Collect</td>
+<td>收集为指定类型的集合</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><ul>
+<li>为一个类创建一个代理类，这个代理类可以调用类中的方法</li>
+</ul>
+<h2 id="SPI机制"><a href="#SPI机制" class="headerlink" title="SPI机制"></a>SPI机制</h2><p>​    是Java提供的一种热插拔机制，只要在META-INF目录下定义该类的全路径信息，就可以在Java启动时自动加载对应的类</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>equals()</p>
+<ul>
+<li>equal是Object 的方法，和他功能相似的是运算符 &#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D; 比较的是地址，equal比较的是值</li>
+<li>&#x3D;&#x3D; 比较快，&#x3D;&#x3D; 是运算符</li>
+<li>equal 源码中也是用的 &#x3D;&#x3D; 进行判断，但是引用类型重写了equals方法<ul>
+<li>重写需要满足 自反性、对称性、传递性、一致性、非空性</li>
+</ul>
+</li>
+</ul>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="Unsafe"><a href="#Unsafe" class="headerlink" title="Unsafe"></a>Unsafe</h3><ul>
+<li><p>Unsafe提供了非常底层的方法，包括操作内存，线程调度、CAS、系统、内存屏障、对象操作、Class</p>
+</li>
+<li><p>使Java拥有了类似c语言一样的指针，所以不安全</p>
+</li>
+<li><p>LookSupport中的unpark也是调用的unsafe的方法</p>
+</li>
+<li><p>Unsafe不能直接调用</p>
+<ul>
+<li><p>通过反射获得</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Field theUnsafe = Unsafe.class.getDeclaredField(&quot;theUnsafe&quot;);</span><br><span class="line">theUnsafe.setAccessible(true);</span><br><span class="line">Unsafe unsafe = theUnsafe.get(null);</span><br><span class="line"></span><br><span class="line">Copy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Unsafe提供了一个静态方法getUnsafe可以获取Unsafe实例，但是必须使用引导类加载器加载Unsafe类才能使用，因为有CallerSensitive注解标注，为危险方法</p>
+<ul>
+<li>命令行中输入：<code>java -Xbootclasspath/a: $&#123;path&#125; // 其中path为调用Unsafe相关方法的类所在jar包路径</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JUC/">JUC并发编程</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/">服务发现</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
