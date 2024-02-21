@@ -23,15 +23,15 @@
   <title>JUC并发编程 - JianHong</title>
 
   
-    <meta name="description" content="简介为什么需要多线程 解决可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况 解决有序性问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序 解决原子性问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题  线程安全问题 多个线程访问同一个共享变量就会出现线程安全问题 private 和 final可以一定程度上提供线程安全 线程安全的方法组合起来就不能保">
+    <meta name="description" content="简介多线程存在的问题 可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况 有序性问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序 原子性问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题  线程安全问题 多个线程访问同一个共享变量就会出现线程安全问题 private 和 final 可以一定程度上提供线程安全 线程安全的方法组合起来就不能保证线程安全">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JUC并发编程">
 <meta property="og:url" content="http://example.com/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JUC/index.html">
 <meta property="og:site_name" content="JianHong">
-<meta property="og:description" content="简介为什么需要多线程 解决可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况 解决有序性问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序 解决原子性问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题  线程安全问题 多个线程访问同一个共享变量就会出现线程安全问题 private 和 final可以一定程度上提供线程安全 线程安全的方法组合起来就不能保">
+<meta property="og:description" content="简介多线程存在的问题 可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况 有序性问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序 原子性问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题  线程安全问题 多个线程访问同一个共享变量就会出现线程安全问题 private 和 final 可以一定程度上提供线程安全 线程安全的方法组合起来就不能保证线程安全">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-18T13:12:24.683Z">
-<meta property="article:modified_time" content="2023-07-27T02:01:36.000Z">
+<meta property="article:modified_time" content="2024-02-21T01:21:09.932Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="基础">
 <meta name="twitter:card" content="summary">
@@ -81,7 +81,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">JUC并发编程</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">为什么需要多线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">线程安全问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B4%E7%95%8C%E5%8C%BA"><span class="toc-text">临界区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9F%E6%80%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">竟态条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">创建线程的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%9D%9E%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B"><span class="toc-text">守护线程和非守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%9C%89%E5%8C%BA%E5%88%AB%E5%90%97%EF%BC%9F"><span class="toc-text">Java的线程和操作系统的线程有区别吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-text">生命周期 &#x2F; 运行状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronized"><span class="toc-text">Synchronized</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%81%E5%8D%87%E7%BA%A7"><span class="toc-text">锁升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%81%E4%BC%98%E5%8C%96"><span class="toc-text">锁优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Volatile"><span class="toc-text">Volatile</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JUC%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="toc-text">JUC工具包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8F"><span class="toc-text">原子变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AQS"><span class="toc-text">AQS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReentrantLock"><span class="toc-text">ReentrantLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReentrantReadWriteLock"><span class="toc-text">ReentrantReadWriteLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal"><span class="toc-text">ThreadLocal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-text">ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LongAdder"><span class="toc-text">LongAdder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Condition"><span class="toc-text">Condition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StampedLock"><span class="toc-text">StampedLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semaphore"><span class="toc-text">Semaphore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CountdownLatch"><span class="toc-text">CountdownLatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CyclicBarrier"><span class="toc-text">CyclicBarrier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CompletableFuture"><span class="toc-text">CompletableFuture</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%8D%E7%B1%BB"><span class="toc-text">种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-%E7%8A%B6%E6%80%81"><span class="toc-text">属性 &#x2F; 状态</span></a></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">JUC并发编程</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">多线程存在的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">线程安全问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B4%E7%95%8C%E5%8C%BA"><span class="toc-text">临界区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9F%E6%80%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">竟态条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">创建线程的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%9D%9E%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B"><span class="toc-text">守护线程和非守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%9C%89%E5%8C%BA%E5%88%AB%E5%90%97%EF%BC%9F"><span class="toc-text">Java的线程和操作系统的线程有区别吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sleep"><span class="toc-text">sleep()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wait-notify"><span class="toc-text">wait &#x2F; notify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield"><span class="toc-text">yield</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#interrupt"><span class="toc-text">interrupt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Join"><span class="toc-text">Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Park"><span class="toc-text">Park</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E8%AE%BE%E7%BD%AE"><span class="toc-text">优先级设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fork-join"><span class="toc-text">Fork &#x2F; join</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-text">生命周期 &#x2F; 运行状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronized"><span class="toc-text">Synchronized</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%81%E5%8D%87%E7%BA%A7"><span class="toc-text">锁升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%81%E4%BC%98%E5%8C%96"><span class="toc-text">锁优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Volatile"><span class="toc-text">Volatile</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JUC%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="toc-text">JUC工具包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8F"><span class="toc-text">原子变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AQS"><span class="toc-text">AQS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReentrantLock"><span class="toc-text">ReentrantLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReentrantReadWriteLock"><span class="toc-text">ReentrantReadWriteLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadLocal"><span class="toc-text">ThreadLocal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-text">ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LongAdder"><span class="toc-text">LongAdder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Condition"><span class="toc-text">Condition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StampedLock"><span class="toc-text">StampedLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Semaphore"><span class="toc-text">Semaphore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CountdownLatch"><span class="toc-text">CountdownLatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CyclicBarrier"><span class="toc-text">CyclicBarrier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CompletableFuture"><span class="toc-text">CompletableFuture</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%8D%E7%B1%BB"><span class="toc-text">种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7-%E7%8A%B6%E6%80%81"><span class="toc-text">属性 &#x2F; 状态</span></a></li></ol></li></ol></div></div></widget>
 
 
 
@@ -97,18 +97,18 @@
 
 
 
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.683Z">2024-01-18</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java/">Java</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.683Z">2024-01-18</time></div></div>
 
 <article class='md-text content post'>
 <h1 class="article-title"><span>JUC并发编程</span></h1>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="为什么需要多线程"><a href="#为什么需要多线程" class="headerlink" title="为什么需要多线程"></a>为什么需要多线程</h3><ul>
-<li>解决<strong>可见性</strong>问题：因为CPU和内存间存在缓存，存在主从不一致的情况</li>
-<li>解决<strong>有序性</strong>问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序</li>
-<li>解决<strong>原子性</strong>问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题</li>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="多线程存在的问题"><a href="#多线程存在的问题" class="headerlink" title="多线程存在的问题"></a>多线程存在的问题</h3><ul>
+<li><strong>可见性</strong>问题：因为CPU和内存间存在缓存，存在主从不一致的情况</li>
+<li><strong>有序性</strong>问题：因为编译程序执行指令时为了提高缓存使用效率，会调整指令的执行次序</li>
+<li><strong>原子性</strong>问题：因为有多线程、多进程、分数复用CPU，导致存在资源共享的问题</li>
 </ul>
 <h3 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h3><ul>
 <li>多个线程访问同一个共享变量就会出现线程安全问题</li>
-<li>private 和 final可以一定程度上提供线程安全</li>
+<li>private 和 final 可以一定程度上提供线程安全</li>
 <li>线程安全的方法组合起来就不能保证线程安全了</li>
 <li>在多线程的情况下满足JMM规范就可以避免线程安全问题</li>
 <li>线程安全程度<ul>
@@ -154,7 +154,6 @@
 </ul>
 </li>
 <li>实现Callable接口<ul>
-<li>本质上并不是创建线程，实际执行还是需要通过线程调用</li>
 <li>可以有返回值（FutureTask），需要实现call方法</li>
 <li>内部是FutureTask实现了RunnableFutrue接口，这个接口继承了Runnable和Future接口</li>
 <li>内部实现也是执行的run方法，在方法中创建了Callable对象并执行call方法，将结果值返回</li>
@@ -183,18 +182,19 @@
 <li>jdk1.2之后采用了操作系统原生的内核级线程，将线程的调度交给了操作系统内核</li>
 <li>总的来说，java的线程就是操作系统的线程，Java线程与操作系统线程一对一映射，依赖于操作系统的具体实现</li>
 </ul>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>sleep()</p>
-<ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="sleep"><a href="#sleep" class="headerlink" title="sleep()"></a>sleep()</h3><ul>
 <li>Thread提供的方法，不会释放锁</li>
 <li>使当前线程进入阻塞状态，可通过interrupt()打断</li>
 <li>睡眠结束后线程未必会立刻得到执行，等cpu轮转</li>
 </ul>
-<p>wait &#x2F; notify</p>
-<ul>
+<h3 id="wait-notify"><a href="#wait-notify" class="headerlink" title="wait &#x2F; notify"></a>wait &#x2F; notify</h3><ul>
 <li><p>object的方法，必须与synchronized一起使用，会释放锁</p>
 <ul>
 <li>在多个线程之间通信需要保证线程间对共享变量的修改是可见的</li>
-<li>synchronized就可以保证可见性</li>
+<li>synchronized就可以保证可见性<ul>
+<li>因为每个线程操作的其实是自己的本地内存，synchronized会将修改过后的内存刷回主内存</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>实现多线程之间的通信</p>
@@ -206,16 +206,14 @@
 <li><p>防止虚假唤醒</p>
 </li>
 </ul>
-<p>&#x3D;&#x3D;yield&#x3D;&#x3D;</p>
-<ul>
+<h3 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h3><ul>
 <li>调度执行其它同优先级的线程<ul>
 <li>如果有，当前线程挂起等待相应的线程执行结束</li>
 <li>如果没有，则继续运行当前线程</li>
 </ul>
 </li>
 </ul>
-<p>interrupt</p>
-<ul>
+<h3 id="interrupt"><a href="#interrupt" class="headerlink" title="interrupt"></a>interrupt</h3><ul>
 <li>interrupt()设置打断标记为true<ul>
 <li>睡眠中的线程被打断不会将标记设置为true</li>
 </ul>
@@ -223,25 +221,21 @@
 <li>isInterrupted() 判断线程是否被打断 不会清除标记</li>
 <li>interrupted() 判断线程是否被打断 会清除标记 即设置为false</li>
 </ul>
-<p>&#x3D;&#x3D;Join&#x3D;&#x3D;</p>
-<ul>
+<h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3><ul>
 <li>在线程中调用另一个线程的 join() 方法，会将当前线程挂起，直到目标线程结束</li>
 </ul>
-<p>Park</p>
-<ul>
+<h3 id="Park"><a href="#Park" class="headerlink" title="Park"></a>Park</h3><ul>
 <li>让当前线程停下来</li>
 <li>如果打断标记为false则停止线程 ，如果打断标记为true则不会停止线程<ul>
 <li>即只能打断一次</li>
 </ul>
 </li>
 </ul>
-<p>优先级设置</p>
-<ul>
+<h3 id="优先级设置"><a href="#优先级设置" class="headerlink" title="优先级设置"></a>优先级设置</h3><ul>
 <li>setPriority() 为线程设置新的优先级。默认是5</li>
 <li>getPriority() 返回线程的当前优先级</li>
 </ul>
-<p>Fork &#x2F; join</p>
-<ul>
+<h3 id="Fork-join"><a href="#Fork-join" class="headerlink" title="Fork &#x2F; join"></a>Fork &#x2F; join</h3><ul>
 <li><p>体现的是一种分治思想，把递归交给线程做</p>
 </li>
 <li><p>默认会创建与cpu核心数数量相同的线程池</p>
@@ -254,20 +248,33 @@
 <li><p>创建ForkJoinPoll线程池，执行RecursiveTask实现类对象</p>
 </li>
 </ul>
-<h2 id="生命周期-运行状态"><a href="#生命周期-运行状态" class="headerlink" title="生命周期 &#x2F; 运行状态"></a>生命周期 &#x2F; 运行状态</h2><p>cpu层面</p>
+<h2 id="生命周期-运行状态"><a href="#生命周期-运行状态" class="headerlink" title="生命周期 &#x2F; 运行状态"></a>生命周期 &#x2F; 运行状态</h2><ul>
+<li><p>cpu层面</p>
 <ul>
-<li>创建：create</li>
-<li>就绪：Runnable </li>
-<li>运行：run</li>
-<li>等待：wait</li>
-<li>终结：Terminated</li>
+<li><p>创建：create</p>
+</li>
+<li><p>就绪：Runnable </p>
+</li>
+<li><p>运行：run</p>
+</li>
+<li><p>等待：wait</p>
+</li>
+<li><p>终结：Terminated</p>
+</li>
 </ul>
-<p>java层面，在Thread类中有一个枚举类，规定了java线程的六种生命周期</p>
+</li>
+<li><p>java层面，在Thread类中有一个枚举类，规定了java线程的六种生命周期</p>
 <ul>
-<li>新建 - New</li>
-<li>运行 &amp; 就绪 -Runnable </li>
-<li>阻塞 - Blocker（Waiting、Time_Wating）</li>
-<li>销毁 - Terminated</li>
+<li><p>新建 - New</p>
+</li>
+<li><p>运行 &amp; 就绪 -Runnable </p>
+</li>
+<li><p>阻塞 - Blocked（Waiting、Time_Wating）</p>
+</li>
+<li><p>销毁 - Terminated</p>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h3><ul>
 <li>是Java提供的同步关键字，可以修饰在方法和类上，可以以代码块形式使用</li>
@@ -277,16 +284,18 @@
 </ul>
 </li>
 </ul>
-<h4 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h4><p>轻量级锁</p>
+<h4 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h4><ul>
+<li><p>轻量级锁</p>
 <ul>
 <li>锁对象虽然是多线程访问的，但是线程间不存在竞争，此时Synchronized会优化为一个轻量级锁</li>
 </ul>
-<p>偏向锁</p>
+</li>
+<li><p>偏向锁</p>
 <ul>
 <li><p>在轻量级锁的情况下，线程每次访问锁对象时都需要进行CAS操作，增加了开销</p>
 </li>
 <li><p>java6时引入了偏向锁来优化，在cas前会判断线程id和锁对象的对象头中的线程id是否一致，一致直接通过</p>
-</li>
+<ul>
 <li><p>偏向锁默认是开启的，但是默认也是延迟的，即看不出实际的效果</p>
 <ul>
 <li>可以设置 <code>-XX:BiasedLockingStartupDelay=0</code> 来禁用延迟</li>
@@ -300,25 +309,32 @@
 <li>调用wait&#x2F;notify</li>
 </ul>
 </li>
+</ul>
+</li>
 <li><p>当撤销偏向锁的次数超过了阈值，整个类的所有对象都会变为不可偏向</p>
 </li>
 </ul>
-<p>重量级锁（Monitor锁 &#x2F; 管程锁）</p>
+</li>
+<li><p>重量级锁（Monitor锁 &#x2F; 管程锁）</p>
 <ul>
-<li>结构<ul>
-<li>WaitSet：</li>
+<li><p>结构</p>
+<ul>
+<li>WaitSet：等待队列</li>
 <li>EntryList：阻塞队列</li>
 <li>Owner：持有的线程</li>
 </ul>
 </li>
-<li>加锁流程<ol>
-<li>当线程获取重量级锁时，Owner指向当前线程</li>
-<li>其他线程获取锁时会会先进行自旋获取锁，失败一定次数后进入EntryList等待<ul>
+<li><p>加锁流程</p>
+<ol>
+<li>当线程获取重量级锁时，Owner指向当前线程<ol>
+<li>其他线程获取锁时会会先进行自旋获取锁，失败一定次数后进入EntryList等待</li>
 <li>jdk 1.6 后自旋是自适应的，会根据之前线程的平均自旋次数自动调整自旋的次数</li>
-</ul>
-</li>
 <li>线程释放锁后，唤醒EntryList中等待的线程来竞争锁，是非公平的</li>
 </ol>
+</li>
+</ol>
+</li>
+</ul>
 </li>
 </ul>
 <h4 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h4><p>锁膨胀</p>
@@ -439,9 +455,9 @@
 <li>key是ThreadLocal对象本身，value就是要存的数据</li>
 </ul>
 </li>
-<li><p>真正存数据的地方是Thread中的成员遍历ThreadLocalMap</p>
+<li><p>真正存数据的地方是Thread中的成员变量ThreadLocalMap</p>
 </li>
-<li><p>Thread的key是弱引用，在GC时会被清除，因为存在内存泄露的风险</p>
+<li><p>ThreadLocal的key是弱引用，在GC时会被清除，因此存在内存泄露的风险</p>
 <ul>
 <li>如果想用强引用类型的可以使用ThreadLocal的子类InheritableThreadLocal</li>
 <li>get时遇到key为null值，会将其value置为null</li>
@@ -469,7 +485,7 @@
 <h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
 <li><p>本质上还是HashMap，只是做了并发安全的处理</p>
 </li>
-<li><p>扩容时采用了多线程并发扩容的机制，也是通过创建新的数组然后数据qian’yi</p>
+<li><p>扩容时采用了多线程并发扩容的机制，也是通过创建新的数组然后数据迁移</p>
 </li>
 <li><p>提供的方法是保证线程安全的，但是多个方法同时使用不是线程安全的</p>
 </li>
@@ -516,7 +532,7 @@
 </ul>
 <h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul>
 <li>是一种资源复用的思想，目的是减小线程频繁创建和销毁带来的开销，因为线程创建会涉及到cpu的上下文切换，内存分配等工作</li>
-<li>仅适合短链接的场景，使用时推荐手动创建ThreadPool对象而不是shi’yong</li>
+<li>仅适合短链接的场景，使用时推荐手动创建ThreadPool对象而不是使用默认的线程池</li>
 <li>核心参数<ul>
 <li>corePoolSize：核心线程数</li>
 <li>maximumPoolSize：最大线程数</li>

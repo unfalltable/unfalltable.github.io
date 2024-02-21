@@ -23,15 +23,15 @@
   <title>JVM虚拟机 - JianHong</title>
 
   
-    <meta name="description" content="简介JVM内存模型堆 存放new出来的对象、字符串常量池、静态变量 字符串常量池是在1.7的时候移入堆中，之前都是在方法区中   堆内存由年轻代和老年代组成  栈 主要存放的是线程，每个线程开辟一块内存空间，称为线程栈 最多占用1m内存   线程栈中由多个栈帧组成，栈帧是调用的每个方法 栈帧包括：，局部变量， 操作数栈：方法运行期间数据的操作空间  动态链接：符号引用转变为直接引用 方法出口：记录">
+    <meta name="description" content="简介JVM内存模型堆 存放new出来的对象、字符串常量池、静态变量 字符串常量池是在1.7的时候移入堆中，之前都是在方法区中   堆内存由年轻代和老年代组成  栈 主要存放的是线程，每个线程开辟一块内存空间，称为线程栈 最多占用1m内存   线程栈中由多个栈帧组成，栈帧是调用的每个方法 栈帧包括： 局部变量 操作数栈：方法运行期间数据的操作空间  动态链接：符号引用转变为直接引用 方法出口：记录方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM虚拟机">
 <meta property="og:url" content="http://example.com/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JVM/index.html">
 <meta property="og:site_name" content="JianHong">
-<meta property="og:description" content="简介JVM内存模型堆 存放new出来的对象、字符串常量池、静态变量 字符串常量池是在1.7的时候移入堆中，之前都是在方法区中   堆内存由年轻代和老年代组成  栈 主要存放的是线程，每个线程开辟一块内存空间，称为线程栈 最多占用1m内存   线程栈中由多个栈帧组成，栈帧是调用的每个方法 栈帧包括：，局部变量， 操作数栈：方法运行期间数据的操作空间  动态链接：符号引用转变为直接引用 方法出口：记录">
+<meta property="og:description" content="简介JVM内存模型堆 存放new出来的对象、字符串常量池、静态变量 字符串常量池是在1.7的时候移入堆中，之前都是在方法区中   堆内存由年轻代和老年代组成  栈 主要存放的是线程，每个线程开辟一块内存空间，称为线程栈 最多占用1m内存   线程栈中由多个栈帧组成，栈帧是调用的每个方法 栈帧包括： 局部变量 操作数栈：方法运行期间数据的操作空间  动态链接：符号引用转变为直接引用 方法出口：记录方">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-18T13:12:24.684Z">
-<meta property="article:modified_time" content="2023-07-26T07:35:44.000Z">
+<meta property="article:modified_time" content="2024-02-21T02:29:29.705Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="基础">
 <meta name="twitter:card" content="summary">
@@ -97,7 +97,7 @@
 
 
 
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java/">Java</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></div></div>
 
 <article class='md-text content post'>
 <h1 class="article-title"><span>JVM虚拟机</span></h1>
@@ -114,7 +114,8 @@
 </ul>
 </li>
 <li>线程栈中由多个栈帧组成，栈帧是调用的每个方法<ul>
-<li>栈帧包括：，局部变量，<ul>
+<li>栈帧包括：<ul>
+<li>局部变量</li>
 <li>操作数栈：方法运行期间数据的操作空间 </li>
 <li>动态链接：符号引用转变为直接引用</li>
 <li>方法出口：记录方法结束时下一句执行的代码的地址</li>
@@ -159,12 +160,12 @@
 </li>
 <li><p>字符串拼接的原理时StringBuilder</p>
 </li>
-<li><p>字符串常量拼接的原理时编译期优化</p>
+<li><p>字符串字面量拼接的原理时编译期优化</p>
 </li>
 <li><p>可以使用intern方法，将字符串对象放入串池</p>
 <ul>
 <li>1.8时，串池有则不放入，没有则放入，会把串池中的对象返回</li>
-<li>1.6时，串池有则不放入，没有则把对象赋值一份，放入串池，会把串池中的对象返回</li>
+<li>1.6时，串池有则不放入，没有则把对象复制一份，放入串池，会把串池中的对象返回</li>
 </ul>
 </li>
 <li><p>设置StringTable桶的个数减少哈希冲突</p>
@@ -243,7 +244,7 @@
 <li>加载<ul>
 <li>根据类的全限定名，将类的信息加载进方法区</li>
 <li>在堆中生成一个对象指向该类，作为方法区的数据访问入口</li>
-<li>如果这个类没有父类，会先加载他的父类</li>
+<li>如果这个类有父类，会先加载他的父类</li>
 </ul>
 </li>
 <li>验证<ul>
@@ -352,16 +353,16 @@
 </ul>
 </li>
 <li>虚引用<ul>
-<li>也称幽灵引用，一旦创建就被回收了，所以需要队列cun’chu</li>
+<li>也称幽灵引用，一旦创建就被回收了，所以需要队列存储</li>
 <li>当虚引用的对象被回收时，虚引用会进入引用队列</li>
-<li>引用队列会定期查看引用队列中是否有虚引用</li>
+<li>引用队列会定期查看队列中是否有虚引用</li>
 <li>有虚引用的话会调用虚引用的clean方法调用unsafe.freeMemory()方法释放直接内存</li>
 </ul>
 </li>
 <li>终结器引用<ul>
 <li>当对象重写了终结方法finalize()并且没用强引用时，它就会被垃圾回收</li>
 <li>对象没有强引用时，JVM会创建终结器引用引用该对象，并将终结器引用加入引用队列</li>
-<li>finalizeHandler会定期查看引用队列中是否有终结器引用</li>
+<li>finalizeHandler会定期查看队列中是否有终结器引用</li>
 <li>有终结器引用时会调用引用对象的finalize方法</li>
 </ul>
 </li>
