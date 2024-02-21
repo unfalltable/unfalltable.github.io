@@ -116,12 +116,6 @@ Master主库在事务提交时，会把数据变更记录在Binlog中
 
 修改/etc/my.cnf 
 12345678#mysql服务ID，保证整个集群环境中为唯一，取值范围：1 - 2^32 - 1,默认唯一server-id=1#是...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.693Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?开发,框架"/></div><h2 class="post-title">框架设计</h2><div class="excerpt"><p>实体类设计
-继承Model实现CRUD
-前提是需要有对应的Mapper类并基础BaseMapper&lt;T&gt;
-
-123456789@Data@EqualsAndHashCode(callSuper = true)@Accessors(chain = true)public class User extends Model&lt;User&gt; &#123;    private L...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?开发"/></div><h2 class="post-title">系统设计</h2><div class="excerpt"><p>简介CRM（客户关系管理系统）
 应用
@@ -161,6 +155,12 @@ IaaS（基础架构即服务）
 
 
 项...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?开发,框架"/></div><h2 class="post-title">框架设计</h2><div class="excerpt"><p>实体类设计
+继承Model实现CRUD
+前提是需要有对应的Mapper类并基础BaseMapper&lt;T&gt;
+
+123456789@Data@EqualsAndHashCode(callSuper = true)@Accessors(chain = true)public class User extends Model&lt;User&gt; &#123;    private L...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E8%A7%84%E8%8C%83/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?规范,技巧,开发"/></div><h2 class="post-title">代码规范</h2><div class="excerpt"><p>概念数据模型
 
@@ -192,8 +192,6 @@ DAO
 
 LomboK
 避免使用@Data注解，使用@Getter、@Setter、@...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.691Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E6%8A%80%E5%B7%A7/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?技巧,开发"/></div><h2 class="post-title">开发技巧</h2><div class="excerpt"><p>开发技巧一对多表修改1234567891011121314151617181920212223242526272829303132/***  修改信息通用方法*  exists 数据库存在的记录*  params 修改时传的记录*  T 是实体pojo*  S 是对应的service对象，需要继承 IService*  id 是主表的id*  key 存id，value存记录*/public...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.690Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?问题,开发"/></div><h2 class="post-title">常见开发问题</h2><div class="excerpt"><p>找不到resource下的文件
 在pom下加
@@ -209,6 +207,8 @@ LomboK
 
 
 非简单请求需要先发送一...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.690Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E6%8A%80%E5%B7%A7/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?技巧,开发"/></div><h2 class="post-title">开发技巧</h2><div class="excerpt"><p>开发技巧一对多表修改1234567891011121314151617181920212223242526272829303132/***  修改信息通用方法*  exists 数据库存在的记录*  params 修改时传的记录*  T 是实体pojo*  S 是对应的service对象，需要继承 IService*  id 是主表的id*  key 存id，value存记录*/public...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.690Z">2024-01-18</time></span><span class="cap breadcrumb">开发</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%BC%80%E5%8F%91/%E5%B7%A5%E5%85%B7/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?工具,开发"/></div><h2 class="post-title">工具</h2><div class="excerpt"><p>EasyExcel
 可以使用pig4封装过后的EasyExcel，提供了注解式的使用导入导出，比较方便
