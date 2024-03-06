@@ -23,16 +23,16 @@
   <title>Redis - JianHong</title>
 
   
-    <meta name="description" content="简介 Redis是基于AP思想的，是最终一致性 数据全部存储在内存中，操作效率高，速度快 单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题 IO多路复用技术，可以处理高并发的连接请求 事件派发机制  数据类型String   功能 命令    添加&#x2F;修改数据 set key valuemset key1 value1 key2 value2 …   获取数据 get keymg">
+    <meta name="description" content="简介 Redis是基于AP思想的，是最终一致性 数据全部存储在内存中，操作效率高，速度快 单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题  数据类型String   功能 命令    添加&#x2F;修改数据 set key valuemset key1 value1 key2 value2 …   获取数据 get keymget key1 key2…   删除数据 del key">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis">
 <meta property="og:url" content="http://example.com/2024/01/18/Note/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/index.html">
 <meta property="og:site_name" content="JianHong">
-<meta property="og:description" content="简介 Redis是基于AP思想的，是最终一致性 数据全部存储在内存中，操作效率高，速度快 单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题 IO多路复用技术，可以处理高并发的连接请求 事件派发机制  数据类型String   功能 命令    添加&#x2F;修改数据 set key valuemset key1 value1 key2 value2 …   获取数据 get keymg">
+<meta property="og:description" content="简介 Redis是基于AP思想的，是最终一致性 数据全部存储在内存中，操作效率高，速度快 单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题  数据类型String   功能 命令    添加&#x2F;修改数据 set key valuemset key1 value1 key2 value2 …   获取数据 get keymget key1 key2…   删除数据 del key">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://doocs.github.io/advanced-java/docs/high-concurrency/images/redis-single-thread-model.png">
 <meta property="article:published_time" content="2024-01-18T13:12:24.729Z">
-<meta property="article:modified_time" content="2024-02-21T02:50:36.508Z">
+<meta property="article:modified_time" content="2024-02-22T15:32:41.902Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="中间件">
 <meta name="twitter:card" content="summary">
@@ -83,7 +83,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Redis</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-text">Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SortedSet"><span class="toc-text">SortedSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">Stream消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="toc-text">消费者组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEO"><span class="toc-text">GEO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BitMap"><span class="toc-text">BitMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HyperLogLog"><span class="toc-text">HyperLogLog</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">线程模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88file-event-handler%EF%BC%89"><span class="toc-text">文件事件处理器（file event handler）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringDataRedis%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">SpringDataRedis序列化的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E7%83%AD%E3%80%81%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF"><span class="toc-text">预热、雪崩、穿透、击穿</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%A2%84%E7%83%AD"><span class="toc-text">缓存预热</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-text">缓存穿透</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-text">缓存雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="toc-text">缓存击穿</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">消息队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">内存淘汰策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5"><span class="toc-text">数据过期策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">缓存一致性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8"><span class="toc-text">压缩列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RDB"><span class="toc-text">RDB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-text">存储的流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOF"><span class="toc-text">AOF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOF%E5%92%8CRDB%E6%B7%B7%E5%90%88%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">AOF和RDB混合持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4"><span class="toc-text">集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4"><span class="toc-text">分片集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E6%A7%BD"><span class="toc-text">哈希槽</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4"><span class="toc-text">哨兵集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-3"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E9%80%89%E4%B8%BB%E8%A7%84%E5%88%99"><span class="toc-text">哨兵选主规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E9%97%B4%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E6%9C%BA%E5%88%B6"><span class="toc-text">哨兵间的自动发现机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5-%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="toc-text">主从同步 &#x2F; 主从集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-4"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E9%87%8F%E5%90%8C%E6%AD%A5"><span class="toc-text">全量同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5"><span class="toc-text">增量同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%91%E8%A3%82"><span class="toc-text">脑裂</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-text">分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setnx"><span class="toc-text">setnx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redission"><span class="toc-text">Redission</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E9%94%81%E5%8E%9F%E7%90%86"><span class="toc-text">加锁原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%85%A5%E5%8E%9F%E7%90%86"><span class="toc-text">可重入原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E8%AF%95%E5%8E%9F%E7%90%86"><span class="toc-text">可重试原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E8%B6%85%E6%97%B6%E5%8E%9F%E7%90%86"><span class="toc-text">不超时原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E4%B8%80%E8%87%B4%EF%BC%88%E8%BF%9E%E9%94%81%EF%BC%89"><span class="toc-text">主从一致（连锁）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-text">多级缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E8%BF%9B%E7%A8%8B%E7%BC%93%E5%AD%98"><span class="toc-text">JVM进程缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Caffeine"><span class="toc-text">Caffeine</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98"><span class="toc-text">Nginx本地缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lua"><span class="toc-text">Lua</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenResty"><span class="toc-text">OpenResty</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">批处理</span></a></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Redis</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-text">Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SortedSet"><span class="toc-text">SortedSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">Stream消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84"><span class="toc-text">消费者组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEO"><span class="toc-text">GEO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BitMap"><span class="toc-text">BitMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HyperLogLog"><span class="toc-text">HyperLogLog</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">线程模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88file-event-handler%EF%BC%89"><span class="toc-text">文件事件处理器（file event handler）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringDataRedis%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">SpringDataRedis序列化的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">消息队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">内存淘汰策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5"><span class="toc-text">数据过期策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">缓存一致性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8"><span class="toc-text">压缩列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RDB"><span class="toc-text">RDB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-text">存储的流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOF"><span class="toc-text">AOF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOF%E5%92%8CRDB%E6%B7%B7%E5%90%88%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">AOF和RDB混合持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4"><span class="toc-text">集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4"><span class="toc-text">分片集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E6%A7%BD"><span class="toc-text">哈希槽</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4"><span class="toc-text">哨兵集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-3"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E9%80%89%E4%B8%BB%E8%BF%87%E7%A8%8B"><span class="toc-text">哨兵选主过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E9%97%B4%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E6%9C%BA%E5%88%B6"><span class="toc-text">哨兵间的自动发现机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%91%E8%A3%82"><span class="toc-text">脑裂</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E4%B8%BB%E5%A4%87%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98"><span class="toc-text">哨兵主备切换数据丢失问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5-%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="toc-text">主从同步 &#x2F; 主从集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-4"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E6%B5%81%E7%A8%8B"><span class="toc-text">同步流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-text">分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setnx"><span class="toc-text">setnx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redission"><span class="toc-text">Redission</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E9%94%81%E5%8E%9F%E7%90%86"><span class="toc-text">加锁原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%85%A5%E5%8E%9F%E7%90%86"><span class="toc-text">可重入原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E8%AF%95%E5%8E%9F%E7%90%86"><span class="toc-text">可重试原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E8%B6%85%E6%97%B6%E5%8E%9F%E7%90%86"><span class="toc-text">不超时原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E4%B8%80%E8%87%B4%EF%BC%88%E8%BF%9E%E9%94%81%EF%BC%89"><span class="toc-text">主从一致（连锁）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-text">多级缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E8%BF%9B%E7%A8%8B%E7%BC%93%E5%AD%98"><span class="toc-text">JVM进程缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Caffeine"><span class="toc-text">Caffeine</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98"><span class="toc-text">Nginx本地缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lua"><span class="toc-text">Lua</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenResty"><span class="toc-text">OpenResty</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">批处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98"><span class="toc-text">生产问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%A2%84%E7%83%AD"><span class="toc-text">缓存预热</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-text">缓存穿透</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-text">缓存雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="toc-text">缓存击穿</span></a></li></ol></li></ol></div></div></widget>
 
 
 
@@ -107,8 +107,6 @@
 <li>Redis是基于AP思想的，是最终一致性</li>
 <li>数据全部存储在内存中，操作效率高，速度快</li>
 <li>单线程处理，避免了不必要的上下文切换，不用考虑线程安全问题</li>
-<li>IO多路复用技术，可以处理高并发的连接请求</li>
-<li>事件派发机制</li>
 </ul>
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><table>
 <thead>
@@ -220,7 +218,10 @@
 <li>一个key可以存2^32^ - 1 个键值对</li>
 <li>hash可以存储少量对象</li>
 </ul>
-<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><table>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><ul>
+<li>可以看成双向链表，有序</li>
+</ul>
+<table>
 <thead>
 <tr>
 <th>功能</th>
@@ -252,9 +253,6 @@
 <td>BLPOP &#x2F; BRPOP key</td>
 </tr>
 </tbody></table>
-<ul>
-<li>可以看成双向链表</li>
-</ul>
 <h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><table>
 <thead>
 <tr>
@@ -489,7 +487,7 @@
 <li>内部使用文件事件处理器（file event handler），是单线程的</li>
 <li>使用的IO多路复用机制同时监听多个socket，将产生事件的socket压入内存队列</li>
 <li>事件分派器根据socket上的事件类型来选择对应的事件处理器</li>
-<li>在Redis6中引入了多线程机制，主要用于处理回复事件、命令转换</li>
+<li>在Redis6中引入了多线程机制，主要用于处理回复事件、命令转换，网络数据的读写和协议解析，执行命令仍然是单线程</li>
 </ul>
 <h3 id="文件事件处理器（file-event-handler）"><a href="#文件事件处理器（file-event-handler）" class="headerlink" title="文件事件处理器（file event handler）"></a>文件事件处理器（file event handler）</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://doocs.github.io/advanced-java/docs/high-concurrency/images/redis-single-thread-model.png" alt="Redis-single-thread-model"></p>
 <ol>
@@ -507,89 +505,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span>&#123;</span><br><span class="line">    <span class="comment">//创建Template</span></span><br><span class="line">    RedisTemplate&lt;String, Object&gt; redisTemplate = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//设置连接工厂</span></span><br><span class="line">    redisTemplate.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="comment">//设置序列化工具</span></span><br><span class="line">    <span class="type">GenericJackson2JsonRedisSerializer</span> <span class="variable">jsonRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>();</span><br><span class="line">    <span class="comment">//key和HashKey采用String序列化</span></span><br><span class="line">    redisTemplate.setKeySerializer(ReidsSerializer.string());</span><br><span class="line">    redisTemplate.setHashKeySerializer(ReidsSerializer.string());</span><br><span class="line">    <span class="comment">//value和HashValue采用Json序列化</span></span><br><span class="line">    redisTemplate.setValueSerializer(jsonRedisSerializer);</span><br><span class="line">    redisTemplate.setHashValueSerializer(jsonRedisSerializer);</span><br><span class="line">    <span class="keyword">return</span> redisTemplate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用StringRedisTemplate，手动序列化Json</p>
-</li>
-</ul>
-<h2 id="预热、雪崩、穿透、击穿"><a href="#预热、雪崩、穿透、击穿" class="headerlink" title="预热、雪崩、穿透、击穿"></a>预热、雪崩、穿透、击穿</h2><h3 id="缓存预热"><a href="#缓存预热" class="headerlink" title="缓存预热"></a>缓存预热</h3><ul>
-<li>主从之间数据吞吐量较大、数据同步操作频度高、请求数量较高，而且redis中没有数据，会导致redis启动时快速宕机，所以需要进行redis缓存预热</li>
-<li>日常需要对数据的访问进行记录，统计热点数据</li>
-<li>利用LRU数据删除策略，构建数据留存队列</li>
-<li>redis启动时加载热点数据<ul>
-<li>使用脚本固定触发数据预热</li>
-</ul>
-</li>
-</ul>
-<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><ul>
-<li><p>缓存穿透是指客户端请求的数据在缓存和数据库中的不存在，这些请求每次都会打到数据库</p>
-</li>
-<li><p>解决方案</p>
-<ul>
-<li><p>使用缓存空对象，设置过期时间，可能存在短期不一致性</p>
-</li>
-<li><p>使用布隆过滤器解决，在客户和缓存之间添加，缓存预热时，预热布隆过滤器</p>
-</li>
-<li><p>增强id的复杂度</p>
-</li>
-<li><p>加强用户权限校验</p>
-</li>
-<li><p>做好热点参数的限流</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><ul>
-<li><p>同一时段大量的缓存key同时失效或者redis宕机，导致大量的请求直接到达数据库，带来巨大压力</p>
-</li>
-<li><p>解决方案：</p>
-<ul>
-<li><p>给不同的缓存key的过期时间（TTL）添加随机值</p>
-<ul>
-<li><p>不同业务过期时间不同</p>
-</li>
-<li><p>对超级热点数据使用永久key</p>
-</li>
-</ul>
-</li>
-<li><p>使用Redis集群，主从+哨兵</p>
-</li>
-<li><p>给缓存业务添加降级限流策略</p>
-</li>
-<li><p>给业务添加多级缓存</p>
-</li>
-<li><p>优化数据库中严重耗时的业务</p>
-</li>
-<li><p>redis监控服务器性能指标</p>
-</li>
-<li><p>把缓存key到期删除策略改成按命中次数删除策略</p>
-</li>
-<li><p>redis开启持久化，宕机后快速恢复</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><ul>
-<li><p>一个被高并发访问并且缓存重建业务较复杂的key突然失效了，无数的请求会打到数据库</p>
-</li>
-<li><p>解决方案</p>
-<ul>
-<li><p>如果缓存的数据基本不更新，可以设置为不过期</p>
-</li>
-<li><p>互斥锁</p>
-<ul>
-<li>适合缓存更新较快的场景</li>
-<li>没有额外内存消耗，保证一致性，实现简单，但是性能受影响，可能出现死锁</li>
-<li>利用Redis的 SETNX 实现，只有第一个执行SETNX的成功	</li>
-<li>或者使用redisson实现</li>
-</ul>
-</li>
-<li><p>逻辑过期</p>
-<ul>
-<li>即热点数据缓存不设置过期时间，而是在其对象中设置一个时间属性，在这上面设置过期时间<ul>
-<li>性能较好，但不保证一致性，有额外内存消耗，实现复杂</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 </li>
 </ul>
 <h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><table>
@@ -633,12 +548,12 @@
 </tr>
 </tbody></table>
 <h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><ul>
-<li>noeviction：不清除缓存，内存满了不允许写入新的数据（默认）</li>
+<li>noeviction：不清除缓存，内存满了不允许写入新的数据，会报错（默认）</li>
 <li>allkeys-lru：对所有key使用LRU算法进行删除 （推荐）</li>
-<li>volat-lru：对所有设置了过期时间的key使用LRU删除</li>
+<li>volatile-lru：对所有设置了过期时间的key使用LRU删除</li>
 <li>allkeys-random：对所有key随机删除</li>
 <li>volatile-random：对所有设置了过期时间的key随即删除</li>
-<li>volatile-ttl：删除马上就要 过期的key</li>
+<li>volatile-ttl：删除马上就要过期的key</li>
 <li>allkeys-lfu：对所有key使用LFU算法进行删除（根据数据访问频率）</li>
 <li>volatile-lfu：对所有设置了过期时间的key使用LFU删除</li>
 </ul>
@@ -692,6 +607,7 @@
 <li>XGroup，消息分流、表示、确认、阻塞读取、可回溯</li>
 <li>使用Lua脚本添加信息，保证原子性</li>
 <li>消息发送后进入pending-list，XACK后移除</li>
+<li>list也可以实现简单的消息队列</li>
 </ul>
 </li>
 <li><p>点赞</p>
@@ -702,6 +618,16 @@
 <li><p>关注</p>
 <ul>
 <li>Set，查看共同关注</li>
+</ul>
+</li>
+<li><p>列表</p>
+<ul>
+<li>list，粉丝列表，评论列表等</li>
+</ul>
+</li>
+<li><p>分页</p>
+<ul>
+<li>list，可以实现高性能分页</li>
 </ul>
 </li>
 <li><p>推送</p>
@@ -718,6 +644,11 @@
 <li><p>签到</p>
 <ul>
 <li>BitMap，String实现</li>
+</ul>
+</li>
+<li><p>全局去重</p>
+<ul>
+<li>Set实现</li>
 </ul>
 </li>
 </ul>
@@ -852,7 +783,7 @@
 <li><p>集群监控：负责监控 Redis master 和 slave 进程是否正常工作。</p>
 <ul>
 <li>基于心跳检测，每一秒ping一次，超过规定的时间没有响应，则视为<strong>主观下线</strong></li>
-<li>超过一半（可设置）的哨兵认为该节点主观下线，则该节点变为客观下线</li>
+<li>超过一半（可设置）的哨兵认为该节点主观下线，则该节点变为<strong>客观下线</strong></li>
 </ul>
 </li>
 <li><p>消息通知：如果某个 Redis 实例有故障，那么哨兵负责发送消息作为报警通知给管理员。</p>
@@ -866,55 +797,95 @@
 <ul>
 <li>故障转移时，判断一个 master node 是否宕机了，需要大部分的哨兵都同意才行，涉及到了分布式选举的问题。</li>
 <li>即使部分哨兵节点挂掉了，哨兵集群还是能正常工作的</li>
+<li>哨兵至少需要 3 个实例，来保证自己的健壮性</li>
+<li>不保证数据零丢失，只能保证高可用</li>
 </ul>
-<h4 id="哨兵选主规则"><a href="#哨兵选主规则" class="headerlink" title="哨兵选主规则"></a>哨兵选主规则</h4><ol>
-<li>判断主从断开时间长短，超过指定值则排除</li>
-<li>判断节点的salve-priority值，越小优先级越高，如果一样则判断offset，越大优先级越高</li>
-<li>最后判断节点运行id大小，越小优先级越高</li>
+<h4 id="哨兵选主过程"><a href="#哨兵选主过程" class="headerlink" title="哨兵选主过程"></a>哨兵选主过程</h4><ol>
+<li>主节点客观下线时，选出一个哨兵，需要超过一半的哨兵授权（可配置）</li>
+<li>判断从节点断开主节点的时间长短，超过指定值则排除</li>
+<li>判断从节点的salve-priority值，越小优先级越高，如果一样则判断offset，越大优先级越高</li>
+<li>如果上面两点相同，最后再判断从节点run id大小，越小优先级越高</li>
+<li>当这个哨兵确定了主节点后，会切换到新的监控配置，并获取一个唯一的version号。如果主节点切换失败了，其他哨兵会在等待 failover-timeout 时间后，重新选举出新的哨兵进行选取主节点的操作，会获得一个新的 version号。</li>
+<li>当主节点切换成功后，哨兵会在自己本地更新生成最新的 master 配置，然后同步给其他的哨兵，其他哨兵发现自己的主节点配置的version号不是最新的就会进行更新</li>
 </ol>
 <h4 id="哨兵间的自动发现机制"><a href="#哨兵间的自动发现机制" class="headerlink" title="哨兵间的自动发现机制"></a>哨兵间的自动发现机制</h4><ul>
 <li>是通过redis的 pub&#x2F;sub 实现的，每个哨兵都会往 <code>__sentinel__:hello</code> 这个 channel 里发送一个消息，这时候所有其他哨兵都可以消费到这个消息，并感知到其他的哨兵的存在</li>
 <li>每个哨兵还会跟其他哨兵交换对 <code>master</code> 的监控配置，互相进行监控配置的同步</li>
+<li>哨兵会负责自动纠正 slave 的一些配置，比如发生了重新选举主节点</li>
+</ul>
+<h4 id="脑裂"><a href="#脑裂" class="headerlink" title="脑裂"></a>脑裂</h4><ul>
+<li>由于网络分区或者网络故障集群分割，两个分区都选举了master节点，故障恢复后其中一个master会变回salve节点，其间其接收到的写请求都会在同步后丢失</li>
+<li>解决方法<ul>
+<li>设置min-replicas-to-write 1：表示主节点最少需要有一个从节点</li>
+<li>设置min-replicas-max-lag 5：表示数据复制和同步的延迟不能超过10s</li>
+</ul>
+</li>
+</ul>
+<h4 id="哨兵主备切换数据丢失问题"><a href="#哨兵主备切换数据丢失问题" class="headerlink" title="哨兵主备切换数据丢失问题"></a>哨兵主备切换数据丢失问题</h4><ul>
+<li>主从间的数据备份是异步执行的，有可能部分数据从节点还没复制完主节点就发生了宕机</li>
+<li>脑裂导致</li>
 </ul>
 <h3 id="主从同步-主从集群"><a href="#主从同步-主从集群" class="headerlink" title="主从同步 &#x2F; 主从集群"></a>主从同步 &#x2F; 主从集群</h3><h4 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h4><ul>
 <li>能够实现读写分离，但无法实现集群高可用</li>
-<li>分为主节点master和从节点salve&#x2F;replica<ul>
+<li>分为主节点master和从节点salve &#x2F; replica<ul>
 <li>主节点接收写操作</li>
 <li>从节点接收读操作</li>
 </ul>
 </li>
 <li>每一个主节点都有一个replid，这个id是数据集的标记，从节点会继承主节点的replid，从节点同步时会带上这个replid，如果和主节点的不一致则说明是第一次同步</li>
 <li>主节点有一个偏移量offset，这个偏移量会根据replicated_baklog中的数据增多而逐渐增大，从节点完成同步时也会记录当前同步的主节点的偏移量，如果。从节点偏移量小于主节点，则会进行数据同步更新</li>
+<li>从节点不会过期key，只有当主节点过期key时，从节点才会删除</li>
+<li>主节点默认每隔 10 秒发送一次 心跳，从节点每隔 1 秒发送一个 心跳</li>
 </ul>
-<h4 id="全量同步"><a href="#全量同步" class="headerlink" title="全量同步"></a>全量同步</h4><ol>
-<li><strong>从节点</strong>向主节点建立连接，通过执行<strong>replicaof</strong>命令</li>
-<li>请求数据同步，会携带replid、offset</li>
-<li><strong>主节点</strong>判断是否是第一次同步，通过判断replid是否一致，不一致则是第一次<ul>
-<li>第一次<ul>
-<li>是第一次，将主节点完整的版本信息发送给<strong>从节点</strong>，即replid、offset</li>
-<li><strong>主节点</strong>执行持久化生成RDB，发送给<strong>从节点</strong></li>
-<li><strong>从节点</strong>清空本地数据，加载RDB文件</li>
-<li><strong>主节点</strong>会记录生成RDB文件期间接收到的所有命令，封装为replicated_baklog日志文件发送给<strong>从节点</strong></li>
-<li><strong>从节点</strong>执行接收到的日志文件</li>
+<h4 id="同步流程"><a href="#同步流程" class="headerlink" title="同步流程"></a>同步流程</h4><ol>
+<li><strong>从节点</strong>向主节点建立连接，通过执行<strong>replicaof</strong>命令<ul>
+<li>从节点会在本地保存主节点的信息</li>
+<li>从节点内部有一个定时任务，每秒检查是否有新的主节点需要连接和复制</li>
+<li>连接主节点时，如果主节点设置了requirepass，从节点还需要发送masterauth口令进行认证</li>
 </ul>
 </li>
-<li>不是第一次<ul>
+<li>请求数据同步，会携带replid、offset</li>
+<li><strong>主节点</strong>判断是否是第一次同步，通过判断replid是否一致，不一致则是第一次<ul>
+<li>第一次，也称<strong>全量同步</strong><ol>
+<li>将主节点完整的版本信息发送给<strong>从节点</strong>，即replid、offset</li>
+<li><strong>主节点</strong>后台启动一个线程执行持久化生成RDB，发送给<strong>从节点</strong><ul>
+<li>2.8之后支持断点续传</li>
+<li>主节点可以实现RDB不落盘，即在内存中生成，需要配置<code>repl-diskless-sync</code></li>
+<li>从节点复制RDB时如果超过60s（可配置），会认为复制失败</li>
+</ul>
+</li>
+<li><strong>从节点</strong>清空本地数据，加载RDB文件，这时从节点无法对外提供服务</li>
+<li><strong>主节点</strong>会记录生成RDB文件期间接收到的所有命令，封装为replicated_baklog文件发送给<strong>从节点</strong><ul>
+<li>replicated_baklog在缓冲区超过64MB，或者总大小超过256MB，会停止复制（可配置）</li>
+</ul>
+</li>
+<li><strong>从节点</strong>执行接收到的日志文件<ul>
+<li>如果从节点开启了 AOF，那么会立即执行 BGREWRITEAOF，重写 AOF</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>不是第一次，也称<strong>增量同步</strong>，一般在从节点重启时或者主从数据发送变化时<ol>
 <li><strong>主节点</strong>计算从节点的偏移量和主节点偏移量的差值数据封装为replicated_baklog日志文件发送给<strong>从节点</strong></li>
 <li><strong>从节点</strong>执行接收到的日志文件</li>
-</ul>
+</ol>
 </li>
 </ul>
 </li>
 </ol>
-<h4 id="增量同步"><a href="#增量同步" class="headerlink" title="增量同步"></a>增量同步</h4><ul>
-<li>一般在从节点重启时或者主从数据发送变化时</li>
-<li>就是全量同步中不是第一次同步的情况</li>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
+<li>一般通过Redis cluster来搭建集群系统，在多主节点的集群中，会自动将数据进行切片，每个主节点上存储一部分数据</li>
+<li>提供了高可用支持，即使有部分主节点不可用，集群仍然可以对外提供服务</li>
+<li>集群中的每个节点会开放两个端口，比如6379和16379<ul>
+<li>16379用来进行节点间的通信，也称cluster bus，用于故障检测、配置更新、故障转移授权</li>
+<li>cluster bus 使用 <code>gossip</code> 协议，用于节点间进行高效的数据交换，占用更少的网络带宽和处理时间</li>
+<li>所有节点都会保存一份元数据（节点信息等），当节点元数据发生改变时，会推送给其他节点</li>
+<li><code>gossip</code> 协议会发送：<ul>
+<li><code>ping / pong</code>：心跳检测，还会发送自己的信息和元数据信息</li>
+<li><code>meet</code>：通知新节点加入到集群中</li>
+<li><code>fail</code>：发现某个节点宕机后，会通知其他节点</li>
 </ul>
-<h4 id="脑裂"><a href="#脑裂" class="headerlink" title="脑裂"></a>脑裂</h4><ul>
-<li>由于网络分区或者网络故障集群分割，两个分区都选举了master节点，故障恢复后其中一个master会变回salve节点，其间其接收到的写请求都会在同步后丢失</li>
-<li>解决方法<ul>
-<li>设置min-replicas-to-write 1：表示主节点最少需要有一个从节点</li>
-<li>设置min-replicas-max-lag 5：表示数据复制和同步的延迟不能超过5s</li>
+</li>
 </ul>
 </li>
 </ul>
@@ -1009,7 +980,90 @@
 <li><p>没设置超时时间会使用<strong>看门狗机制</strong></p>
 </li>
 </ul>
-<h2 id="多级缓存"><a href="#多级缓存" class="headerlink" title="多级缓存"></a>多级缓存</h2><h3 id="JVM进程缓存"><a href="#JVM进程缓存" class="headerlink" title="JVM进程缓存"></a>JVM进程缓存</h3><h4 id="Caffeine"><a href="#Caffeine" class="headerlink" title="Caffeine"></a>Caffeine</h4><h3 id="Nginx本地缓存"><a href="#Nginx本地缓存" class="headerlink" title="Nginx本地缓存"></a>Nginx本地缓存</h3><h4 id="Lua"><a href="#Lua" class="headerlink" title="Lua"></a>Lua</h4><h3 id="OpenResty"><a href="#OpenResty" class="headerlink" title="OpenResty"></a>OpenResty</h3><h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3>
+<h2 id="多级缓存"><a href="#多级缓存" class="headerlink" title="多级缓存"></a>多级缓存</h2><h3 id="JVM进程缓存"><a href="#JVM进程缓存" class="headerlink" title="JVM进程缓存"></a>JVM进程缓存</h3><h4 id="Caffeine"><a href="#Caffeine" class="headerlink" title="Caffeine"></a>Caffeine</h4><h3 id="Nginx本地缓存"><a href="#Nginx本地缓存" class="headerlink" title="Nginx本地缓存"></a>Nginx本地缓存</h3><h4 id="Lua"><a href="#Lua" class="headerlink" title="Lua"></a>Lua</h4><h3 id="OpenResty"><a href="#OpenResty" class="headerlink" title="OpenResty"></a>OpenResty</h3><h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3><h2 id="生产问题"><a href="#生产问题" class="headerlink" title="生产问题"></a>生产问题</h2><h3 id="缓存预热"><a href="#缓存预热" class="headerlink" title="缓存预热"></a>缓存预热</h3><ul>
+<li>主从之间数据吞吐量较大、数据同步操作频度高、请求数量较高，而且redis中没有数据，会导致redis启动时快速宕机，所以需要进行redis缓存预热</li>
+<li>日常需要对数据的访问进行记录，统计热点数据</li>
+<li>利用LRU数据删除策略，构建数据留存队列</li>
+<li>redis启动时加载热点数据<ul>
+<li>使用脚本固定触发数据预热</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><ul>
+<li><p>缓存穿透是指客户端请求的数据在缓存和数据库中的不存在，这些请求每次都会打到数据库</p>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>使用缓存空对象，设置过期时间，可能存在短期不一致性</p>
+</li>
+<li><p>使用布隆过滤器解决，在客户和缓存之间添加，缓存预热时，预热布隆过滤器</p>
+</li>
+<li><p>增强id的复杂度</p>
+</li>
+<li><p>加强用户权限校验</p>
+</li>
+<li><p>做好热点参数的限流</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><ul>
+<li><p>同一时段大量的缓存key同时失效或者redis宕机，导致大量的请求直接到达数据库，带来巨大压力</p>
+</li>
+<li><p>解决方案：</p>
+<ul>
+<li><p>给不同的缓存key的过期时间（TTL）添加随机值</p>
+<ul>
+<li><p>不同业务过期时间不同</p>
+</li>
+<li><p>对超级热点数据使用永久key</p>
+</li>
+</ul>
+</li>
+<li><p>使用Redis集群，主从+哨兵</p>
+</li>
+<li><p>给缓存业务添加降级限流策略</p>
+</li>
+<li><p>给业务添加多级缓存</p>
+</li>
+<li><p>优化数据库中严重耗时的业务</p>
+</li>
+<li><p>redis监控服务器性能指标</p>
+</li>
+<li><p>把缓存key到期清除策略改成按命中次数清除策略</p>
+</li>
+<li><p>redis开启持久化，宕机后快速恢复</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><ul>
+<li><p>一个被高并发访问并且缓存重建业务较复杂的key突然失效了，无数的请求会打到数据库</p>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>如果缓存的数据基本不更新，可以设置为不过期</p>
+</li>
+<li><p>互斥锁</p>
+<ul>
+<li>适合缓存更新较快的场景</li>
+<li>没有额外内存消耗，保证一致性，实现简单，但是性能受影响，可能出现死锁</li>
+<li>利用Redis的 SETNX 实现，只有第一个执行SETNX的成功	</li>
+<li>或者使用redisson实现</li>
+</ul>
+</li>
+<li><p>逻辑过期</p>
+<ul>
+<li>即热点数据缓存不设置过期时间，而是在其对象中设置一个时间属性，在这上面设置过期时间<ul>
+<li>性能较好，但不保证一致性，有额外内存消耗，实现复杂</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
 
 
 <div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>

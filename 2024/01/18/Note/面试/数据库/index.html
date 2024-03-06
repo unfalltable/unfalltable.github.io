@@ -23,15 +23,15 @@
   <title>数据库 - JianHong</title>
 
   
-    <meta name="description" content="MySQL   count(*)、count(1)、count(字段) 对比    索引    失效情况    索引下推    自增id和uuid的区别      连接查询 on 条件判断类型不同怎么判断    in查询参数太多怎么办  创建临时表，in后接子查询该临时表     InnoDB、MyISAM、Memory区别    InnoDB如何解决幻读问题  间隙锁和临键锁     一条sql">
+    <meta name="description" content="共通   数据库之间的区别     MySQL Redis MongoDB ES Memcached    类型 关系型 键值型  文档型    性能  高                 分库分表   为什么要分库分表 单表数据量大，查询频率高，查询慢    中间件有哪些 sharding-jdbc：性能高但耦合度高 MyCat：需要独立部署，耦合度低，管理成本高    如何进行拆分 垂直拆分、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库">
 <meta property="og:url" content="http://example.com/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
 <meta property="og:site_name" content="JianHong">
-<meta property="og:description" content="MySQL   count(*)、count(1)、count(字段) 对比    索引    失效情况    索引下推    自增id和uuid的区别      连接查询 on 条件判断类型不同怎么判断    in查询参数太多怎么办  创建临时表，in后接子查询该临时表     InnoDB、MyISAM、Memory区别    InnoDB如何解决幻读问题  间隙锁和临键锁     一条sql">
+<meta property="og:description" content="共通   数据库之间的区别     MySQL Redis MongoDB ES Memcached    类型 关系型 键值型  文档型    性能  高                 分库分表   为什么要分库分表 单表数据量大，查询频率高，查询慢    中间件有哪些 sharding-jdbc：性能高但耦合度高 MyCat：需要独立部署，耦合度低，管理成本高    如何进行拆分 垂直拆分、">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-18T13:12:24.741Z">
-<meta property="article:modified_time" content="2024-02-21T09:04:57.372Z">
+<meta property="article:modified_time" content="2024-02-22T18:23:29.432Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -81,7 +81,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数据库</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis"><span class="toc-text">Redis</span></a></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数据库</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B1%E9%80%9A"><span class="toc-text">共通</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis"><span class="toc-text">Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch"><span class="toc-text">ElasticSearch</span></a></li></ol></div></div></widget>
 
 
 
@@ -101,6 +101,86 @@
 
 <article class='md-text content post'>
 <h1 class="article-title"><span>数据库</span></h1>
+<h2 id="共通"><a href="#共通" class="headerlink" title="共通"></a>共通</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+数据库之间的区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MySQL</th>
+<th>Redis</th>
+<th>MongoDB</th>
+<th>ES</th>
+<th>Memcached</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>关系型</td>
+<td>键值型</td>
+<td></td>
+<td>文档型</td>
+<td></td>
+</tr>
+<tr>
+<td>性能</td>
+<td></td>
+<td>高</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+分库分表</p>
+<ul>
+<li><input disabled="" type="checkbox"> 为什么要分库分表<ul>
+<li>单表数据量大，查询频率高，查询慢</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 中间件有哪些<ul>
+<li>sharding-jdbc：性能高但耦合度高</li>
+<li>MyCat：需要独立部署，耦合度低，管理成本高</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 如何进行拆分<ul>
+<li>垂直拆分、水平拆分</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 开发初期怎么设计一个未来可能要进行分库分表的系统<ul>
+<li>停机迁移：不推荐</li>
+<li>双写迁移<ul>
+<li>线上数据同时操作新库和老库，老库数据读到新库，要避免老库旧数据覆盖新库新数据</li>
+<li>一轮过后可能数据还是不一致，再通过程序进行数据校验，不一致的数据再进行更新，直到一样</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 如何动态扩容缩容<ul>
+<li>停机扩容：不推荐</li>
+<li>一开始就分配足够大的库和表，不够就加机器</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> id主键怎么处理<ol>
+<li>写一个获取自增id的服务，但是高并发场景下性能差，并发低可用</li>
+<li>设置每个库的步进数，根据数据库数量来设置，缺点是如果增加数据库就麻烦了</li>
+<li>UUID，性能差</li>
+<li>雪花算法，64位long型id</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><ul>
 <li><p><input disabled="" type="checkbox"> 
 count(*)、count(1)、count(字段) 对比</p>
@@ -240,17 +320,26 @@ Next Key Lock（行锁+间隙锁）</p>
 </ul>
 </li>
 <li><p><input disabled="" type="checkbox"> 
-主从延迟</p>
+怎么实现读写分离</p>
 <ul>
-<li><input disabled="" type="checkbox"> 怎么解决<ul>
+<li>搭建主从集群</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+主从复制的原理</p>
+<ul>
+<li>主库将变更操作记录到binlog日志同步给从库</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+主从延迟怎么解决</p>
+<ul>
 <li>设置延迟读取</li>
 <li>忍受大法</li>
 <li>数据库同步写方案</li>
 <li>选择性强制读主</li>
 <li>中间件选择路由法</li>
 <li>缓存路由大法</li>
-</ul>
-</li>
 </ul>
 </li>
 <li><p><input disabled="" type="checkbox"> 
@@ -282,23 +371,135 @@ ChangeBuffer</p>
 </li>
 </ul>
 <h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><ul>
-<li><input disabled="" type="checkbox"> 哪些场景使用了Redis</li>
-<li><input disabled="" type="checkbox"> 缓存使用不当的后果</li>
-<li><input disabled="" type="checkbox"> Redis和Memcached有什么区别</li>
-<li><input disabled="" type="checkbox"> Redis的线程模型是什么</li>
-<li><input disabled="" type="checkbox"> 为什么单线程的Redis效率比多线程的Memcached效率更高</li>
-<li><input disabled="" type="checkbox"> Redis的数据类型有哪些</li>
-<li><input disabled="" type="checkbox"> Redis过期策略有哪些</li>
-<li><input disabled="" type="checkbox"> LRU的实现</li>
-<li><input disabled="" type="checkbox"> 如何保证Redis高并发、高可用</li>
-<li><input disabled="" type="checkbox"> Redis主从复制原理</li>
+<li><input disabled="" type="checkbox"> 哪些场景使用了Redis<ul>
+<li>短信验证、缓存、分布式锁、全局ID、消息队列、点赞、关注、推送、附件商铺、签到</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis的线程模型是什么<ul>
+<li>基于内存的单线程工作模型，使用了事件分派机制</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 为什么单线程的Redis效率比多线程的Memcached效率更高<ul>
+<li>纯内存操作、IO多路复用、C语言实现、单线程避免线程上下文切换</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis的数据类型有哪些<ul>
+<li>string、hash、list、set、sortset、stream、geo、bitmap、hyperLogLog</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis过期策略有哪些<ul>
+<li>惰性删除、定期删除</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> LRU的实现<ul>
+<li>数组 + 链表</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 如何保证Redis高并发、高可用<ul>
+<li>使用主从集群实现高并发</li>
+<li>使用哨兵集群实现高可用</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis主从复制原理<ul>
+<li>主节点写，从节点读</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis哨兵机制原理</li>
+<li><input disabled="" type="checkbox"> Redis主从架构是怎么样的</li>
+<li><input disabled="" type="checkbox"> Redis持久化<ul>
+<li><input disabled="" type="checkbox"> 有哪几种方式<ul>
+<li>RDB、AOF</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 不同持久化的优缺点<ul>
+<li>RDB：快，数据不全，记录数据</li>
+<li>AOF：大，数据较全，记录操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis集群<ul>
+<li><input disabled="" type="checkbox"> 工作原理<ul>
+<li>gossip 协议，节点间保持通讯和维护元数据</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> key是如何寻址的、<ul>
+<li>哈希槽分区</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 分布式寻址算法有哪些<ul>
+<li>hash、一致性hash、哈希槽</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 一致性hash算法<ul>
+<li>将2的32方大小的数拼成一个圆，节点的ip取hash映射在这个圆上，数据落在圆上顺时针找节点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis生产问题<ul>
+<li><input disabled="" type="checkbox"> 缓存雪崩<ul>
+<li>大量key失效 &#x2F; redis宕机</li>
+<li>随机过期时间、集群、熔断</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 缓存穿透<ul>
+<li>查询的数据redis和数据库都没有</li>
+<li>缓存空对象、</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 缓存击穿<ul>
+<li>热点数据key突然失效</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><input disabled="" type="checkbox"> Redis内存用完了会发生什么<ul>
 <li>不同的内存淘汰策略会发生的情况不同</li>
 </ul>
 </li>
-<li><input disabled="" type="checkbox"> 如何保证缓存与数据库一致性</li>
+<li><input disabled="" type="checkbox"> 如何保证缓存与数据库一致性<ul>
+<li>先更新数据库，再删除缓存，一段时间后再删除一次缓存</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis并发竞争问题<ul>
+<li><input disabled="" type="checkbox"> 是什么<ul>
+<li>多线程并发写请求</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 如何解决<ul>
+<li>数据加时间戳，缓存中保存最新的数据即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis事务<ul>
+<li><input disabled="" type="checkbox"> 是什么</li>
+<li><input disabled="" type="checkbox"> CAS方案是什么</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis部署<ul>
+<li><input disabled="" type="checkbox"> 生产环境下如何部署</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Redis rehash<ul>
+<li><input disabled="" type="checkbox"> 是什么</li>
+<li><input disabled="" type="checkbox"> 过程</li>
+</ul>
+</li>
 <li><input disabled="" type="checkbox"> redis防止表单重复提交是怎么实现的</li>
 <li><input disabled="" type="checkbox"> Redis内存满了 &#x2F; 内存不够用</li>
+</ul>
+<h2 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h2><ul>
+<li><input disabled="" type="checkbox"> ES是如何实现分布式的</li>
+<li><input disabled="" type="checkbox"> ES写入数据的工作原理</li>
+<li><input disabled="" type="checkbox"> ES查询数据的工作原理</li>
+<li><input disabled="" type="checkbox"> ES底层的Lucene是什么</li>
+<li><input disabled="" type="checkbox"> ES的倒排索引是什么</li>
+<li><input disabled="" type="checkbox"> ES在大数据量下如何提高查询效率</li>
+<li><input disabled="" type="checkbox"> ES生成集群的部署架构是什么</li>
+<li><input disabled="" type="checkbox"> ES每个索引的数据量大概有多少</li>
+<li><input disabled="" type="checkbox"> ES每个索引大概有多少个分片</li>
 </ul>
 
 
@@ -308,7 +509,7 @@ ChangeBuffer</p>
 
 </article>
 
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E5%9C%BA%E6%99%AF%E9%A2%98/">场景题</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/Web3%E9%9D%A2%E8%AF%95/">2024-01-18</a></div></section></div>
 
 
 

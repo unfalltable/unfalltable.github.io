@@ -23,16 +23,16 @@
   <title>分布式微服务思想 - JianHong</title>
 
   
-    <meta name="description" content="分布式 为了解决单体应用带来的各种问题（CAP理论）  优缺点 优点 缺点 依赖网络 维护成本高 CAP无法同时满足    高可用 最大限度保证服务正常、健康的运行，不影响用户的正常使用  实现 合理的负载均衡策略 线程隔离、集群隔离、读写分离，热点数据隔离、爬虫隔离 Nginx限流，Redis+lua限流，应用层限流，降级处理、补偿机制 Nginx限流：流量入口限流，连接数，整体请求数量限制 R">
+    <meta name="description" content="分布式 为了解决单体应用带来的各种问题（CAP理论） 本质上就是对系统进行拆分  优缺点 优点 缺点 依赖网络 维护成本高 CAP无法同时满足    高可用 最大限度保证服务正常、健康的运行，不影响用户的正常使用  实现 合理的负载均衡策略 线程隔离、集群隔离、读写分离，热点数据隔离、爬虫隔离 Nginx限流，Redis+lua限流，应用层限流，降级处理、补偿机制 Nginx限流：流量入口限流，连">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式微服务思想">
 <meta property="og:url" content="http://example.com/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E5%BF%B5/index.html">
 <meta property="og:site_name" content="JianHong">
-<meta property="og:description" content="分布式 为了解决单体应用带来的各种问题（CAP理论）  优缺点 优点 缺点 依赖网络 维护成本高 CAP无法同时满足    高可用 最大限度保证服务正常、健康的运行，不影响用户的正常使用  实现 合理的负载均衡策略 线程隔离、集群隔离、读写分离，热点数据隔离、爬虫隔离 Nginx限流，Redis+lua限流，应用层限流，降级处理、补偿机制 Nginx限流：流量入口限流，连接数，整体请求数量限制 R">
+<meta property="og:description" content="分布式 为了解决单体应用带来的各种问题（CAP理论） 本质上就是对系统进行拆分  优缺点 优点 缺点 依赖网络 维护成本高 CAP无法同时满足    高可用 最大限度保证服务正常、健康的运行，不影响用户的正常使用  实现 合理的负载均衡策略 线程隔离、集群隔离、读写分离，热点数据隔离、爬虫隔离 Nginx限流，Redis+lua限流，应用层限流，降级处理、补偿机制 Nginx限流：流量入口限流，连">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/pic/image-20230329083801876.png">
 <meta property="article:published_time" content="2024-01-18T13:12:24.732Z">
-<meta property="article:modified_time" content="2024-01-14T16:25:41.876Z">
+<meta property="article:modified_time" content="2024-02-23T08:51:27.287Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="理念">
 <meta name="twitter:card" content="summary">
@@ -83,7 +83,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">分布式微服务思想</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">分布式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-text">高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP%E7%90%86%E8%AE%BA"><span class="toc-text">CAP理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">出现的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AB%E4%B9%89"><span class="toc-text">含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E9%99%85"><span class="toc-text">实际</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base%E7%90%86%E8%AE%BA"><span class="toc-text">Base理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0-1"><span class="toc-text">出现的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AB%E4%B9%89-1"><span class="toc-text">含义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="toc-text">数据一致性模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PACELC"><span class="toc-text">PACELC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quorum"><span class="toc-text">Quorum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WARO"><span class="toc-text">WARO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Paxos"><span class="toc-text">Paxos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raft"><span class="toc-text">Raft</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zab"><span class="toc-text">Zab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5"><span class="toc-text">负载均衡策略</span></a></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">分布式微服务思想</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">分布式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-text">高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">数据一致性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAP%E7%90%86%E8%AE%BA"><span class="toc-text">CAP理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">出现的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AB%E4%B9%89"><span class="toc-text">含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E9%99%85"><span class="toc-text">实际</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Base%E7%90%86%E8%AE%BA"><span class="toc-text">Base理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0-1"><span class="toc-text">出现的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AB%E4%B9%89-1"><span class="toc-text">含义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PACELC"><span class="toc-text">PACELC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quorum"><span class="toc-text">Quorum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WARO"><span class="toc-text">WARO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Paxos"><span class="toc-text">Paxos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Raft"><span class="toc-text">Raft</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zab"><span class="toc-text">Zab</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5"><span class="toc-text">负载均衡策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%AF%BB%E5%9D%80"><span class="toc-text">分布式寻址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%8F%96%E4%BD%99%E5%88%86%E5%8C%BA"><span class="toc-text">哈希取余分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="toc-text">优缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E5%88%86%E5%8C%BA"><span class="toc-text">一致性哈希算法分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-2"><span class="toc-text">优缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E6%A7%BD%E5%88%86%E5%8C%BA"><span class="toc-text">哈希槽分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-text">简介</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%82%E7%AD%89%E6%80%A7"><span class="toc-text">幂等性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89"><span class="toc-text">接口幂等</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%A1%88"><span class="toc-text">方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98"><span class="toc-text">分布式缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-text">分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-text">分布式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%A1%88-1"><span class="toc-text">方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6"><span class="toc-text">框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81"><span class="toc-text">分布式限流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BC%9A%E8%AF%9D"><span class="toc-text">分布式会话</span></a></li></ol></div></div></widget>
 
 
 
@@ -105,6 +105,7 @@
 <h1 class="article-title"><span>分布式微服务思想</span></h1>
 <h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><ul>
 <li>为了解决单体应用带来的各种问题（CAP理论）</li>
+<li>本质上就是对系统进行拆分</li>
 </ul>
 <h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
 <li>优点</li>
@@ -128,7 +129,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h2><h4 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h4><ul>
+<h2 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h2><h3 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h3><h4 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h4><ul>
 <li>由于分布式环境下网络的不稳定性，所以需要考虑网络不可达的因素（不能影响到服务的正常响应）</li>
 </ul>
 <h4 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h4><ul>
@@ -151,7 +152,7 @@
 <li>只能有CP、AP这两种组合，CA在分布式架构中是不可能的，即P必须保证</li>
 <li>CAP可以兼得，但是是不完善的，比如通过弱一致性、最终一致性、熔断降级等等来实现</li>
 </ul>
-<h2 id="Base理论"><a href="#Base理论" class="headerlink" title="Base理论"></a>Base理论</h2><h4 id="出现的原因-1"><a href="#出现的原因-1" class="headerlink" title="出现的原因"></a>出现的原因</h4><ul>
+<h3 id="Base理论"><a href="#Base理论" class="headerlink" title="Base理论"></a>Base理论</h3><h4 id="出现的原因-1"><a href="#出现的原因-1" class="headerlink" title="出现的原因"></a>出现的原因</h4><ul>
 <li>是CAP理论的一种妥协</li>
 </ul>
 <h4 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h4><ul>
@@ -162,7 +163,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="数据一致性模型"><a href="#数据一致性模型" class="headerlink" title="数据一致性模型"></a>数据一致性模型</h2><ul>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
 <li><p>弱一致性：某一时刻存在不一致</p>
 </li>
 <li><p>强一致性：每次都是一致的，牺牲可用性</p>
@@ -180,18 +181,18 @@
 <li><p>读写一致性：改了之后要能读到</p>
 </li>
 </ul>
-<h2 id="PACELC"><a href="#PACELC" class="headerlink" title="PACELC"></a>PACELC</h2><ul>
+<h3 id="PACELC"><a href="#PACELC" class="headerlink" title="PACELC"></a>PACELC</h3><ul>
 <li>基于CAP理论</li>
 <li>PAC - E - L（延迟）C</li>
 </ul>
-<h2 id="Quorum"><a href="#Quorum" class="headerlink" title="Quorum"></a>Quorum</h2><ul>
+<h3 id="Quorum"><a href="#Quorum" class="headerlink" title="Quorum"></a>Quorum</h3><ul>
 <li>不保证强一致性的写，但是读需要是最新，通过版本号</li>
 </ul>
-<h2 id="WARO"><a href="#WARO" class="headerlink" title="WARO"></a>WARO</h2><ul>
+<h3 id="WARO"><a href="#WARO" class="headerlink" title="WARO"></a>WARO</h3><ul>
 <li>副本控制协议，保证强一致性，读必须是最新的数据、牺牲可用性</li>
 <li>kafka</li>
 </ul>
-<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../pic/image-20230329083801876.png" alt="image-20230329083801876"></p>
+<h3 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/../pic/image-20230329083801876.png" alt="image-20230329083801876"></p>
 <ul>
 <li>解决强一致性的算法，是一种思想&#x2F;协议 or 共识算法，就某个节点的值达成一致</li>
 <li>只要Proposer的提案有半数以上的Acceptor接受，则提案通过</li>
@@ -239,7 +240,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Raft"><a href="#Raft" class="headerlink" title="Raft"></a>Raft</h2><ul>
+<h3 id="Raft"><a href="#Raft" class="headerlink" title="Raft"></a>Raft</h3><ul>
 <li>基于paxos的工程化实现，选举算法</li>
 <li>角色<ul>
 <li>leader：处理所有的写请求，并将请求复制到follow</li>
@@ -263,7 +264,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Zab"><a href="#Zab" class="headerlink" title="Zab"></a>Zab</h2><ul>
+<h3 id="Zab"><a href="#Zab" class="headerlink" title="Zab"></a>Zab</h3><ul>
 <li>消息广播和奔溃恢复</li>
 </ul>
 <h2 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h2><ul>
@@ -271,6 +272,187 @@
 <li>轮询</li>
 <li>ip_hash</li>
 </ul>
+<h2 id="分布式寻址"><a href="#分布式寻址" class="headerlink" title="分布式寻址"></a>分布式寻址</h2><h3 id="哈希取余分区"><a href="#哈希取余分区" class="headerlink" title="哈希取余分区"></a>哈希取余分区</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>根据集群数量哈希取余，均匀的分配到每一台机器上</li>
+</ul>
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>优点是简单</li>
+<li>缺点是不利于扩容，还有就是如果节点宕机需要重新取余，不稳定</li>
+</ul>
+<h3 id="一致性哈希算法分区"><a href="#一致性哈希算法分区" class="headerlink" title="一致性哈希算法分区"></a>一致性哈希算法分区</h3><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>对2^32^ 取余</li>
+</ul>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ul>
+<li>算法构建一致性哈希环<ul>
+<li>将 0 ~ 2^32^ 的线性空间拼接成一个环</li>
+</ul>
+</li>
+<li>服务器IP节点映射到这个哈希环上</li>
+<li>key落到服务器的落键规则<ul>
+<li>请求同样对2^32^ 取余，然后落在环上顺时针走，遇到的第一个服务器就处理这个请求</li>
+</ul>
+</li>
+</ul>
+<h4 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>优点<ul>
+<li>容错性高、扩展性强</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>节点太少回导致数据倾斜的问题<ul>
+<li>通过虚拟节点解决</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="哈希槽分区"><a href="#哈希槽分区" class="headerlink" title="哈希槽分区"></a>哈希槽分区</h3><h4 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>用一个 2^14^ 大的数组，作为哈希槽</li>
+<li>最多只有16384个槽</li>
+<li>因为redis的节点不会超过1000个，够用了</li>
+<li>相当于在请求和redis之间添加了一个反向代理（槽），由它来选择存储的redis节点<ul>
+<li>对key进行 CRC16 ，然后对 16384 取模，找到对应的槽位</li>
+<li>增加或删除节点通过移动槽位实现</li>
+</ul>
+</li>
+</ul>
+<h2 id="幂等性"><a href="#幂等性" class="headerlink" title="幂等性"></a>幂等性</h2><h3 id="接口幂等"><a href="#接口幂等" class="headerlink" title="接口幂等"></a>接口幂等</h3><ul>
+<li>同一个接口请求多次结果相同</li>
+</ul>
+<h4 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h4><ol>
+<li>把传入的数据md5转换后存入redis，使用setnx存入</li>
+<li>数据库唯一约束</li>
+<li>前端发请求携带一个额外的token，两次token一致则不执行</li>
+<li>加乐观锁（csa）</li>
+<li>状态机</li>
+<li>插入前先查找</li>
+<li>加悲观锁</li>
+</ol>
+<h2 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h2><ol>
+<li>Redis哨兵集群、分片集群</li>
+</ol>
+<h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><ol>
+<li>MySQL实现<ul>
+<li>创建一张锁表，加锁时在锁表中添加一条记录，释放锁时删除记录</li>
+<li>如果有并发请求同时提交到数据库，数据库会保证只有一个请求能够得到锁</li>
+<li>属于数据库 IO 操作，效率不高，而且频繁操作会增大数据库的开销，因此这种方式在高并发、高性能的场景中用的不多</li>
+</ul>
+</li>
+<li>ZooKeeper实现<ul>
+<li>是一个比较重的分布式组件</li>
+</ul>
+</li>
+<li>Redis实现<ul>
+<li>setNx，需要加入过期时间</li>
+<li>Redission</li>
+</ul>
+</li>
+</ol>
+<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><ul>
+<li>因为多个事务在多个不同的节点上执行，其中一个节点失败或者延迟，往往会导致整个系统的一致性受到破坏</li>
+</ul>
+<h3 id="方案-1"><a href="#方案-1" class="headerlink" title="方案"></a>方案</h3><ol>
+<li>两阶段提交 &#x2F; XA协议（2PC）<ul>
+<li>角色<ul>
+<li>AP（Application）：应用系统（服务）</li>
+<li>TM（Transaction Manager）：事务管理器（全局事务管理）</li>
+<li>RM（Resource Manager）：资源管理器（数据库）</li>
+</ul>
+</li>
+<li>可以保证事务的原子性和一致性，但是需要额外的开销和时间，不适合高并发和高吞吐的系统</li>
+<li>整个过程中事务管理器（TM）很关键，如果其宕机会导致资源管理器（RM）不可用</li>
+<li>事务处理过程中资源管理器（RM）处于阻塞状态，事务提交后才释放资源</li>
+<li>由于网络问题可能出现数据不一致的问题（部分节点没有接收到Commit操作）</li>
+</ul>
+</li>
+<li>三阶段提交（3PC）<ul>
+<li>为解决两阶段提交协议的单点故障和同步阻塞问题</li>
+<li>步骤<ul>
+<li>CanCommit：准备阶段。协调者向参与者发送commit请求，参与者如果可以提交就返回Yes响应，否则返回No响应</li>
+<li>PreCommit：预提交阶段。协调者根据参与者在<strong>准备阶段</strong>的响应判断是否执行事务还是中断事务，参与者执行完操作之后返回ACK响应，同时开始等待最终指令</li>
+<li>DoCommit：提交阶段。协调者根据参与者在<strong>准备阶段</strong>的响应判断是否执行事务还是中断事务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sega<ul>
+<li>参与者依次提交事务，单发现错误时，从错误点开始回滚</li>
+<li>无锁，异步高吞吐，最终一致性，但不保证隔离性</li>
+<li>适合业务流程长，多的服务</li>
+</ul>
+</li>
+<li>TCC<ul>
+<li>在业务层实现的分布式事务，强一致性<ul>
+<li>配合状态机实现</li>
+<li>Try：资源检测和预留</li>
+<li>Confirm：完成资源操作业务，Try成功，Confirm一定要能成功</li>
+<li>Cancel：预留资源释放，可以看作是try的反向操作，即回滚</li>
+</ul>
+</li>
+<li>规避了两阶段提交数据库性能低下的问题</li>
+<li>需要自己实现回滚逻辑，难以维护，开发成本高，对业务侵入较大和耦合度高</li>
+</ul>
+</li>
+<li>消息队列<ul>
+<li>使用MQ的事务消息机制</li>
+<li>将事务的各个阶段转化为消息的处理，以此来确保事务的顺序性和一致性</li>
+<li>存在延迟和数据重复的问题</li>
+<li>流程<ol>
+<li>A 发送一个 prepared 消息到MQ，发送成功就执行本地事务</li>
+<li>执行事务成功后，向MQ发送确认消息，失败则让MQ回滚</li>
+<li>B通过MQ获取到确认消息，开始执行本地事务，本地事务失败的话就不断尝试</li>
+<li>B始终无法成功的话再根据实际业务需求进行处理</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>本地消息表<ul>
+<li>将分布式事务拆分成本地事务进行处理，属于最终一致性</li>
+<li>步骤<ul>
+<li>A在数据库中新增一张消息表，将事务操作记录到消息表中（两个操作在一个事务中）</li>
+<li>A通过轮询的方式将消息表中新增的消息推送到mq，B再去mq中消费信息（保证幂等）</li>
+<li>B拿到消息后，在数据库中的消息表插入记录，同时执行业务，如果已处理过则回滚</li>
+<li>B处理好信息后，在本地数据库中的消息表更新状态和A的消息状态</li>
+<li>A定时扫描自己的消息表，有未处理的会再次发到MQ中去</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><ol>
+<li>Seata<ul>
+<li>使用的是两阶段提交</li>
+</ul>
+</li>
+</ol>
+<h2 id="分布式限流"><a href="#分布式限流" class="headerlink" title="分布式限流"></a>分布式限流</h2><ol>
+<li>计数器<ul>
+<li>设置单位时间内能够处理的最大请求数</li>
+<li>存在浪费性能的问题<ul>
+<li>请求可能在单位时间内早就处理完成了，剩余的时间没处理请求，资源浪费</li>
+<li>该问题也称为 突刺现象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>漏桶算法<ul>
+<li>漏桶流算法</li>
+<li>令牌桶算法</li>
+</ul>
+</li>
+<li>spring cloud gateway <ul>
+<li>默认使用 redis 进行限流</li>
+</ul>
+</li>
+<li>sentinel<ul>
+<li>控制每个 url 的流量</li>
+</ul>
+</li>
+</ol>
+<h2 id="分布式会话"><a href="#分布式会话" class="headerlink" title="分布式会话"></a>分布式会话</h2><ol>
+<li>Tomcat + Redis</li>
+<li>Spring Session + Redis</li>
+</ol>
 
 
 

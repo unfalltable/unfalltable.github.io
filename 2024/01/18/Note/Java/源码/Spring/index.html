@@ -31,7 +31,7 @@
 <meta property="og:description" content="SpringIOCAOPJDK代理 被代理对象需要实现接口  JDK代理和被代理对象同级，兄弟关系  JDK代理前16次通过反射调用方法，后续都是   123456789101112ClassLoader loder &#x3D; 被代理类.class.getClassLoader();&#x2F;&#x2F;被代理对象Target target &#x3D; new Target();接口 proxy &#x3D; (接口) Proxy.new">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-18T13:12:24.704Z">
-<meta property="article:modified_time" content="2023-08-04T01:34:50.000Z">
+<meta property="article:modified_time" content="2024-02-23T09:25:08.809Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="源码">
 <meta name="twitter:card" content="summary">
@@ -238,39 +238,36 @@
 </li>
 </ul>
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><ol>
-<li>处理名称，检查缓存</li>
-</ol>
+<li><p>处理名称，检查缓存</p>
 <ul>
 <li>解析别名，解析特殊符号，查询三级缓存看是否有创建好的Bean</li>
 </ul>
-<ol start="2">
-<li>处理父子容器</li>
-</ol>
+</li>
+<li><p>处理父子容器</p>
 <ul>
-<li>如果有父容器，回去父容器是否有创建好的Bean<ul>
+<li>如果有父容器，会去父容器是否有创建好的Bean<ul>
 <li>父子容器的bean名称可以重复</li>
 <li>优先找子容器Bean，子容器没有再找父容器</li>
 </ul>
 </li>
 </ul>
-<ol start="3">
-<li>dependsOn</li>
-</ol>
+</li>
+<li><p>dependsOn</p>
 <ul>
 <li>判断是否用使用dependsOn指定Bean的创建顺序</li>
 </ul>
-<ol start="4">
-<li>按不同的Scope创建Bean</li>
-<li>实例化</li>
-</ol>
+</li>
+<li><p>按不同的Scope创建Bean</p>
+</li>
+<li><p>实例化</p>
 <ul>
 <li>通过构造函数创建</li>
 <li>反射生成对象，堆中申请空间，给成员变量赋默认值</li>
 </ul>
-<ol start="6">
-<li>依赖注入</li>
-<li>初始化</li>
-</ol>
+</li>
+<li><p>依赖注入</p>
+</li>
+<li><p>初始化</p>
 <ul>
 <li>Bean属性注入<ul>
 <li>包括自定义属性和容器属性</li>
@@ -284,9 +281,11 @@
 </ul>
 </li>
 </ul>
-<ol start="8">
-<li>使用，通过容器对象调用getBean()方法获取Bean对象</li>
-<li>销毁</li>
+</li>
+<li><p>使用，通过容器对象调用getBean()方法获取Bean对象</p>
+</li>
+<li><p>销毁</p>
+</li>
 </ol>
 <h2 id="三级缓存-循环依赖"><a href="#三级缓存-循环依赖" class="headerlink" title="三级缓存 &#x2F; 循环依赖"></a>三级缓存 &#x2F; 循环依赖</h2><ul>
 <li><p>用于解决循环依赖的问题</p>
@@ -580,7 +579,7 @@
 
 </article>
 
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/Mybatis2/">2024-01-18</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/JUC/">JUC源码</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/MySQL/">MySQL源码</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/Java/%E6%BA%90%E7%A0%81/JUC/">JUC源码</a></div></section></div>
 
 
 

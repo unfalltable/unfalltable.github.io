@@ -31,7 +31,7 @@
 <meta property="og:description" content="QQ号如何保证申请不重复  使用类似布隆过滤器的机制实现判断qq是否存在     查询年龄大于16岁，性别为女，注册日期范围为2019年的人数，复合索索引怎么建？    500w多万数据，qps很高的情况下查询慢怎么解决    放redis也依旧很热怎么处理    计算100的阶乘    假设日志文件记录每个接口请求耗时，怎么快速找到接口耗时＞500ms的请求？    做SDK怎么提升性能">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-18T13:12:24.741Z">
-<meta property="article:modified_time" content="2024-01-21T18:02:33.937Z">
+<meta property="article:modified_time" content="2024-02-23T08:55:02.534Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -82,7 +82,7 @@
 
 
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">Recent Update</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/Java%E5%9F%BA%E7%A1%80/"><span class="title">Java基础</span></a><a class="item title" href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="title">数据库</span></a><a class="item title" href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="title">中间件</span></a><a class="item title" href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Go/GO/"><span class="title">Golang</span></a><a class="item title" href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Go/Go%E5%BA%93/"><span class="title">Golang库</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">Recent Update</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/01-%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/%E5%8D%8F%E8%AE%AE/"><span class="title">协议</span></a><a class="item title" href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Rust/Rust/"><span class="title">Rust</span></a><a class="item title" href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Go/GO/"><span class="title">Golang</span></a><a class="item title" href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/02-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/Solidity/Solidity/"><span class="title">Solidity</span></a><a class="item title" href="/2024/02/20/Note/%E9%9D%A2%E8%AF%95/Java/Java%E6%A1%86%E6%9E%B6/"><span class="title">Java框架</span></a></div></widget>
 
 
 
@@ -210,7 +210,7 @@ QQ号如何保证申请不重复</p>
 100桶酒，其中一桶有毒，一只实验老鼠喝了酒之后一小时有结果，问一小时之内最少几只老鼠可以试出毒酒</p>
 <ul>
 <li>将酒桶编号为二进制，第一桶为0000001，第100桶为1000000</li>
-<li>所有低位第一位为1的酒混合，低位第二位为1的酒混合，一次类推</li>
+<li>所有低位第一位为1的酒混合，低位第二位为1的酒混合，依次类推</li>
 <li>一共有七个瓶子，喂七只小白鼠</li>
 <li>哪只小白鼠死了，对应的二进制为就为1</li>
 </ul>
@@ -224,7 +224,7 @@ QQ号如何保证申请不重复</p>
 
 </article>
 
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/">计算机基础</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div></section></div>
 
 
 

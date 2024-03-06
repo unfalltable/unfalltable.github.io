@@ -31,7 +31,7 @@
 <meta property="og:description" content="简介 速度快，易学，支持高并发，适合网络编程和区块链开发，类c语言  格式 12345package main&#x2F;&#x2F;程序入口func main()&#123;    &#125;  命令   命令 功能 参数 备注    go build 编译包和依赖     go run 编译并运行     go clean 移除当前源码包和关联源码包里面编译生成的文件     go env 打印Go的环境信息">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-30T09:43:41.281Z">
-<meta property="article:modified_time" content="2024-02-21T07:22:59.775Z">
+<meta property="article:modified_time" content="2024-03-05T00:05:35.988Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="go">
 <meta name="twitter:card" content="summary">
@@ -415,7 +415,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接口定义</span></span><br><span class="line"><span class="keyword">type</span> 接口名 <span class="keyword">interface</span>&#123;</span><br><span class="line">    方法名() 【返回值类型】</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口实现</span></span><br><span class="line"><span class="keyword">type</span> 实现 <span class="keyword">struct</span>&#123;</span><br><span class="line">    成员变量</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this &amp;实现)</span></span> 接口方法名 【返回值类型】&#123;</span><br><span class="line">	实现方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//万能接口，可接收任意类型</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">method</span><span class="params">(arg <span class="keyword">interface</span>&#123;&#125;)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//万能接口提供了类型断言</span></span><br><span class="line">value, ok := arg.(<span class="type">string</span>) <span class="comment">//判断arg是否是字符串</span></span><br></pre></td></tr></table></figure>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接口定义</span></span><br><span class="line"><span class="keyword">type</span> 接口名 <span class="keyword">interface</span>&#123;</span><br><span class="line">    方法名() 【返回值类型】</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口实现</span></span><br><span class="line"><span class="keyword">type</span> 实现 <span class="keyword">struct</span>&#123;</span><br><span class="line">    成员变量</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this &amp;实现)</span></span> 接口方法名 【返回值类型】&#123;</span><br><span class="line">	实现方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//万能接口，可接收任意类型</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">method</span><span class="params">(arg  &#123;&#125;)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//万能接口提供了类型断言</span></span><br><span class="line">value, ok := arg.(<span class="type">string</span>) <span class="comment">//判断arg是否是字符串</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取对象的type</span></span><br><span class="line">reflect.TypeOf(对象)</span><br><span class="line"><span class="comment">//获取对象的value</span></span><br><span class="line">reflect.ValueOf(对象)</span><br><span class="line"><span class="comment">//获取对象中的成员的标签</span></span><br><span class="line">t := reflect.TypeOf(对象).Elem()</span><br><span class="line">tagIt.Field(下标).Tag.Get(<span class="string">&quot;标签名&quot;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -429,7 +429,13 @@
 <h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><ul>
 <li>自定义网页内容并渲染数据</li>
 <li>使用<ol>
-<li>创建模板文件<code>.tmpl</code>  ，需要传值的位置使用占位符 <code>&#123;&#123; . &#125;&#125;</code></li>
+<li>创建模板文件<code>.tmpl</code>  ，需要传值的位置使用占位符 <code>&#123;&#123; .[对象][属性] &#125;&#125;</code> <ul>
+<li>可以使用 <code>$变量</code> 来复用数据</li>
+<li>可以使用 <code>&#123;&#123;- .&#125;&#125;</code> 来去除空格</li>
+</ul>
+</li>
+<li>解析模板</li>
+<li>渲染模板</li>
 </ol>
 </li>
 </ul>

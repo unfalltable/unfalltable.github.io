@@ -31,7 +31,7 @@
 <meta property="og:description" content="简介 高性能，运行速度与 C &#x2F; C++ 一样  零开销抽象：rust的标准实现一定是最优的 无GC的自动内存管理RALL：没有像java的自动gc，也不像c的完全用程序员管理 类C 的ABI一致内存模型：编译的二进制文件与c编译的一样，互相兼容，相互调用   内存安全  Ownership，move Borrowchecker 强类型系统 无空值设计   无忧并发  多线程并发时不会出">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-30T09:43:41.281Z">
-<meta property="article:modified_time" content="2024-02-20T08:01:55.477Z">
+<meta property="article:modified_time" content="2024-03-05T03:42:45.386Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="rust">
 <meta name="twitter:card" content="summary">
@@ -295,8 +295,6 @@
 </tr>
 </tbody></table>
 <h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h3 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h3><h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//比较a和b的值</span></span><br><span class="line"><span class="keyword">match</span> a.<span class="title function_ invoke__">cmp</span>(&amp;b) &#123;</span><br><span class="line">    std::cmp::Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;small&quot;</span>),</span><br><span class="line">    std::cmp::Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;big&quot;</span>),</span><br><span class="line">    std::cmp::Ordering::Equal =&gt; <span class="built_in">println!</span>(<span class="string">&quot;win&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//处理错误</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">guess</span>: <span class="type">u32</span> = <span class="keyword">match</span> guess.<span class="title function_ invoke__">trim</span>().<span class="title function_ invoke__">parse</span>()&#123;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(num) =&gt; num,</span><br><span class="line">    <span class="title function_ invoke__">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
 
 <h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><table>
 <thead>

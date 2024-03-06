@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Java基础 - JianHong</title>
+
+  
+    <meta name="description" content="JavaSE   谈谈你对面向对象的理解   定义  优缺点  设计模式七大原则  合成复用原则    类与类之间的关系  里氏替换原则       谈谈你对集合的理解   底层实现  区别  Set怎么实现去重  HashTable、HashMap、ConcurrentHashMap的区别     &#x3D;&#x3D; 和 equals    区别     创建对象的方法    异常相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础">
+<meta property="og:url" content="http://example.com/2024/01/18/Note/%E9%9D%A2%E8%AF%95/Java/Java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="JianHong">
+<meta property="og:description" content="JavaSE   谈谈你对面向对象的理解   定义  优缺点  设计模式七大原则  合成复用原则    类与类之间的关系  里氏替换原则       谈谈你对集合的理解   底层实现  区别  Set怎么实现去重  HashTable、HashMap、ConcurrentHashMap的区别     &#x3D;&#x3D; 和 equals    区别     创建对象的方法    异常相关">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-18T13:12:24.738Z">
+<meta property="article:modified_time" content="2024-02-28T05:52:16.747Z">
+<meta property="article:author" content="JianHong">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="面试">
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?面试"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">JianHong</div></a></div>
+
+<nav class="menu dis-select"></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Java基础</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaSE"><span class="toc-text">JavaSE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM"><span class="toc-text">JVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JUC"><span class="toc-text">JUC</span></a></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/unfalltable" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.738Z">2024-01-18</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>Java基础</span></h1>
+<h2 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+谈谈你对面向对象的理解</p>
+<ul>
+<li><input disabled="" type="checkbox"> 定义</li>
+<li><input disabled="" type="checkbox"> 优缺点</li>
+<li><input disabled="" type="checkbox"> 设计模式七大原则<ul>
+<li><input disabled="" type="checkbox"> 合成复用原则</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 类与类之间的关系<ul>
+<li><input disabled="" type="checkbox"> 里氏替换原则</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+谈谈你对集合的理解</p>
+<ul>
+<li><input disabled="" type="checkbox"> 底层实现</li>
+<li><input disabled="" type="checkbox"> 区别</li>
+<li><input disabled="" type="checkbox"> Set怎么实现去重</li>
+<li><input disabled="" type="checkbox"> HashTable、HashMap、ConcurrentHashMap的区别</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+&#x3D;&#x3D; 和 equals </p>
+<ul>
+<li><input disabled="" type="checkbox"> 区别</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+创建对象的方法</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+异常相关</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+抽象类和接口</p>
+<ul>
+<li><input disabled="" type="checkbox"> 区别</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Double运算有什么问题</p>
+<ul>
+<li><input disabled="" type="checkbox"> 问题</li>
+<li><input disabled="" type="checkbox"> 解决</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+多态的底层原理</p>
+<ul>
+<li><input disabled="" type="checkbox"> 动态绑定</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+怎么减少hash冲突</p>
+<ul>
+<li>拉链法、开放寻址法、多哈希算法、一致性哈希算法</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Fail-Fast和Fail-Safe</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+new String(“aa”) 创建了多少个对象</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+a&#x3D;”123” 和 a &#x3D; new String(“123”)的区别</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+final原理</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+String、StringBuffer、StriBuilder</p>
+<ul>
+<li><input disabled="" type="checkbox"> 区别</li>
+<li><input disabled="" type="checkbox"> 用途</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Volatile</p>
+<ul>
+<li><input disabled="" type="checkbox"> 作用</li>
+<li><input disabled="" type="checkbox"> 原理</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+集合</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ArrayList</th>
+<th>LinkedList</th>
+<th>Vector</th>
+<th>CopyOnWriteArrayList</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>元素重复</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>null值</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>线程安全</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>底层</td>
+<td>数组，复制</td>
+<td>双向链表</td>
+<td>动态数组</td>
+<td>数组，写入时拷贝</td>
+</tr>
+<tr>
+<td>初始容量</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>扩容</td>
+<td>1.5倍</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建时机</td>
+<td>add时</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ArrayDeque</th>
+<th>PriorityQueue</th>
+<th>BlockingQueue</th>
+<th>LinkedQueue</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>元素重复</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>null值</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>线程安全</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>底层</td>
+<td>循环数组</td>
+<td>数组，小顶堆，层序遍历树</td>
+<td>循环数组，锁</td>
+<td>cas</td>
+</tr>
+<tr>
+<td>初始容量</td>
+<td>8</td>
+<td>11</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>扩容</td>
+<td>2倍</td>
+<td>小于64 -&gt; 2倍 + 2<br />大于64 -&gt; 1.5倍</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>HashSet</th>
+<th>LinkedHashSet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>有序</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>元素重复</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>线程安全</td>
+<td>×</td>
+<td></td>
+</tr>
+<tr>
+<td>底层</td>
+<td>hash表</td>
+<td>hash表</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>HashMap</th>
+<th>HashTable</th>
+<th>ConcurrentHashMap</th>
+<th>LinkedHashMap</th>
+<th>TreeMap</th>
+<th>WeakHashMap</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>有序</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>线程安全</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td></td>
+</tr>
+<tr>
+<td>contains</td>
+<td>×</td>
+<td>√</td>
+<td>containsValue()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>null值</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>哈希次数</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>父类</td>
+<td>AbstractMap</td>
+<td>Dictionary</td>
+<td>AbstractMap</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>初始容量</td>
+<td>16</td>
+<td>11</td>
+<td>16</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>扩容</td>
+<td>2倍</td>
+<td>2倍 + 1</td>
+<td>2倍</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建时机</td>
+<td>put时</td>
+<td>构造时</td>
+<td>put时</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>并发度</td>
+<td>无</td>
+<td>低（synchronized锁）</td>
+<td>高（分段锁）</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>场景</td>
+<td>键值的存储</td>
+<td></td>
+<td></td>
+<td>LRU</td>
+<td>key的顺序取存储键值</td>
+<td></td>
+</tr>
+<tr>
+<td>底层</td>
+<td>哈希表</td>
+<td>哈希表</td>
+<td>哈希表</td>
+<td>哈希表+双向链表</td>
+<td>红黑树</td>
+<td>key是弱引用</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+HashMap</p>
+<ul>
+<li><input disabled="" type="checkbox"> 为什么用红黑树不用AVL树<ul>
+<li>红黑树插入删除快，AVL慢，因为AVL旋转次数更多，平衡和调试更难</li>
+<li>但AVL读取快，适合读取密集型任务</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 红黑树何时退化为链表<ul>
+<li>数组扩容时树节点小于6时退化</li>
+<li>删除树元素前 root，root.left，root.right，root.left 有一个或多个不存在的话则退化</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 树化阈值为什么是8<ul>
+<li>hash足够随机满足泊松分布，且扩容因子为0.75时，链表超过8的概率为 6*10^-7^</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 索引如何计算<ul>
+<li>调用对象的hashCode()方法取得一次哈希，再经过HashMap的hash()方法进行第二次哈希运算，最后 &amp; （容量 - 1）得到索引</li>
+<li>二次哈希 &#x3D; 一次哈希 ^ 一次哈希 &gt;&gt;&gt; 16</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 为什么要进行二次hash<ul>
+<li>一次哈希是对象的内存地址，分布式系统下可能有冲突</li>
+<li>为了使哈希分布更加均匀，减少哈希碰撞，满足泊松分布</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 容量为何是2的n次幂<ul>
+<li>计算索引时可以使用 &amp; 替换 %，提升一定的性能，因为在二进制表示下最高位是1，其余都是0</li>
+<li>存储的元素奇偶分布不均时，哈希分布就不那么均匀了<ul>
+<li>容量设置为一个质数可以解决这个问题，在第一次hash时就能有不错的散列分布</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 扩容后如何确定新位置<ul>
+<li>对象二次哈希 &amp; 扩容前容量<ul>
+<li>为0不改变位置，反之改变</li>
+</ul>
+</li>
+<li>新的位置 &#x3D; 原始位置 + 原始容量</li>
+<li>为0和不为0的元素会串成两条链表，批量操作</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 扩容因子为什么是0.75<ul>
+<li><p>在空间占用和查询时间之间取得较好的平衡</p>
+</li>
+<li><p>大于这个值，空间节省了，但是链表较长影响性能</p>
+</li>
+<li><p>小于这个值，冲突减少了，但链表扩容频繁，空间占用多</p>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 多线程下存在什么问题<ul>
+<li>1.7有扩容死链问题<ul>
+<li>是因为1.7扩容后的链表会以头插法插入</li>
+<li>当多个线程同时进行扩容时，一个线程扩容后次序改变了，另一个线程再扩容导致死链</li>
+</ul>
+</li>
+<li>1.8有数据丢失问题<ul>
+<li>当多个线程同时往map的同一个位置存放数据时，容易出现覆盖丢失数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+红黑树</p>
+<ul>
+<li><input disabled="" type="checkbox"> 特点</li>
+<li><input disabled="" type="checkbox"> 方法</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Unsafe类</p>
+<ul>
+<li><input disabled="" type="checkbox"> 操作内存</li>
+<li><input disabled="" type="checkbox"> cas</li>
+<li><input disabled="" type="checkbox"> 内存屏障</li>
+</ul>
+</li>
+</ul>
+<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+JMM内存模型</p>
+<ul>
+<li><input disabled="" type="checkbox"> 为什么堆保存对象，栈保存函数参数这些<ul>
+<li>堆是由程序员手动申请和释放的，栈是由系统自动分配和回收的</li>
+<li>JVM中堆保存对象是因为对象的大小和生命周期不确定，需要动态分配和管理</li>
+<li>栈保存函数参数和局部变量是因为它们的大小和生命周期相对固定，可以由系统快速分配和回收</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+类加载机制</p>
+<ul>
+<li><input disabled="" type="checkbox"> 字节码文件的内容</li>
+<li><input disabled="" type="checkbox"> 类加载的过程<ul>
+<li>五个阶段、顺序开始、解析阶段开始时机是不确定的，为了支持动态绑定</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+垃圾回收</p>
+<ul>
+<li><input disabled="" type="checkbox"> 引用类型</li>
+<li><input disabled="" type="checkbox"> 垃圾回收算法</li>
+<li><input disabled="" type="checkbox"> 分代回收<ul>
+<li><p><input disabled="" type="checkbox"> 
+触发老年代GC的时机</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+对象直接进入老年代的情况</p>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 垃圾收集器<ul>
+<li><input disabled="" type="checkbox"> CMS</li>
+<li><input disabled="" type="checkbox"> G1</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 可达性分析</li>
+<li><input disabled="" type="checkbox"> 三色标记法</li>
+<li><input disabled="" type="checkbox"> 优化手段</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+对象</p>
+<ul>
+<li><input disabled="" type="checkbox"> 组成</li>
+<li><input disabled="" type="checkbox"> 如何定位</li>
+<li><input disabled="" type="checkbox"> 对象的创建方式</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+字符串常量池</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+直接内存</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+动态绑定和静态绑定</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+类加载器</p>
+<ul>
+<li><input disabled="" type="checkbox"> 双亲委派模式</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+触发老年代GC的时机</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+对象进入老年代的情况</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+new Object() 在内存中占用多少字节</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+调优</p>
+<ul>
+<li><input disabled="" type="checkbox"> 对数据量大的任务和数据访问量大的任务怎么调优</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+JVM问题排查</p>
+<ul>
+<li>系统正在运行的<ul>
+<li>jmap看JVM内存情况</li>
+<li>jstack看线程运行情况，阻塞死锁等</li>
+<li>jstat看垃圾回收状况</li>
+<li>jvisualvm看</li>
+<li>如果频繁fullgc但是又回收了大量对象的话<ul>
+<li>可能是因为对象比较大直接进入了老年代</li>
+<li>可以调大年轻代的大小，让这些对象在minorgc时就回收掉</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系统已经oom<ul>
+<li>看dump文件，用jvisualvm分析</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JUC"><a href="#JUC" class="headerlink" title="JUC"></a>JUC</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+线程</p>
+<ul>
+<li><input disabled="" type="checkbox"> 多线程存在的问题<ul>
+<li>可见性、有序性、原子性</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 创建线程的方式<ul>
+<li>四种，底层都是实现的runnable实现</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 线程的状态<ul>
+<li>cpu：新建 - 就绪 - 运行- 等待 - 结束</li>
+<li>java：new - runnable - blocked - waiting - timed_waiting - terminated</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 守护线程和非守护线程<ul>
+<li>非守护线程结束，则守护线程也跟着结束</li>
+<li>gc线程就是守护线程</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 如何停止线程<ul>
+<li>stop、interrupt</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+锁</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+什么是锁的可重入</p>
+<ul>
+<li>就是会记录拿到锁的线程，这个线程可以重复运行被加锁的对象</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+不可重入锁</p>
+<ul>
+<li>线程池中的worker工作线程，它继承了AQS实现了锁，这个锁是不可重入的，但是没用到</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+CAS</p>
+<ul>
+<li><input disabled="" type="checkbox"> 原理<ul>
+<li>unsafe实现</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 优缺点<ul>
+<li>避免了线程挂起唤醒导致用户态和内核态之间的切换</li>
+<li>自旋时间和次数过长比较占用cpu资源</li>
+<li>可以像synchronized中的自旋优化一样解决这个问题</li>
+<li>也可以像LongAdder的分段锁</li>
+<li>ABA问题<ul>
+<li>虽然可以更新数据，但是不符合原子性</li>
+<li>通过添加版本号解决AtomicStampReference</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+volatile</p>
+<ul>
+<li><input disabled="" type="checkbox"> 作用<ul>
+<li>禁用cpu缓存，保证共享变量的可见性</li>
+<li>使用内存屏障，保证代码的有序性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+sleep &#x2F; wait</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>wait</th>
+<th>sleep</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>来源</td>
+<td>Object的方法</td>
+<td>Thread的方法</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>会释放锁</td>
+<td>不会释放锁</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+wait &#x2F; notify</p>
+<ul>
+<li><input disabled="" type="checkbox"> 为什么要写在 synchronized 代码 块中<ul>
+<li>wail实际上操作的是motor锁中的waitset队列</li>
+<li>wait的作用是为了实现线程间的通信，那么就需要能接收到其他线程对共享变量的修改或者通知其他线程共享变量被修改了，synchronized可以保证一定的可见性，它会将修改过后的信息刷进主内存中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Synchronize</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+Synchronize 和 Lock 的区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Synchronize</th>
+<th>Lock</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>来源</td>
+<td>java关键字</td>
+<td>juc接口</td>
+</tr>
+<tr>
+<td>场景</td>
+<td>竞争小，有很多优化</td>
+<td>竞争大，自旋优化</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>非公平锁，可重入，不可中断</td>
+<td>公平锁&#x2F;非公平锁，可重入、可中断，多条件</td>
+</tr>
+<tr>
+<td>时机</td>
+<td>自动释放锁</td>
+<td>手动申请和释放锁</td>
+</tr>
+<tr>
+<td>作用对象</td>
+<td>修饰方法、修饰类、代码块</td>
+<td>修饰一块区域</td>
+</tr>
+<tr>
+<td>阻塞</td>
+<td>无法实现非阻塞竞争</td>
+<td>有tryLock方法实现非阻塞竞争</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>竞争小时好</td>
+<td>竞争大时好些</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+升级</p>
+<ul>
+<li>轻量级锁、偏向锁、重量级锁</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+优化</p>
+<ul>
+<li><input disabled="" type="checkbox"> 为什么要优化<ul>
+<li>重量级锁每次加锁解锁都涉及到用户态和内核态之间的切换，性能影响大</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 有哪些优化<ul>
+<li>锁膨胀、自旋优化、锁粗化、锁消除</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+LongAdder</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+ReentrantLock</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+特性</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+原理</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+ReentrantReadWriteLock</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+中断原理</p>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+StampedLock</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Semaphore</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+CountdownLatch</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+CyclicBarrier</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+ConcurrentHashMap</p>
+<ul>
+<li><input disabled="" type="checkbox"> 底层数据结构</li>
+<li><input disabled="" type="checkbox"> Put流程</li>
+<li><input disabled="" type="checkbox"> 扩容机制</li>
+<li><input disabled="" type="checkbox"> 并发下的处理</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+ThreadLocal</p>
+<ul>
+<li><input disabled="" type="checkbox"> 是什么</li>
+<li><input disabled="" type="checkbox"> ThreadLocal和Synchronized的区别<ul>
+<li>思路不同</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 索引的计算<ul>
+<li>累加常量1640531527 取模</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> ThreadLocalMap中的key为什么要设置为弱引用 &#x2F; 内存泄漏问题<ul>
+<li>key的内存泄露ThreadLocal已经通过弱引用解决了，但是还存在value的内存泄漏</li>
+<li>推荐使用remove来释放值的内存，因为一般开发中会将ThreadLocal定义为静态final变量，为强引用，所以gc不会清理key</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+CopyOnWriteArrayList</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+AQS</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+理解</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+为什么采用双向链表</p>
+<ul>
+<li>新线程加入队列时需要判断前驱节点的状态</li>
+<li>线程在链表中需要自旋尝试竞争锁，此时需要判断自己是不是头节点</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+唤醒队列中的节点时为何从后往前</p>
+<ul>
+<li>插入节点时插入队尾，新节点会指向队尾节点，但是队尾节点是指向null的，从前往后遍历的话可能会错过节点</li>
+<li>取消节点时的指针更改也是先改前驱节点，再改后继节点，所以从后往前遍历可靠性会高一些</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+线程池</p>
+<ul>
+<li><input disabled="" type="checkbox"> 种类<ul>
+<li>五种：</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 参数<ul>
+<li><input disabled="" type="checkbox"> 如何设置<ul>
+<li>很难控制任务类型，cpu密集型，io密集型，混合型</li>
+<li>需要通过压测来参考</li>
+<li>动态监控和修改线程池</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 状态</li>
+<li><input disabled="" type="checkbox"> 任务执行流程</li>
+<li><input disabled="" type="checkbox"> 创建线程流程</li>
+<li><input disabled="" type="checkbox"> 为什么要使用线程池</li>
+<li><input disabled="" type="checkbox"> 线程池用完了为什么一定要shutdown<ul>
+<li>源码中对线程启动是通过工作线程worker对象的start方法启动的，会在栈中创建一个线程栈</li>
+<li>由于工作线程默认是不会销毁的，所以不会被gc回收</li>
+<li>shutdown会将线程池从running状态改为shutdown，工作线程不会再阻塞读取队列<ul>
+<li>shutdownNow会改为stop状态</li>
+</ul>
+</li>
+<li>还会调用中断方法，将没有在执行任务的方法的中断标记设置为true</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 为什么要构建空任务的救急线程<ul>
+<li>避免阻塞队列中的任务因为线程池中没有工作队列，也没有新任务进来创建新的工作线程导致的饥饿问题</li>
+<li>线程池是允许设置核心线程数为0的</li>
+<li>工作线程被设置了超时，一个任务进入队列时工作线程刚好超时</li>
+<li>所以线程池会在任务进入阻塞队列时判断工作线程是否为0，为0创建空任务的救急线程</li>
+<li>在execute方法中当任务进入阻塞队列时，判断当前工作线程是否为0，为0创建一个救急线程</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 线程池如何知道线程的任务已经完成<ul>
+<li>使用isTerminated方法，当任务都完成返回true，需要先调用shutdown方法和阻塞主线程（不推荐）</li>
+<li>用submit执行线程，这种方式会有返回值，通过future.get()方法判断线程是否结束</li>
+<li>使用getCompletedTaskCount方法判断</li>
+<li>使用CountDownLatch判断，需要提前知道任务数且只能用一次</li>
+<li>使用CyclicBarrier判断，可重复使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/18/Note/%E9%9D%A2%E8%AF%95/Java/Java%E9%A1%B9%E7%9B%AE/">2024-01-18</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/18/Note/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
