@@ -170,6 +170,25 @@ spring核心容器，主要是内部使用
 ApplicationContext：
 继承了BeanFactory，扩展了更多功能国际化、匹配资源、发布事件、环境信息等
 加载配...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.685Z">2024-01-18</time></span><span class="cap breadcrumb">Java框架</span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JVM/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">JVM虚拟机</h2><div class="excerpt"><p>简介JVM内存模型堆
+存放new出来的对象、字符串常量池、静态变量
+字符串常量池是在1.7的时候移入堆中，之前都是在方法区中
+
+
+堆内存由年轻代和老年代组成
+
+栈
+主要存放的是线程，每个线程开辟一块内存空间，称为线程栈
+最多占用1m内存
+
+
+线程栈中由多个栈帧组成，栈帧是调用的每个方法
+栈帧包括：
+局部变量
+操作数栈：方法运行期间数据的操作空间 
+动态链接：符号引用转变为直接引用
+方法出口：...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></span><span class="cap breadcrumb">Java</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/Maven/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">Maven</h2><div class="excerpt"><p>命令
 
@@ -217,25 +236,6 @@ mvn deploy
 scope
 
 provid...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></span><span class="cap breadcrumb">Java基础</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JVM/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">JVM虚拟机</h2><div class="excerpt"><p>简介JVM内存模型堆
-存放new出来的对象、字符串常量池、静态变量
-字符串常量池是在1.7的时候移入堆中，之前都是在方法区中
-
-
-堆内存由年轻代和老年代组成
-
-栈
-主要存放的是线程，每个线程开辟一块内存空间，称为线程栈
-最多占用1m内存
-
-
-线程栈中由多个栈帧组成，栈帧是调用的每个方法
-栈帧包括：
-局部变量
-操作数栈：方法运行期间数据的操作空间 
-动态链接：符号引用转变为直接引用
-方法出口：...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.684Z">2024-01-18</time></span><span class="cap breadcrumb">Java</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E5%9F%BA%E7%A1%80/JUC/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?基础"/></div><h2 class="post-title">JUC并发编程</h2><div class="excerpt"><p>简介多线程存在的问题
 可见性问题：因为CPU和内存间存在缓存，存在主从不一致的情况
@@ -271,20 +271,6 @@ private方法不会被继承
 优点：提高代码的可扩展性
 缺点：无法使用子类特有方法
 ...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.683Z">2024-01-18</time></span><span class="cap breadcrumb">Java</span></div></article>
-</a><a class="post-card post " href="/2024/01/18/Note/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
-<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?中间件"/></div><h2 class="post-title">消息队列</h2><div class="excerpt"><p>MQ协议MOM（Message Oriented Middleware 面向消息中间件）
-
-PO  面向过程
-OO 面向对象
-AO  面向切面
-
-JMS（Java Message Service）
-
-Java消息服务协议，是一种MOM的设计实现
-标准的生产、发送、接收消息
-ActiveMQ是该协议的典型实现
-
-STOMP（Streaming Text Orientated Message P...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.680Z">2024-01-18</time></span><span class="cap breadcrumb">Java中间件</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?中间件"/></div><h2 class="post-title">服务发现</h2><div class="excerpt"><p>Zookeeper数据模型
 ZK是一个树形结构
@@ -301,6 +287,20 @@ Ephemeral  _Sequential 持久化临时节点
 命令
 启动服务
 ./zkServer....</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.680Z">2024-01-18</time></span><span class="cap breadcrumb">Java中间件</span></div></article>
+</a><a class="post-card post " href="/2024/01/18/Note/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+<article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?中间件"/></div><h2 class="post-title">消息队列</h2><div class="excerpt"><p>MQ协议MOM（Message Oriented Middleware 面向消息中间件）
+
+PO  面向过程
+OO 面向对象
+AO  面向切面
+
+JMS（Java Message Service）
+
+Java消息服务协议，是一种MOM的设计实现
+标准的生产、发送、接收消息
+ActiveMQ是该协议的典型实现
+
+STOMP（Streaming Text Orientated Message P...</p></div><div class="meta cap"><span class="cap" id="post-meta">Posted on&nbsp;<time datetime="2024-01-18T13:12:24.680Z">2024-01-18</time></span><span class="cap breadcrumb">Java中间件</span></div></article>
 </a><a class="post-card post " href="/2024/01/18/Note/Java/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/">
 <article class="md-text"><div class="post-cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://source.unsplash.com/1280x640/?中间件"/></div><h2 class="post-title">OSS</h2><div class="excerpt"><p>MinIO简介
 是一个对象存储服务，存储非结构化存储，GoLang写的
