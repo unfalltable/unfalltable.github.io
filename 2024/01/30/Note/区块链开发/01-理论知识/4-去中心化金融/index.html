@@ -31,7 +31,7 @@
 <meta property="og:description" content="简介​		DeFi 即去中心化金融（Decentralized Finance），是一个基于区块链的金融应用生态系统，特点有去中心化、透明、开放、安全、无需许可等，常见的应用有去中心化交易所（DEXs）、钱包、借贷平台、去中心化稳定币、预测市场、保险协议等 金融交易所DEX​		旨在提供一个去中兴化的平台来实现用户之间的代币交易，资产由客户自己掌控，具有无监管，高信任、低门槛、高效、高隐私性、可组">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-30T09:43:41.294Z">
-<meta property="article:modified_time" content="2024-02-19T20:51:16.309Z">
+<meta property="article:modified_time" content="2024-03-08T03:57:57.880Z">
 <meta property="article:author" content="JianHong">
 <meta property="article:tag" content="web3,金融,defi">
 <meta name="twitter:card" content="summary">
@@ -157,18 +157,23 @@
 </blockquote>
 <h2 id="钱包"><a href="#钱包" class="headerlink" title="钱包"></a>钱包</h2><p>​		首先需要有一个钱包你才能在交易所中存储资产，现在大多数的钱包都是通过<strong>助记词</strong>或者私钥来登录的，助记词一般都是基于比特币社区提出的BIP协议构建的。</p>
 <p>​		<strong>助记词</strong>一般是由12个或者24个不同的英语单词组成，助记词一般是通过BIP协议来实现的。</p>
-<h2 id="借贷"><a href="#借贷" class="headerlink" title="借贷"></a>借贷</h2><p>​		用户可以在借贷平台中存入资金，也可以在平台中进行借款，主流的平台一般是通过<strong>超额抵押</strong>来进行借贷，即抵押的资产需要大于借款的资产，当借款方的<strong>健康因子</strong>小于1时，即可进行<strong>清算</strong>，清算者可以获得奖励，任何人都可以进行清算。也有一些平台不用超额抵押来进行借贷，但智能用于特定的用途。资产的价值一般通过价格<strong>预言机</strong>获得。</p>
+<h2 id="借贷"><a href="#借贷" class="headerlink" title="借贷"></a>借贷</h2><p>​		用户可以在借贷平台中存入资金，也可以在平台中进行借款，主流的平台一般是通过<strong>超额抵押</strong>来进行借贷，即抵押的资产需要大于借款的资产，当借款方的<strong>健康因子</strong>小于1时，即可进行<strong>清算</strong>，清算者可以获得奖励，任何人都可以进行清算。也有一些平台不用超额抵押来进行借贷，但只能用于特定的用途。资产的价值一般通过价格<strong>预言机</strong>获得。</p>
 <blockquote>
 <p>健康因子：抵押的资产 * 清算阈值 &#x2F; 借款的资产</p>
 </blockquote>
 <p>​		清算是通过清算人偿还借款方的债务来获取借款方的抵押物，连续多次的清算可能可以获得更高的收益，清算的方式有：</p>
-<blockquote>
-<p>清算拍卖：多个清算人随时间出价</p>
-<p>即时清算：在一次交易中进行清算</p>
-<p>抵押物闪贷：不偿还债务直接清算</p>
-<p>去杠杆螺旋清算：清算后降低抵押物价格再进行清算</p>
-<p>超额清算：出售过多的抵押物</p>
-</blockquote>
+<ul>
+<li><p>清算拍卖：多个清算人随时间出价</p>
+</li>
+<li><p>即时清算：在一次交易中进行清算</p>
+</li>
+<li><p>抵押物闪贷：不偿还债务直接清算</p>
+</li>
+<li><p>去杠杆螺旋清算：清算后降低抵押物价格再进行清算</p>
+</li>
+<li><p>超额清算：出售过多的抵押物</p>
+</li>
+</ul>
 <h3 id="闪电贷"><a href="#闪电贷" class="headerlink" title="闪电贷"></a>闪电贷</h3><p>​		借贷与还款都在一次交易中实现，由闪电贷供应商提供流动性，可以提升资本利用效率和为套利者扳平价格，但是容易被攻击者利用。闪电贷主要用于套利、倒仓、闪铸、抵押物替换、DeFi攻击等</p>
 <h2 id="闪电网络"><a href="#闪电网络" class="headerlink" title="闪电网络"></a>闪电网络</h2><p>​		链上开启一个支付渠道，交易在链下记录，一定时间后清算链下的交易，并提交到链上执行</p>
 <h2 id="稳定币"><a href="#稳定币" class="headerlink" title="稳定币"></a>稳定币</h2><p>​		提供稳定币，即价格波动较小的代币，一般通过链下抵押资产或者链上抵押资产来实现，也可通过算法来实现，但是算法实现的稳定币对比抵押资产的稳定币来说波动太大。</p>
@@ -257,7 +262,7 @@
 
 </article>
 
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/08-%E6%BA%90%E7%A0%81/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%BA%90%E7%A0%81/">以太坊源码</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/01-%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/08-%E6%BA%90%E7%A0%81/Uniswap/">2024-01-30</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/01/30/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/01-%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a></div></section></div>
 
 
 

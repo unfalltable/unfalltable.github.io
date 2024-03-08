@@ -20,12 +20,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>JianHong</title>
+  <title>Chainlink预言机 - JianHong</title>
 
   
     <meta name="description" content="Chainlink简介 为了解决链上智能合约无法获取区块链以外的数据的问题 可以获取随机数，比较安全 官网：https:&#x2F;&#x2F;chain.link 文档：https:&#x2F;&#x2F;docs.chain.link&#x2F;  Data Feed简介 预言机的数据一般在经过一定时间或者数据波动达到一定阈值时会进行更新  业务流程  技术架构 使用12345678910111213141516171819202122232">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JianHong">
+<meta property="og:title" content="Chainlink预言机">
 <meta property="og:url" content="http://example.com/2024/02/20/Note/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/03-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E9%A2%84%E8%A8%80%E6%9C%BA/index.html">
 <meta property="og:site_name" content="JianHong">
 <meta property="og:description" content="Chainlink简介 为了解决链上智能合约无法获取区块链以外的数据的问题 可以获取随机数，比较安全 官网：https:&#x2F;&#x2F;chain.link 文档：https:&#x2F;&#x2F;docs.chain.link&#x2F;  Data Feed简介 预言机的数据一般在经过一定时间或者数据波动达到一定阈值时会进行更新  业务流程  技术架构 使用12345678910111213141516171819202122232">
@@ -37,14 +37,15 @@
 <meta property="og:image" content="http://example.com/pic/image-20240123005837810.png">
 <meta property="og:image" content="http://example.com/pic/image-20240123010100496.png">
 <meta property="article:published_time" content="2024-02-20T09:12:39.505Z">
-<meta property="article:modified_time" content="2024-02-20T09:13:04.881Z">
+<meta property="article:modified_time" content="2024-03-08T04:17:01.044Z">
 <meta property="article:author" content="JianHong">
+<meta property="article:tag" content="chainlink">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/pic/image-20240122202011363.png">
   
   
   
-  
+  <meta name="keywords" content="chainlink">
 
   <!-- feed -->
   
@@ -68,7 +69,7 @@
 <body>
   
 
-<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?"></div></div></div>
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?chainlink"></div></div></div>
 
 
   <div class='l_body' id='start'>
@@ -87,7 +88,7 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">TOC</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chainlink"><span class="toc-text">Chainlink</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Feed"><span class="toc-text">Data Feed</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B"><span class="toc-text">业务流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0-VRF"><span class="toc-text">随机数 VRF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B-1"><span class="toc-text">业务流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84-1"><span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="toc-text">使用</span></a></li></ol></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Chainlink预言机</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chainlink"><span class="toc-text">Chainlink</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Feed"><span class="toc-text">Data Feed</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B"><span class="toc-text">业务流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0-VRF"><span class="toc-text">随机数 VRF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B-1"><span class="toc-text">业务流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84-1"><span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="toc-text">使用</span></a></li></ol></li></ol></li></ol></div></div></widget>
 
 
 
@@ -103,10 +104,10 @@
 
 
 
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-02-20T09:12:39.505Z">2024-02-20</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2024-02-20T09:12:39.505Z">2024-02-20</time></div></div>
 
 <article class='md-text content post'>
-
+<h1 class="article-title"><span>Chainlink预言机</span></h1>
 <h2 id="Chainlink"><a href="#Chainlink" class="headerlink" title="Chainlink"></a>Chainlink</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
 <li>为了解决链上智能合约无法获取区块链以外的数据的问题</li>
 <li>可以获取随机数，比较安全</li>
